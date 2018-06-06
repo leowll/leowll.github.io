@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>Hexo</title>
+  <title>Leo&#39;s notepad</title>
   
-  
+  <subtitle>yet another blog</subtitle>
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
@@ -41,10 +41,10 @@
     <title>理解Spring中的DI和AOP</title>
     <link href="http://yoursite.com/2018/05/10/understand-spring-di-aop/"/>
     <id>http://yoursite.com/2018/05/10/understand-spring-di-aop/</id>
-    <published>2018-05-10T22:55:25.000Z</published>
-    <updated>2018-06-06T05:49:00.140Z</updated>
+    <published>2018-05-10T09:55:25.000Z</published>
+    <updated>2018-06-06T09:10:38.795Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="问题的提出"><a href="#问题的提出" class="headerlink" title="问题的提出"></a><strong>问题的提出</strong></h1><p>Spring中的依赖注入（DI)为何而生？ 下面这篇日语文章提到，所有的Web应用都需要考虑到下面三个问题。 <a href="http://penguinlabo.wp.xdomain.jp/understandspringmvc/" target="_blank" rel="noopener">http://penguinlabo.wp.xdomain.jp/understandspringmvc/</a> 1）对象的生命周期问题。 假设你用Servlet来接收用户的访问请求，有一个用户需要访问一个页面，你就需要一个线程来负责处理这个请求，并调用某个业务逻辑（比如调用一个UserService的实例）。如果处理不当，每新增一个用户就实例化一个业务逻辑（new一个UserService的实例），随着访问用户的增多，就会给系统带来大量垃圾回收负担，以及内存消耗的问题。为了防止这种情况发生，就需要把业务逻辑的部分设计为Singleton的，这样就不会每次都新增一个实例。 2）松耦合问题。 为了实现Web程序中的松耦合，即让一个类与另一个类不是那么的紧密结合，通常需要接口（Interface）来实现。但是单存的利用Interface并不能实现松耦合。还需要利用一些技巧，比如Factory Method等设计模式。 3）技术细节的隐藏。 当你写一个User或者SalesOrder类的时候，你希望专注于自己的业务逻辑，比如创建用户，删除用户，创建订单，删除订单这些具体的业务。如果你在这些类中再加上访问记录（log）处理，就会明显的影响你程序的可读性。因为本质上log处理和你的业务逻辑没有什么联系，两者混杂在一起就会让人看起来比较头大。还有一些异常处理类的逻辑也会产生同样的问题。你怎样才能把这些和真正的业务逻辑无关的逻辑分离出去？</p><h1 id="问题的回答"><a href="#问题的回答" class="headerlink" title="问题的回答"></a>问题的回答</h1><p>Spring给出的解决方案是这样的。 1）对象的生命周期问题。=&gt;DI 2）松耦合问题。 =&gt; DI 3）技术细节的隐藏。=&gt;AOP 首先Spring是怎么实现DI的呢，是通过DI Container来实现的。 在没有使用DI的Web应用中，Controller用到Service的时候，会生成（new）一个，Service用到DAO的时候，也是同样的生成（new）一个。 <img src="http://65.49.230.2/wordpress/wp-content/uploads/2018/06/no-di-300x187.jpg" alt=""> 而使用了DI的Spring，则将实例化的工作全部交给了DI Container去做。 Controller中仅仅声明了Service接口的一个属性，具体的实现（new）没有去做，同样Service中也只是声明了一个DAO接口的一个属性，也没有去实现（new）。当需要实例的时候，就让DI Container根据配置去找到合适的类去实例化相应的接口属性。 <img src="http://65.49.230.2/wordpress/wp-content/uploads/2018/06/DI-300x186.png" alt=""> 而用Spring写成的Web程序，其处理顺序可以用下图来表示 <img src="http://65.49.230.2/wordpress/wp-content/uploads/2018/06/Spring-flow-300x195.png" alt=""></p><ol><li>Dispatcher Servlet接收用户访问请求</li><li>Dispatcher Servlet利用HandlerMapping取得URL所对应的Controller对象</li><li>Controller来实行业务逻辑，调用Service对象和DAO对象得到业务数据，并把数据放到Model中。并返回一个View的名字，希望把数据显示到该View上。</li><li>Dispatcher Servlet得到View的名字后，调用View Resolver来得到相应的View对象。</li><li>Dispatcher Servlet把View对象生成为一个画面（View），画面包含Model对象中的数据，然后把这个View返回给用户(response)。用户的浏览器把这个画面呈献给用户。</li></ol>]]></content>
+    <content type="html"><![CDATA[<h1 id="问题的提出"><a href="#问题的提出" class="headerlink" title="问题的提出"></a><strong>问题的提出</strong></h1><p>Spring中的依赖注入（DI)为何而生？ 下面这篇日语文章提到，所有的Web应用都需要考虑到下面三个问题。 <a href="http://penguinlabo.wp.xdomain.jp/understandspringmvc/" target="_blank" rel="noopener">http://penguinlabo.wp.xdomain.jp/understandspringmvc/</a> 1）对象的生命周期问题。 假设你用Servlet来接收用户的访问请求，有一个用户需要访问一个页面，你就需要一个线程来负责处理这个请求，并调用某个业务逻辑（比如调用一个UserService的实例）。如果处理不当，每新增一个用户就实例化一个业务逻辑（new一个UserService的实例），随着访问用户的增多，就会给系统带来大量垃圾回收负担，以及内存消耗的问题。为了防止这种情况发生，就需要把业务逻辑的部分设计为Singleton的，这样就不会每次都新增一个实例。 2）松耦合问题。 为了实现Web程序中的松耦合，即让一个类与另一个类不是那么的紧密结合，通常需要接口（Interface）来实现。但是单存的利用Interface并不能实现松耦合。还需要利用一些技巧，比如Factory Method等设计模式。 3）技术细节的隐藏。 当你写一个User或者SalesOrder类的时候，你希望专注于自己的业务逻辑，比如创建用户，删除用户，创建订单，删除订单这些具体的业务。如果你在这些类中再加上访问记录（log）处理，就会明显的影响你程序的可读性。因为本质上log处理和你的业务逻辑没有什么联系，两者混杂在一起就会让人看起来比较头大。还有一些异常处理类的逻辑也会产生同样的问题。你怎样才能把这些和真正的业务逻辑无关的逻辑分离出去？</p><h1 id="问题的回答"><a href="#问题的回答" class="headerlink" title="问题的回答"></a>问题的回答</h1><p>Spring给出的解决方案是这样的。<br>1）对象的生命周期问题。=&gt;DI<br>2）松耦合问题。 =&gt; DI<br>3）技术细节的隐藏。=&gt;AOP </p><p>首先Spring是怎么实现DI的呢，是通过DI Container来实现的。<br>在没有使用DI的Web应用中，Controller用到Service的时候，会生成（new）一个，Service用到DAO的时候，也是同样的生成（new）一个。 <img src="http://65.49.230.2/wordpress/wp-content/uploads/2018/06/no-di-300x187.jpg" alt=""> 而使用了DI的Spring，则将实例化的工作全部交给了DI Container去做。 Controller中仅仅声明了Service接口的一个属性，具体的实现（new）没有去做，同样Service中也只是声明了一个DAO接口的一个属性，也没有去实现（new）。当需要实例的时候，就让DI Container根据配置去找到合适的类去实例化相应的接口属性。 <img src="http://65.49.230.2/wordpress/wp-content/uploads/2018/06/DI-300x186.png" alt=""> 而用Spring写成的Web程序，其处理顺序可以用下图来表示 <img src="http://65.49.230.2/wordpress/wp-content/uploads/2018/06/Spring-flow-300x195.png" alt=""></p><ol><li>Dispatcher Servlet接收用户访问请求</li><li>Dispatcher Servlet利用HandlerMapping取得URL所对应的Controller对象</li><li>Controller来实行业务逻辑，调用Service对象和DAO对象得到业务数据，并把数据放到Model中。并返回一个View的名字，希望把数据显示到该View上。</li><li>Dispatcher Servlet得到View的名字后，调用View Resolver来得到相应的View对象。</li><li>Dispatcher Servlet把View对象生成为一个画面（View），画面包含Model对象中的数据，然后把这个View返回给用户(response)。用户的浏览器把这个画面呈献给用户。</li></ol>]]></content>
     
     <summary type="html">
     
@@ -72,9 +72,9 @@
   
   <entry>
     <title>我对Javascript中的闭包Closure的理解</title>
-    <link href="http://yoursite.com/2017/02/21/my-understandng-of-javascript-closure/"/>
-    <id>http://yoursite.com/2017/02/21/my-understandng-of-javascript-closure/</id>
-    <published>2017-02-21T17:25:27.000Z</published>
+    <link href="http://yoursite.com/2017/02/20/my-understandng-of-javascript-closure/"/>
+    <id>http://yoursite.com/2017/02/20/my-understandng-of-javascript-closure/</id>
+    <published>2017-02-21T03:25:27.000Z</published>
     <updated>2018-06-06T05:49:00.140Z</updated>
     
     <content type="html"><![CDATA[<p>怎样理解 Javascript Closure 也就是闭包的概念，想必很多人在为此头疼。 笔者先后参考了下面这些资料 MDN Javascript Closure <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Closures" target="_blank" rel="noopener">https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Closures</a> 阮一峰的博客 <a href="http://www.ruanyifeng.com/blog/2009/08/learning_javascript_closures.html" target="_blank" rel="noopener">http://www.ruanyifeng.com/blog/2009/08/learning_javascript_closures.html</a> Frank Fang的博客 <a href="http://www.cnblogs.com/frankfang/archive/2011/08/03/2125663.html" target="_blank" rel="noopener">http://www.cnblogs.com/frankfang/archive/2011/08/03/2125663.html</a> 作者们都声称自己搞懂了闭包的概念，可自己还是看的云里雾里。 直到笔者看到下面这篇文章，才开始真正理解闭包的概念和应用场景。 Jonathan D. Johnson的博客 <a href="http://jondavidjohn.com/javascript-closure-explained-using-events/" target="_blank" rel="noopener">http://jondavidjohn.com/javascript-closure-explained-using-events/</a> 下面我试着把这篇文章边翻译边把自己的理解写出来。 先看一下下面这段程序， 效果：在第3次按下button的时候显示”Third time’s the charm”的消息框。</p><p>// declare counter outside event handler’s scope<br>var counter = 0;<br>var element = document.getElementById(“button”);</p><p>element.onclick = function() {<br>    // increment outside counter<br>    counter++;</p><pre><code>if (counter === 3) {    // do something every third time    alert(&quot;Third time&apos;s the charm!&quot;);    // reset counter    counter = 0;}</code></pre><p>};</p><p>程序中声明了一个全局变量counter,每次按下button都会唤起程序，从而让counter++ 如果你只在自己的网页中执行一次的话，这么写也无所谓，但是如果你想在其他地方复用的话， 最好还是把这段程序封装成单独的一个函数。 这时问题就来了，你要每次都声明一个外部的全局变量counter吗？很明显这种做法太笨拙。 于是closure的作用就发挥出来了。 如果你看过了MDN的解释，就会知道closure其实是这样一种机制，</p><blockquote><p>函数可以访问它被创建时所处的作用域中的对象（Object）。</p></blockquote><p>于是上面那段程序利用闭包可以优化成下面这种形式：</p><p>&lt;!DOCTYPE html&gt;</p><html lang="en"><br><head><br>    <meta charset="UTF-8"><br>    <title>Title</title><br></head><br><body><br><br><input type="submit" id="button1" value="button1" class="button"><br><input type="submit" id="button2" value="button2" class="button"><br><br><script><br>    var myClosureFunc = function () {<br>        // init the count to 0<br>        var count = 0;<br>        return function (e) {<br>            //count<br>            count++;<br><br>            if (count === 3) {<br>                // do something every third time<br>                alert(“Third time’s the charm!”);<br>                //reset counter<br>                count = 0;<br>            }<br>        };<br>    }<br><br>    var element1 = document.getElementById(“button1”);<br>    element1.onclick = myClosureFunc();<br><br>    var element2 = document.getElementById(“button2”);<br>    element2.onclick = myClosureFunc();<br></script><br><br><br></body><br></html><p>  counter的位置移到了event handler函数的内部，而函数的返回值为一个闭包。 按照上面的概念，myClosureFunc中的闭包可以访问它创建时所处的作用域(scope), 于是它就可以访问自己的counter，而这个counter是<strong>相对</strong>全局的，也就是说，在element1被按下的过程中，这个counter是共有的。 而element1和element2中的counter又是<strong>相对独立</strong>的。 怎么样，有没有帮你理解closure在作用域这个概念里所起的作用？</p>]]></content>
@@ -99,7 +99,7 @@
     <title>[SAPUI5 Tutorial Trouble Shooting] Test Suite and Automated Testing Step10</title>
     <link href="http://yoursite.com/2017/02/15/sapui5-qunit-404-not-found/"/>
     <id>http://yoursite.com/2017/02/15/sapui5-qunit-404-not-found/</id>
-    <published>2017-02-15T19:37:52.000Z</published>
+    <published>2017-02-15T05:37:52.000Z</published>
     <updated>2018-06-06T05:49:00.140Z</updated>
     
     <content type="html"><![CDATA[<p>如果你在进行[SAPUI5 Tutorial] Test Suite and Automated Testing Step10 时遇到过 SAPUI5 QUnit 404 not found 问题， /resources/sap/ui/qunit/qunit-redirect.js 404 not found 这篇文章将帮你找到解决方法。 正如Tutorial一开始写的<a href="https://sapui5.netweaver.ondemand.com/sdk/index.html#docs/guide/8b49fc198bf04b2d9800fc37fecbb218.html" target="_blank" rel="noopener">那样</a>，</p><blockquote><p>If you are running the tutorial in SAP Web IDE, you will have to configure the project descriptor neo-app.json. In this descriptor file, the path to the resources is already configured. Other development environments might need the resources to be copied to the server. Alternatively, you can use the CDN version of <a href="https://sapui5.hana.ondemand.com/resources/sap-ui-core.js" target="_blank" rel="noopener">https://sapui5.hana.ondemand.com/resources/sap-ui-core.js</a>.</p></blockquote><p>也就是说，如果你使用的是Web IDE,而你又是copy的Tutorial中给出的code，你还需要配置项目的neo-app.json文件让项目找到resources系列的文件。 If you are using web IDE and copied the code from the sample, you may aslo need to set up the neo-app.json file to let the project find the resource folder. 具体配置如下所示，其实就是简单复制一下从头开始新建的项目中的neo-app.json文件。</p><p>{<br>  “welcomeFile”: “/webapp/test/test.html”,<br>  “routes”: [<br>    {<br>      “path”: “/resources”,<br>      “target”: {<br>        “type”: “service”,<br>        “name”: “sapui5”,<br>        “entryPath”: “/resources”<br>      },<br>      “description”: “SAPUI5 Resources”<br>    },<br>    {<br>      “path”: “/test-resources”,<br>      “target”: {<br>        “type”: “service”,<br>        “name”: “sapui5”,<br>        “entryPath”: “/test-resources”<br>      },<br>      “description”: “SAPUI5 Test Resources”<br>    }<br>  ],<br>  “sendWelcomeFileRedirect”: true<br>}</p>]]></content>
@@ -126,9 +126,9 @@
   
   <entry>
     <title>在sap hybris的accelerator中添加hybris cms组件(hybris cms component)的方法</title>
-    <link href="http://yoursite.com/2016/11/15/create-new-hybris-cms-component-in-accelerator/"/>
-    <id>http://yoursite.com/2016/11/15/create-new-hybris-cms-component-in-accelerator/</id>
-    <published>2016-11-15T14:43:50.000Z</published>
+    <link href="http://yoursite.com/2016/11/14/create-new-hybris-cms-component-in-accelerator/"/>
+    <id>http://yoursite.com/2016/11/14/create-new-hybris-cms-component-in-accelerator/</id>
+    <published>2016-11-15T00:43:50.000Z</published>
     <updated>2018-06-06T05:49:00.140Z</updated>
     
     <content type="html"><![CDATA[<p>在hybris的accelerator中新建CMS组件(<strong>hybris cms component</strong>)的步骤包括： *注意：hybris addon中的步骤有所不同，将在另一篇文章中记述。</p><ol><li>自定义hybris item，在extension的items.xml文件中定义，类似于任何其他hybris item。</li><li>一个继承AbstractCMSComponentController的Spring MVC控制器，或使用DefaultCMSComponentController。</li><li>用于在页面上呈现组件的JSP，根据需要使用HTML，CSS和Tag Libraries。</li></ol><p>可以通过XML配置为组件自定义hybris WCMS Cockpit：</p><ol><li>editorArea_typeName.xml：WCMS Cockpit编辑器区域的配置文件。</li><li>contentEditor_typeName.xml：用于LiveEdit模式和联机编辑的配置文件</li><li>wizardConfig_typeName.xml：如果通过向导对话框添加组件，则通过此文件进行向导配置。</li></ol>]]></content>
@@ -161,7 +161,7 @@
     <title>在SAP hybris中实行单体测试(Unit Test)的注意事项</title>
     <link href="http://yoursite.com/2016/10/28/sap-hybris-unit-test-note/"/>
     <id>http://yoursite.com/2016/10/28/sap-hybris-unit-test-note/</id>
-    <published>2016-10-28T21:45:22.000Z</published>
+    <published>2016-10-28T08:45:22.000Z</published>
     <updated>2018-06-06T05:49:00.140Z</updated>
     
     <content type="html"><![CDATA[<p>在SAP hybris的单体测试中，出现如下错误信息：</p><p>ERROR [main] (junit) [FlexibleSearch] Flexiblesearch error: could not translate value expression ‘session.catalogversions’<br>ERROR [main] (junit) [FlexibleSearch] query was ‘SELECT {cat.pk} FROM {Category AS cat} WHERE NOT EXISTS ({ {SELECT {pk} FROM {CategoryCategoryRelation AS rel JOIN Category AS super ON {rel.source}={super.PK} } WHERE {rel:target}={cat.pk} AND {super.catalogVersion}={cat.catalogVersion} }}) AND {cat.catalogVersion} = ?catalogVersion’<br>ERROR [main] (junit) [FlexibleSearch] translated query was: SELECT  item_t0.PK  FROM junit_categories item_t0 WHERE (NOT EXISTS (SELECT  item_t1.PK  FROM junit_cat2catrel item_t1 JOIN junit_categories item_t2 ON  item_t1.SourcePK = item_t2.PK  WHERE ( item_t1.TargetPK = item_t0.PK  AND  item_t2.p_catalogversion = item_t0.p_catalogversion ) AND ((item_t1.TypePkString=?  AND item_t2.TypePkString IN  (?,?,?,?)  AND (( item_t2.p_catalogversion  IN (?))) ))) AND  item_t0.p_catalogversion  = ?) AND (item_t0.TypePkString IN  (?,?,?,?)  AND (( item_t0.p_catalogversion  IN (?))) )<br>ERROR [main] (junit) [LogRunListener] Test method testCategoryNav(org.training.renderer.CategoryNavComponentRendererTest) failed!!<br>de.hybris.platform.servicelayer.search.exceptions.FlexibleSearchException: could not translate value expression ‘session.catalogversions’</p><p>Java代码如下：</p><p>/*<em> </em><br> */<br>package org.training.renderer;</p><p>import de.hybris.platform.catalog.CatalogVersionService;<br>import de.hybris.platform.catalog.model.CatalogVersionModel;<br>import de.hybris.platform.category.CategoryService;<br>import de.hybris.platform.category.model.CategoryModel;<br>import de.hybris.platform.servicelayer.ServicelayerTransactionalTest;</p><p>import java.util.Collection;</p><p>import javax.annotation.Resource;</p><p>import org.junit.Assert;<br>import org.junit.Before;<br>import org.junit.Test;</p><p>/**<br> * @author lwang<br> <em> </em>/<br>public class CategoryNavComponentRendererTest extends ServicelayerTransactionalTest<br>{</p><pre><code>@Resource(name = &quot;categoryService&quot;)private CategoryService categoryService;@Resource(name = &quot;catalogVersionService&quot;)private CatalogVersionService catalogVersionService;@Testpublic void testCategoryNav(){    final CatalogVersionModel catalogVersion = catalogVersionService.getCatalogVersion(&quot;uaProductCatalog&quot;, &quot;Online&quot;);    Assert.assertNotNull(catalogVersion);    final Collection&lt;CategoryModel&gt; categoryList = categoryService.getRootCategoriesForCatalogVersion(catalogVersion);    Assert.assertNotNull(categoryList);}</code></pre><p>}</p><p>之所以会出现错误，是因为程序没有加载hybris框架通常需要的一些环境变量。 在测试用例中加入如下代码可以解决问题。</p><pre><code>@Beforepublic void setUp() throws Exception{    createCoreData();    createDefaultCatalog();    createHardwareCatalog();}</code></pre>]]></content>
@@ -187,9 +187,9 @@
   
   <entry>
     <title>sap hybris在新建自定义cms component时的注意事项</title>
-    <link href="http://yoursite.com/2016/10/26/sap-hybris-cms-component-notes/"/>
-    <id>http://yoursite.com/2016/10/26/sap-hybris-cms-component-notes/</id>
-    <published>2016-10-26T15:06:57.000Z</published>
+    <link href="http://yoursite.com/2016/10/25/sap-hybris-cms-component-notes/"/>
+    <id>http://yoursite.com/2016/10/25/sap-hybris-cms-component-notes/</id>
+    <published>2016-10-26T02:06:57.000Z</published>
     <updated>2018-06-06T05:49:00.140Z</updated>
     
     <content type="html"><![CDATA[<p>在SAP hybris中添加自定义的CMS Component,需要注意以下几点： 参考链接:<a href="https://wiki.hybris.com/pages/viewpage.action?pageId=294094319" target="_blank" rel="noopener"> https://wiki.hybris.com/pages/viewpage.action?pageId=294094319</a></p><ol><li>在addon中添加，可免去对accelerator的修改</li><li>在/<addon-name>/resources/<addon-name>/web/spring/<addon-name>-web-spring.xml中添加renderer和rendererMapping的定义</addon-name></addon-name></addon-name></li><li>使用ant命令安装addon</li></ol><p><addon-name>-web-spring.xml的代码示例如下：</addon-name></p><pre><code>&lt;bean id=&quot;yourComponentRenderer&quot; class=&quot;org.training.renderer.yourComponentRenderer&quot;&gt;    &lt;property name=&quot;typeService&quot; ref=&quot;typeService&quot; /&gt;    &lt;property name=&quot;uiExperienceService&quot; ref=&quot;defaultUiExperienceService&quot; /&gt;    &lt;property name=&quot;cmsComponentService&quot; ref=&quot;cmsComponentService&quot; /&gt;    &lt;property name=&quot;modelService&quot; ref=&quot;modelService&quot; /&gt;    &lt;property name=&quot;uiExperienceViewPrefixMap&quot; ref=&quot;uiExperienceViewPrefixMap&quot; /&gt;    &lt;property name=&quot;unknownUiExperiencePrefix&quot; value=&quot;desktop&quot; /&gt;&lt;/bean&gt;&lt;bean id=&quot;yourComponentRendererMapping&quot; parent=&quot;addonCmsComponentRendererMapping&quot;&gt;    &lt;property name=&quot;typeCode&quot; value=&quot;yourComponent&quot; /&gt;    &lt;property name=&quot;renderer&quot; ref=&quot;yourComponentRenderer&quot; /&gt;&lt;/bean&gt;</code></pre>]]></content>
@@ -214,9 +214,9 @@
   
   <entry>
     <title>Sony 面经</title>
-    <link href="http://yoursite.com/2016/09/28/sony-interview-questions/"/>
-    <id>http://yoursite.com/2016/09/28/sony-interview-questions/</id>
-    <published>2016-09-28T15:12:57.000Z</published>
+    <link href="http://yoursite.com/2016/09/27/sony-interview-questions/"/>
+    <id>http://yoursite.com/2016/09/27/sony-interview-questions/</id>
+    <published>2016-09-28T02:12:57.000Z</published>
     <updated>2018-06-06T05:49:00.140Z</updated>
     
     <content type="html"><![CDATA[<p>Sony面试的一些问题记录一下。   时间:9月26日 地点：品川本社 面试官：4人 问题：</p><ul><li>自我介绍</li><li>简历细节的确认</li><li>离职的动机</li><li>来日本工作的动机</li><li>介绍一下迄今为止所经历的项目中的成功和失败经验</li><li>你自己的卖点(Sales Point)是什么</li><li>对这个岗位的理解</li><li>业余时间做过什么项目</li><li>有什么问题<ul><li>岗位具体的工作内容是什么</li><li>同样年龄段的人都是怎样的工作风格</li><li>该岗位对英语作了一些具体要求，实际工作中和海外的团队有何种交流合作</li></ul></li></ul>]]></content>
@@ -247,7 +247,7 @@
     <title>有了uwsgi为什么还需要nginx</title>
     <link href="http://yoursite.com/2015/11/07/why-need-nginx-with-uwsgi/"/>
     <id>http://yoursite.com/2015/11/07/why-need-nginx-with-uwsgi/</id>
-    <published>2015-11-08T01:13:59.000Z</published>
+    <published>2015-11-07T11:13:59.000Z</published>
     <updated>2018-06-06T05:49:00.140Z</updated>
     
     <content type="html"><![CDATA[<p>在python的web开发中，我用flask框架写了一个小程序，部署的时候，我用到了uwsgi来做容器。 在学习uwsgi部署的过程中，另一个关键词nginx频繁的跳出来。这两者通常是成对出现的。 你有没有和我一样的困惑，为什么有了uwsgi我们还需要nginx? 我是说，既然uwsgi能够展现你想要的内容，那nginx存在的意义在哪里？ 首先，nginx是一个HTTP 服务器。如果你是学Java出身的，说到HTTP服务器你应该会想到Apache。 类似的uwsgi可以比喻为tomcat。 nginx官方网站上给出的一张图片很好的揭示了nginx的角色。 <a href="https://www.flickr.com/photos/136148236@N02/22845441965/in/dateposted-public/" title="architecture-nginx" target="_blank" rel="noopener"><img src="http://65.49.230.2/wordpress/wp-content/uploads/2016/11/22845441965_8ca93b385a-1.jpg" alt="architecture-nginx"></a> 我所理解的nginx的主要功能，有以下几个部分：</p><ul><li>nginx处理<strong>静态内容请求更专业、快速</strong>。</li><li>nginx可以<strong>缓存请求</strong>。如果让uwsgi来直接接受请求的话，uwsgi需要花费大量的时间来等待request，这本身对web应用所在的主机是很大的资源浪费。</li><li><strong>分发请求</strong>。假如你有好几个web应用，分布在不同的主机上，nginx可以把请求分发到各自的web应用来进行处理。这一特点是nginx可以用来做负载均衡器。</li><li>相比web容器，nginx的<strong>漏洞更少更安全</strong>。</li><li>nginx可以更好的处理<strong>HTTPS</strong>。</li><li>nginx有<strong>网关</strong>（gateway）的作用，可以过滤访问IP。</li></ul>]]></content>
@@ -284,7 +284,7 @@
     <title>在Python中将datetime字符串转换为utc timestamp</title>
     <link href="http://yoursite.com/2015/10/27/python-datetime-to-utc-timestamp/"/>
     <id>http://yoursite.com/2015/10/27/python-datetime-to-utc-timestamp/</id>
-    <published>2015-10-28T03:57:30.000Z</published>
+    <published>2015-10-27T14:57:30.000Z</published>
     <updated>2018-06-06T05:49:00.140Z</updated>
     
     <content type="html"><![CDATA[<p>在python中有很多方法将datetime的字符串转换为 utc timestamp 网上找了好多，看起来都纷繁复杂。本文就想简单的做好一件事，就是将datetime的字符串转换为utc timestamp。 理解这个转换的关键，在于理解python中所有的日期字符串都被python解读为local time。 也就是说，同样是’2015/10/27 00:00:00’这个字符串，虽然身处东京的我和身在伦敦的你看到的是同一个字符串，但他们本身被python解读为两个不同地方的日期和时间。 如果想让python不去理会时差，而只想要utc格式的时间戳的话，用calendar.timegm()函数即可实现。 现举例如下：</p><p># -<em>- coding: utf-8 -</em>-<br>__author__ = ‘leo’</p><p>from datetime import datetime<br>import calendar<br>import time</p><p>def local_to_utc(date_value):<br>    utc_timetuple = datetime.strptime(date_value, ‘%Y/%m/%d %H:%M:%S’).timetuple()<br>    ts = calendar.timegm(utc_timetuple)<br>    return ts * 1000</p><p>def local_timestamp(date_value):<br>    utc_timetuple = datetime.strptime(date_value, ‘%Y/%m/%d %H:%M:%S’).timetuple()<br>    ts = time.mktime(utc_timetuple)<br>    return int(ts) * 1000</p><p>date_str = ‘2015/10/27 00:00:00’<br>print local_to_utc(date_str)<br>print local_timestamp(date_str)</p><p>最后打印的结果，可以看到两个函数输出的时间戳是不一样的。（P.S.笔者在东九区）</p><p>1445904000000<br>1445871600000</p>]]></content>
@@ -317,7 +317,7 @@
     <title>3招做好SSRS的分页</title>
     <link href="http://yoursite.com/2015/10/25/ssrs-paging-3moves/"/>
     <id>http://yoursite.com/2015/10/25/ssrs-paging-3moves/</id>
-    <published>2015-10-26T03:15:05.000Z</published>
+    <published>2015-10-25T14:15:05.000Z</published>
     <updated>2018-06-06T05:49:00.140Z</updated>
     
     <content type="html"><![CDATA[<p>在使用SSRS，也就是SQL Server Report Service（SQL Server 报表）的过程中，如果你在寻找下面3个问题的答案，本文可能会帮到你。</p><ul><li>针对每个数据分组重新设定页码</li><li>让表头在每个页面都能显示</li><li>让数据在合理的位置分页</li></ul><h4 id="针对每个数据分组重新设定页码"><a href="#针对每个数据分组重新设定页码" class="headerlink" title="针对每个数据分组重新设定页码"></a><strong>针对每个数据分组重新设定页码</strong></h4><p>在Details上设置属性，Group里面的ResetPageNumber设置为True，即可让每一个新的分组数据重新设定页码。 <a href="https://www.flickr.com/photos/136148236@N02/21841911853/in/dateposted-public/" title="group" target="_blank" rel="noopener"><img src="https://farm6.staticflickr.com/5687/21841911853_79b183f3a4_n.jpg" alt="group"></a>  </p><h4 id="让表头在每个页面都能显示"><a href="#让表头在每个页面都能显示" class="headerlink" title="让表头在每个页面都能显示"></a>让表头在每个页面都能显示</h4><p>在详细模式里面找到表头的Static，然后设置KeepWithGroup属性为After，RepeatOnNewPage为True。 如果表头之前还有上一层分组的Static，上一层分组的上述两个属性要分别设为Before和True。 在同一个分组的Static的RepeatOnNewPage不能设置为不同的值，所以同样设定为了True， 但是不希望在后续页面继续显示的部分，其KeepWithGroup只要设定为Before，就不会随后续数据分页而再次出现了。<a href="https://www.flickr.com/photos/136148236@N02/22474037011/in/dateposted-public/" title="repeatonnewpage" target="_blank" rel="noopener"><img src="https://farm1.staticflickr.com/712/22474037011_fb874db3ff_n.jpg" alt="repeatonnewpage"></a></p><h4 id="让数据在合理的位置分页"><a href="#让数据在合理的位置分页" class="headerlink" title="让数据在合理的位置分页"></a><strong>让数据在合理的位置分页</strong></h4><p>在希望保持为一个整体的Group上设置KeepTogether为True，就会尽量让同一组的数据在同一页面显示。 <a href="https://www.flickr.com/photos/136148236@N02/22276255729/in/dateposted-public/" title="keeptogether" target="_blank" rel="noopener"><img src="https://farm6.staticflickr.com/5659/22276255729_da2fee249a_n.jpg" alt="keeptogether"></a></p>]]></content>
@@ -348,7 +348,7 @@
     <title>关于Java Thread的一些认识</title>
     <link href="http://yoursite.com/2015/10/10/java-multi-thread/"/>
     <id>http://yoursite.com/2015/10/10/java-multi-thread/</id>
-    <published>2015-10-10T19:30:05.000Z</published>
+    <published>2015-10-10T06:30:05.000Z</published>
     <updated>2018-06-06T05:49:00.140Z</updated>
     
     <content type="html"><![CDATA[<p>最近为了考取Java 7的Gold资格而补课，多线程这一块看了好长一段时间才算有点头绪。 下面几点算是心得吧。明白这些东西之后，join（）也差不多可以理解了。</p><ul><li>主线程和主线程生成的子线程是两个独立的东西。start（）之后都是各自奔向终点。</li><li>如果子线程跑得快，主线程无法对它进行interrupt（）操作。 因为人家已经结束了，你再发号施令已经晚了。</li><li>被interrupt（）的子线程不会就此终止，而是会恢复原来的执行。</li></ul><p>public class Sample11_5 {</p><pre><code>public static void main(String\[\] args) {    try {        ThreadA a = new ThreadA();        a.start();        System.out.println(&quot;main : sleep start.&quot;);        Thread.sleep(1000);        System.out.println(&quot;main : sleep end.&quot;);        a.interrupt();    } catch (InterruptedException e) {    }}</code></pre><p>}</p><p>class ThreadA extends Thread{<br>    @Override<br>    public void run() {<br>        try {<br>            System.out.println(“Thread A : sleep start”);<br>            Thread.sleep(5000);<br>            System.out.println(“Thread A : sleep end”);<br>        } catch (InterruptedException e) {<br>            System.out.println(“Catch Thread A interrupted”);<br>        }<br>        System.out.println(“Thread A finished.”);<br>    }<br>}</p><p>执行结果如下：</p><p>main : sleep start.<br>Thread A : sleep start<br>main : sleep end.<br>Catch Thread A interrupted<br>Thread A finished.</p>]]></content>
@@ -377,7 +377,7 @@
     <title>重新开始</title>
     <link href="http://yoursite.com/2015/10/09/restart/"/>
     <id>http://yoursite.com/2015/10/09/restart/</id>
-    <published>2015-10-10T02:31:17.000Z</published>
+    <published>2015-10-09T13:31:17.000Z</published>
     <updated>2018-06-06T05:49:00.140Z</updated>
     
     <content type="html"><![CDATA[<p>2015年上半期的自我评价和上司面谈结束了。 科长一如既往的说你稍微改一下这个写法就可以了，如果没有意见我们就谈到这把。 我说科长且慢，“中长期职业规划”您看了没，我写了一些。 然后引出了离职的话题，科长说那实在是很遗憾，我会跟部长汇报的，下周给你消息。   然后，我就这么提出了辞职。   职业生涯刚刚起步，当初心急火燎的进了公司，心想背靠一个大公司，自己应该会得心应手吧。 可这两年过去了，每一天想的都是我他妈为什么在这里浪费时间。 又想起nissan的广告词，说的太让人心潮澎湃。</p><blockquote><p>２種類の人間がいる。 やりたいことやっちゃう人とやらない人。 やりたいことやってきたこの人生。 おかげで痛い目にもあってきた。 散々恥もかいてきた。 誰かの言うことを素直に聞いてりゃ、 今よりずっと楽だったかもしれない。 でもね、これだけは言える。 やりたいことやっちゃう人生のほうが、間違いなく面白い。 俺はこれからもやっちゃうよ あんたはどうする？</p></blockquote>]]></content>
@@ -402,7 +402,7 @@
     <title>Windows下SQL Server2008的定时备份策略</title>
     <link href="http://yoursite.com/2012/03/19/sqlserver-2008-backup/"/>
     <id>http://yoursite.com/2012/03/19/sqlserver-2008-backup/</id>
-    <published>2012-03-19T20:06:55.000Z</published>
+    <published>2012-03-19T07:06:55.000Z</published>
     <updated>2018-06-06T05:49:00.140Z</updated>
     
     <content type="html"><![CDATA[<p>在windows下对SQL Server2008数据库进行定时备份，需要做以下工作： 1.编写备份数据库的bat文件，内容形似： <em>backup database testdb to disk=’d:\backup\testdb.bak’  &gt;&gt; .\backup.log</em> 2.编写copy数据库备份文件并重命名的bat文件，形似： <em>SET DT=%DATE:~0,4%%DATE:~5,2%%DATE:~8,2%</em> <em>COPY D:\backup.bak  D:\backup%DT%.bak &gt;&gt; .\copy.log</em> 2.建立两个windows计划任务，分别选定时间和周期执行上述备份bat文件。 这样就可以实现sql server的定时备份策略了。</p>]]></content>
@@ -425,9 +425,9 @@
   
   <entry>
     <title>Spring+Struts2+Hibernate 整合Extjs时无法读取json数据的问题之解决办法</title>
-    <link href="http://yoursite.com/2012/02/13/ssh-extjs-json/"/>
-    <id>http://yoursite.com/2012/02/13/ssh-extjs-json/</id>
-    <published>2012-02-13T15:19:28.000Z</published>
+    <link href="http://yoursite.com/2012/02/12/ssh-extjs-json/"/>
+    <id>http://yoursite.com/2012/02/12/ssh-extjs-json/</id>
+    <published>2012-02-13T01:19:28.000Z</published>
     <updated>2018-06-06T05:49:00.140Z</updated>
     
     <content type="html"><![CDATA[<p>在SSH和Extjs的整合过程中，需要Grid从服务器端读取json格式的数据显示在前端，在action的class中配置了service属性，并通过spring对该service进行注入。  </p><p>private String userID;<br>private String userName;<br>private String delFlg;<br>private List<user> userList;<br>private UserService userService;</user></p><p>  在struts2中，如果struts.xml中将action的返回结果定义成了json类型，strut2就自动将该action的属性全部json序列化，但是service却无法序列化， 于是需要在struts.xml中将相应的action的配置更改一下。如下所示：</p><action name="searchUser" method="search" class="searchUserAction"><br><result type="json"><br><param name="excludeProperties"><br>userService<br><br></result><br></action><p>  exludeProperties即可将不需要json序列化的属性排除在外。</p>]]></content>
@@ -461,7 +461,7 @@
     <title>Cookie 无法保存的另一个可能原因</title>
     <link href="http://yoursite.com/2011/12/28/cookie-cannot-save/"/>
     <id>http://yoursite.com/2011/12/28/cookie-cannot-save/</id>
-    <published>2011-12-29T00:10:20.000Z</published>
+    <published>2011-12-28T10:10:20.000Z</published>
     <updated>2018-06-06T05:49:00.140Z</updated>
     
     <content type="html"><![CDATA[<p>在项目中需要往cookie中写数据，之前遇到的问题是如果写入的内容超出了单个cookie的大小限制（4096字节，4KB），则服务器端的response就会异常。 今天的问题则是，虽然已经把很长的内容分割成立个好几段，并分别写入了不同的cookie中，但服务器端同样不能正常响应。 查资料得知，不知浏览器对同一个站点的cookie的个数，单个cookie文件的大小有限制，服务器还对每一次请求的httpheader的大小有限制。 对tomcat服务器来说，需要修改server.xml中的响应配置，在形如 [sourcecode language=”xml”] <connector port="8080" protocol="HTTP/1.1" connectiontimeout="20000" redirectport="8443" maxhttpheadersize="40960"> [/sourcecode] 的部分进行相应配置，上面的maxHttpHeaderSize就规定了本服务器可以处理的HttpHeader的大小上限为40KB。</connector></p>]]></content>
@@ -488,9 +488,9 @@
   
   <entry>
     <title>Struts2无法写Cookie的原因分析</title>
-    <link href="http://yoursite.com/2011/12/20/struts2-e6-97-a0-e6-b3-95-e5-86-99cookie-e7-9a-84-e5-8e-9f-e5-9b-a0-e5-88-86-e6-9e-90/"/>
-    <id>http://yoursite.com/2011/12/20/struts2-e6-97-a0-e6-b3-95-e5-86-99cookie-e7-9a-84-e5-8e-9f-e5-9b-a0-e5-88-86-e6-9e-90/</id>
-    <published>2011-12-20T15:47:16.000Z</published>
+    <link href="http://yoursite.com/2011/12/19/struts2-e6-97-a0-e6-b3-95-e5-86-99cookie-e7-9a-84-e5-8e-9f-e5-9b-a0-e5-88-86-e6-9e-90/"/>
+    <id>http://yoursite.com/2011/12/19/struts2-e6-97-a0-e6-b3-95-e5-86-99cookie-e7-9a-84-e5-8e-9f-e5-9b-a0-e5-88-86-e6-9e-90/</id>
+    <published>2011-12-20T01:47:16.000Z</published>
     <updated>2018-06-06T05:49:00.140Z</updated>
     
     <content type="html"><![CDATA[<p>在struts2项目中，希望把用户的表单输入保存在本地，而不是保存在数据库上，于是想到了cookie。 在action中可以这样写： [sourcecode language=”java”] Cookie cookie=new Cookie(“myCookie”,”cookieContent”); cookie.setMaxAge(3600*24);//过期时间为一天 ServletActionContext.getResponse.addCookie(cookie); [/sourcecode] 但是始终不能保存到客户端的硬盘上，刚开始的时候以为cookie的读写操作只能写在jsp页面中，或者只能通过javascript来操作， 后来发现不是这么回事。 关键的原因在于<a href="http://support.microsoft.com/kb/306070/zh-cn" title="在 Internet Explorer 中的 cookie 的数字和大小限制" target="_blank" rel="noopener">cookie是有大小限制的</a>，如果想写入的内容超过了4KB，写操作便不能完成。</p><blockquote><p>Microsoft Internet Explorer 符合以下的 RFC 2109 推荐最小限制：</p><ul><li>至少 300 的 cookie</li><li>至少每 cookie （如构成 cookie 非终端设置 Cookie 标头的语法描述中的字符的大小为单位） 的 4096 字节</li><li>至少 20 cookie，每个唯一的主机或域名</li></ul></blockquote>]]></content>
@@ -511,9 +511,9 @@
   
   <entry>
     <title>Extjs 在IE8中 GridPanel日期显示异常的处理</title>
-    <link href="http://yoursite.com/2011/12/03/extjs-e5-9c-a8ie8-e4-b8-ad-gridpanel-e6-97-a5-e6-9c-9f-e6-98-be-e7-a4-ba-e5-bc-82-e5-b8-b8-e7-9a-84-e5-a4-84-e7-90-86/"/>
-    <id>http://yoursite.com/2011/12/03/extjs-e5-9c-a8ie8-e4-b8-ad-gridpanel-e6-97-a5-e6-9c-9f-e6-98-be-e7-a4-ba-e5-bc-82-e5-b8-b8-e7-9a-84-e5-a4-84-e7-90-86/</id>
-    <published>2011-12-03T16:00:17.000Z</published>
+    <link href="http://yoursite.com/2011/12/02/extjs-e5-9c-a8ie8-e4-b8-ad-gridpanel-e6-97-a5-e6-9c-9f-e6-98-be-e7-a4-ba-e5-bc-82-e5-b8-b8-e7-9a-84-e5-a4-84-e7-90-86/"/>
+    <id>http://yoursite.com/2011/12/02/extjs-e5-9c-a8ie8-e4-b8-ad-gridpanel-e6-97-a5-e6-9c-9f-e6-98-be-e7-a4-ba-e5-bc-82-e5-b8-b8-e7-9a-84-e5-a4-84-e7-90-86/</id>
+    <published>2011-12-03T02:00:17.000Z</published>
     <updated>2018-06-06T05:49:00.140Z</updated>
     
     <content type="html"><![CDATA[<p>Extjs3.4的GridPanel在IE8中会出现日期无法render的现象，要解决这个问题，需要在 store的reader的column相应的字段上加上如下代码</p><p>convert:function(v,record){<br> var date=new Date.parseDate(v,’Y-m-dTH:i:s’);<br> return date.format(‘Y年m月d日’)<br>}</p><p>主要的问题就在parseDate的格式上，只要确保parseDate用到的日期格式和从服务器端传回来的数据格式是一致的，Extjs就可以进行解析了。 若想要查看服务器端传回来的数据格式，使用chrome或者firefox的firebug插件就可以了。 ps：Extjs在IE8上总有这样那样的问题，IE9和chrome就相对聪明多了。</p>]]></content>
@@ -537,9 +537,9 @@
   
   <entry>
     <title>Apache + Tomcat Error 10054/10060/10061/10062的解决办法之一</title>
-    <link href="http://yoursite.com/2011/11/26/apache-tomcat-error-10054100601006110062-e7-9a-84-e8-a7-a3-e5-86-b3-e5-8a-9e-e6-b3-95-e4-b9-8b-e4-b8-80/"/>
-    <id>http://yoursite.com/2011/11/26/apache-tomcat-error-10054100601006110062-e7-9a-84-e8-a7-a3-e5-86-b3-e5-8a-9e-e6-b3-95-e4-b9-8b-e4-b8-80/</id>
-    <published>2011-11-26T16:52:33.000Z</published>
+    <link href="http://yoursite.com/2011/11/25/apache-tomcat-error-10054100601006110062-e7-9a-84-e8-a7-a3-e5-86-b3-e5-8a-9e-e6-b3-95-e4-b9-8b-e4-b8-80/"/>
+    <id>http://yoursite.com/2011/11/25/apache-tomcat-error-10054100601006110062-e7-9a-84-e8-a7-a3-e5-86-b3-e5-8a-9e-e6-b3-95-e4-b9-8b-e4-b8-80/</id>
+    <published>2011-11-26T02:52:33.000Z</published>
     <updated>2018-06-06T05:49:00.140Z</updated>
     
     <content type="html"><![CDATA[<p>公司的Dev-Server用来部署测试版应用程序，需要访问DB-Server来进行数据库操作。 之前一直没有问题，自从公司搬家之后Dev-Server便开始出现问题。 Dev-Server上本来部署着4个网站，其中的两个是访问安装在Dev-Server本机上的数据库，这两个没有什么问题。 但是剩下的两个需要访问DB-Server，于是便出现了下面的问题。 凡是涉及到数据库的操作均无法进行。查看tomcat的log文件没有发现任何错误。查看apache的log文件则提示如下错误： [Tue Nov 22 20:14:10 2011] [error] ajp_read_header: ajp_ilink_receive failed [Tue Nov 22 20:14:10 2011] [error] (120006)APR does not understand this error code:  proxy: read response failed from 127.0.0.1:8009 (localhost) 紧接着这两行错误之前的还有诸如(OS 10060)（OS 10054） （OS 10062）之类的错误。 这些错误的定义可以在MSDN的文档中查到。具体的原因有连接超时，连接被中断等等。。。 试了很多办法去解决这个问题都不行。 最后下载了最新的jre7，<strong>把tomcat的java虚拟机路径改成了jre7的bin/client/jvm.dll</strong>之后，问题就解决了。</p>]]></content>
@@ -562,7 +562,7 @@
     <title>Office2010中各种文件对应的application/vnd mime type</title>
     <link href="http://yoursite.com/2011/11/18/office2010-e4-b8-ad-e5-90-84-e7-a7-8d-e6-96-87-e4-bb-b6-e5-af-b9-e5-ba-94-e7-9a-84applicationvnd-mime-type/"/>
     <id>http://yoursite.com/2011/11/18/office2010-e4-b8-ad-e5-90-84-e7-a7-8d-e6-96-87-e4-bb-b6-e5-af-b9-e5-ba-94-e7-9a-84applicationvnd-mime-type/</id>
-    <published>2011-11-18T19:21:38.000Z</published>
+    <published>2011-11-18T05:21:38.000Z</published>
     <updated>2018-06-06T05:49:00.140Z</updated>
     
     <content type="html"><![CDATA[<ul><li><strong>.docm:</strong>application/vnd.ms-word.document.macroEnabled.12</li><li><strong>.docx:</strong> application/vnd.openxmlformats-officedocument.wordprocessingml.document</li><li><strong>.dotm: </strong>application/vnd.ms-word.template.macroEnabled.12</li><li><strong>.dotx:</strong> application/vnd.openxmlformats-officedocument.wordprocessingml.template</li><li><strong>.ppsm: </strong>application/vnd.ms-powerpoint.slideshow.macroEnabled.12</li><li><strong>.ppsx:</strong> application/vnd.openxmlformats-officedocument.presentationml.slideshow</li><li><strong>.pptm:</strong> application/vnd.ms-powerpoint.presentation.macroEnabled.12</li><li><strong>.pptx:</strong> application/vnd.openxmlformats-officedocument.presentationml.presentation</li><li><strong>.xlsb:</strong> application/vnd.ms-excel.sheet.binary.macroEnabled.12</li><li><strong>.xlsm:</strong> application/vnd.ms-excel.sheet.macroEnabled.12</li><li><strong>.xlsx: </strong>application/vnd.openxmlformats-officedocument.spreadsheetml.sheet</li><li><strong>.xps:</strong> application/vnd.ms-xpsdocument</li><li><strong>.potm:</strong> application/vnd.ms-powerpoint.template.macroEnabled.12</li><li><strong>.potx:</strong> application/vnd.openxmlformats-officedocument.presentationml.template</li><li><strong>.ppam:</strong> application/vnd.ms-powerpoint.addin.macroEnabled.12</li><li><strong>.pptm:</strong> application/vnd.ms-powerpoint.presentation.macroEnabled.12</li><li><strong>.xlam:</strong> application/vnd.ms-excel.addin.macroEnabled.12</li><li><strong>.xlsb:</strong> application/vnd.ms-excel.sheet.binary.macroEnabled.12</li><li><strong>.xltm:</strong> application/vnd.ms-excel.template.macroEnabled.12</li><li><strong>.xltx:</strong> application/vnd.openxmlformats-officedocument.spreadsheetml</li></ul>]]></content>

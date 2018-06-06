@@ -74,7 +74,7 @@
 
 
 
-  <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml" />
+  <link rel="alternate" href="/atom.xml" title="Leo's notepad" type="application/atom+xml" />
 
 
 
@@ -82,12 +82,12 @@
 
 
 <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
+<meta property="og:title" content="Leo&#39;s notepad">
 <meta property="og:url" content="http://yoursite.com/index.html">
-<meta property="og:site_name" content="Hexo">
+<meta property="og:site_name" content="Leo&#39;s notepad">
 <meta property="og:locale" content="zh-Hans">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
+<meta name="twitter:title" content="Leo&#39;s notepad">
 
 
 
@@ -123,7 +123,7 @@
 
 
 
-  <title>Hexo</title>
+  <title>Leo's notepad</title>
   
 
 
@@ -154,12 +154,12 @@
     <div class="custom-logo-site-title">
       <a href="/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Hexo</span>
+        <span class="site-title">Leo's notepad</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
       
-        <p class="site-subtitle"></p>
+        <p class="site-subtitle">yet another blog</p>
       
   </div>
 
@@ -270,7 +270,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
+      <meta itemprop="name" content="Leo's notepad">
     </span>
 
     
@@ -292,7 +292,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-06T01:41:56-04:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-06T14:41:56+09:00">
                 2018-06-06
               </time>
             
@@ -305,6 +305,17 @@
           
 
           
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/06/06/hello-world/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/06/06/hello-world/" itemprop="commentCount"></span>
+                </a>
+              </span>
             
           
 
@@ -398,7 +409,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
+      <meta itemprop="name" content="Leo's notepad">
     </span>
 
     
@@ -420,7 +431,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-10T18:55:25-04:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-10T18:55:25+09:00">
                 2018-05-10
               </time>
             
@@ -456,6 +467,17 @@
 
           
             
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/05/10/understand-spring-di-aop/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/05/10/understand-spring-di-aop/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
           
 
           
@@ -483,7 +505,8 @@
         
           
             <h1 id="问题的提出"><a href="#问题的提出" class="headerlink" title="问题的提出"></a><strong>问题的提出</strong></h1><p>Spring中的依赖注入（DI)为何而生？ 下面这篇日语文章提到，所有的Web应用都需要考虑到下面三个问题。 <a href="http://penguinlabo.wp.xdomain.jp/understandspringmvc/" target="_blank" rel="noopener">http://penguinlabo.wp.xdomain.jp/understandspringmvc/</a> 1）对象的生命周期问题。 假设你用Servlet来接收用户的访问请求，有一个用户需要访问一个页面，你就需要一个线程来负责处理这个请求，并调用某个业务逻辑（比如调用一个UserService的实例）。如果处理不当，每新增一个用户就实例化一个业务逻辑（new一个UserService的实例），随着访问用户的增多，就会给系统带来大量垃圾回收负担，以及内存消耗的问题。为了防止这种情况发生，就需要把业务逻辑的部分设计为Singleton的，这样就不会每次都新增一个实例。 2）松耦合问题。 为了实现Web程序中的松耦合，即让一个类与另一个类不是那么的紧密结合，通常需要接口（Interface）来实现。但是单存的利用Interface并不能实现松耦合。还需要利用一些技巧，比如Factory Method等设计模式。 3）技术细节的隐藏。 当你写一个User或者SalesOrder类的时候，你希望专注于自己的业务逻辑，比如创建用户，删除用户，创建订单，删除订单这些具体的业务。如果你在这些类中再加上访问记录（log）处理，就会明显的影响你程序的可读性。因为本质上log处理和你的业务逻辑没有什么联系，两者混杂在一起就会让人看起来比较头大。还有一些异常处理类的逻辑也会产生同样的问题。你怎样才能把这些和真正的业务逻辑无关的逻辑分离出去？</p>
-<h1 id="问题的回答"><a href="#问题的回答" class="headerlink" title="问题的回答"></a>问题的回答</h1><p>Spring给出的解决方案是这样的。 1）对象的生命周期问题。=&gt;DI 2）松耦合问题。 =&gt; DI 3）技术细节的隐藏。=&gt;AOP 首先Spring是怎么实现DI的呢，是通过DI Container来实现的。 在没有使用DI的Web应用中，Controller用到Service的时候，会生成（new）一个，Service用到DAO的时候，也是同样的生成（new）一个。 <img src="http://65.49.230.2/wordpress/wp-content/uploads/2018/06/no-di-300x187.jpg" alt=""> 而使用了DI的Spring，则将实例化的工作全部交给了DI Container去做。 Controller中仅仅声明了Service接口的一个属性，具体的实现（new）没有去做，同样Service中也只是声明了一个DAO接口的一个属性，也没有去实现（new）。当需要实例的时候，就让DI Container根据配置去找到合适的类去实例化相应的接口属性。 <img src="http://65.49.230.2/wordpress/wp-content/uploads/2018/06/DI-300x186.png" alt=""> 而用Spring写成的Web程序，其处理顺序可以用下图来表示 <img src="http://65.49.230.2/wordpress/wp-content/uploads/2018/06/Spring-flow-300x195.png" alt=""></p>
+<h1 id="问题的回答"><a href="#问题的回答" class="headerlink" title="问题的回答"></a>问题的回答</h1><p>Spring给出的解决方案是这样的。<br>1）对象的生命周期问题。=&gt;DI<br>2）松耦合问题。 =&gt; DI<br>3）技术细节的隐藏。=&gt;AOP </p>
+<p>首先Spring是怎么实现DI的呢，是通过DI Container来实现的。<br>在没有使用DI的Web应用中，Controller用到Service的时候，会生成（new）一个，Service用到DAO的时候，也是同样的生成（new）一个。 <img src="http://65.49.230.2/wordpress/wp-content/uploads/2018/06/no-di-300x187.jpg" alt=""> 而使用了DI的Spring，则将实例化的工作全部交给了DI Container去做。 Controller中仅仅声明了Service接口的一个属性，具体的实现（new）没有去做，同样Service中也只是声明了一个DAO接口的一个属性，也没有去实现（new）。当需要实例的时候，就让DI Container根据配置去找到合适的类去实例化相应的接口属性。 <img src="http://65.49.230.2/wordpress/wp-content/uploads/2018/06/DI-300x186.png" alt=""> 而用Spring写成的Web程序，其处理顺序可以用下图来表示 <img src="http://65.49.230.2/wordpress/wp-content/uploads/2018/06/Spring-flow-300x195.png" alt=""></p>
 <ol>
 <li>Dispatcher Servlet接收用户访问请求</li>
 <li>Dispatcher Servlet利用HandlerMapping取得URL所对应的Controller对象</li>
@@ -539,7 +562,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/02/21/my-understandng-of-javascript-closure/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/02/20/my-understandng-of-javascript-closure/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Leo Wang">
@@ -548,7 +571,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
+      <meta itemprop="name" content="Leo's notepad">
     </span>
 
     
@@ -558,7 +581,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/02/21/my-understandng-of-javascript-closure/" itemprop="url">我对Javascript中的闭包Closure的理解</a></h1>
+                <a class="post-title-link" href="/2017/02/20/my-understandng-of-javascript-closure/" itemprop="url">我对Javascript中的闭包Closure的理解</a></h1>
         
 
         <div class="post-meta">
@@ -570,7 +593,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-02-21T12:25:27-05:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-02-21T12:25:27+09:00">
                 2017-02-21
               </time>
             
@@ -605,6 +628,17 @@
           
 
           
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/02/20/my-understandng-of-javascript-closure/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/02/20/my-understandng-of-javascript-closure/" itemprop="commentCount"></span>
+                </a>
+              </span>
             
           
 
@@ -708,7 +742,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
+      <meta itemprop="name" content="Leo's notepad">
     </span>
 
     
@@ -730,7 +764,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-02-15T14:37:52-05:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-02-15T14:37:52+09:00">
                 2017-02-15
               </time>
             
@@ -776,6 +810,17 @@
           
 
           
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/02/15/sapui5-qunit-404-not-found/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/02/15/sapui5-qunit-404-not-found/" itemprop="commentCount"></span>
+                </a>
+              </span>
             
           
 
@@ -857,7 +902,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/11/15/create-new-hybris-cms-component-in-accelerator/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/11/14/create-new-hybris-cms-component-in-accelerator/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Leo Wang">
@@ -866,7 +911,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
+      <meta itemprop="name" content="Leo's notepad">
     </span>
 
     
@@ -876,7 +921,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2016/11/15/create-new-hybris-cms-component-in-accelerator/" itemprop="url">在sap hybris的accelerator中添加hybris cms组件(hybris cms component)的方法</a></h1>
+                <a class="post-title-link" href="/2016/11/14/create-new-hybris-cms-component-in-accelerator/" itemprop="url">在sap hybris的accelerator中添加hybris cms组件(hybris cms component)的方法</a></h1>
         
 
         <div class="post-meta">
@@ -888,7 +933,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-11-15T09:43:50-05:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-11-15T09:43:50+09:00">
                 2016-11-15
               </time>
             
@@ -934,6 +979,17 @@
           
 
           
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/11/14/create-new-hybris-cms-component-in-accelerator/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2016/11/14/create-new-hybris-cms-component-in-accelerator/" itemprop="commentCount"></span>
+                </a>
+              </span>
             
           
 
@@ -1030,7 +1086,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
+      <meta itemprop="name" content="Leo's notepad">
     </span>
 
     
@@ -1052,7 +1108,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-10-28T17:45:22-04:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-10-28T17:45:22+09:00">
                 2016-10-28
               </time>
             
@@ -1087,6 +1143,17 @@
           
 
           
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/10/28/sap-hybris-unit-test-note/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2016/10/28/sap-hybris-unit-test-note/" itemprop="commentCount"></span>
+                </a>
+              </span>
             
           
 
@@ -1196,7 +1263,7 @@ public void setUp() throws Exception
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/10/26/sap-hybris-cms-component-notes/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/10/25/sap-hybris-cms-component-notes/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Leo Wang">
@@ -1205,7 +1272,7 @@ public void setUp() throws Exception
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
+      <meta itemprop="name" content="Leo's notepad">
     </span>
 
     
@@ -1215,7 +1282,7 @@ public void setUp() throws Exception
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2016/10/26/sap-hybris-cms-component-notes/" itemprop="url">sap hybris在新建自定义cms component时的注意事项</a></h1>
+                <a class="post-title-link" href="/2016/10/25/sap-hybris-cms-component-notes/" itemprop="url">sap hybris在新建自定义cms component时的注意事项</a></h1>
         
 
         <div class="post-meta">
@@ -1227,7 +1294,7 @@ public void setUp() throws Exception
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-10-26T11:06:57-04:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-10-26T11:06:57+09:00">
                 2016-10-26
               </time>
             
@@ -1262,6 +1329,17 @@ public void setUp() throws Exception
           
 
           
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/10/25/sap-hybris-cms-component-notes/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2016/10/25/sap-hybris-cms-component-notes/" itemprop="commentCount"></span>
+                </a>
+              </span>
             
           
 
@@ -1357,7 +1435,7 @@ public void setUp() throws Exception
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/09/28/sony-interview-questions/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/09/27/sony-interview-questions/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Leo Wang">
@@ -1366,7 +1444,7 @@ public void setUp() throws Exception
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
+      <meta itemprop="name" content="Leo's notepad">
     </span>
 
     
@@ -1376,7 +1454,7 @@ public void setUp() throws Exception
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2016/09/28/sony-interview-questions/" itemprop="url">Sony 面经</a></h1>
+                <a class="post-title-link" href="/2016/09/27/sony-interview-questions/" itemprop="url">Sony 面经</a></h1>
         
 
         <div class="post-meta">
@@ -1388,7 +1466,7 @@ public void setUp() throws Exception
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-09-28T11:12:57-04:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-09-28T11:12:57+09:00">
                 2016-09-28
               </time>
             
@@ -1423,6 +1501,17 @@ public void setUp() throws Exception
           
 
           
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/09/27/sony-interview-questions/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2016/09/27/sony-interview-questions/" itemprop="commentCount"></span>
+                </a>
+              </span>
             
           
 
@@ -1524,7 +1613,7 @@ public void setUp() throws Exception
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
+      <meta itemprop="name" content="Leo's notepad">
     </span>
 
     
@@ -1546,7 +1635,7 @@ public void setUp() throws Exception
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-11-07T20:13:59-05:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-11-07T20:13:59+09:00">
                 2015-11-07
               </time>
             
@@ -1592,6 +1681,17 @@ public void setUp() throws Exception
           
 
           
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2015/11/07/why-need-nginx-with-uwsgi/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2015/11/07/why-need-nginx-with-uwsgi/" itemprop="commentCount"></span>
+                </a>
+              </span>
             
           
 
@@ -1685,7 +1785,7 @@ public void setUp() throws Exception
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
+      <meta itemprop="name" content="Leo's notepad">
     </span>
 
     
@@ -1707,7 +1807,7 @@ public void setUp() throws Exception
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-10-27T23:57:30-04:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-10-27T23:57:30+09:00">
                 2015-10-27
               </time>
             
@@ -1753,6 +1853,17 @@ public void setUp() throws Exception
           
 
           
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2015/10/27/python-datetime-to-utc-timestamp/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2015/10/27/python-datetime-to-utc-timestamp/" itemprop="commentCount"></span>
+                </a>
+              </span>
             
           
 
@@ -2094,6 +2205,14 @@ public void setUp() throws Exception
 
   
 
+    
+      <script id="dsq-count-scr" src="https://leowll.disqus.com/count.js" async></script>
+    
+
+    
+
+  
+
 
 
 
@@ -2106,10 +2225,6 @@ public void setUp() throws Exception
   
 
 
-
-
-
-  
 
 
 

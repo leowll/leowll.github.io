@@ -74,7 +74,7 @@
 
 
 
-  <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml" />
+  <link rel="alternate" href="/atom.xml" title="Leo's notepad" type="application/atom+xml" />
 
 
 
@@ -86,7 +86,7 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="关于Java Thread的一些认识">
 <meta property="og:url" content="http://yoursite.com/2015/10/10/java-multi-thread/index.html">
-<meta property="og:site_name" content="Hexo">
+<meta property="og:site_name" content="Leo&#39;s notepad">
 <meta property="og:description" content="最近为了考取Java 7的Gold资格而补课，多线程这一块看了好长一段时间才算有点头绪。 下面几点算是心得吧。明白这些东西之后，join（）也差不多可以理解了。  主线程和主线程生成的子线程是两个独立的东西。start（）之后都是各自奔向终点。 如果子线程跑得快，主线程无法对它进行interrupt（）操作。 因为人家已经结束了，你再发号施令已经晚了。 被interrupt（）的子线程不会就此终止">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2018-06-06T05:49:00.140Z">
@@ -128,7 +128,7 @@
 
 
 
-  <title>关于Java Thread的一些认识 | Hexo</title>
+  <title>关于Java Thread的一些认识 | Leo's notepad</title>
   
 
 
@@ -158,12 +158,12 @@
     <div class="custom-logo-site-title">
       <a href="/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Hexo</span>
+        <span class="site-title">Leo's notepad</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
       
-        <p class="site-subtitle"></p>
+        <p class="site-subtitle">yet another blog</p>
       
   </div>
 
@@ -274,7 +274,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
+      <meta itemprop="name" content="Leo's notepad">
     </span>
 
     
@@ -294,7 +294,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-10-10T15:30:05-04:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-10-10T02:30:05-04:00">
                 2015-10-10
               </time>
             
@@ -329,6 +329,17 @@
           
 
           
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2015/10/10/java-multi-thread/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2015/10/10/java-multi-thread/" itemprop="commentCount"></span>
+                </a>
+              </span>
             
           
 
@@ -450,6 +461,16 @@
 
 
           
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
 
   
 
@@ -715,6 +736,26 @@
 
   
 
+    
+      <script id="dsq-count-scr" src="https://leowll.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://yoursite.com/2015/10/10/java-multi-thread/';
+          this.page.identifier = '2015/10/10/java-multi-thread/';
+          this.page.title = '关于Java Thread的一些认识';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://leowll.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
 
 
 
@@ -727,10 +768,6 @@
   
 
 
-
-
-
-  
 
 
 
