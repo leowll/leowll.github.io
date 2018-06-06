@@ -230,9 +230,43 @@
       
 
       
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
     </ul>
   
 
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
   
 </nav>
 
@@ -261,7 +295,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/06/hello-world/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/06/hexo-generate-no-response/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Leo Wang">
@@ -280,7 +314,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/06/06/hello-world/" itemprop="url">Hello World</a></h1>
+                <a class="post-title-link" href="/2018/06/06/hexo-generate-no-response/" itemprop="url">Hexo Generate 没有反应的原因</a></h1>
         
 
         <div class="post-meta">
@@ -292,8 +326,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-06T14:41:56+09:00">
-                2018-06-06
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-07T00:05:00+09:00">
+                2018-06-07
               </time>
             
 
@@ -303,6 +337,28 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/技术/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -311,9 +367,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/06/06/hello-world/#comments" itemprop="discussionUrl">
+                <a href="/2018/06/06/hexo-generate-no-response/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/06/06/hello-world/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2018/06/06/hexo-generate-no-response/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -343,15 +399,8 @@
       
         
           
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+            <p>在hexo执行下列命令时，没有看到生成的结果，只看到了一个kill之类的中断语句。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo generate</span><br></pre></td></tr></table></figure></p>
+<p>原因很可能是你的服务器（vps）swap不足。<br>通过执行下列命令可以增加swap内存。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo dd <span class="keyword">if</span>=/dev/zero of=/swapfile bs=1024 count=1024k</span><br><span class="line">sudo mkswap /swapfile</span><br><span class="line">sudo swapon /swapfile</span><br></pre></td></tr></table></figure></p>
 
           
         
@@ -504,7 +553,12 @@
       
         
           
-            <h1 id="问题的提出"><a href="#问题的提出" class="headerlink" title="问题的提出"></a><strong>问题的提出</strong></h1><p>Spring中的依赖注入（DI)为何而生？ 下面这篇日语文章提到，所有的Web应用都需要考虑到下面三个问题。 <a href="http://penguinlabo.wp.xdomain.jp/understandspringmvc/" target="_blank" rel="noopener">http://penguinlabo.wp.xdomain.jp/understandspringmvc/</a> 1）对象的生命周期问题。 假设你用Servlet来接收用户的访问请求，有一个用户需要访问一个页面，你就需要一个线程来负责处理这个请求，并调用某个业务逻辑（比如调用一个UserService的实例）。如果处理不当，每新增一个用户就实例化一个业务逻辑（new一个UserService的实例），随着访问用户的增多，就会给系统带来大量垃圾回收负担，以及内存消耗的问题。为了防止这种情况发生，就需要把业务逻辑的部分设计为Singleton的，这样就不会每次都新增一个实例。 2）松耦合问题。 为了实现Web程序中的松耦合，即让一个类与另一个类不是那么的紧密结合，通常需要接口（Interface）来实现。但是单存的利用Interface并不能实现松耦合。还需要利用一些技巧，比如Factory Method等设计模式。 3）技术细节的隐藏。 当你写一个User或者SalesOrder类的时候，你希望专注于自己的业务逻辑，比如创建用户，删除用户，创建订单，删除订单这些具体的业务。如果你在这些类中再加上访问记录（log）处理，就会明显的影响你程序的可读性。因为本质上log处理和你的业务逻辑没有什么联系，两者混杂在一起就会让人看起来比较头大。还有一些异常处理类的逻辑也会产生同样的问题。你怎样才能把这些和真正的业务逻辑无关的逻辑分离出去？</p>
+            <h1 id="问题的提出"><a href="#问题的提出" class="headerlink" title="问题的提出"></a><strong>问题的提出</strong></h1><p>Spring中的依赖注入（DI)为何而生？<br> 下面这篇日语文章提到，所有的Web应用都需要考虑到下面三个问题。[] <a href="http://penguinlabo.wp.xdomain.jp/understandspringmvc/" target="_blank" rel="noopener">http://penguinlabo.wp.xdomain.jp/understandspringmvc/</a></p>
+<ol>
+<li>对象的生命周期问题。<br>假设你用Servlet来接收用户的访问请求，有一个用户需要访问一个页面，你就需要一个线程来负责处理这个请求，并调用某个业务逻辑（比如调用一个UserService的实例）。如果处理不当，每新增一个用户就实例化一个业务逻辑（new一个UserService的实例），随着访问用户的增多，就会给系统带来大量垃圾回收负担，以及内存消耗的问题。为了防止这种情况发生，就需要把业务逻辑的部分设计为Singleton的，这样就不会每次都新增一个实例</li>
+<li>松耦合问题。<br>为了实现Web程序中的松耦合，即让一个类与另一个类不是那么的紧密结合，通常需要接口（Interface）来实现。但是单存的利用Interface并不能实现松耦合。还需要利用一些技巧，比如Factory Method等设计模式。 </li>
+<li>技术细节的隐藏。<br>当你写一个User或者SalesOrder类的时候，你希望专注于自己的业务逻辑，比如创建用户，删除用户，创建订单，删除订单这些具体的业务。如果你在这些类中再加上访问记录（log）处理，就会明显的影响你程序的可读性。因为本质上log处理和你的业务逻辑没有什么联系，两者混杂在一起就会让人看起来比较头大。还有一些异常处理类的逻辑也会产生同样的问题。你怎样才能把这些和真正的业务逻辑无关的逻辑分离出去？</li>
+</ol>
 <h1 id="问题的回答"><a href="#问题的回答" class="headerlink" title="问题的回答"></a>问题的回答</h1><p>Spring给出的解决方案是这样的。<br>1）对象的生命周期问题。=&gt;DI<br>2）松耦合问题。 =&gt; DI<br>3）技术细节的隐藏。=&gt;AOP </p>
 <p>首先Spring是怎么实现DI的呢，是通过DI Container来实现的。<br>在没有使用DI的Web应用中，Controller用到Service的时候，会生成（new）一个，Service用到DAO的时候，也是同样的生成（new）一个。 <img src="http://65.49.230.2/wordpress/wp-content/uploads/2018/06/no-di-300x187.jpg" alt=""> 而使用了DI的Spring，则将实例化的工作全部交给了DI Container去做。 Controller中仅仅声明了Service接口的一个属性，具体的实现（new）没有去做，同样Service中也只是声明了一个DAO接口的一个属性，也没有去实现（new）。当需要实例的时候，就让DI Container根据配置去找到合适的类去实例化相应的接口属性。 <img src="http://65.49.230.2/wordpress/wp-content/uploads/2018/06/DI-300x186.png" alt=""> 而用Spring写成的Web程序，其处理顺序可以用下图来表示 <img src="http://65.49.230.2/wordpress/wp-content/uploads/2018/06/Spring-flow-300x195.png" alt=""></p>
 <ol>
@@ -666,24 +720,18 @@
       
         
           
-            <p>怎样理解 Javascript Closure 也就是闭包的概念，想必很多人在为此头疼。 笔者先后参考了下面这些资料 MDN Javascript Closure <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Closures" target="_blank" rel="noopener">https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Closures</a> 阮一峰的博客 <a href="http://www.ruanyifeng.com/blog/2009/08/learning_javascript_closures.html" target="_blank" rel="noopener">http://www.ruanyifeng.com/blog/2009/08/learning_javascript_closures.html</a> Frank Fang的博客 <a href="http://www.cnblogs.com/frankfang/archive/2011/08/03/2125663.html" target="_blank" rel="noopener">http://www.cnblogs.com/frankfang/archive/2011/08/03/2125663.html</a> 作者们都声称自己搞懂了闭包的概念，可自己还是看的云里雾里。 直到笔者看到下面这篇文章，才开始真正理解闭包的概念和应用场景。 Jonathan D. Johnson的博客 <a href="http://jondavidjohn.com/javascript-closure-explained-using-events/" target="_blank" rel="noopener">http://jondavidjohn.com/javascript-closure-explained-using-events/</a> 下面我试着把这篇文章边翻译边把自己的理解写出来。 先看一下下面这段程序， 效果：在第3次按下button的时候显示”Third time’s the charm”的消息框。</p>
-<p>// declare counter outside event handler’s scope<br>var counter = 0;<br>var element = document.getElementById(“button”);</p>
-<p>element.onclick = function() {<br>    // increment outside counter<br>    counter++;</p>
-<pre><code>if (counter === 3) {
-    // do something every third time
-    alert(&quot;Third time&apos;s the charm!&quot;);
-    // reset counter
-    counter = 0;
-}
-</code></pre><p>};</p>
+            <p>怎样理解 Javascript Closure 也就是闭包的概念，想必很多人在为此头疼。 笔者先后参考了下面这些资料 </p>
+<ul>
+<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Closures" target="_blank" rel="noopener">MDN Javascript Closure</a> </li>
+<li><a href="http://www.ruanyifeng.com/blog/2009/08/learning_javascript_closures.html" target="_blank" rel="noopener">阮一峰的博客</a> </li>
+<li><a href="http://www.cnblogs.com/frankfang/archive/2011/08/03/2125663.html" target="_blank" rel="noopener">Frank Fang的博客</a> </li>
+</ul>
+<p>作者们都声称自己搞懂了闭包的概念，可自己还是看的云里雾里。 直到笔者看到下面这篇文章，才开始真正理解闭包的概念和应用场景。 Jonathan D. Johnson的博客 <a href="http://jondavidjohn.com/javascript-closure-explained-using-events/" target="_blank" rel="noopener">http://jondavidjohn.com/javascript-closure-explained-using-events/</a> 下面我试着把这篇文章边翻译边把自己的理解写出来。 先看一下下面这段程序， 效果：在第3次按下button的时候显示”Third time’s the charm”的消息框。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// declare counter outside event handler's scope</span></span><br><span class="line"><span class="keyword">var</span> counter = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">var</span> element = <span class="built_in">document</span>.getElementById(<span class="string">"button"</span>);</span><br><span class="line"></span><br><span class="line">element.onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">// increment outside counter</span></span><br><span class="line">    counter++;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (counter === <span class="number">3</span>) &#123;</span><br><span class="line">        <span class="comment">// do something every third time</span></span><br><span class="line">        alert(<span class="string">"Third time's the charm!"</span>);</span><br><span class="line">        <span class="comment">// reset counter</span></span><br><span class="line">        counter = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
 <p>程序中声明了一个全局变量counter,每次按下button都会唤起程序，从而让counter++ 如果你只在自己的网页中执行一次的话，这么写也无所谓，但是如果你想在其他地方复用的话， 最好还是把这段程序封装成单独的一个函数。 这时问题就来了，你要每次都声明一个外部的全局变量counter吗？很明显这种做法太笨拙。 于是closure的作用就发挥出来了。 如果你看过了MDN的解释，就会知道closure其实是这样一种机制，</p>
 <blockquote>
 <p>函数可以访问它被创建时所处的作用域中的对象（Object）。</p>
 </blockquote>
-<p>于是上面那段程序利用闭包可以优化成下面这种形式：</p>
-<p>&lt;!DOCTYPE html&gt;</p>
-<html lang="en"><br><head><br>    <meta charset="UTF-8"><br>    <title>Title</title><br></head><br><body><br><br><input type="submit" id="button1" value="button1" class="button"><br><input type="submit" id="button2" value="button2" class="button"><br><br><script><br>    var myClosureFunc = function () {<br>        // init the count to 0<br>        var count = 0;<br>        return function (e) {<br>            //count<br>            count++;<br><br>            if (count === 3) {<br>                // do something every third time<br>                alert(“Third time’s the charm!”);<br>                //reset counter<br>                count = 0;<br>            }<br>        };<br>    }<br><br>    var element1 = document.getElementById(“button1”);<br>    element1.onclick = myClosureFunc();<br><br>    var element2 = document.getElementById(“button2”);<br>    element2.onclick = myClosureFunc();<br></script><br><br><br></body><br></html>
-
+<p>于是上面那段程序利用闭包可以优化成下面这种形式：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Title<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span> <span class="attr">id</span>=<span class="string">"button1"</span> <span class="attr">value</span>=<span class="string">"button1"</span> <span class="attr">class</span>=<span class="string">"button"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span> <span class="attr">id</span>=<span class="string">"button2"</span> <span class="attr">value</span>=<span class="string">"button2"</span> <span class="attr">class</span>=<span class="string">"button"</span>/&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> myClosureFunc = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">        <span class="comment">// init the count to 0</span></span></span><br><span class="line"><span class="javascript">        <span class="keyword">var</span> count = <span class="number">0</span>;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">            <span class="comment">//count</span></span></span><br><span class="line"><span class="undefined">            count++;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="javascript">            <span class="keyword">if</span> (count === <span class="number">3</span>) &#123;</span></span><br><span class="line"><span class="javascript">                <span class="comment">// do something every third time</span></span></span><br><span class="line"><span class="javascript">                alert(<span class="string">"Third time's the charm!"</span>);</span></span><br><span class="line"><span class="javascript">                <span class="comment">//reset counter</span></span></span><br><span class="line"><span class="undefined">                count = 0;</span></span><br><span class="line"><span class="undefined">            &#125;</span></span><br><span class="line"><span class="undefined">        &#125;;</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> element1 = <span class="built_in">document</span>.getElementById(<span class="string">"button1"</span>);</span></span><br><span class="line"><span class="undefined">    element1.onclick = myClosureFunc();</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> element2 = <span class="built_in">document</span>.getElementById(<span class="string">"button2"</span>);</span></span><br><span class="line"><span class="undefined">    element2.onclick = myClosureFunc();</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
 <p>  counter的位置移到了event handler函数的内部，而函数的返回值为一个闭包。 按照上面的概念，myClosureFunc中的闭包可以访问它创建时所处的作用域(scope), 于是它就可以访问自己的counter，而这个counter是<strong>相对</strong>全局的，也就是说，在element1被按下的过程中，这个counter是共有的。 而element1和element2中的counter又是<strong>相对独立</strong>的。 怎么样，有没有帮你理解closure在作用域这个概念里所起的作用？</p>
 
           
@@ -852,8 +900,7 @@
 <blockquote>
 <p>If you are running the tutorial in SAP Web IDE, you will have to configure the project descriptor neo-app.json. In this descriptor file, the path to the resources is already configured. Other development environments might need the resources to be copied to the server. Alternatively, you can use the CDN version of <a href="https://sapui5.hana.ondemand.com/resources/sap-ui-core.js" target="_blank" rel="noopener">https://sapui5.hana.ondemand.com/resources/sap-ui-core.js</a>.</p>
 </blockquote>
-<p>也就是说，如果你使用的是Web IDE,而你又是copy的Tutorial中给出的code，你还需要配置项目的neo-app.json文件让项目找到resources系列的文件。 If you are using web IDE and copied the code from the sample, you may aslo need to set up the neo-app.json file to let the project find the resource folder. 具体配置如下所示，其实就是简单复制一下从头开始新建的项目中的neo-app.json文件。</p>
-<p>{<br>  “welcomeFile”: “/webapp/test/test.html”,<br>  “routes”: [<br>    {<br>      “path”: “/resources”,<br>      “target”: {<br>        “type”: “service”,<br>        “name”: “sapui5”,<br>        “entryPath”: “/resources”<br>      },<br>      “description”: “SAPUI5 Resources”<br>    },<br>    {<br>      “path”: “/test-resources”,<br>      “target”: {<br>        “type”: “service”,<br>        “name”: “sapui5”,<br>        “entryPath”: “/test-resources”<br>      },<br>      “description”: “SAPUI5 Test Resources”<br>    }<br>  ],<br>  “sendWelcomeFileRedirect”: true<br>}</p>
+<p>也就是说，如果你使用的是Web IDE,而你又是copy的Tutorial中给出的code，你还需要配置项目的neo-app.json文件让项目找到resources系列的文件。 If you are using web IDE and copied the code from the sample, you may aslo need to set up the neo-app.json file to let the project find the resource folder. 具体配置如下所示，其实就是简单复制一下从头开始新建的项目中的neo-app.json文件。<br><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"welcomeFile"</span>: <span class="string">"/webapp/test/test.html"</span>,</span><br><span class="line">  <span class="attr">"routes"</span>: \[</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">"path"</span>: <span class="string">"/resources"</span>,</span><br><span class="line">      <span class="attr">"target"</span>: &#123;</span><br><span class="line">        <span class="attr">"type"</span>: <span class="string">"service"</span>,</span><br><span class="line">        <span class="attr">"name"</span>: <span class="string">"sapui5"</span>,</span><br><span class="line">        <span class="attr">"entryPath"</span>: <span class="string">"/resources"</span></span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="attr">"description"</span>: <span class="string">"SAPUI5 Resources"</span></span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">"path"</span>: <span class="string">"/test-resources"</span>,</span><br><span class="line">      <span class="attr">"target"</span>: &#123;</span><br><span class="line">        <span class="attr">"type"</span>: <span class="string">"service"</span>,</span><br><span class="line">        <span class="attr">"name"</span>: <span class="string">"sapui5"</span>,</span><br><span class="line">        <span class="attr">"entryPath"</span>: <span class="string">"/test-resources"</span></span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="attr">"description"</span>: <span class="string">"SAPUI5 Test Resources"</span></span><br><span class="line">    &#125;</span><br><span class="line">  \],</span><br><span class="line">  <span class="attr">"sendWelcomeFileRedirect"</span>: <span class="literal">true</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 
           
         
@@ -1181,69 +1228,9 @@
       
         
           
-            <p>在SAP hybris的单体测试中，出现如下错误信息：</p>
-<pre>
-ERROR \[main\] (junit) \[FlexibleSearch\] Flexiblesearch error: could not translate value expression 'session.catalogversions'
-ERROR \[main\] (junit) \[FlexibleSearch\] query was 'SELECT {cat.pk} FROM {Category AS cat} WHERE NOT EXISTS ({ {SELECT {pk} FROM {CategoryCategoryRelation AS rel JOIN Category AS super ON {rel.source}={super.PK} } WHERE {rel:target}={cat.pk} AND {super.catalogVersion}={cat.catalogVersion} }}) AND {cat.catalogVersion} = ?catalogVersion'
-ERROR \[main\] (junit) \[FlexibleSearch\] translated query was: SELECT  item\_t0.PK  FROM junit\_categories item\_t0 WHERE (NOT EXISTS (SELECT  item\_t1.PK  FROM junit\_cat2catrel item\_t1 JOIN junit\_categories item\_t2 ON  item\_t1.SourcePK = item\_t2.PK  WHERE ( item\_t1.TargetPK = item\_t0.PK  AND  item\_t2.p\_catalogversion = item\_t0.p\_catalogversion ) AND ((item\_t1.TypePkString=?  AND item\_t2.TypePkString IN  (?,?,?,?)  AND (( item\_t2.p\_catalogversion  IN (?))) ))) AND  item\_t0.p\_catalogversion  = ?) AND (item\_t0.TypePkString IN  (?,?,?,?)  AND (( item\_t0.p_catalogversion  IN (?))) )
-ERROR \[main\] (junit) \[LogRunListener\] Test method testCategoryNav(org.training.renderer.CategoryNavComponentRendererTest) failed!!
-de.hybris.platform.servicelayer.search.exceptions.FlexibleSearchException: could not translate value expression 'session.catalogversions'
-</pre>
-Java代码如下：
-<pre>
-/**
- *
- */
-package org.training.renderer;
-
-import de.hybris.platform.catalog.CatalogVersionService;
-import de.hybris.platform.catalog.model.CatalogVersionModel;
-import de.hybris.platform.category.CategoryService;
-import de.hybris.platform.category.model.CategoryModel;
-import de.hybris.platform.servicelayer.ServicelayerTransactionalTest;
-
-import java.util.Collection;
-
-import javax.annotation.Resource;
-
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
-
-
-/\*\*
- \* @author lwang
- *
- */
-public class CategoryNavComponentRendererTest extends ServicelayerTransactionalTest
-{
-
-    @Resource(name = "categoryService")
-    private CategoryService categoryService;
-
-    @Resource(name = "catalogVersionService")
-    private CatalogVersionService catalogVersionService;
-
-    @Test
-    public void testCategoryNav()
-    {
-        final CatalogVersionModel catalogVersion = catalogVersionService.getCatalogVersion("uaProductCatalog", "Online");
-        Assert.assertNotNull(catalogVersion);
-        final Collection<categorymodel> categoryList = categoryService.getRootCategoriesForCatalogVersion(catalogVersion);
-        Assert.assertNotNull(categoryList);
-    }
-}
-</categorymodel></pre>
-之所以会出现错误，是因为程序没有加载hybris框架通常需要的一些环境变量。 在测试用例中加入如下代码可以解决问题。
-<pre>
-    @Before
-    public void setUp() throws Exception
-    {
-        createCoreData();
-        createDefaultCatalog();
-        createHardwareCatalog();
-    }
-</pre>
+            <p>在SAP hybris的单体测试中，出现如下错误信息：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ERROR \[main\] (junit) \[FlexibleSearch\] Flexiblesearch error: could not translate value expression 'session.catalogversions'</span><br><span class="line">ERROR \[main\] (junit) \[FlexibleSearch\] query was 'SELECT &#123;cat.pk&#125; FROM &#123;Category AS cat&#125; WHERE NOT EXISTS (&#123; &#123;SELECT &#123;pk&#125; FROM &#123;CategoryCategoryRelation AS rel JOIN Category AS super ON &#123;rel.source&#125;=&#123;super.PK&#125; &#125; WHERE &#123;rel:target&#125;=&#123;cat.pk&#125; AND &#123;super.catalogVersion&#125;=&#123;cat.catalogVersion&#125; &#125;&#125;) AND &#123;cat.catalogVersion&#125; = ?catalogVersion'</span><br><span class="line">ERROR \[main\] (junit) \[FlexibleSearch\] translated query was: SELECT  item\_t0.PK  FROM junit\_categories item\_t0 WHERE (NOT EXISTS (SELECT  item\_t1.PK  FROM junit\_cat2catrel item\_t1 JOIN junit\_categories item\_t2 ON  item\_t1.SourcePK = item\_t2.PK  WHERE ( item\_t1.TargetPK = item\_t0.PK  AND  item\_t2.p\_catalogversion = item\_t0.p\_catalogversion ) AND ((item\_t1.TypePkString=?  AND item\_t2.TypePkString IN  (?,?,?,?)  AND (( item\_t2.p\_catalogversion  IN (?))) ))) AND  item\_t0.p\_catalogversion  = ?) AND (item\_t0.TypePkString IN  (?,?,?,?)  AND (( item\_t0.p_catalogversion  IN (?))) )</span><br><span class="line">ERROR \[main\] (junit) \[LogRunListener\] Test method testCategoryNav(org.training.renderer.CategoryNavComponentRendererTest) failed!!</span><br><span class="line">de.hybris.platform.servicelayer.search.exceptions.FlexibleSearchException: could not translate value expression 'session.catalogversions'</span><br></pre></td></tr></table></figure></p>
+<p>Java代码如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">package</span> org.training.renderer;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> de.hybris.platform.catalog.CatalogVersionService;</span><br><span class="line"><span class="keyword">import</span> de.hybris.platform.catalog.model.CatalogVersionModel;</span><br><span class="line"><span class="keyword">import</span> de.hybris.platform.category.CategoryService;</span><br><span class="line"><span class="keyword">import</span> de.hybris.platform.category.model.CategoryModel;</span><br><span class="line"><span class="keyword">import</span> de.hybris.platform.servicelayer.ServicelayerTransactionalTest;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.Collection;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.annotation.Resource;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.junit.Assert;</span><br><span class="line"><span class="keyword">import</span> org.junit.Before;</span><br><span class="line"><span class="keyword">import</span> org.junit.Test;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">/\*\*</span><br><span class="line"> \* <span class="meta">@author</span> lwang</span><br><span class="line"> *</span><br><span class="line"> */</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CategoryNavComponentRendererTest</span> <span class="keyword">extends</span> <span class="title">ServicelayerTransactionalTest</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Resource</span>(name = <span class="string">"categoryService"</span>)</span><br><span class="line">	<span class="keyword">private</span> CategoryService categoryService;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Resource</span>(name = <span class="string">"catalogVersionService"</span>)</span><br><span class="line">	<span class="keyword">private</span> CatalogVersionService catalogVersionService;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Test</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testCategoryNav</span><span class="params">()</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="keyword">final</span> CatalogVersionModel catalogVersion = catalogVersionService.getCatalogVersion(<span class="string">"uaProductCatalog"</span>, <span class="string">"Online"</span>);</span><br><span class="line">		Assert.assertNotNull(catalogVersion);</span><br><span class="line">		<span class="keyword">final</span> Collection&lt;CategoryModel&gt; categoryList = categoryService.getRootCategoriesForCatalogVersion(catalogVersion);</span><br><span class="line">		Assert.assertNotNull(categoryList);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>之所以会出现错误，是因为程序没有加载hybris框架通常需要的一些环境变量。 在测试用例中加入如下代码可以解决问题。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Before</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setUp</span><span class="params">()</span> <span class="keyword">throws</span> Exception</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	createCoreData();</span><br><span class="line">	createDefaultCatalog();</span><br><span class="line">	createHardwareCatalog();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 
           
         
@@ -1402,21 +1389,8 @@ public class CategoryNavComponentRendererTest extends ServicelayerTransactionalT
 <li>在/<addon-name>/resources/<addon-name>/web/spring/<addon-name>-web-spring.xml中添加renderer和rendererMapping的定义</addon-name></addon-name></addon-name></li>
 <li>使用ant命令安装addon</li>
 </ol>
-<p><addon-name>-web-spring.xml的代码示例如下：</addon-name></p>
-<pre><code>&lt;bean id=&quot;yourComponentRenderer&quot; class=&quot;org.training.renderer.yourComponentRenderer&quot;&gt;
-    &lt;property name=&quot;typeService&quot; ref=&quot;typeService&quot; /&gt;
-    &lt;property name=&quot;uiExperienceService&quot; ref=&quot;defaultUiExperienceService&quot; /&gt;
-    &lt;property name=&quot;cmsComponentService&quot; ref=&quot;cmsComponentService&quot; /&gt;
-    &lt;property name=&quot;modelService&quot; ref=&quot;modelService&quot; /&gt;
-    &lt;property name=&quot;uiExperienceViewPrefixMap&quot; ref=&quot;uiExperienceViewPrefixMap&quot; /&gt;
-    &lt;property name=&quot;unknownUiExperiencePrefix&quot; value=&quot;desktop&quot; /&gt;
-&lt;/bean&gt;
+<p>/<addon-name>-web-spring.xml的代码示例如下：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"yourComponentRenderer"</span> <span class="attr">class</span>=<span class="string">"org.training.renderer.yourComponentRenderer"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"typeService"</span> <span class="attr">ref</span>=<span class="string">"typeService"</span> /&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"uiExperienceService"</span> <span class="attr">ref</span>=<span class="string">"defaultUiExperienceService"</span> /&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"cmsComponentService"</span> <span class="attr">ref</span>=<span class="string">"cmsComponentService"</span> /&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"modelService"</span> <span class="attr">ref</span>=<span class="string">"modelService"</span> /&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"uiExperienceViewPrefixMap"</span> <span class="attr">ref</span>=<span class="string">"uiExperienceViewPrefixMap"</span> /&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"unknownUiExperiencePrefix"</span> <span class="attr">value</span>=<span class="string">"desktop"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"yourComponentRendererMapping"</span> <span class="attr">parent</span>=<span class="string">"addonCmsComponentRendererMapping"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"typeCode"</span> <span class="attr">value</span>=<span class="string">"yourComponent"</span> /&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"renderer"</span> <span class="attr">ref</span>=<span class="string">"yourComponentRenderer"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure></addon-name></p>
 
-&lt;bean id=&quot;yourComponentRendererMapping&quot; parent=&quot;addonCmsComponentRendererMapping&quot;&gt;
-    &lt;property name=&quot;typeCode&quot; value=&quot;yourComponent&quot; /&gt;
-    &lt;property name=&quot;renderer&quot; ref=&quot;yourComponentRenderer&quot; /&gt;
-&lt;/bean&gt;
-</code></pre>
           
         
       
@@ -1748,7 +1722,8 @@ public class CategoryNavComponentRendererTest extends ServicelayerTransactionalT
       
         
           
-            <p>在python的web开发中，我用flask框架写了一个小程序，部署的时候，我用到了uwsgi来做容器。 在学习uwsgi部署的过程中，另一个关键词nginx频繁的跳出来。这两者通常是成对出现的。 你有没有和我一样的困惑，为什么有了uwsgi我们还需要nginx? 我是说，既然uwsgi能够展现你想要的内容，那nginx存在的意义在哪里？ 首先，nginx是一个HTTP 服务器。如果你是学Java出身的，说到HTTP服务器你应该会想到Apache。 类似的uwsgi可以比喻为tomcat。 nginx官方网站上给出的一张图片很好的揭示了nginx的角色。 <a href="https://www.flickr.com/photos/136148236@N02/22845441965/in/dateposted-public/" title="architecture-nginx" target="_blank" rel="noopener"><img src="http://65.49.230.2/wordpress/wp-content/uploads/2016/11/22845441965_8ca93b385a-1.jpg" alt="architecture-nginx"></a> 我所理解的nginx的主要功能，有以下几个部分：</p>
+            <h2 id="ngix存在的意义在哪里？"><a href="#ngix存在的意义在哪里？" class="headerlink" title="ngix存在的意义在哪里？"></a>ngix存在的意义在哪里？</h2><p>在python的web开发中，我用flask框架写了一个小程序，部署的时候，我用到了uwsgi来做容器。<br>在学习uwsgi部署的过程中，另一个关键词nginx频繁的跳出来。这两者通常是成对出现的。<br>你有没有和我一样的困惑，为什么有了uwsgi我们还需要nginx?<br>我是说，既然uwsgi能够展现你想要的内容，那nginx存在的意义在哪里？<br>首先，nginx是一个HTTP 服务器。如果你是学Java出身的，说到HTTP服务器你应该会想到Apache。<br>类似的uwsgi可以比喻为tomcat。 nginx官方网站上给出的一张图片很好的揭示了nginx的角色。<br><img src="https://farm1.staticflickr.com/751/22845441965_8ca93b385a_z.jpg" alt="architecture-nginx"></p>
+<h2 id="ngix的主要功能"><a href="#ngix的主要功能" class="headerlink" title="ngix的主要功能"></a>ngix的主要功能</h2><p>我所理解的nginx的主要功能，有以下几个部分：</p>
 <ul>
 <li>nginx处理<strong>静态内容请求更专业、快速</strong>。</li>
 <li>nginx可以<strong>缓存请求</strong>。如果让uwsgi来直接接受请求的话，uwsgi需要花费大量的时间来等待request，这本身对web应用所在的主机是很大的资源浪费。</li>
@@ -1920,12 +1895,7 @@ public class CategoryNavComponentRendererTest extends ServicelayerTransactionalT
       
         
           
-            <p>在python中有很多方法将datetime的字符串转换为 utc timestamp 网上找了好多，看起来都纷繁复杂。本文就想简单的做好一件事，就是将datetime的字符串转换为utc timestamp。 理解这个转换的关键，在于理解python中所有的日期字符串都被python解读为local time。 也就是说，同样是’2015/10/27 00:00:00’这个字符串，虽然身处东京的我和身在伦敦的你看到的是同一个字符串，但他们本身被python解读为两个不同地方的日期和时间。 如果想让python不去理会时差，而只想要utc格式的时间戳的话，用calendar.timegm()函数即可实现。 现举例如下：</p>
-<p># -<em>- coding: utf-8 -</em>-<br>__author__ = ‘leo’</p>
-<p>from datetime import datetime<br>import calendar<br>import time</p>
-<p>def local_to_utc(date_value):<br>    utc_timetuple = datetime.strptime(date_value, ‘%Y/%m/%d %H:%M:%S’).timetuple()<br>    ts = calendar.timegm(utc_timetuple)<br>    return ts * 1000</p>
-<p>def local_timestamp(date_value):<br>    utc_timetuple = datetime.strptime(date_value, ‘%Y/%m/%d %H:%M:%S’).timetuple()<br>    ts = time.mktime(utc_timetuple)<br>    return int(ts) * 1000</p>
-<p>date_str = ‘2015/10/27 00:00:00’<br>print local_to_utc(date_str)<br>print local_timestamp(date_str)</p>
+            <p>在python中有很多方法将datetime的字符串转换为 utc timestamp 网上找了好多，看起来都纷繁复杂。本文就想简单的做好一件事，就是将datetime的字符串转换为utc timestamp。 理解这个转换的关键，在于理解python中所有的日期字符串都被python解读为local time。 也就是说，同样是’2015/10/27 00:00:00’这个字符串，虽然身处东京的我和身在伦敦的你看到的是同一个字符串，但他们本身被python解读为两个不同地方的日期和时间。 如果想让python不去理会时差，而只想要utc格式的时间戳的话，用calendar.timegm()函数即可实现。 现举例如下：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">\<span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line">\_\_author\_\_ = <span class="string">'leo'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> datetime <span class="keyword">import</span> datetime</span><br><span class="line"><span class="keyword">import</span> calendar</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">local</span>\<span class="title">_to</span>\<span class="title">_utc</span><span class="params">(date_value)</span>:</span></span><br><span class="line">    utc\_timetuple = datetime.strptime(date\_value, <span class="string">'%Y/%m/%d %H:%M:%S'</span>).timetuple()</span><br><span class="line">    ts = calendar.timegm(utc_timetuple)</span><br><span class="line">    <span class="keyword">return</span> ts * <span class="number">1000</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">local</span>\<span class="title">_timestamp</span><span class="params">(date\_value)</span>:</span></span><br><span class="line">    utc\_timetuple = datetime.strptime(date\_value, <span class="string">'%Y/%m/%d %H:%M:%S'</span>).timetuple()</span><br><span class="line">    ts = time.mktime(utc_timetuple)</span><br><span class="line">    <span class="keyword">return</span> int(ts) * <span class="number">1000</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">date_str = <span class="string">'2015/10/27 00:00:00'</span></span><br><span class="line"><span class="keyword">print</span> local\_to\_utc(date_str)</span><br><span class="line"><span class="keyword">print</span> local\_timestamp(date\_str)</span><br></pre></td></tr></table></figure></p>
 <p>最后打印的结果，可以看到两个函数输出的时间戳是不一样的。（P.S.笔者在东九区）</p>
 <p>1445904000000<br>1445871600000</p>
 
@@ -2013,7 +1983,7 @@ public class CategoryNavComponentRendererTest extends ServicelayerTransactionalT
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">40</span>
+                  <span class="site-state-item-count">33</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2035,7 +2005,7 @@ public class CategoryNavComponentRendererTest extends ServicelayerTransactionalT
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-count">38</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -2267,6 +2237,323 @@ public class CategoryNavComponentRendererTest extends ServicelayerTransactionalT
 
 
   
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
 
 
 

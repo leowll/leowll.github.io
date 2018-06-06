@@ -81,21 +81,21 @@
 
 
 
-<meta name="description" content="问题的提出Spring中的依赖注入（DI)为何而生？ 下面这篇日语文章提到，所有的Web应用都需要考虑到下面三个问题。 http://penguinlabo.wp.xdomain.jp/understandspringmvc/ 1）对象的生命周期问题。 假设你用Servlet来接收用户的访问请求，有一个用户需要访问一个页面，你就需要一个线程来负责处理这个请求，并调用某个业务逻辑（比如调用一个Use">
+<meta name="description" content="问题的提出Spring中的依赖注入（DI)为何而生？ 下面这篇日语文章提到，所有的Web应用都需要考虑到下面三个问题。[] http://penguinlabo.wp.xdomain.jp/understandspringmvc/  对象的生命周期问题。假设你用Servlet来接收用户的访问请求，有一个用户需要访问一个页面，你就需要一个线程来负责处理这个请求，并调用某个业务逻辑（比如调用一个Use">
 <meta name="keywords" content="Java,Spring,AOP,DI,设计模式">
 <meta property="og:type" content="article">
 <meta property="og:title" content="理解Spring中的DI和AOP">
 <meta property="og:url" content="http://yoursite.com/2018/05/10/understand-spring-di-aop/index.html">
 <meta property="og:site_name" content="Leo&#39;s notepad">
-<meta property="og:description" content="问题的提出Spring中的依赖注入（DI)为何而生？ 下面这篇日语文章提到，所有的Web应用都需要考虑到下面三个问题。 http://penguinlabo.wp.xdomain.jp/understandspringmvc/ 1）对象的生命周期问题。 假设你用Servlet来接收用户的访问请求，有一个用户需要访问一个页面，你就需要一个线程来负责处理这个请求，并调用某个业务逻辑（比如调用一个Use">
+<meta property="og:description" content="问题的提出Spring中的依赖注入（DI)为何而生？ 下面这篇日语文章提到，所有的Web应用都需要考虑到下面三个问题。[] http://penguinlabo.wp.xdomain.jp/understandspringmvc/  对象的生命周期问题。假设你用Servlet来接收用户的访问请求，有一个用户需要访问一个页面，你就需要一个线程来负责处理这个请求，并调用某个业务逻辑（比如调用一个Use">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://65.49.230.2/wordpress/wp-content/uploads/2018/06/no-di-300x187.jpg">
 <meta property="og:image" content="http://65.49.230.2/wordpress/wp-content/uploads/2018/06/DI-300x186.png">
 <meta property="og:image" content="http://65.49.230.2/wordpress/wp-content/uploads/2018/06/Spring-flow-300x195.png">
-<meta property="og:updated_time" content="2018-06-06T09:10:38.795Z">
+<meta property="og:updated_time" content="2018-06-06T13:49:12.784Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="理解Spring中的DI和AOP">
-<meta name="twitter:description" content="问题的提出Spring中的依赖注入（DI)为何而生？ 下面这篇日语文章提到，所有的Web应用都需要考虑到下面三个问题。 http://penguinlabo.wp.xdomain.jp/understandspringmvc/ 1）对象的生命周期问题。 假设你用Servlet来接收用户的访问请求，有一个用户需要访问一个页面，你就需要一个线程来负责处理这个请求，并调用某个业务逻辑（比如调用一个Use">
+<meta name="twitter:description" content="问题的提出Spring中的依赖注入（DI)为何而生？ 下面这篇日语文章提到，所有的Web应用都需要考虑到下面三个问题。[] http://penguinlabo.wp.xdomain.jp/understandspringmvc/  对象的生命周期问题。假设你用Servlet来接收用户的访问请求，有一个用户需要访问一个页面，你就需要一个线程来负责处理这个请求，并调用某个业务逻辑（比如调用一个Use">
 <meta name="twitter:image" content="http://65.49.230.2/wordpress/wp-content/uploads/2018/06/no-di-300x187.jpg">
 
 
@@ -238,9 +238,43 @@
       
 
       
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
     </ul>
   
 
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
   
 </nav>
 
@@ -369,7 +403,12 @@
       
 
       
-        <h1 id="问题的提出"><a href="#问题的提出" class="headerlink" title="问题的提出"></a><strong>问题的提出</strong></h1><p>Spring中的依赖注入（DI)为何而生？ 下面这篇日语文章提到，所有的Web应用都需要考虑到下面三个问题。 <a href="http://penguinlabo.wp.xdomain.jp/understandspringmvc/" target="_blank" rel="noopener">http://penguinlabo.wp.xdomain.jp/understandspringmvc/</a> 1）对象的生命周期问题。 假设你用Servlet来接收用户的访问请求，有一个用户需要访问一个页面，你就需要一个线程来负责处理这个请求，并调用某个业务逻辑（比如调用一个UserService的实例）。如果处理不当，每新增一个用户就实例化一个业务逻辑（new一个UserService的实例），随着访问用户的增多，就会给系统带来大量垃圾回收负担，以及内存消耗的问题。为了防止这种情况发生，就需要把业务逻辑的部分设计为Singleton的，这样就不会每次都新增一个实例。 2）松耦合问题。 为了实现Web程序中的松耦合，即让一个类与另一个类不是那么的紧密结合，通常需要接口（Interface）来实现。但是单存的利用Interface并不能实现松耦合。还需要利用一些技巧，比如Factory Method等设计模式。 3）技术细节的隐藏。 当你写一个User或者SalesOrder类的时候，你希望专注于自己的业务逻辑，比如创建用户，删除用户，创建订单，删除订单这些具体的业务。如果你在这些类中再加上访问记录（log）处理，就会明显的影响你程序的可读性。因为本质上log处理和你的业务逻辑没有什么联系，两者混杂在一起就会让人看起来比较头大。还有一些异常处理类的逻辑也会产生同样的问题。你怎样才能把这些和真正的业务逻辑无关的逻辑分离出去？</p>
+        <h1 id="问题的提出"><a href="#问题的提出" class="headerlink" title="问题的提出"></a><strong>问题的提出</strong></h1><p>Spring中的依赖注入（DI)为何而生？<br> 下面这篇日语文章提到，所有的Web应用都需要考虑到下面三个问题。[] <a href="http://penguinlabo.wp.xdomain.jp/understandspringmvc/" target="_blank" rel="noopener">http://penguinlabo.wp.xdomain.jp/understandspringmvc/</a></p>
+<ol>
+<li>对象的生命周期问题。<br>假设你用Servlet来接收用户的访问请求，有一个用户需要访问一个页面，你就需要一个线程来负责处理这个请求，并调用某个业务逻辑（比如调用一个UserService的实例）。如果处理不当，每新增一个用户就实例化一个业务逻辑（new一个UserService的实例），随着访问用户的增多，就会给系统带来大量垃圾回收负担，以及内存消耗的问题。为了防止这种情况发生，就需要把业务逻辑的部分设计为Singleton的，这样就不会每次都新增一个实例</li>
+<li>松耦合问题。<br>为了实现Web程序中的松耦合，即让一个类与另一个类不是那么的紧密结合，通常需要接口（Interface）来实现。但是单存的利用Interface并不能实现松耦合。还需要利用一些技巧，比如Factory Method等设计模式。 </li>
+<li>技术细节的隐藏。<br>当你写一个User或者SalesOrder类的时候，你希望专注于自己的业务逻辑，比如创建用户，删除用户，创建订单，删除订单这些具体的业务。如果你在这些类中再加上访问记录（log）处理，就会明显的影响你程序的可读性。因为本质上log处理和你的业务逻辑没有什么联系，两者混杂在一起就会让人看起来比较头大。还有一些异常处理类的逻辑也会产生同样的问题。你怎样才能把这些和真正的业务逻辑无关的逻辑分离出去？</li>
+</ol>
 <h1 id="问题的回答"><a href="#问题的回答" class="headerlink" title="问题的回答"></a>问题的回答</h1><p>Spring给出的解决方案是这样的。<br>1）对象的生命周期问题。=&gt;DI<br>2）松耦合问题。 =&gt; DI<br>3）技术细节的隐藏。=&gt;AOP </p>
 <p>首先Spring是怎么实现DI的呢，是通过DI Container来实现的。<br>在没有使用DI的Web应用中，Controller用到Service的时候，会生成（new）一个，Service用到DAO的时候，也是同样的生成（new）一个。 <img src="http://65.49.230.2/wordpress/wp-content/uploads/2018/06/no-di-300x187.jpg" alt=""> 而使用了DI的Spring，则将实例化的工作全部交给了DI Container去做。 Controller中仅仅声明了Service接口的一个属性，具体的实现（new）没有去做，同样Service中也只是声明了一个DAO接口的一个属性，也没有去实现（new）。当需要实例的时候，就让DI Container根据配置去找到合适的类去实例化相应的接口属性。 <img src="http://65.49.230.2/wordpress/wp-content/uploads/2018/06/DI-300x186.png" alt=""> 而用Spring写成的Web程序，其处理顺序可以用下图来表示 <img src="http://65.49.230.2/wordpress/wp-content/uploads/2018/06/Spring-flow-300x195.png" alt=""></p>
 <ol>
@@ -427,8 +466,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/06/06/hello-world/" rel="prev" title="Hello World">
-                Hello World <i class="fa fa-chevron-right"></i>
+              <a href="/2018/06/06/hexo-generate-no-response/" rel="prev" title="Hexo Generate 没有反应的原因">
+                Hexo Generate 没有反应的原因 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -516,7 +555,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">40</span>
+                  <span class="site-state-item-count">33</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -538,7 +577,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-count">38</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -802,6 +841,323 @@
 
 
   
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
 
 
 
