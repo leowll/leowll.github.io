@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="文章来源：http://paranimage.com/install-wordpress/我就是按照他上面的步骤一步步建起来的。经过上一节选购主机和域名的介绍, 你现在已经拥有了自己的虚拟主机空间和独立域名了. 让我们正式开始安装, 在安装之前, 我们先假设一组帐号:  域名: paranimage.com FTP根目录: /public_html FTP帐号: admin@paranimage.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【转载】WordPress初级教程之安装篇">
+<meta property="og:url" content="http://yoursite.com/2010/09/12/install-world-press/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="文章来源：http://paranimage.com/install-wordpress/我就是按照他上面的步骤一步步建起来的。经过上一节选购主机和域名的介绍, 你现在已经拥有了自己的虚拟主机空间和独立域名了. 让我们正式开始安装, 在安装之前, 我们先假设一组帐号:  域名: paranimage.com FTP根目录: /public_html FTP帐号: admin@paranimage.">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-06-06T05:49:00.140Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【转载】WordPress初级教程之安装篇">
+<meta name="twitter:description" content="文章来源：http://paranimage.com/install-wordpress/我就是按照他上面的步骤一步步建起来的。经过上一节选购主机和域名的介绍, 你现在已经拥有了自己的虚拟主机空间和独立域名了. 让我们正式开始安装, 在安装之前, 我们先假设一组帐号:  域名: paranimage.com FTP根目录: /public_html FTP帐号: admin@paranimage.">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2010/09/12/install-world-press/"/>
+
+
+
+
+
+  <title>【转载】WordPress初级教程之安装篇 | Hexo</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2010/09/12/install-world-press/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Leo Wang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">【转载】WordPress初级教程之安装篇</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2010-09-12T10:26:10-04:00">
+                2010-09-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/未分类/" itemprop="url" rel="index">
+                    <span itemprop="name">未分类</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="文章来源：http-paranimage-com-install-wordpress"><a href="#文章来源：http-paranimage-com-install-wordpress" class="headerlink" title="文章来源：http://paranimage.com/install-wordpress/"></a>文章来源：<a href="http://paranimage.com/install-wordpress/" target="_blank" rel="noopener">http://paranimage.com/install-wordpress/</a></h2><h2 id="我就是按照他上面的步骤一步步建起来的。"><a href="#我就是按照他上面的步骤一步步建起来的。" class="headerlink" title="我就是按照他上面的步骤一步步建起来的。"></a>我就是按照他上面的步骤一步步建起来的。</h2><p>经过上一节<a href="http://paranimage.com/select-wordpress-blog-hosting-and-domain-names/" target="_blank" rel="noopener">选购主机和域名</a>的介绍, 你现在已经拥有了自己的虚拟主机空间和独立域名了. 让我们正式开始安装, 在安装之前, 我们先假设一组帐号:</p>
+<blockquote>
+<p>域名: paranimage.com FTP根目录: /public_<a href="http://paranimage.com/category/dede/html/" target="_blank" rel="noopener">html</a> FTP帐号: <a href="mailto:admin@paranimage.com" target="_blank" rel="noopener">admin@paranimage.com</a> FTP密码: 123456 MySQL数据库名: 帕兰映像_severname MySQL数据库用户名: 帕兰映像_ severuser MySQL数据医密码: 987654</p>
+</blockquote>
+<p>下面, 我们就将用这组帐号来模拟如何安装<a href="http://paranimage.com/category/apps/wordpress/" target="_blank" rel="noopener">wordpress</a>, 你在安装的过程中把相应的帐号和密码换成自己的就可以了.</p>
+<h3 id="下载Wordpress档案"><a href="#下载Wordpress档案" class="headerlink" title="下载Wordpress档案"></a>下载Wordpress档案</h3><p>1. 到<a href="http://wordpress.org/download/" target="_blank" rel="noopener">Wordpress官方博客的下载区</a>, 下载最新版本的Wordpress, 目前最新版本是2.5.1. <strong>注意</strong>: 在这个页面里, 最新的Wordpress的下载地址都是<a href="http://wordpress.org/latest.zip" target="_blank" rel="noopener">http://wordpress.org/latest.zip</a>, 请不要用<a href="http://paranimage.com/category/apps/firefox/" target="_blank" rel="noopener">firefox</a>或是迅雷等工具进行下载, 否则可能下载到的可能并不是最新版. 2. 如果担心下载到的不是最新版本, 或者是你想要下载Wordpress的历史版本, 可以到”<a href="http://wordpress.org/download/release-archive/" target="_blank" rel="noopener">Wordpress版本存档区</a>” 进行下载, 里面列出了所有Wordpress发布过的版本下载, 包含RC版本, Beta版本, 正式版本等等. 你可以选择下载zip格式或是tar.gz格式. 3. Wordpress官方只提供英文版下载. 但之前我们也说过, 有无数的爱好者对Wordpress进行了翻译和本土化, 如果你想要下载中文版, 可以通过这份<a href="http://codex.wordpress.org/WordPress_in_Your_Language" target="_blank" rel="noopener">多国语言Wordpress版本列表</a>查看. <strong>注</strong>: 说几句闲话. 国内有很多人在搞Wordpress的中文版, 这为那些英语不是太好的朋友带来了极大的方便. 但帕兰个人建议, 不管英文好不好, 都使用英文版. 其实Wordpress后台的英文也并不多, 使用一段时间后就能完全掌握. 当然, 如果你的Wordpress博客是开放注册的形式, 那还是使用中文版比较好. 4. 下载后会得到一个压缩包, 解压后会得到一个wordpress文件夹, 要查看下载的Wordpress是否为最新版, 只需要打开里面的readme.html文件即可看到版本号. 认识Wordpress文件夹和文件的功能 在上传之前, 帕兰先向你介绍一些重要的Wordpress文件夹和文件所对应的功能. 解压缩后得到wordpress文件夹, 打开, 你将会看到一些文件和3个核心文件夹: <strong>wp-admin</strong>: 这里面包含Wordpress后台的所使用的PHP文件, <a href="http://paranimage.com/category/dede/css/" target="_blank" rel="noopener">CSS</a>样式表, JS脚本和许多后台的功能文件. 在你还没有成为一个Wordpress高手之前, 不要碰它, 通常也不需要碰. <strong>wp-content</strong>: Wordpress博客的主要内容都在这里面, 它包含三个子文件夹:</p>
+<ul>
+<li>themes(模板目录, 你如果要安装新主题, 需要上传到这个文件夹里面)</li>
+<li>plugins(插件目录, 你如果要安装新插件, 需要上传到这个文件夹里面)</li>
+<li>uploads(这是Wordpress默认的上传文件保存路径, 当你发布文章时, 所上传的图片等文件都会保存在这个文件夹里面. 这个路径是可以修改的, 但一般也没必要修改.)</li>
+</ul>
+<p><strong>wp-includes</strong>: 这里面包含了一些核心的Wordpress功能文件, 基本上也用不到修改. 除了这3个子文件夹, wordpress文件夹里面还有一些php文件, 其它都不用管. 认识一下<strong>wp-config-sample.php</strong>就可以了.<strong>wp-config-sample.php</strong>是安装Wordpress所必需要的配置文件.</p>
+<h3 id="配置wp-config-php文件"><a href="#配置wp-config-php文件" class="headerlink" title="配置wp-config.php文件"></a>配置wp-config.php文件</h3><p>1. 用你常用的文本编辑器打开wp-config-sample.php文件(比如<a href="http://notepad-plus.sourceforge.net/" target="_blank" rel="noopener">Notepad++</a>, 或是<a href="http://www.editplus.com/" target="_blank" rel="noopener">EditPlus</a>), 找到下面几行: // ** MySQL settings <strong> // define(’DB_NAME’, ‘putyourdbnamehere‘); // The name of the database define(’DB_USER’, ‘usernamehere‘); // Your MySQL username define(’DB_PASSWORD’, ‘yourpasswordhere‘); // …and password define(’DB_HOST’, ‘localhost’); // 99% chance you won’t need to change this value define(’DB_CHARSET’, ‘utf8′); define(’DB_COLLATE’, ”); 按照我们开头所给的数据库修改为( 绿色部分只是注释说明, 并不需要修改., 你高兴的话完全可以把绿色的都删了) : // </strong> MySQL settings <strong> // define(’DB_NAME’, ‘帕兰映像_severname‘); // MySQL 数据库名称 define(’DB_USER’, ‘帕兰映像_ severuser‘); // MySQL用户名 define(’DB_PASSWORD’, ‘987654‘); // MySQL密码 define(’DB_HOST’, ‘localhost’); // 99% chance you won’t need to change this value define(’DB_CHARSET’, ‘utf8′); define(’DB_COLLATE’, ”); 2. 修改完成后. 把</strong>wp-config-sample.php<strong>重命名为</strong>wp-config.php**. 3. 按照上面两步已经完成wp数据库的配置了, 但如果你要安装多个博客到一个数据库, 就得注意wp-config.php里面的这一段代码: // You can have multiple installations in one database if you give each a unique prefix $table_prefix = ‘wp_‘; // Only numbers, letters, and underscores please! 这里默认的wp_是你博客的数据库表的前缀, 一般只是如果要安装多个博客到一个数据库才需要修改, 避免数据表的冲突. 这里只是简单的介绍一下, 我会在之后的一个数据库安装多个博客中为大家详细介绍.</p>
+<h3 id="通过FTP上传文件到虚拟主机"><a href="#通过FTP上传文件到虚拟主机" class="headerlink" title="通过FTP上传文件到虚拟主机"></a>通过FTP上传文件到虚拟主机</h3><p>wp-config.php配置完毕后, 就可以开始通过FTP把Wordpress文件上传到虚拟主机上面了, 在这里, 我们直接上传Wordpress文件夹里面的内容到根目录.</p>
+<h3 id="正式安装Wordpress"><a href="#正式安装Wordpress" class="headerlink" title="正式安装Wordpress"></a>正式安装Wordpress</h3><p>文件上传完毕后, 在你的浏览器输入<a href="http://paranimage.com/wp-admin/install.php" target="_blank" rel="noopener">http://paranimage.com/wp-admin/install.php</a>, 然后根据安装向导输入你的博客标题和电子邮箱, 即可得到admin帐号和随机密码, 到<a href="http://paranimage.com/wp-login.php登录即可" target="_blank" rel="noopener">http://paranimage.com/wp-login.php登录即可</a>.</p>
+<h3 id="更友好的安装Wordpress"><a href="#更友好的安装Wordpress" class="headerlink" title="更友好的安装Wordpress"></a>更友好的安装Wordpress</h3><p>安装Wordperss就是这么简单, 其实就是用FTP上传文件的时候比较浪费时间, 否则安装Wordpress是相当快的. 但帕兰在这里还要重新介绍一遍如何安装Wordpress, 因为我们刚才是假定把Wordpress文件夹里面的内容上传到根目录. 所以得到的博客登录地址是<strong><a href="http://paranimage.com/wp-login.php" target="_blank" rel="noopener">http://paranimage.com/wp-login.php</a></strong>, 得到的博客首页地址是<strong><a href="http://paranimage.com/" target="_blank" rel="noopener">http://paranimage.com/</a></strong>. 但是通常帕兰个人喜欢把wordpress安装在子目录里面, 包括很多合租我们主机的朋友, 让我帮忙安装的时候, 我都安装在wordpress子目录里面. 因为这样可以防止wordpress与以后要上传的其它文件搞混. 但随之而来的问题就是, 安装在子目录里面, 登录地址就变成了<strong><a href="http://paranimage.com/wordpress/wp-login.php" target="_blank" rel="noopener">http://paranimage.com/wordpress/wp-login.php</a></strong>, 而博客的首页地址以及整个博客的基准URL也就变成了<strong><a href="http://paranimage.com/wordpress" target="_blank" rel="noopener">http://paranimage.com/wordpress</a></strong>. 如何让博客的链接显示变成<strong><a href="http://paranimage.com/" target="_blank" rel="noopener">http://paranimage.com/</a></strong>呢? 让我们重来一遍. 1. 直接上传wordpress文件夹到根目录, 请注意区别, 我们假设根目录是/public_html, 刚才介绍的是上传Wordpress文件夹里面的内容到根目录, 形成<strong>/public_html/wp-admin/install.php</strong>, 现在说的是上传wordpress文件夹到根目录, 形成的是<strong>/public_html/wordpress/wp-admin/install.php</strong>. 2. 上传完毕, 输入<a href="http://paranimage.com/wordpress/wp-admin/install.php" target="_blank" rel="noopener">http://paranimage.com/wordpress/wp-admin/install.php</a>, 然后根据安装向导得到密码. 3. 登录Wordperss后台, 点击导航菜单右侧的Setting选项. 4. 进入, <strong>WordPress address (URL)</strong>保持不变. <strong>Blog address (URL)</strong>由原来的<a href="http://paranimage.com/wordpress" target="_blank" rel="noopener">http://paranimage.com/wordpress</a> 更改为 <a href="http://paranimage.com/" target="_blank" rel="noopener">http://paranimage.com/</a> 5. 复制一份wordpress文件夹里面的index.php文件, 打开, 把 &lt;?php /<em> Short and sweet </em>/ define(’WP_USE_THEMES’, true); require(’./wp-blog-header.php‘); ?&gt; 修改为 &lt;?php /<em> Short and sweet </em>/ define(’WP_USE_THEMES’, true); require(’./wordpress/wp-blog-header.php‘); ?&gt; 6. 把修改后的这份index.php上传到你的根目录. 7. 从今以后, 你的后台登录地址和文件调用的基准URL都是<a href="http://paranimage.com/wordpress" target="_blank" rel="noopener">http://paranimage.com/wordpress</a>, 而你博客文章和所有内容的基准URL地址则是<a href="http://paranimage.com/" target="_blank" rel="noopener">http://paranimage.com/</a>. <strong>P.S</strong> 之前在一个什么什么会上面, Wordpress的某某高层说, 使用我后面介绍的这种方式安装更有利于<a href="http://paranimage.com/category/webmaster/seo/" target="_blank" rel="noopener">seo</a>. 具体是否真是那样我也不敢确定, 帕兰鼓励大家这样安装的唯一目的就是方便管理文件. 如果你以后并不打算上传多少文件到你的根目录, 或者你有把握不会搞混出错. 那随便选择一种安装方法都可以.</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2010/09/13/wordpress-e8-87-aa-e5-ae-9a-e4-b9-89-e9-a1-b5-e9-9d-a2-e6-a8-a1-e6-9d-bf-e6-98-be-e7-a4-ba-e5-88-86-e7-b1-bb-e6-97-a5-e5-bf-97/" rel="prev" title="WordPress自定义页面模板显示分类日志">
+                WordPress自定义页面模板显示分类日志 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Leo Wang</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">40</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/leowll" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://twitter.com/leowll" target="_blank" title="Twitter">
+                      
+                        <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#文章来源：http-paranimage-com-install-wordpress"><span class="nav-number">1.</span> <span class="nav-text">文章来源：http://paranimage.com/install-wordpress/</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#我就是按照他上面的步骤一步步建起来的。"><span class="nav-number">2.</span> <span class="nav-text">我就是按照他上面的步骤一步步建起来的。</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#下载Wordpress档案"><span class="nav-number">2.1.</span> <span class="nav-text">下载Wordpress档案</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置wp-config-php文件"><span class="nav-number">2.2.</span> <span class="nav-text">配置wp-config.php文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#通过FTP上传文件到虚拟主机"><span class="nav-number">2.3.</span> <span class="nav-text">通过FTP上传文件到虚拟主机</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#正式安装Wordpress"><span class="nav-number">2.4.</span> <span class="nav-text">正式安装Wordpress</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#更友好的安装Wordpress"><span class="nav-number">2.5.</span> <span class="nav-text">更友好的安装Wordpress</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Leo Wang</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
