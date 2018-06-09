@@ -298,6 +298,179 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://leowll.com/2015/11/07/why-need-nginx-with-uwsgi/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Leo Wang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Leo's notepad">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2015/11/07/why-need-nginx-with-uwsgi/" itemprop="url">有了uwsgi为什么还需要nginx</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-11-07T20:13:59+09:00">
+                2015-11-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/技术/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/技术/知识/" itemprop="url" rel="index">
+                    <span itemprop="name">知识</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2015/11/07/why-need-nginx-with-uwsgi/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2015/11/07/why-need-nginx-with-uwsgi/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="ngix存在的意义在哪里？"><a href="#ngix存在的意义在哪里？" class="headerlink" title="ngix存在的意义在哪里？"></a>ngix存在的意义在哪里？</h2><p>在python的web开发中，我用flask框架写了一个小程序，部署的时候，我用到了uwsgi来做容器。<br>在学习uwsgi部署的过程中，另一个关键词nginx频繁的跳出来。这两者通常是成对出现的。<br>你有没有和我一样的困惑，为什么有了uwsgi我们还需要nginx?<br>我是说，既然uwsgi能够展现你想要的内容，那nginx存在的意义在哪里？<br>首先，nginx是一个HTTP 服务器。如果你是学Java出身的，说到HTTP服务器你应该会想到Apache。<br>类似的uwsgi可以比喻为tomcat。 nginx官方网站上给出的一张图片很好的揭示了nginx的角色。<br><img src="https://farm1.staticflickr.com/751/22845441965_8ca93b385a_z.jpg" alt="architecture-nginx"></p>
+<h2 id="ngix的主要功能"><a href="#ngix的主要功能" class="headerlink" title="ngix的主要功能"></a>ngix的主要功能</h2><p>我所理解的nginx的主要功能，有以下几个部分：</p>
+<ul>
+<li>nginx处理<strong>静态内容请求更专业、快速</strong>。</li>
+<li>nginx可以<strong>缓存请求</strong>。如果让uwsgi来直接接受请求的话，uwsgi需要花费大量的时间来等待request，这本身对web应用所在的主机是很大的资源浪费。</li>
+<li><strong>分发请求</strong>。假如你有好几个web应用，分布在不同的主机上，nginx可以把请求分发到各自的web应用来进行处理。这一特点是nginx可以用来做负载均衡器。</li>
+<li>相比web容器，nginx的<strong>漏洞更少更安全</strong>。</li>
+<li>nginx可以更好的处理<strong>HTTPS</strong>。</li>
+<li>nginx有<strong>网关</strong>（gateway）的作用，可以过滤访问IP。</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://leowll.com/2015/10/27/python-datetime-to-utc-timestamp/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1751,160 +1924,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://leowll.com/2011/11/25/apache-tomcat-error-10054100601006110062-reason/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Leo Wang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Leo's notepad">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2011/11/25/apache-tomcat-error-10054100601006110062-reason/" itemprop="url">Apache + Tomcat Error 10054/10060/10061/10062的解决办法之一</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2011-11-26T11:52:33+09:00">
-                2011-11-26
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/知识/" itemprop="url" rel="index">
-                    <span itemprop="name">知识</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2011/11/25/apache-tomcat-error-10054100601006110062-reason/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2011/11/25/apache-tomcat-error-10054100601006110062-reason/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>公司的Dev-Server用来部署测试版应用程序，需要访问DB-Server来进行数据库操作。 之前一直没有问题，自从公司搬家之后Dev-Server便开始出现问题。 Dev-Server上本来部署着4个网站，其中的两个是访问安装在Dev-Server本机上的数据库，这两个没有什么问题。 但是剩下的两个需要访问DB-Server，于是便出现了下面的问题。 凡是涉及到数据库的操作均无法进行。查看tomcat的log文件没有发现任何错误。查看apache的log文件则提示如下错误：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[Tue Nov 22 20:14:10 2011] [error] ajp_read_header: ajp_ilink_receive failed</span><br><span class="line">[Tue Nov 22 20:14:10 2011] [error] (120006)APR does not understand this error code:  proxy: read response failed from 127.0.0.1:8009 (localhost)</span><br></pre></td></tr></table></figure></p>
-<p>紧接着这两行错误之前的还有诸如(OS 10060)（OS 10054） （OS 10062）之类的错误。 这些错误的定义可以在MSDN的文档中查到。具体的原因有连接超时，连接被中断等等。。。 试了很多办法去解决这个问题都不行。 最后下载了最新的jre7，<strong>把tomcat的java虚拟机路径改成了jre7的bin/client/jvm.dll</strong>之后，问题就解决了。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1955,7 +1974,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-count">35</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1977,7 +1996,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">41</span>
+                  <span class="site-state-item-count">46</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

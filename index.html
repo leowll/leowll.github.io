@@ -298,6 +298,175 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://leowll.com/2018/06/09/config-pandorabox-ipv6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Leo Wang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Leo's notepad">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/09/config-pandorabox-ipv6/" itemprop="url">为安装了Pandorabox的小米路由器Pro配置ipv6</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-09T15:40:00+09:00">
+                2018-06-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/06/09/config-pandorabox-ipv6/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/06/09/config-pandorabox-ipv6/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>参考来源： <a href="http://www.cnblogs.com/Arago/p/7765873.html" target="_blank" rel="noopener">Openwrt配置NAT6</a></p>
+<p>假如你家的路由器是Pandorabox（或者其他openwrt，lede）的路由器，并且你家的网络支持ipv6， 那怎样设置路由器来实现网络提速呢？<br>先来看一下我家网络的提速效果：</p>
+<p><img src="https://s1.ax1x.com/2018/06/09/Cbf4c8.md.png" height="400px" alt="speed test"></p>
+<p>之前家里的网络速度一直徘徊在100M以下，设置了ipv6之后，一直保持在100M左右。</p>
+<h1 id="ipv6比ipv4更快吗？"><a href="#ipv6比ipv4更快吗？" class="headerlink" title="ipv6比ipv4更快吗？"></a>ipv6比ipv4更快吗？</h1><p><a href="https://www.zhihu.com/question/19570943" target="_blank" rel="noopener">ipv6比ipv4更快吗？</a></p>
+<blockquote>
+<p>说 IPv6 能提高「网速」通常是指新建的 IPv6 网络通常具有更大的带宽（比如中国正在新建的 CERNET2 骨干网动辄 10Gbps、100Gbps 的连接带宽）、更好的流量控制、更少的 NAT 从而实现更高效的网络拓扑结构（IP 地址资源多从而不需要对数据包进行多次地址翻译和转发）。在这些方面 IPv6 确实是能提高「网速」的。</p>
+</blockquote>
+<h1 id="NAT的工作原理"><a href="#NAT的工作原理" class="headerlink" title="NAT的工作原理"></a>NAT的工作原理</h1><p>当内部网络中的一台主机想传输数据到外部网络时，它先将数据包传输到NAT路由器上，路由器检查数据包的报头，获取该数据包的源IP信息，并从它的NAT映射表中找出与该IP匹配的转换条目，用所选用的内部全局地址（全球唯一的IP地址）来替换内部局部地址，并转发数据包。<br>当外部网络对内部主机进行应答时，数据包被送到NAT路由器上，路由器接收到目的地址为内部全局地址的数据包后，它将用内部全局地址通过NAT映射表查找出内部局部地址，然后将数据包的目的地址替换成内部局部地址，并将数据包转发到内部主机。<br><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Nat2.svg/300px-Nat2.svg.png" alt="nat工作原理"></p>
+<h1 id="设置步骤"><a href="#设置步骤" class="headerlink" title="设置步骤"></a>设置步骤</h1><h2 id="查看-设置ipv6前缀"><a href="#查看-设置ipv6前缀" class="headerlink" title="查看/设置ipv6前缀"></a>查看/设置ipv6前缀</h2><p>在管理界面的网络&gt;接口画面可以看到</p>
+<p>默认ipv6的前缀是设置好的，当然也可以自己定义一下。<br><a href="https://imgchr.com/i/CbfB6O" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2018/06/09/CbfB6O.md.jpg" alt="CbfB6O.md.jpg"></a></p>
+<h2 id="设置DHCPv6"><a href="#设置DHCPv6" class="headerlink" title="设置DHCPv6"></a>设置DHCPv6</h2><ul>
+<li>路由器通告服务： 服务器模式</li>
+<li>DHCPv6服务： 服务器模式</li>
+<li>DHCPv6模式： 无状态的+有状态的</li>
+</ul>
+<p><a href="https://imgchr.com/i/Cbfwp6" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2018/06/09/Cbfwp6.md.png" alt="Cbfwp6.md.png"></a></p>
+<h2 id="配置防火墙"><a href="#配置防火墙" class="headerlink" title="配置防火墙"></a>配置防火墙</h2><p>ssh进你的路由器，执行下列命令<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ip6tables -t nat -A POSTROUTING -o eth0.2 -j MASQUERADE</span><br></pre></td></tr></table></figure></p>
+<p>等同于在路由器管理界面的防火墙中添加下列NAT规则</p>
+<p><a href="https://imgchr.com/i/CbfDXD" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2018/06/09/CbfDXD.md.png" alt="CbfDXD.md.png"></a></p>
+<h2 id="配置网关"><a href="#配置网关" class="headerlink" title="配置网关"></a>配置网关</h2><p>同样利用ssh，查看自己路由器的默认ipv6网关<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ip -6 route | grep default</span><br></pre></td></tr></table></figure></p>
+<p>得到的结果类似于<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">default from (your ipv6) via (gateway) dev eth0.2 proto static metric 512</span><br></pre></td></tr></table></figure></p>
+<p>(gateway)的部分就是你的默认ipv6网关</p>
+<p>执行下列命令设置你的默认ipv6网关<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">route -A inet6 add default gw &lt;your default gw&gt; dev eth0.2</span><br></pre></td></tr></table></figure></p>
+<p>执行下列命令重启防火墙和网络使设置生效<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/etc/init.d/firewall restart</span><br><span class="line">/etc/init.d/network restart</span><br></pre></td></tr></table></figure></p>
+<h2 id="配置开机自动设置ipv6路由默认网关"><a href="#配置开机自动设置ipv6路由默认网关" class="headerlink" title="配置开机自动设置ipv6路由默认网关"></a>配置开机自动设置ipv6路由默认网关</h2><p>在/etc/hotplug.d/iface/目录下新建名字为 90-ipv6 的文件<br>修改内容为</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/sh</span></span><br><span class="line">[ <span class="string">"<span class="variable">$ACTION</span>"</span> = ifup ] || <span class="built_in">exit</span> 0</span><br><span class="line">route -A inet6 add default gw &lt;your default gw&gt; dev eth0.2</span><br></pre></td></tr></table></figure>
+<p>给予可执行权限<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod +x 90-ipv6</span><br></pre></td></tr></table></figure></p>
+<h2 id="配置DNS服务器"><a href="#配置DNS服务器" class="headerlink" title="配置DNS服务器"></a>配置DNS服务器</h2><p>DNS有可能被污染 手动修改wan6的dns方法是：</p>
+<ol>
+<li>修改wan6-高级设置 </li>
+<li>取消勾选对端通告的DNS服务器 </li>
+<li>自定义为谷歌的v6dns</li>
+</ol>
+<p><a href="https://imgchr.com/i/Cbf01K" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2018/06/09/Cbf01K.md.png" alt="Cbf01K.md.png"></a></p>
+<h2 id="测试IPv6是否正常"><a href="#测试IPv6是否正常" class="headerlink" title="测试IPv6是否正常"></a>测试IPv6是否正常</h2><p>通过 <a href="http://test-ipv6.com/" target="_blank" rel="noopener">http://test-ipv6.com/</a> </p>
+<p>或者 <a href="http://ipv6-test.com/" target="_blank" rel="noopener">http://ipv6-test.com/</a></p>
+<p>测试IPv6是否正常</p>
+<p><a href="https://imgchr.com/i/Cbfsne" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2018/06/09/Cbfsne.md.jpg" alt="Cbfsne.md.jpg"></a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://leowll.com/2018/06/07/why-java-md5-0xff/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1771,179 +1940,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://leowll.com/2015/11/07/why-need-nginx-with-uwsgi/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Leo Wang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Leo's notepad">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2015/11/07/why-need-nginx-with-uwsgi/" itemprop="url">有了uwsgi为什么还需要nginx</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2015-11-07T20:13:59+09:00">
-                2015-11-07
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/技术/" itemprop="url" rel="index">
-                    <span itemprop="name">技术</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/技术/知识/" itemprop="url" rel="index">
-                    <span itemprop="name">知识</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2015/11/07/why-need-nginx-with-uwsgi/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2015/11/07/why-need-nginx-with-uwsgi/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="ngix存在的意义在哪里？"><a href="#ngix存在的意义在哪里？" class="headerlink" title="ngix存在的意义在哪里？"></a>ngix存在的意义在哪里？</h2><p>在python的web开发中，我用flask框架写了一个小程序，部署的时候，我用到了uwsgi来做容器。<br>在学习uwsgi部署的过程中，另一个关键词nginx频繁的跳出来。这两者通常是成对出现的。<br>你有没有和我一样的困惑，为什么有了uwsgi我们还需要nginx?<br>我是说，既然uwsgi能够展现你想要的内容，那nginx存在的意义在哪里？<br>首先，nginx是一个HTTP 服务器。如果你是学Java出身的，说到HTTP服务器你应该会想到Apache。<br>类似的uwsgi可以比喻为tomcat。 nginx官方网站上给出的一张图片很好的揭示了nginx的角色。<br><img src="https://farm1.staticflickr.com/751/22845441965_8ca93b385a_z.jpg" alt="architecture-nginx"></p>
-<h2 id="ngix的主要功能"><a href="#ngix的主要功能" class="headerlink" title="ngix的主要功能"></a>ngix的主要功能</h2><p>我所理解的nginx的主要功能，有以下几个部分：</p>
-<ul>
-<li>nginx处理<strong>静态内容请求更专业、快速</strong>。</li>
-<li>nginx可以<strong>缓存请求</strong>。如果让uwsgi来直接接受请求的话，uwsgi需要花费大量的时间来等待request，这本身对web应用所在的主机是很大的资源浪费。</li>
-<li><strong>分发请求</strong>。假如你有好几个web应用，分布在不同的主机上，nginx可以把请求分发到各自的web应用来进行处理。这一特点是nginx可以用来做负载均衡器。</li>
-<li>相比web容器，nginx的<strong>漏洞更少更安全</strong>。</li>
-<li>nginx可以更好的处理<strong>HTTPS</strong>。</li>
-<li>nginx有<strong>网关</strong>（gateway）的作用，可以过滤访问IP。</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1994,7 +1990,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-count">35</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2016,7 +2012,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">41</span>
+                  <span class="site-state-item-count">46</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
