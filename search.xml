@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[为Pandorabox/openwrt/lede配置花生壳DDNS]]></title>
+    <url>%2F2018%2F06%2F09%2Fconfig-pandorabox-oray-ddns%2F</url>
+    <content type="text"><![CDATA[如果你在自己的Pandorabox/openwrt/lede上安装了aria2,你或许希望在外网能够访问自己家的服务器，这时候就要用到ddns。 花生壳提供的壳域名，历史悠久，便宜好用。注册了花生壳域名之后，这篇文章教你怎样给自己的路由器设置DDNS。 前提你家的路由器有公网的ip地址。有些家庭只有内网IP，没办法，联系电信运营商让他们给你开通吧。比如说你家要装个监控摄像头之类的。 设置花生壳域名首先通过访问 http://ipinfo.io 这个网站，来获取自己路由器当前的ip地址。 获取了ip地址以后，在壳域名的设置页面 关掉花生壳设置 填上刚才查询所得的这个ip 否则一开始的时候路由器的DDNS服务无法确认这个域名的存在，会出现无法解析域名的错误。 设置动态DNS在Pandorabox的管理界面的服务&gt;动态DNS中进行下面的设置。Pandorabox自带了Oray的服务选项，也可以自定义URL 自定义更新URL:http://[USERNAME]:[PASSWORD]@ddns.oray.com/ph/update?hostname=[DOMAIN]&amp;myip=[IP] IP地址来源选择Oray提供的URL来确认本机的IP地址。 用于检测的URL：http://ddns.oray.com/checkip 设置Web服务Web服务器默认拒绝外网访问，需要将这个限制解除 编辑 /etc/config/uhttpd将 1option rfc1918_filter '1' 改为1option rfc1918_filter '0' 重启Web服务1/etc/init.d/uhttpd restart]]></content>
+      <tags>
+        <tag>Pandorabox</tag>
+        <tag>openwrt</tag>
+        <tag>ddns</tag>
+        <tag>oray</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[为安装了Pandorabox的小米路由器Pro配置ipv6]]></title>
     <url>%2F2018%2F06%2F09%2Fconfig-pandorabox-ipv6%2F</url>
     <content type="text"><![CDATA[参考来源： Openwrt配置NAT6 假如你家的路由器是Pandorabox（或者其他openwrt，lede）的路由器，并且你家的网络支持ipv6， 那怎样设置路由器来实现网络提速呢？先来看一下我家网络的提速效果： 之前家里的网络速度一直徘徊在100M以下，设置了ipv6之后，一直保持在100M左右。 ipv6比ipv4更快吗？ipv6比ipv4更快吗？ 说 IPv6 能提高「网速」通常是指新建的 IPv6 网络通常具有更大的带宽（比如中国正在新建的 CERNET2 骨干网动辄 10Gbps、100Gbps 的连接带宽）、更好的流量控制、更少的 NAT 从而实现更高效的网络拓扑结构（IP 地址资源多从而不需要对数据包进行多次地址翻译和转发）。在这些方面 IPv6 确实是能提高「网速」的。 NAT的工作原理当内部网络中的一台主机想传输数据到外部网络时，它先将数据包传输到NAT路由器上，路由器检查数据包的报头，获取该数据包的源IP信息，并从它的NAT映射表中找出与该IP匹配的转换条目，用所选用的内部全局地址（全球唯一的IP地址）来替换内部局部地址，并转发数据包。当外部网络对内部主机进行应答时，数据包被送到NAT路由器上，路由器接收到目的地址为内部全局地址的数据包后，它将用内部全局地址通过NAT映射表查找出内部局部地址，然后将数据包的目的地址替换成内部局部地址，并将数据包转发到内部主机。 设置步骤查看/设置ipv6前缀在管理界面的网络&gt;接口画面可以看到 默认ipv6的前缀是设置好的，当然也可以自己定义一下。 设置DHCPv6在网络&gt;接口-LAN&gt;DHCP服务器中进行如下设置，使连接到网络的设备能自动获取ipv6地址： 路由器通告服务： 服务器模式 DHCPv6服务： 服务器模式 DHCPv6模式： 无状态的+有状态的 配置防火墙ssh进你的路由器，执行下列命令1ip6tables -t nat -A POSTROUTING -o eth0.2 -j MASQUERADE 等同于在路由器管理界面的防火墙中添加下列NAT规则 配置网关同样利用ssh，查看自己路由器的默认ipv6网关1ip -6 route | grep default 得到的结果类似于1default from (your ipv6) via (gateway) dev eth0.2 proto static metric 512 (gateway)的部分就是你的默认ipv6网关 执行下列命令设置你的默认ipv6网关1route -A inet6 add default gw &lt;your default gw&gt; dev eth0.2 执行下列命令重启防火墙和网络使设置生效12/etc/init.d/firewall restart/etc/init.d/network restart 配置开机自动设置ipv6路由默认网关上述配置在重启路由器后会失效，需要在开机的时候自动设置网关。 在/etc/hotplug.d/iface/目录下新建名字为 90-ipv6 的文件修改内容为 123#!/bin/sh[ "$ACTION" = ifup ] || exit 0route -A inet6 add default gw &lt;your default gw&gt; dev eth0.2 给予可执行权限1chmod +x 90-ipv6 配置DNS服务器DNS有可能被污染 手动修改wan6的dns方法是： 修改wan6-高级设置 取消勾选对端通告的DNS服务器 自定义为谷歌的v6dns 测试IPv6是否正常通过 http://test-ipv6.com/ 或者 http://ipv6-test.com/ 测试IPv6是否正常]]></content>
