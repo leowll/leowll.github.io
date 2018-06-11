@@ -386,10 +386,10 @@
 <h1 id="设置花生壳域名"><a href="#设置花生壳域名" class="headerlink" title="设置花生壳域名"></a>设置花生壳域名</h1><p>首先通过访问 <a href="http://ipinfo.io" target="_blank" rel="noopener">http://ipinfo.io</a> 这个网站，来获取自己路由器当前的ip地址。</p>
 <p>获取了ip地址以后，在壳域名的设置页面</p>
 <ol>
-<li>关掉花生壳设置</li>
-<li>填上刚才查询所得的这个ip</li>
+<li>打开花生壳设置</li>
+<li>测试 http://[USERNAME]:[PASSWORD]@ddns.oray.com/ph/update?hostname=[DOMAIN]&amp;myip=[IP]<br>把Username，Password，DOMAIN和IP替换成自己的用户名密码，域名和IP，测试一下能否更新。</li>
 </ol>
-<p>否则一开始的时候路由器的DDNS服务无法确认这个域名的存在，会出现无法解析域名的错误。</p>
+<p>有些情况下花生壳给的域名无法正常更新，原因不明。只能选择能够更新的来用了。</p>
 <p><a href="https://imgchr.com/i/CbX3PU" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2018/06/09/CbX3PU.md.jpg" alt="CbX3PU.md.jpg"></a></p>
 <h1 id="设置动态DNS"><a href="#设置动态DNS" class="headerlink" title="设置动态DNS"></a>设置动态DNS</h1><p>在Pandorabox的管理界面的服务&gt;动态DNS中进行下面的设置。<br>Pandorabox自带了Oray的服务选项，也可以自定义URL</p>
 <ul>
@@ -397,8 +397,9 @@
 </ul>
 <p>IP地址来源选择Oray提供的URL来确认本机的IP地址。</p>
 <ul>
-<li>用于检测的URL：<a href="http://ddns.oray.com/checkip" target="_blank" rel="noopener">http://ddns.oray.com/checkip</a><br><a href="https://imgchr.com/i/CbXJxJ" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2018/06/09/CbXJxJ.md.png" alt="CbXJxJ.md.png"></a></li>
+<li>用于检测的URL：<a href="http://ddns.oray.com/checkip" target="_blank" rel="noopener">http://ddns.oray.com/checkip</a></li>
 </ul>
+<p><a href="https://imgchr.com/i/CbXJxJ" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2018/06/09/CbXJxJ.md.png" alt="CbXJxJ.md.png"></a></p>
 <h1 id="设置Web服务"><a href="#设置Web服务" class="headerlink" title="设置Web服务"></a>设置Web服务</h1><p>Web服务器默认拒绝外网访问，需要将这个限制解除</p>
 <ol>
 <li>编辑 /etc/config/uhttpd<br>将 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">option rfc1918_filter <span class="string">'1'</span></span><br></pre></td></tr></table></figure>
