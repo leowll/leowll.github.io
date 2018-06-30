@@ -92,7 +92,7 @@
 <meta property="og:image" content="https://s1.ax1x.com/2018/06/09/CbX3PU.md.jpg">
 <meta property="og:image" content="https://s1.ax1x.com/2018/06/09/CbXl5T.md.jpg">
 <meta property="og:image" content="https://s1.ax1x.com/2018/06/09/CbXJxJ.md.png">
-<meta property="og:updated_time" content="2018-06-11T04:39:48.000Z">
+<meta property="og:updated_time" content="2018-06-11T05:22:24.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="为Pandorabox&#x2F;openwrt&#x2F;lede配置花生壳DDNS">
 <meta name="twitter:description" content="如果你在自己的Pandorabox/openwrt/lede上安装了aria2,你或许希望在外网能够访问自己家的服务器，这时候就要用到ddns。 花生壳提供的壳域名，历史悠久，便宜好用。注册了花生壳域名之后，这篇文章教你怎样给自己的路由器设置DDNS。 前提你家的路由器有公网的ip地址。有些家庭只有内网IP，没办法，联系电信运营商让他们给你开通吧。比如说你家要装个监控摄像头之类的。 设置花生壳域名">
@@ -403,14 +403,14 @@
 <p><a href="https://imgchr.com/i/CbXJxJ" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2018/06/09/CbXJxJ.md.png" alt="CbXJxJ.md.png"></a></p>
 <h1 id="设置Web服务"><a href="#设置Web服务" class="headerlink" title="设置Web服务"></a>设置Web服务</h1><p>Web服务器默认拒绝外网访问，需要将这个限制解除</p>
 <ol>
-<li>编辑 /etc/config/uhttpd<br>将 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">option rfc1918_filter <span class="string">'1'</span></span><br></pre></td></tr></table></figure>
-</li>
+<li>编辑 /etc/config/uhttpd</li>
 </ol>
-<p>改为<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">option rfc1918_filter <span class="string">'0'</span></span><br></pre></td></tr></table></figure></p>
+<p>将<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">option rfc1918_filter <span class="string">'1'</span></span><br></pre></td></tr></table></figure></p>
+<p>  改为<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">option rfc1918_filter <span class="string">'0'</span></span><br></pre></td></tr></table></figure></p>
 <ol start="2">
-<li>重启Web服务<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/etc/init.d/uhttpd restart</span><br></pre></td></tr></table></figure>
-</li>
+<li>重启Web服务</li>
 </ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/etc/init.d/uhttpd restart</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -456,6 +456,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/06/29/deploy-spring-boot-sap-cloud-platform-neo/" rel="prev" title="How to deploy spring boot application to sap cloud platform neo">
+                How to deploy spring boot application to sap cloud platform neo <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -542,7 +546,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">36</span>
+                  <span class="site-state-item-count">37</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -564,7 +568,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">48</span>
+                  <span class="site-state-item-count">51</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
