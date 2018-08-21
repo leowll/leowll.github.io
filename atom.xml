@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://leowll.com/"/>
-  <updated>2018-06-30T16:24:09.000Z</updated>
+  <updated>2018-08-21T02:51:24.000Z</updated>
   <id>http://leowll.com/</id>
   
   <author>
@@ -15,6 +15,37 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>让你的小米手机能在日本使用</title>
+    <link href="http://leowll.com/2018/08/20/20180820-mi-note3-kddi-au/"/>
+    <id>http://leowll.com/2018/08/20/20180820-mi-note3-kddi-au/</id>
+    <published>2018-08-20T12:54:50.000Z</published>
+    <updated>2018-08-21T02:51:24.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="小米的手机能不能在日本用？"><a href="#小米的手机能不能在日本用？" class="headerlink" title="小米的手机能不能在日本用？"></a>小米的手机能不能在日本用？</h1><p>之前给老婆买了一台小米的Note3，办的是日本乐天（Rakuten Mobile）的格安SIM卡，装上之后时不时的断网。<br>老婆一怒之下把手机扔给我说“难用死了，我要换手机！”</p><p><img src="https://www.jiuwa.net/tuku/20170518/YIdH0tHF.jpg" alt=""></p><p>然后就去日本的Yodabashi Camera办了UQ Mobile的SIM卡，还送了一台华为P10 Lite。UQ Mobile的速度比我Line Mobile的卡不知道快了多少。<br>Line Mobile在我2017年初的时候速度还挺快，后来慢慢的用的人多了？速度就降了下来，用Speedtest测的话只能达到2Mbps左右的网速。<br>而老婆的手机却能测得20Mbps，让人眼馋。</p><p>我之前也是用的乐天，后来改用了Line Mobile。小米Note3貌似对日本的服务商支持不太好，我接过来之后装上也是时不时的断网。<br>解决办法就是断网的时候就切换一下APN。<br>看老婆的手机用的那么舒爽，于是决定也换成UQ Mobile，心想大不了也想原来一样上不了网的时候就切换一下APN嘛。</p><h1 id="事与愿违"><a href="#事与愿违" class="headerlink" title="事与愿违"></a>事与愿违</h1><p>事实是我想的太简单了。刚开始装上SIM卡的时候，走出Yodobashi的大楼就不能用了，后来回到家里能用了一段时间，但是在上班路上电车里却总也连不上信号。<br>就这样无信号的过了一整天。后来干脆显示为SIM卡无法识别。。。</p><h1 id="折腾"><a href="#折腾" class="headerlink" title="折腾"></a>折腾</h1><p>因为一直显示不在服务区（SIM卡无法识别），我先回尝试了下面几种方法：</p><h2 id="刷机"><a href="#刷机" class="headerlink" title="刷机"></a>刷机</h2><p>刷了MIUI9的国际版，测试不通过<br>刷了MIUI10，测试不通过</p><h2 id="改基带"><a href="#改基带" class="headerlink" title="改基带"></a>改基带</h2><p>网上说日本和中国的运营商提供的基带不同，所以我在想是不是基带的问题。<br>UQ Mobile利用的是KDDI AU的线路，AU支持的LTE基带为<a href="https://www.frequencycheck.com/carriers/kddi-au-japan" target="_blank" rel="noopener">B1,B11,B18,B41</a><br>小米Note3<a href="https://www.mi.com/minote3/specs/" target="_blank" rel="noopener">支持的基带</a>为</p><ul><li>FDD-LTE (频段 B1，B3，B5，B7，B8)</li><li>TDD-LTE (频段 B34, B38，B39, B40, B41)</li><li>TD-SCDMA (频段 B34，B39)</li><li>WCDMA (频段 B1，B2，B5，B8)</li><li>GSM (频段 B2，B3，B5，B8)</li><li>CDMA1X/EVDO (频段 BC0)</li></ul><p>所以应该不是问题。</p><p>但还是想<a href="https://gadget.hrksv.com/2017/01/05/post-858" target="_blank" rel="noopener">通过QTool</a> 来改一下基带。</p><p>结果还是不行。因为我买的是小米全网通版的Note3，默认已经支持了</p><h1 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h1><p>踏破铁鞋无觅处，得来全不费工夫。折腾到晚上1点，终于找到了解决方法。<br>这篇<a href="https://mymobile-wifi.com/xiaomi-mi-mix-2-cdma-lte" target="_blank" rel="noopener">日本人写的博客</a> 里提到了非常简单的解决方法：</p><h2 id="添加VoLTE的APN"><a href="#添加VoLTE的APN" class="headerlink" title="添加VoLTE的APN"></a>添加VoLTE的APN</h2><ul><li>NAME: ims</li><li>APN: ims</li><li>MCC: 440</li><li>MNC: 51</li><li>TYPE: ims</li></ul><h2 id="将VoLTE的设备检测关掉"><a href="#将VoLTE的设备检测关掉" class="headerlink" title="将VoLTE的设备检测关掉"></a>将VoLTE的设备检测关掉</h2><p>通过拨打<code>*#*#86583#*#*</code>来关掉手机的VoLET设备检测功能。<br>拨号后带有“…disabled”的消息一闪而过，这时你在观察手机右上角的服务商标志就显示为有信号了！</p><p><a href="https://imgchr.com/i/P48BDg" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2018/08/21/P48BDg.md.jpg" alt="P48BDg.md.jpg"></a></p><p>而这时你再到”设置-&gt;双卡和移动网络”中查看SIM卡信息就会发现连VoLTE高清通话功能都可用了！</p><p><a href="https://imgchr.com/i/P48DbQ" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2018/08/21/P48DbQ.md.jpg" alt="P48DbQ.md.jpg"></a></p><p>现在来测一下速度吧：</p><p><a href="https://imgchr.com/i/P48n9x" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2018/08/21/P48n9x.md.jpg" alt="P48n9x.md.jpg"></a></p><p>LTE速度36+Mbps，还不错！</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;小米的手机能不能在日本用？&quot;&gt;&lt;a href=&quot;#小米的手机能不能在日本用？&quot; class=&quot;headerlink&quot; title=&quot;小米的手机能不能在日本用？&quot;&gt;&lt;/a&gt;小米的手机能不能在日本用？&lt;/h1&gt;&lt;p&gt;之前给老婆买了一台小米的Note3，办的是日本乐天（
+      
+    
+    </summary>
+    
+    
+      <category term="au" scheme="http://leowll.com/tags/au/"/>
+    
+      <category term="kddi" scheme="http://leowll.com/tags/kddi/"/>
+    
+      <category term="mi note3" scheme="http://leowll.com/tags/mi-note3/"/>
+    
+      <category term="xiaomi" scheme="http://leowll.com/tags/xiaomi/"/>
+    
+      <category term="uq mobile" scheme="http://leowll.com/tags/uq-mobile/"/>
+    
+  </entry>
   
   <entry>
     <title>How to deploy spring boot application to sap cloud platform neo</title>
@@ -577,35 +608,6 @@
       <category term="Json" scheme="http://leowll.com/tags/Json/"/>
     
       <category term="Spring" scheme="http://leowll.com/tags/Spring/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Cookie 无法保存的另一个可能原因</title>
-    <link href="http://leowll.com/2011/12/28/cookie-cannot-save/"/>
-    <id>http://leowll.com/2011/12/28/cookie-cannot-save/</id>
-    <published>2011-12-28T10:10:20.000Z</published>
-    <updated>2018-06-06T14:02:22.545Z</updated>
-    
-    <content type="html"><![CDATA[<p>在项目中需要往cookie中写数据，之前遇到的问题是如果写入的内容超出了单个cookie的大小限制（4096字节，4KB），则服务器端的response就会异常。<br>今天的问题则是，虽然已经把很长的内容分割成立个好几段，并分别写入了不同的cookie中，但服务器端同样不能正常响应。 查资料得知，不知浏览器对同一个站点的cookie的个数，单个cookie文件的大小有限制，服务器还对每一次请求的httpheader的大小有限制。<br>对tomcat服务器来说，需要修改server.xml中的响应配置，在形如<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Connector</span> <span class="attr">port</span>=<span class="string">"8080"</span> <span class="attr">protocol</span>=<span class="string">"HTTP/1.1"</span> <span class="attr">connectionTimeout</span>=<span class="string">"20000"</span> <span class="attr">redirectPort</span>=<span class="string">"8443"</span> <span class="attr">maxHttpHeaderSize</span>=<span class="string">"40960"</span>/&gt;</span></span><br></pre></td></tr></table></figure></p><p>的部分进行相应配置，上面的maxHttpHeaderSize就规定了本服务器可以处理的HttpHeader的大小上限为40KB。</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;在项目中需要往cookie中写数据，之前遇到的问题是如果写入的内容超出了单个cookie的大小限制（4096字节，4KB），则服务器端的response就会异常。&lt;br&gt;今天的问题则是，虽然已经把很长的内容分割成立个好几段，并分别写入了不同的cookie中，但服务器端同样不
-      
-    
-    </summary>
-    
-      <category term="技术" scheme="http://leowll.com/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-      <category term="未分類" scheme="http://leowll.com/categories/%E6%8A%80%E6%9C%AF/%E6%9C%AA%E5%88%86%E9%A1%9E/"/>
-    
-    
-      <category term="Cookie" scheme="http://leowll.com/tags/Cookie/"/>
-    
-      <category term="web开发" scheme="http://leowll.com/tags/web%E5%BC%80%E5%8F%91/"/>
     
   </entry>
   

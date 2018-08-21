@@ -298,6 +298,170 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://leowll.com/2018/08/20/20180820-mi-note3-kddi-au/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Leo Wang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Leo's notepad">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/20/20180820-mi-note3-kddi-au/" itemprop="url">让你的小米手机能在日本使用</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-20T21:54:50+09:00">
+                2018-08-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/08/20/20180820-mi-note3-kddi-au/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/08/20/20180820-mi-note3-kddi-au/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="小米的手机能不能在日本用？"><a href="#小米的手机能不能在日本用？" class="headerlink" title="小米的手机能不能在日本用？"></a>小米的手机能不能在日本用？</h1><p>之前给老婆买了一台小米的Note3，办的是日本乐天（Rakuten Mobile）的格安SIM卡，装上之后时不时的断网。<br>老婆一怒之下把手机扔给我说“难用死了，我要换手机！”</p>
+<p><img src="https://www.jiuwa.net/tuku/20170518/YIdH0tHF.jpg" alt=""></p>
+<p>然后就去日本的Yodabashi Camera办了UQ Mobile的SIM卡，还送了一台华为P10 Lite。UQ Mobile的速度比我Line Mobile的卡不知道快了多少。<br>Line Mobile在我2017年初的时候速度还挺快，后来慢慢的用的人多了？速度就降了下来，用Speedtest测的话只能达到2Mbps左右的网速。<br>而老婆的手机却能测得20Mbps，让人眼馋。</p>
+<p>我之前也是用的乐天，后来改用了Line Mobile。小米Note3貌似对日本的服务商支持不太好，我接过来之后装上也是时不时的断网。<br>解决办法就是断网的时候就切换一下APN。<br>看老婆的手机用的那么舒爽，于是决定也换成UQ Mobile，心想大不了也想原来一样上不了网的时候就切换一下APN嘛。</p>
+<h1 id="事与愿违"><a href="#事与愿违" class="headerlink" title="事与愿违"></a>事与愿违</h1><p>事实是我想的太简单了。刚开始装上SIM卡的时候，走出Yodobashi的大楼就不能用了，后来回到家里能用了一段时间，但是在上班路上电车里却总也连不上信号。<br>就这样无信号的过了一整天。后来干脆显示为SIM卡无法识别。。。</p>
+<h1 id="折腾"><a href="#折腾" class="headerlink" title="折腾"></a>折腾</h1><p>因为一直显示不在服务区（SIM卡无法识别），我先回尝试了下面几种方法：</p>
+<h2 id="刷机"><a href="#刷机" class="headerlink" title="刷机"></a>刷机</h2><p>刷了MIUI9的国际版，测试不通过<br>刷了MIUI10，测试不通过</p>
+<h2 id="改基带"><a href="#改基带" class="headerlink" title="改基带"></a>改基带</h2><p>网上说日本和中国的运营商提供的基带不同，所以我在想是不是基带的问题。<br>UQ Mobile利用的是KDDI AU的线路，AU支持的LTE基带为<a href="https://www.frequencycheck.com/carriers/kddi-au-japan" target="_blank" rel="noopener">B1,B11,B18,B41</a><br>小米Note3<a href="https://www.mi.com/minote3/specs/" target="_blank" rel="noopener">支持的基带</a>为</p>
+<ul>
+<li>FDD-LTE (频段 B1，B3，B5，B7，B8)</li>
+<li>TDD-LTE (频段 B34, B38，B39, B40, B41)</li>
+<li>TD-SCDMA (频段 B34，B39)</li>
+<li>WCDMA (频段 B1，B2，B5，B8)</li>
+<li>GSM (频段 B2，B3，B5，B8)</li>
+<li>CDMA1X/EVDO (频段 BC0)</li>
+</ul>
+<p>所以应该不是问题。</p>
+<p>但还是想<a href="https://gadget.hrksv.com/2017/01/05/post-858" target="_blank" rel="noopener">通过QTool</a> 来改一下基带。</p>
+<p>结果还是不行。因为我买的是小米全网通版的Note3，默认已经支持了</p>
+<h1 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h1><p>踏破铁鞋无觅处，得来全不费工夫。折腾到晚上1点，终于找到了解决方法。<br>这篇<a href="https://mymobile-wifi.com/xiaomi-mi-mix-2-cdma-lte" target="_blank" rel="noopener">日本人写的博客</a> 里提到了非常简单的解决方法：</p>
+<h2 id="添加VoLTE的APN"><a href="#添加VoLTE的APN" class="headerlink" title="添加VoLTE的APN"></a>添加VoLTE的APN</h2><ul>
+<li>NAME: ims</li>
+<li>APN: ims</li>
+<li>MCC: 440</li>
+<li>MNC: 51</li>
+<li>TYPE: ims</li>
+</ul>
+<h2 id="将VoLTE的设备检测关掉"><a href="#将VoLTE的设备检测关掉" class="headerlink" title="将VoLTE的设备检测关掉"></a>将VoLTE的设备检测关掉</h2><p>通过拨打<code>*#*#86583#*#*</code>来关掉手机的VoLET设备检测功能。<br>拨号后带有“…disabled”的消息一闪而过，这时你在观察手机右上角的服务商标志就显示为有信号了！</p>
+<p><a href="https://imgchr.com/i/P48BDg" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2018/08/21/P48BDg.md.jpg" alt="P48BDg.md.jpg"></a></p>
+<p>而这时你再到”设置-&gt;双卡和移动网络”中查看SIM卡信息就会发现连VoLTE高清通话功能都可用了！</p>
+<p><a href="https://imgchr.com/i/P48DbQ" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2018/08/21/P48DbQ.md.jpg" alt="P48DbQ.md.jpg"></a></p>
+<p>现在来测一下速度吧：</p>
+<p><a href="https://imgchr.com/i/P48n9x" target="_blank" rel="noopener"><img src="https://s1.ax1x.com/2018/08/21/P48n9x.md.jpg" alt="P48n9x.md.jpg"></a></p>
+<p>LTE速度36+Mbps，还不错！</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://leowll.com/2018/06/29/deploy-spring-boot-sap-cloud-platform-neo/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1768,161 +1932,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://leowll.com/2016/10/28/sap-hybris-unit-test-note/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Leo Wang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Leo's notepad">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/10/28/sap-hybris-unit-test-note/" itemprop="url">在SAP hybris中实行单体测试(Unit Test)的注意事项</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-10-28T17:45:22+09:00">
-                2016-10-28
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/技术/" itemprop="url" rel="index">
-                    <span itemprop="name">技术</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2016/10/28/sap-hybris-unit-test-note/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2016/10/28/sap-hybris-unit-test-note/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>在SAP hybris的单体测试中，出现如下错误信息：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ERROR \[main\] (junit) \[FlexibleSearch\] Flexiblesearch error: could not translate value expression 'session.catalogversions'</span><br><span class="line">ERROR \[main\] (junit) \[FlexibleSearch\] query was 'SELECT &#123;cat.pk&#125; FROM &#123;Category AS cat&#125; WHERE NOT EXISTS (&#123; &#123;SELECT &#123;pk&#125; FROM &#123;CategoryCategoryRelation AS rel JOIN Category AS super ON &#123;rel.source&#125;=&#123;super.PK&#125; &#125; WHERE &#123;rel:target&#125;=&#123;cat.pk&#125; AND &#123;super.catalogVersion&#125;=&#123;cat.catalogVersion&#125; &#125;&#125;) AND &#123;cat.catalogVersion&#125; = ?catalogVersion'</span><br><span class="line">ERROR \[main\] (junit) \[FlexibleSearch\] translated query was: SELECT  item\_t0.PK  FROM junit\_categories item\_t0 WHERE (NOT EXISTS (SELECT  item\_t1.PK  FROM junit\_cat2catrel item\_t1 JOIN junit\_categories item\_t2 ON  item\_t1.SourcePK = item\_t2.PK  WHERE ( item\_t1.TargetPK = item\_t0.PK  AND  item\_t2.p\_catalogversion = item\_t0.p\_catalogversion ) AND ((item\_t1.TypePkString=?  AND item\_t2.TypePkString IN  (?,?,?,?)  AND (( item\_t2.p\_catalogversion  IN (?))) ))) AND  item\_t0.p\_catalogversion  = ?) AND (item\_t0.TypePkString IN  (?,?,?,?)  AND (( item\_t0.p_catalogversion  IN (?))) )</span><br><span class="line">ERROR \[main\] (junit) \[LogRunListener\] Test method testCategoryNav(org.training.renderer.CategoryNavComponentRendererTest) failed!!</span><br><span class="line">de.hybris.platform.servicelayer.search.exceptions.FlexibleSearchException: could not translate value expression 'session.catalogversions'</span><br></pre></td></tr></table></figure></p>
-<p>Java代码如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">package</span> org.training.renderer;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> de.hybris.platform.catalog.CatalogVersionService;</span><br><span class="line"><span class="keyword">import</span> de.hybris.platform.catalog.model.CatalogVersionModel;</span><br><span class="line"><span class="keyword">import</span> de.hybris.platform.category.CategoryService;</span><br><span class="line"><span class="keyword">import</span> de.hybris.platform.category.model.CategoryModel;</span><br><span class="line"><span class="keyword">import</span> de.hybris.platform.servicelayer.ServicelayerTransactionalTest;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.Collection;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.annotation.Resource;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.junit.Assert;</span><br><span class="line"><span class="keyword">import</span> org.junit.Before;</span><br><span class="line"><span class="keyword">import</span> org.junit.Test;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">/\*\*</span><br><span class="line"> \* <span class="meta">@author</span> lwang</span><br><span class="line"> *</span><br><span class="line"> */</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CategoryNavComponentRendererTest</span> <span class="keyword">extends</span> <span class="title">ServicelayerTransactionalTest</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Resource</span>(name = <span class="string">"categoryService"</span>)</span><br><span class="line">	<span class="keyword">private</span> CategoryService categoryService;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Resource</span>(name = <span class="string">"catalogVersionService"</span>)</span><br><span class="line">	<span class="keyword">private</span> CatalogVersionService catalogVersionService;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Test</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testCategoryNav</span><span class="params">()</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="keyword">final</span> CatalogVersionModel catalogVersion = catalogVersionService.getCatalogVersion(<span class="string">"uaProductCatalog"</span>, <span class="string">"Online"</span>);</span><br><span class="line">		Assert.assertNotNull(catalogVersion);</span><br><span class="line">		<span class="keyword">final</span> Collection&lt;CategoryModel&gt; categoryList = categoryService.getRootCategoriesForCatalogVersion(catalogVersion);</span><br><span class="line">		Assert.assertNotNull(categoryList);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>之所以会出现错误，是因为程序没有加载hybris框架通常需要的一些环境变量。 在测试用例中加入如下代码可以解决问题。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Before</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setUp</span><span class="params">()</span> <span class="keyword">throws</span> Exception</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	createCoreData();</span><br><span class="line">	createDefaultCatalog();</span><br><span class="line">	createHardwareCatalog();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1973,7 +1982,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">37</span>
+                  <span class="site-state-item-count">38</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1995,7 +2004,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">51</span>
+                  <span class="site-state-item-count">56</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
