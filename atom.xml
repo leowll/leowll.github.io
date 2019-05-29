@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://leowll.com/"/>
-  <updated>2018-08-21T08:10:45.000Z</updated>
+  <updated>2019-05-29T05:29:47.000Z</updated>
   <id>http://leowll.com/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Gradle排除war中特定依赖的方法</title>
+    <link href="http://leowll.com/2019/05/29/20190529-gradle-exclude-war/"/>
+    <id>http://leowll.com/2019/05/29/20190529-gradle-exclude-war/</id>
+    <published>2019-05-29T05:29:50.000Z</published>
+    <updated>2019-05-29T05:29:47.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>在往SAP Cloud Platform Neo上部署war文件后，有时会出现程序无法启动的错误。<br>通过排查错误日志，发现log中有类似下面的描述：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">2019 05 28 09:31:00#+00#ERROR#org.slf4j.helpers.Util##anonymous#localhost-startStop-1#na#xxxx#sampleapp#web##na#na#na#na#SLF4J: Class path contains multiple SLF4J bindings. |</span><br><span class="line">2019 05 28 09:31:00#+00#ERROR#org.slf4j.helpers.Util##anonymous#localhost-startStop-1#na#xxxx#sampleapp#web##na#na#na#na#SLF4J: Found binding in [jar:file:/usr/sap/ljs/bin/logback-classic.jar!/org/slf4j/impl/StaticLoggerBinder.class] |</span><br><span class="line">2019 05 28 09:31:00#+00#ERROR#org.slf4j.helpers.Util##anonymous#localhost-startStop-1#na#xxxx#sampleapp#web##na#na#na#na#SLF4J: Found binding in [jar:file:/usr/sap/ljs/webapps/spring-boot-Olingo-oData-master/WEB-INF/lib/logback-classic-1.1.2.jar!/org/slf4j/impl/StaticLoggerBinder.class] |</span><br><span class="line">2019 05 28 09:31:00#+00#ERROR#org.slf4j.helpers.Util##anonymous#localhost-startStop-1#na#xxxx#sampleapp#web##na#na#na#na#SLF4J: See http://www.slf4j.org/codes.html\#multiple_bindings for an explanation. |</span><br><span class="line">2019 05 28 09:31:00#+00#ERROR#org.slf4j.helpers.Util##anonymous#localhost-startStop-1#na#xxxx#sampleapp#web##na#na#na#na#SLF4J: Actual binding is of type [ch.qos.logback.classic.util.ContextSelectorStaticBinder]</span><br></pre></td></tr></table></figure></p><p>仔细观察发现该错误是slf4j和logback的依赖冲突导致的。</p><h1 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h1><p>通过参考<a href="http://www.zhyea.com/2018/02/08/gradle-exclude-dependencies.html" target="_blank" rel="noopener">gradle-exclude-dependencies</a>这篇文章，尝试了如下解决办法：</p><h2 id="Dependency局部排除"><a href="#Dependency局部排除" class="headerlink" title="Dependency局部排除"></a>Dependency局部排除</h2><p>通过对spring boot的依赖添加exclude描述来排除特定依赖。<br><figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">compile</span>(<span class="string">"org.springframework.boot:spring-boot-starter-web:$&#123;project.bootVersion&#125;"</span>)&#123;</span><br><span class="line"><span class="keyword">exclude</span> <span class="keyword">group</span>: <span class="string">'org.slf4j'</span>, module: <span class="string">'slf4j-api'</span></span><br><span class="line"><span class="keyword">exclude</span> <span class="keyword">group</span>: <span class="string">'ch.qos.logback'</span>, module: <span class="string">'logback-classic'</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">compile</span>(<span class="string">"org.springframework.boot:spring-boot-starter-actuator:$&#123;project.bootVersion&#125;"</span>)&#123;</span><br><span class="line"><span class="keyword">exclude</span> <span class="keyword">group</span>: <span class="string">'org.slf4j'</span>, module: <span class="string">'slf4j-api'</span></span><br><span class="line"><span class="keyword">exclude</span> <span class="keyword">group</span>: <span class="string">'ch.qos.logback'</span>, module: <span class="string">'logback-classic'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><h2 id="Configuration全局排除"><a href="#Configuration全局排除" class="headerlink" title="Configuration全局排除"></a>Configuration全局排除</h2><p>在全局配置中通通排除相关依赖。<br><figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">configurations</span> &#123;</span><br><span class="line">all*.<span class="keyword">exclude</span> <span class="keyword">group</span>: <span class="string">'org.slf4j'</span>, module: <span class="string">'slf4j-api'</span></span><br><span class="line">all*.<span class="keyword">exclude</span> <span class="keyword">group</span>: <span class="string">'ch.qos.logback'</span>, module: <span class="string">'logback-classic'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><h2 id="providedRuntime打包时排除"><a href="#providedRuntime打包时排除" class="headerlink" title="providedRuntime打包时排除"></a>providedRuntime打包时排除</h2><p>上述两种方法能够解决问题，但是本地执行的时候却会报错，原因是Tomcat Embedded还是需要被排除的那些依赖。<br>怎样让gradle打包的时候排除这些依赖呢？gradle提供了providedRuntime和providedCompile等写法。<br><a href="https://docs.gradle.org/current/userguide/war_plugin.html" target="_blank" rel="noopener">The War Plugin</a><br><figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">providedRuntime(<span class="string">"org.slf4j:slf4j-api"</span>)</span><br><span class="line">providedRuntime(<span class="string">"ch.qos.logback:logback-classic"</span>)</span><br></pre></td></tr></table></figure></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;背景&quot;&gt;&lt;a href=&quot;#背景&quot; class=&quot;headerlink&quot; title=&quot;背景&quot;&gt;&lt;/a&gt;背景&lt;/h1&gt;&lt;p&gt;在往SAP Cloud Platform Neo上部署war文件后，有时会出现程序无法启动的错误。&lt;br&gt;通过排查错误日志，发现log中有类
+      
+    
+    </summary>
+    
+    
+      <category term="Gradle" scheme="http://leowll.com/tags/Gradle/"/>
+    
+      <category term="war" scheme="http://leowll.com/tags/war/"/>
+    
+      <category term="Spring Boot" scheme="http://leowll.com/tags/Spring-Boot/"/>
+    
+      <category term="SAP Cloud Platform" scheme="http://leowll.com/tags/SAP-Cloud-Platform/"/>
+    
+  </entry>
   
   <entry>
     <title>让你的小米手机能在日本使用</title>
@@ -573,39 +602,6 @@
     
       <category term="未分類" scheme="http://leowll.com/categories/%E6%8A%80%E6%9C%AF/%E6%9C%AA%E5%88%86%E9%A1%9E/"/>
     
-    
-  </entry>
-  
-  <entry>
-    <title>Spring+Struts2+Hibernate 整合Extjs时无法读取json数据的问题之解决办法</title>
-    <link href="http://leowll.com/2012/02/12/ssh-extjs-json/"/>
-    <id>http://leowll.com/2012/02/12/ssh-extjs-json/</id>
-    <published>2012-02-13T01:19:28.000Z</published>
-    <updated>2018-06-06T14:00:21.161Z</updated>
-    
-    <content type="html"><![CDATA[<p>在SSH和Extjs的整合过程中，需要Grid从服务器端读取json格式的数据显示在前端，在action的class中配置了service属性，并通过spring对该service进行注入。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> String userID;</span><br><span class="line"><span class="keyword">private</span> String userName;</span><br><span class="line"><span class="keyword">private</span> String delFlg;</span><br><span class="line"><span class="keyword">private</span> List&lt;User&gt; userList;</span><br><span class="line"><span class="keyword">private</span> UserService userService;</span><br></pre></td></tr></table></figure></p><p>  在struts2中，如果struts.xml中将action的返回结果定义成了json类型，strut2就自动将该action的属性全部json序列化，但是service却无法序列化， 于是需要在struts.xml中将相应的action的配置更改一下。如下所示：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">action</span> <span class="attr">name</span>=<span class="string">"searchUser"</span> <span class="attr">method</span>=<span class="string">"search"</span> <span class="attr">class</span>=<span class="string">"searchUserAction"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">result</span> <span class="attr">type</span>=<span class="string">"json"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">param</span> <span class="attr">name</span>=<span class="string">"excludeProperties"</span>&gt;</span></span><br><span class="line">userService</span><br><span class="line"><span class="tag">&lt;/<span class="name">param</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">result</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">action</span>&gt;</span></span><br></pre></td></tr></table></figure></p><p>  exludeProperties即可将不需要json序列化的属性排除在外。</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;在SSH和Extjs的整合过程中，需要Grid从服务器端读取json格式的数据显示在前端，在action的class中配置了service属性，并通过spring对该service进行注入。&lt;br&gt;&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;
-      
-    
-    </summary>
-    
-      <category term="知识" scheme="http://leowll.com/categories/%E7%9F%A5%E8%AF%86/"/>
-    
-    
-      <category term="Hibernate" scheme="http://leowll.com/tags/Hibernate/"/>
-    
-      <category term="Java" scheme="http://leowll.com/tags/Java/"/>
-    
-      <category term="Struts2" scheme="http://leowll.com/tags/Struts2/"/>
-    
-      <category term="Json" scheme="http://leowll.com/tags/Json/"/>
-    
-      <category term="Spring" scheme="http://leowll.com/tags/Spring/"/>
     
   </entry>
   
