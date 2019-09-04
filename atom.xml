@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://leowll.com/"/>
-  <updated>2019-05-29T05:29:47.000Z</updated>
+  <updated>2019-09-04T04:22:22.000Z</updated>
   <id>http://leowll.com/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Spring Batch执行异步Job的方法</title>
+    <link href="http://leowll.com/2019/05/29/20190903-spring-batch-async-job/"/>
+    <id>http://leowll.com/2019/05/29/20190903-spring-batch-async-job/</id>
+    <published>2019-05-29T05:29:50.000Z</published>
+    <updated>2019-09-04T04:22:22.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>Spring Batch默认的JobLauncher执行Job的方式是同步的。<br>如果需要执行异步Job，则需要定义能执行异步Job的JobLauncher。</p><h1 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h1><ol><li><p>在Configuration Class中定义SimpleJobLauncher, 设置其TaskExecutor为异步的SimpleAsyncTaskExecutor</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="meta">@EnableBatchProcessing</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BatchConfiguration</span> </span>&#123;</span><br><span class="line"><span class="meta">@Bean</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> SimpleJobLauncher <span class="title">simpleJobLauncher</span><span class="params">(JobRepository jobRepository)</span></span>&#123;</span><br><span class="line">SimpleJobLauncher jobLauncher = <span class="keyword">new</span> SimpleJobLauncher();</span><br><span class="line">    jobLauncher.setJobRepository(jobRepository);</span><br><span class="line">    jobLauncher.setTaskExecutor(<span class="keyword">new</span> SimpleAsyncTaskExecutor());</span><br><span class="line">    <span class="keyword">return</span> jobLauncher;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li><li><p>在调用Launcher的主程序中设置自动注入，就可以使用了。</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Autowired</span></span><br><span class="line">SimpleJobLauncher simpleJobLauncher;</span><br><span class="line"><span class="meta">@Autowired</span></span><br><span class="line">Job job1;</span><br><span class="line"><span class="meta">@Autowired</span></span><br><span class="line">Job jo2;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">(ApplicationArguments args)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">logger.info(<span class="string">"##### run async jobs #####"</span>);</span><br><span class="line">simpleJobLauncher.run(job1, jobParameters);</span><br><span class="line">simpleJobLauncher.run(job2, jobParameters);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li></ol>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;背景&quot;&gt;&lt;a href=&quot;#背景&quot; class=&quot;headerlink&quot; title=&quot;背景&quot;&gt;&lt;/a&gt;背景&lt;/h1&gt;&lt;p&gt;Spring Batch默认的JobLauncher执行Job的方式是同步的。&lt;br&gt;如果需要执行异步Job，则需要定义能执行异步Job的J
+      
+    
+    </summary>
+    
+    
+      <category term="Spring Boot" scheme="http://leowll.com/tags/Spring-Boot/"/>
+    
+      <category term="Spring Batch" scheme="http://leowll.com/tags/Spring-Batch/"/>
+    
+      <category term="Async" scheme="http://leowll.com/tags/Async/"/>
+    
+  </entry>
   
   <entry>
     <title>Gradle排除war中特定依赖的方法</title>
@@ -576,31 +603,6 @@
       <category term="人生" scheme="http://leowll.com/categories/%E4%BA%BA%E7%94%9F/"/>
     
       <category term="职业" scheme="http://leowll.com/categories/%E4%BA%BA%E7%94%9F/%E8%81%8C%E4%B8%9A/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Windows下SQL Server2008的定时备份策略</title>
-    <link href="http://leowll.com/2012/03/19/sqlserver-2008-backup/"/>
-    <id>http://leowll.com/2012/03/19/sqlserver-2008-backup/</id>
-    <published>2012-03-19T07:06:55.000Z</published>
-    <updated>2018-06-06T05:49:00.140Z</updated>
-    
-    <content type="html"><![CDATA[<p>在windows下对SQL Server2008数据库进行定时备份，需要做以下工作： 1.编写备份数据库的bat文件，内容形似： <em>backup database testdb to disk=’d:\backup\testdb.bak’  &gt;&gt; .\backup.log</em> 2.编写copy数据库备份文件并重命名的bat文件，形似： <em>SET DT=%DATE:~0,4%%DATE:~5,2%%DATE:~8,2%</em> <em>COPY D:\backup.bak  D:\backup%DT%.bak &gt;&gt; .\copy.log</em> 2.建立两个windows计划任务，分别选定时间和周期执行上述备份bat文件。 这样就可以实现sql server的定时备份策略了。</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;在windows下对SQL Server2008数据库进行定时备份，需要做以下工作： 1.编写备份数据库的bat文件，内容形似： &lt;em&gt;backup database testdb to disk=’d:\backup\testdb.bak’  &amp;gt;&amp;gt; .\ba
-      
-    
-    </summary>
-    
-      <category term="技术" scheme="http://leowll.com/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-      <category term="未分類" scheme="http://leowll.com/categories/%E6%8A%80%E6%9C%AF/%E6%9C%AA%E5%88%86%E9%A1%9E/"/>
     
     
   </entry>

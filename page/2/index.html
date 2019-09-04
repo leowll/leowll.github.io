@@ -298,6 +298,174 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://leowll.com/2017/02/15/sapui5-qunit-404-not-found/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Leo Wang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Leo's notepad">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/02/15/sapui5-qunit-404-not-found/" itemprop="url">[SAPUI5 Tutorial Trouble Shooting] Test Suite and Automated Testing Step10</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-02-15T14:37:52+09:00">
+                2017-02-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/SAP/" itemprop="url" rel="index">
+                    <span itemprop="name">SAP</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/SAP/技术/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/02/15/sapui5-qunit-404-not-found/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/02/15/sapui5-qunit-404-not-found/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>如果你在进行[SAPUI5 Tutorial] Test Suite and Automated Testing Step10 时遇到过 SAPUI5 QUnit 404 not found 问题， /resources/sap/ui/qunit/qunit-redirect.js 404 not found 这篇文章将帮你找到解决方法。 正如Tutorial一开始写的<a href="https://sapui5.netweaver.ondemand.com/sdk/index.html#docs/guide/8b49fc198bf04b2d9800fc37fecbb218.html" target="_blank" rel="noopener">那样</a>，</p>
+<blockquote>
+<p>If you are running the tutorial in SAP Web IDE, you will have to configure the project descriptor neo-app.json. In this descriptor file, the path to the resources is already configured. Other development environments might need the resources to be copied to the server. Alternatively, you can use the CDN version of <a href="https://sapui5.hana.ondemand.com/resources/sap-ui-core.js" target="_blank" rel="noopener">https://sapui5.hana.ondemand.com/resources/sap-ui-core.js</a>.</p>
+</blockquote>
+<p>也就是说，如果你使用的是Web IDE,而你又是copy的Tutorial中给出的code，你还需要配置项目的neo-app.json文件让项目找到resources系列的文件。 If you are using web IDE and copied the code from the sample, you may aslo need to set up the neo-app.json file to let the project find the resource folder. 具体配置如下所示，其实就是简单复制一下从头开始新建的项目中的neo-app.json文件。<br><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"welcomeFile"</span>: <span class="string">"/webapp/test/test.html"</span>,</span><br><span class="line">  <span class="attr">"routes"</span>: \[</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">"path"</span>: <span class="string">"/resources"</span>,</span><br><span class="line">      <span class="attr">"target"</span>: &#123;</span><br><span class="line">        <span class="attr">"type"</span>: <span class="string">"service"</span>,</span><br><span class="line">        <span class="attr">"name"</span>: <span class="string">"sapui5"</span>,</span><br><span class="line">        <span class="attr">"entryPath"</span>: <span class="string">"/resources"</span></span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="attr">"description"</span>: <span class="string">"SAPUI5 Resources"</span></span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">"path"</span>: <span class="string">"/test-resources"</span>,</span><br><span class="line">      <span class="attr">"target"</span>: &#123;</span><br><span class="line">        <span class="attr">"type"</span>: <span class="string">"service"</span>,</span><br><span class="line">        <span class="attr">"name"</span>: <span class="string">"sapui5"</span>,</span><br><span class="line">        <span class="attr">"entryPath"</span>: <span class="string">"/test-resources"</span></span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="attr">"description"</span>: <span class="string">"SAPUI5 Test Resources"</span></span><br><span class="line">    &#125;</span><br><span class="line">  \],</span><br><span class="line">  <span class="attr">"sendWelcomeFileRedirect"</span>: <span class="literal">true</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://leowll.com/2016/11/14/create-new-hybris-cms-component-in-accelerator/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1771,170 +1939,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://leowll.com/2012/03/19/sqlserver-2008-backup/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Leo Wang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Leo's notepad">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2012/03/19/sqlserver-2008-backup/" itemprop="url">Windows下SQL Server2008的定时备份策略</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2012-03-19T16:06:55+09:00">
-                2012-03-19
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/技术/" itemprop="url" rel="index">
-                    <span itemprop="name">技术</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/技术/未分類/" itemprop="url" rel="index">
-                    <span itemprop="name">未分類</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2012/03/19/sqlserver-2008-backup/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2012/03/19/sqlserver-2008-backup/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>在windows下对SQL Server2008数据库进行定时备份，需要做以下工作： 1.编写备份数据库的bat文件，内容形似： <em>backup database testdb to disk=’d:\backup\testdb.bak’  &gt;&gt; .\backup.log</em> 2.编写copy数据库备份文件并重命名的bat文件，形似： <em>SET DT=%DATE:~0,4%%DATE:~5,2%%DATE:~8,2%</em> <em>COPY D:\backup.bak  D:\backup%DT%.bak &gt;&gt; .\copy.log</em> 2.建立两个windows计划任务，分别选定时间和周期执行上述备份bat文件。 这样就可以实现sql server的定时备份策略了。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1985,7 +1989,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">39</span>
+                  <span class="site-state-item-count">40</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2007,7 +2011,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">59</span>
+                  <span class="site-state-item-count">61</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

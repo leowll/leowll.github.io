@@ -298,6 +298,191 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://leowll.com/2011/09/29/windows7-change-keyboard-layout-japanese/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Leo Wang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Leo's notepad">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2011/09/29/windows7-change-keyboard-layout-japanese/" itemprop="url">Windows 7中将英语键盘布局改为日语键盘布局</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2011-09-29T18:32:21+09:00">
+                2011-09-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/技术/" itemprop="url" rel="index">
+                    <span itemprop="name">技术</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2011/09/29/windows7-change-keyboard-layout-japanese/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2011/09/29/windows7-change-keyboard-layout-japanese/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>在重装了windows 7 系统（当然是盗版)之后，键盘一直不能使用日语布局。在网上查中文的资料一直没有理想的结果。今天试着日语google了一下，当即找到了解决方案。 如下所示 要解决这个问题，在注册表的HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\i8042prt\Parameters  位置中设定如下值</p>
+<table>
+<thead>
+<tr>
+<th>值的名称</th>
+<th>值的种类</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>LayerDriver JPN</td>
+<td>REG_SZ</td>
+<td>kbd106.dll</td>
+</tr>
+<tr>
+<td>OverrideKeyboardIdentifier</td>
+<td>REG_SZ</td>
+<td>PCAT_106KEY</td>
+</tr>
+<tr>
+<td>OverrideKeyboardSubtype</td>
+<td>DWORD</td>
+<td>2</td>
+</tr>
+<tr>
+<td>OverrideKeyboardType</td>
+<td>DWORD</td>
+<td>7</td>
+</tr>
+</tbody>
+</table>
+<p>ps：感慨一下，日本人写的这些手册一类的东西真是赏心悦目啊</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://leowll.com/2010/11/22/ask-aiweiwei/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1941,7 +2126,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">39</span>
+                  <span class="site-state-item-count">40</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1963,7 +2148,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">59</span>
+                  <span class="site-state-item-count">61</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
