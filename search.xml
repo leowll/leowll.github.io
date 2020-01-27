@@ -259,11 +259,11 @@
         <category>知识</category>
       </categories>
       <tags>
-        <tag>Hibernate</tag>
         <tag>Java</tag>
-        <tag>Struts2</tag>
+        <tag>Hibernate</tag>
         <tag>Json</tag>
         <tag>Spring</tag>
+        <tag>Struts2</tag>
       </tags>
   </entry>
   <entry>
@@ -324,8 +324,8 @@
         <category>知识</category>
       </categories>
       <tags>
-        <tag>Hibernate</tag>
         <tag>Java</tag>
+        <tag>Hibernate</tag>
         <tag>Struts2</tag>
       </tags>
   </entry>
