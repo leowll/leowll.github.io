@@ -164,6 +164,98 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://leowll.com/2011/11/08/java-lang-noclassdeffounderror-netsfezmorphmorpher-e9-94-99-e8-af-af-e8-a7-a3-e5-86-b3-e5-8a-9e-e6-b3-95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Leo Wang">
+      <meta itemprop="description" content="Tech & Life">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Leo's notepad">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2011/11/08/java-lang-noclassdeffounderror-netsfezmorphmorpher-e9-94-99-e8-af-af-e8-a7-a3-e5-86-b3-e5-8a-9e-e6-b3-95/" class="post-title-link" itemprop="url">java.lang.NoClassDefFoundError: net/sf/ezmorph/Morpher错误解决办法</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2011-11-09 10:06:05" itemprop="dateCreated datePublished" datetime="2011-11-09T10:06:05+09:00">2011-11-09</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2018-06-06 14:49:00" itemprop="dateModified" datetime="2018-06-06T14:49:00+09:00">2018-06-06</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/技术/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/技术/未分類/" itemprop="url" rel="index"><span itemprop="name">未分類</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2011/11/08/java-lang-noclassdeffounderror-netsfezmorphmorpher-e9-94-99-e8-af-af-e8-a7-a3-e5-86-b3-e5-8a-9e-e6-b3-95/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2011/11/08/java-lang-noclassdeffounderror-netsfezmorphmorpher-e9-94-99-e8-af-af-e8-a7-a3-e5-86-b3-e5-8a-9e-e6-b3-95/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>在使用Extjs+Struts2进行项目开发的时候，前台将json数据传到服务器端进行处理。 通过字符串接收传来的json数据，格式为[{“staffID”:1013900,”tehaiStatusCD”:00},{“staffID”:1018351,”tehaiStatusCD”:00}] 遇到的问题是，无法使用JSONArray.fromObject()方法对该字符串进行解析。通过JUnit测试发现了 java.lang.NoClassDefFoundError: net/sf/ezmorph/Morpher错误，说明缺少相应的jar包。 在<a href="http://www.findjar.com/jar/net/sf/ezmorph/ezmorph/1.0.1/ezmorph-1.0.1.jar.html" title="findJar" target="_blank" rel="noopener">这个网站</a>上找到了名为ezmorph-1.0.1.jar的jar包。将其添加到项目中。 再查看一下这个网站上列出的该包的依赖关系，保证你的项目中还加入了以下几个包 <a href="http://www.findjar.com/jar/junit/junit/3.8.1/junit-3.8.1.jar.html" target="_blank" rel="noopener">junit.jar</a> <a href="http://www.findjar.com/jar/commons-lang/commons-lang/2.2/commons-lang-2.2.jar.html" target="_blank" rel="noopener">commons-lang.jar</a> <a href="http://www.findjar.com/jar/commons-beanutils/commons-beanutils/1.7.0/commons-beanutils-1.7.0.jar.html" target="_blank" rel="noopener">commons-beanutils.jar</a> <a href="http://www.findjar.com/jar/commons-logging/commons-logging/1.1/commons-logging-1.1.jar.html" target="_blank" rel="noopener">commons-logging.jar</a> <a href="http://www.findjar.com/jar/log4j/log4j/1.2.13/log4j-1.2.13.jar.html" target="_blank" rel="noopener">log4j.jar</a> 问题就解决了。 thank google</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="http://leowll.com/2011/09/29/windows7-change-keyboard-layout-japanese/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1205,99 +1297,10 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://leowll.com/2010/09/13/one-gre-question/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Leo Wang">
-      <meta itemprop="description" content="Tech & Life">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Leo's notepad">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2010/09/13/one-gre-question/" class="post-title-link" itemprop="url">一道GRE填空题</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2010-09-14 00:33:41" itemprop="dateCreated datePublished" datetime="2010-09-14T00:33:41+09:00">2010-09-14</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2018-06-07 00:39:24" itemprop="dateModified" datetime="2018-06-07T00:39:24+09:00">2018-06-07</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/未分类/" itemprop="url" rel="index"><span itemprop="name">未分类</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus: </span>
-    
-    <a title="disqus" href="/2010/09/13/one-gre-question/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2010/09/13/one-gre-question/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="做陈圣元GRE填空的时候，看到这样一道题："><a href="#做陈圣元GRE填空的时候，看到这样一道题：" class="headerlink" title="做陈圣元GRE填空的时候，看到这样一道题："></a>做陈圣元GRE填空的时候，看到这样一道题：</h3><h3 id="In-sharp-contrast-to-the-intense-of-the-young-republic-with-its-Utopian-faith-in-democracy-and-hopes-for-eternal-human-progress-rencent-developments-suggest-a-mood-of-almost-unrelieved"><a href="#In-sharp-contrast-to-the-intense-of-the-young-republic-with-its-Utopian-faith-in-democracy-and-hopes-for-eternal-human-progress-rencent-developments-suggest-a-mood-of-almost-unrelieved" class="headerlink" title="In sharp contrast to the intense _ of the young republic, with its Utopian faith in democracy and hopes for eternal human progress, rencent developments suggest a mood of almost unrelieved _."></a>In sharp contrast to the intense <strong>_ of the young republic, with its Utopian faith in democracy and hopes for eternal human progress, rencent developments suggest a mood of almost unrelieved _</strong>.</h3><p>A. idealism .. cynicism<br>B. individualism .. escapism<br>C. sectarianism .. recklessness<br>D. assertiveness .. ambition<br>E. righteousness .. egalitarianism</p>
-<p>作为天朝出来的，我知道答案为：A。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span>
+    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -1363,7 +1366,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">40</span>
+          <span class="site-state-item-count">41</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -1376,7 +1379,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">61</span>
+        <span class="site-state-item-count">65</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>

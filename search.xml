@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[How to use jar in SCPI (SAP Cloud Platform Integration)]]></title>
+    <url>%2F2020%2F04%2F07%2F20200407_how%20to%20use%20jar%20in%20SCPI%2F</url>
+    <content type="text"><![CDATA[怎样在SCPI中引入Jar文件?在SCPI里可以通过创建Groovy Script来对数据进行一些处理，比如解析csv文件并处理里面的数据。当然我们可以自己写代码来解析csv文件，但通常是重复造轮子。 因为这个世界上已经存在着很多优秀程序员写好的类库，我们只需要在自己的程序中调用一下就可以了，没必要重复造轮子。 SCPI中也支持引入外部的jar文件，以CSV文件的解析为例，为了能在程序中使用groovycsv这个库，我们需要引入以下两个jar文件： groovycsv-1.3 opencsv-3.8 步骤下面解释一下怎样在SCPI的Flow里面引入jar文件 进入Flow的编辑模式。 编辑模式下，在Flow的Resources设置Tab添加Jar文件。 添加之后的结果： 在Groovy Script中引入自己需要的类。]]></content>
+      <tags>
+        <tag>SCPI</tag>
+        <tag>SAP Cloud Platform Integration</tag>
+        <tag>SAP</tag>
+        <tag>groovy</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Spring Batch执行异步Job的方法]]></title>
     <url>%2F2019%2F09%2F03%2F20190903-spring-batch-async-job%2F</url>
     <content type="text"><![CDATA[背景Spring Batch默认的JobLauncher执行Job的方式是同步的。如果需要执行异步Job，则需要定义能执行异步Job的JobLauncher。 解决办法 在Configuration Class中定义SimpleJobLauncher, 设置其TaskExecutor为异步的SimpleAsyncTaskExecutor 1234567891011@Configuration@EnableBatchProcessingpublic class BatchConfiguration &#123; @Bean public SimpleJobLauncher simpleJobLauncher(JobRepository jobRepository)&#123; SimpleJobLauncher jobLauncher = new SimpleJobLauncher(); jobLauncher.setJobRepository(jobRepository); jobLauncher.setTaskExecutor(new SimpleAsyncTaskExecutor()); return jobLauncher; &#125;&#125; 在调用Launcher的主程序中设置自动注入，就可以使用了。 12345678910111213@AutowiredSimpleJobLauncher simpleJobLauncher;@AutowiredJob job1;@AutowiredJob jo2;@Overridepublic void run(ApplicationArguments args) throws Exception &#123; logger.info("##### run async jobs #####"); simpleJobLauncher.run(job1, jobParameters); simpleJobLauncher.run(job2, jobParameters);&#125;]]></content>

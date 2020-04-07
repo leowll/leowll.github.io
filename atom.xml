@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://leowll.com/"/>
-  <updated>2019-09-04T04:33:32.000Z</updated>
+  <updated>2020-04-07T07:40:49.000Z</updated>
   <id>http://leowll.com/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>How to use jar in SCPI (SAP Cloud Platform Integration)</title>
+    <link href="http://leowll.com/2020/04/07/20200407_how%20to%20use%20jar%20in%20SCPI/"/>
+    <id>http://leowll.com/2020/04/07/20200407_how to use jar in SCPI/</id>
+    <published>2020-04-07T07:30:00.000Z</published>
+    <updated>2020-04-07T07:40:49.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="怎样在SCPI中引入Jar文件"><a href="#怎样在SCPI中引入Jar文件" class="headerlink" title="怎样在SCPI中引入Jar文件?"></a>怎样在SCPI中引入Jar文件?</h1><p>在SCPI里可以通过创建Groovy Script来对数据进行一些处理，比如解析csv文件并处理里面的数据。<br>当然我们可以自己写代码来解析csv文件，但通常是重复造轮子。</p><p>因为这个世界上已经存在着很多优秀程序员写好的类库，我们只需要在自己的程序中调用一下就可以了，没必要重复造轮子。</p><p>SCPI中也支持引入外部的jar文件，以CSV文件的解析为例，为了能在程序中使用groovycsv这个库，我们需要引入以下两个jar文件：</p><ul><li>groovycsv-1.3</li><li>opencsv-3.8</li></ul><h1 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h1><p>下面解释一下怎样在SCPI的Flow里面引入jar文件</p><ol><li>进入Flow的编辑模式。</li></ol><p><img src="https://s1.ax1x.com/2020/04/07/GgAbMn.png" alt="edit flow" width="50%"></p><ol start="2"><li>编辑模式下，在Flow的Resources设置Tab添加Jar文件。</li></ol><p><img src="https://s1.ax1x.com/2020/04/07/GgALq0.png" alt="add jar" width="50%"></p><ol start="3"><li>添加之后的结果：</li></ol><p><img src="https://s1.ax1x.com/2020/04/07/GgAXZV.png" alt="result" width="50%"></p><ol start="4"><li>在Groovy Script中引入自己需要的类。</li></ol><p><img src="https://s1.ax1x.com/2020/04/07/GgAoGQ.png" alt="script" width="50%"></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;怎样在SCPI中引入Jar文件&quot;&gt;&lt;a href=&quot;#怎样在SCPI中引入Jar文件&quot; class=&quot;headerlink&quot; title=&quot;怎样在SCPI中引入Jar文件?&quot;&gt;&lt;/a&gt;怎样在SCPI中引入Jar文件?&lt;/h1&gt;&lt;p&gt;在SCPI里可以通过创建Groo
+      
+    
+    </summary>
+    
+    
+      <category term="SCPI" scheme="http://leowll.com/tags/SCPI/"/>
+    
+      <category term="SAP Cloud Platform Integration" scheme="http://leowll.com/tags/SAP-Cloud-Platform-Integration/"/>
+    
+      <category term="SAP" scheme="http://leowll.com/tags/SAP/"/>
+    
+      <category term="groovy" scheme="http://leowll.com/tags/groovy/"/>
+    
+  </entry>
   
   <entry>
     <title>Spring Batch执行异步Job的方法</title>
@@ -580,31 +609,6 @@
       <category term="Java" scheme="http://leowll.com/tags/Java/"/>
     
       <category term="多线程" scheme="http://leowll.com/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>重新开始</title>
-    <link href="http://leowll.com/2015/10/09/restart/"/>
-    <id>http://leowll.com/2015/10/09/restart/</id>
-    <published>2015-10-09T13:31:17.000Z</published>
-    <updated>2018-06-06T05:49:00.140Z</updated>
-    
-    <content type="html"><![CDATA[<p>2015年上半期的自我评价和上司面谈结束了。 科长一如既往的说你稍微改一下这个写法就可以了，如果没有意见我们就谈到这把。 我说科长且慢，“中长期职业规划”您看了没，我写了一些。 然后引出了离职的话题，科长说那实在是很遗憾，我会跟部长汇报的，下周给你消息。   然后，我就这么提出了辞职。   职业生涯刚刚起步，当初心急火燎的进了公司，心想背靠一个大公司，自己应该会得心应手吧。 可这两年过去了，每一天想的都是我他妈为什么在这里浪费时间。 又想起nissan的广告词，说的太让人心潮澎湃。</p><blockquote><p>２種類の人間がいる。 やりたいことやっちゃう人とやらない人。 やりたいことやってきたこの人生。 おかげで痛い目にもあってきた。 散々恥もかいてきた。 誰かの言うことを素直に聞いてりゃ、 今よりずっと楽だったかもしれない。 でもね、これだけは言える。 やりたいことやっちゃう人生のほうが、間違いなく面白い。 俺はこれからもやっちゃうよ あんたはどうする？</p></blockquote>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;2015年上半期的自我评价和上司面谈结束了。 科长一如既往的说你稍微改一下这个写法就可以了，如果没有意见我们就谈到这把。 我说科长且慢，“中长期职业规划”您看了没，我写了一些。 然后引出了离职的话题，科长说那实在是很遗憾，我会跟部长汇报的，下周给你消息。   然后，我就这么
-      
-    
-    </summary>
-    
-      <category term="人生" scheme="http://leowll.com/categories/%E4%BA%BA%E7%94%9F/"/>
-    
-      <category term="职业" scheme="http://leowll.com/categories/%E4%BA%BA%E7%94%9F/%E8%81%8C%E4%B8%9A/"/>
-    
     
   </entry>
   
