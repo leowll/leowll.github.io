@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[How to display json date in SAPUI5 view]]></title>
+    <url>%2F2020%2F05%2F01%2F20200501%20how%20to%20display%20json%20date%20in%20sapui5%2F</url>
+    <content type="text"><![CDATA[Date String Received from OData.Date string from OData Service is like below:1"SalesOrderDate": "/Date(1587945600000)/", 这样的数据无法直接显示在SAPUI5的View里面。即便你设置data type为日期类型，也是无法直接识别的。 Create your date formatter. 在View的Controller里创建自己的formatter,然后在View中进行相应的设置。JS代码中用到了正规法则，识别一段字符串中的数字，然后将这一串数字作为timestamp来生成一个Date类型的变量，再通过sap.ui.core.format.DateFormat来设置格式。 12345678910111213sap.ui.define([ "sap/ui/core/mvc/Controller", "sap/ui/core/format/DateFormat"], function (Controller,DateFormat) &#123; formatJSONDate: function(sDate)&#123; var oDateFormat = DateFormat.getDateTimeInstance(&#123; style: "short" &#125;); var d = new Date(sDate.match(/\d+/)[0] * 1); return oDateFormat.format(d,true); //true for UTC &#125; View中对UI控件设置formatter1234&lt;Text text="&#123; path: '/Date', formatter: '.formatJSONDate' &#125;" /&gt;]]></content>
+      <tags>
+        <tag>SAP</tag>
+        <tag>SAPUI5</tag>
+        <tag>json</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[How to use jar in SCPI (SAP Cloud Platform Integration)]]></title>
     <url>%2F2020%2F04%2F07%2F20200407_how%20to%20use%20jar%20in%20SCPI%2F</url>
     <content type="text"><![CDATA[怎样在SCPI中引入Jar文件?在SCPI里可以通过创建Groovy Script来对数据进行一些处理，比如解析csv文件并处理里面的数据。当然我们可以自己写代码来解析csv文件，但通常是重复造轮子。 因为这个世界上已经存在着很多优秀程序员写好的类库，我们只需要在自己的程序中调用一下就可以了，没必要重复造轮子。 SCPI中也支持引入外部的jar文件，以CSV文件的解析为例，为了能在程序中使用groovycsv这个库，我们需要引入以下两个jar文件： groovycsv-1.3 opencsv-3.8 步骤下面解释一下怎样在SCPI的Flow里面引入jar文件 进入Flow的编辑模式。 编辑模式下，在Flow的Resources设置Tab添加Jar文件。 添加之后的结果： 在Groovy Script中引入自己需要的类。]]></content>

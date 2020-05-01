@@ -164,6 +164,89 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://leowll.com/2020/05/01/20200501 how to display json date in sapui5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Leo Wang">
+      <meta itemprop="description" content="Tech & Life">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Leo's notepad">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/05/01/20200501 how to display json date in sapui5/" class="post-title-link" itemprop="url">How to display json date in SAPUI5 view</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-05-01 13:17:00 / Modified: 13:27:43" itemprop="dateCreated datePublished" datetime="2020-05-01T13:17:00+09:00">2020-05-01</time>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2020/05/01/20200501 how to display json date in sapui5/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/05/01/20200501 how to display json date in sapui5/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ol>
+<li>Date String Received from OData.<br>Date string from OData Service is like below:<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">"SalesOrderDate": "/Date(1587945600000)/",</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>这样的数据无法直接显示在SAPUI5的View里面。<br>即便你设置data type为日期类型，也是无法直接识别的。</p>
+<ol start="2">
+<li>Create your date formatter.</li>
+</ol>
+<p>在View的Controller里创建自己的formatter,然后在View中进行相应的设置。<br>JS代码中用到了正规法则，识别一段字符串中的数字，然后将这一串数字作为timestamp来生成一个Date类型的变量，<br>再通过sap.ui.core.format.DateFormat来设置格式。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">sap.ui.define([</span><br><span class="line">	<span class="string">"sap/ui/core/mvc/Controller"</span>,</span><br><span class="line">	<span class="string">"sap/ui/core/format/DateFormat"</span></span><br><span class="line">], <span class="function"><span class="keyword">function</span> (<span class="params">Controller,DateFormat</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">	</span><br><span class="line">	formatJSONDate: <span class="function"><span class="keyword">function</span>(<span class="params">sDate</span>)</span>&#123;</span><br><span class="line">		<span class="keyword">var</span> oDateFormat = DateFormat.getDateTimeInstance(&#123;</span><br><span class="line">			style: <span class="string">"short"</span></span><br><span class="line">		&#125;);</span><br><span class="line">		<span class="keyword">var</span> d = <span class="keyword">new</span> <span class="built_in">Date</span>(sDate.match(<span class="regexp">/\d+/</span>)[<span class="number">0</span>] * <span class="number">1</span>); </span><br><span class="line">		<span class="keyword">return</span> oDateFormat.format(d,<span class="literal">true</span>); <span class="comment">//true for UTC</span></span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<p>View中对UI控件设置formatter<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Text</span> <span class="attr">text</span>=<span class="string">"&#123;</span></span></span><br><span class="line"><span class="tag"><span class="string">			path: '/Date',</span></span></span><br><span class="line"><span class="tag"><span class="string">			formatter: '.formatJSONDate'</span></span></span><br><span class="line"><span class="tag"><span class="string">		&#125;"</span> /&gt;</span></span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="http://leowll.com/2020/04/07/20200407_how to use jar in SCPI/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1040,108 +1123,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://leowll.com/2018/05/10/understand-spring-di-aop/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Leo Wang">
-      <meta itemprop="description" content="Tech & Life">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Leo's notepad">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2018/05/10/understand-spring-di-aop/" class="post-title-link" itemprop="url">理解Spring中的DI和AOP</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2018-05-10 18:55:25" itemprop="dateCreated datePublished" datetime="2018-05-10T18:55:25+09:00">2018-05-10</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2018-06-06 22:49:12" itemprop="dateModified" datetime="2018-06-06T22:49:12+09:00">2018-06-06</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/技术/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus: </span>
-    
-    <a title="disqus" href="/2018/05/10/understand-spring-di-aop/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/05/10/understand-spring-di-aop/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="问题的提出"><a href="#问题的提出" class="headerlink" title="问题的提出"></a><strong>问题的提出</strong></h1><p>Spring中的依赖注入（DI)为何而生？<br> 下面这篇日语文章提到，所有的Web应用都需要考虑到下面三个问题。[] <a href="http://penguinlabo.wp.xdomain.jp/understandspringmvc/" target="_blank" rel="noopener">http://penguinlabo.wp.xdomain.jp/understandspringmvc/</a></p>
-<ol>
-<li>对象的生命周期问题。<br>假设你用Servlet来接收用户的访问请求，有一个用户需要访问一个页面，你就需要一个线程来负责处理这个请求，并调用某个业务逻辑（比如调用一个UserService的实例）。如果处理不当，每新增一个用户就实例化一个业务逻辑（new一个UserService的实例），随着访问用户的增多，就会给系统带来大量垃圾回收负担，以及内存消耗的问题。为了防止这种情况发生，就需要把业务逻辑的部分设计为Singleton的，这样就不会每次都新增一个实例</li>
-<li>松耦合问题。<br>为了实现Web程序中的松耦合，即让一个类与另一个类不是那么的紧密结合，通常需要接口（Interface）来实现。但是单存的利用Interface并不能实现松耦合。还需要利用一些技巧，比如Factory Method等设计模式。 </li>
-<li>技术细节的隐藏。<br>当你写一个User或者SalesOrder类的时候，你希望专注于自己的业务逻辑，比如创建用户，删除用户，创建订单，删除订单这些具体的业务。如果你在这些类中再加上访问记录（log）处理，就会明显的影响你程序的可读性。因为本质上log处理和你的业务逻辑没有什么联系，两者混杂在一起就会让人看起来比较头大。还有一些异常处理类的逻辑也会产生同样的问题。你怎样才能把这些和真正的业务逻辑无关的逻辑分离出去？</li>
-</ol>
-<h1 id="问题的回答"><a href="#问题的回答" class="headerlink" title="问题的回答"></a>问题的回答</h1><p>Spring给出的解决方案是这样的。<br>1）对象的生命周期问题。=&gt;DI<br>2）松耦合问题。 =&gt; DI<br>3）技术细节的隐藏。=&gt;AOP </p>
-<p>首先Spring是怎么实现DI的呢，是通过DI Container来实现的。<br>在没有使用DI的Web应用中，Controller用到Service的时候，会生成（new）一个，Service用到DAO的时候，也是同样的生成（new）一个。 <img src="http://65.49.230.2/wordpress/wp-content/uploads/2018/06/no-di-300x187.jpg" alt=""> 而使用了DI的Spring，则将实例化的工作全部交给了DI Container去做。 Controller中仅仅声明了Service接口的一个属性，具体的实现（new）没有去做，同样Service中也只是声明了一个DAO接口的一个属性，也没有去实现（new）。当需要实例的时候，就让DI Container根据配置去找到合适的类去实例化相应的接口属性。 <img src="http://65.49.230.2/wordpress/wp-content/uploads/2018/06/DI-300x186.png" alt=""> 而用Spring写成的Web程序，其处理顺序可以用下图来表示 <img src="http://65.49.230.2/wordpress/wp-content/uploads/2018/06/Spring-flow-300x195.png" alt=""></p>
-<ol>
-<li>Dispatcher Servlet接收用户访问请求</li>
-<li>Dispatcher Servlet利用HandlerMapping取得URL所对应的Controller对象</li>
-<li>Controller来实行业务逻辑，调用Service对象和DAO对象得到业务数据，并把数据放到Model中。并返回一个View的名字，希望把数据显示到该View上。</li>
-<li>Dispatcher Servlet得到View的名字后，调用View Resolver来得到相应的View对象。</li>
-<li>Dispatcher Servlet把View对象生成为一个画面（View），画面包含Model对象中的数据，然后把这个View返回给用户(response)。用户的浏览器把这个画面呈献给用户。</li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1211,7 +1192,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">41</span>
+          <span class="site-state-item-count">42</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -1224,7 +1205,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">65</span>
+        <span class="site-state-item-count">67</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
