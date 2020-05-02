@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://leowll.com/"/>
-  <updated>2020-05-01T04:27:43.000Z</updated>
+  <updated>2020-05-02T09:08:58.000Z</updated>
   <id>http://leowll.com/</id>
   
   <author>
@@ -17,20 +17,21 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>How to display json date in SAPUI5 view</title>
+    <title>How to display OData json date in SAPUI5 view</title>
     <link href="http://leowll.com/2020/05/01/20200501%20how%20to%20display%20json%20date%20in%20sapui5/"/>
     <id>http://leowll.com/2020/05/01/20200501 how to display json date in sapui5/</id>
     <published>2020-05-01T04:17:00.000Z</published>
-    <updated>2020-05-01T04:27:43.000Z</updated>
+    <updated>2020-05-02T09:08:58.000Z</updated>
     
-    <content type="html"><![CDATA[<ol><li>Date String Received from OData.<br>Date string from OData Service is like below:<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">"SalesOrderDate": "/Date(1587945600000)/",</span><br></pre></td></tr></table></figure></li></ol><p>这样的数据无法直接显示在SAPUI5的View里面。<br>即便你设置data type为日期类型，也是无法直接识别的。</p><ol start="2"><li>Create your date formatter.</li></ol><p>在View的Controller里创建自己的formatter,然后在View中进行相应的设置。<br>JS代码中用到了正规法则，识别一段字符串中的数字，然后将这一串数字作为timestamp来生成一个Date类型的变量，<br>再通过sap.ui.core.format.DateFormat来设置格式。</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">sap.ui.define([</span><br><span class="line"><span class="string">"sap/ui/core/mvc/Controller"</span>,</span><br><span class="line"><span class="string">"sap/ui/core/format/DateFormat"</span></span><br><span class="line">], <span class="function"><span class="keyword">function</span> (<span class="params">Controller,DateFormat</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">formatJSONDate: <span class="function"><span class="keyword">function</span>(<span class="params">sDate</span>)</span>&#123;</span><br><span class="line"><span class="keyword">var</span> oDateFormat = DateFormat.getDateTimeInstance(&#123;</span><br><span class="line">style: <span class="string">"short"</span></span><br><span class="line">&#125;);</span><br><span class="line"><span class="keyword">var</span> d = <span class="keyword">new</span> <span class="built_in">Date</span>(sDate.match(<span class="regexp">/\d+/</span>)[<span class="number">0</span>] * <span class="number">1</span>); </span><br><span class="line"><span class="keyword">return</span> oDateFormat.format(d,<span class="literal">true</span>); <span class="comment">//true for UTC</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>View中对UI控件设置formatter<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Text</span> <span class="attr">text</span>=<span class="string">"&#123;</span></span></span><br><span class="line"><span class="tag"><span class="string">path: '/Date',</span></span></span><br><span class="line"><span class="tag"><span class="string">formatter: '.formatJSONDate'</span></span></span><br><span class="line"><span class="tag"><span class="string">&#125;"</span> /&gt;</span></span><br></pre></td></tr></table></figure></p>]]></content>
+    <content type="html"><![CDATA[<p>OData的日期类型无法原样显示在SAPUI5的页面上，怎样解决这一问题。</p><ol><li>Date String Received from OData.<br>Date string from OData Service is like below:<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">"SalesOrderDate": "/Date(1587945600000)/",</span><br></pre></td></tr></table></figure></li></ol><p>这样的数据无法直接显示在SAPUI5的View里面。<br>即便你设置data type为日期类型，也是无法直接识别的。</p><ol start="2"><li>Create your date formatter.</li></ol><p>在View的Controller里创建自己的formatter,然后在View中进行相应的设置。<br>JS代码中用到了正规法则，识别一段字符串中的数字，然后将这一串数字作为timestamp来生成一个Date类型的变量，<br>再通过sap.ui.core.format.DateFormat来设置格式。</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">sap.ui.define([</span><br><span class="line"><span class="string">"sap/ui/core/mvc/Controller"</span>,</span><br><span class="line"><span class="string">"sap/ui/core/format/DateFormat"</span></span><br><span class="line">], <span class="function"><span class="keyword">function</span> (<span class="params">Controller,DateFormat</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">formatJSONDate: <span class="function"><span class="keyword">function</span>(<span class="params">sDate</span>)</span>&#123;</span><br><span class="line"><span class="keyword">var</span> oDateFormat = DateFormat.getDateTimeInstance(&#123;</span><br><span class="line">style: <span class="string">"short"</span></span><br><span class="line">&#125;);</span><br><span class="line"><span class="keyword">var</span> d = <span class="keyword">new</span> <span class="built_in">Date</span>(sDate.match(<span class="regexp">/\d+/</span>)[<span class="number">0</span>] * <span class="number">1</span>); </span><br><span class="line"><span class="keyword">return</span> oDateFormat.format(d,<span class="literal">true</span>); <span class="comment">//true for UTC</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><ol start="3"><li>Use your formatter in your view.<br>View中对UI控件设置formatter<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Text</span> <span class="attr">text</span>=<span class="string">"&#123;</span></span></span><br><span class="line"><span class="tag"><span class="string">path: '/Date',</span></span></span><br><span class="line"><span class="tag"><span class="string">formatter: '.formatJSONDate'</span></span></span><br><span class="line"><span class="tag"><span class="string">&#125;"</span> /&gt;</span></span><br></pre></td></tr></table></figure></li></ol>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;ol&gt;
-&lt;li&gt;Date String Received from OData.&lt;br&gt;Date string from OData Service is like below:&lt;figure class=&quot;highlight&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gu
+        &lt;p&gt;OData的日期类型无法原样显示在SAPUI5的页面上，怎样解决这一问题。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Date String Received from OData.&lt;br&gt;Date string from OData Service is like below:&lt;figu
       
     
     </summary>
@@ -41,6 +42,8 @@
       <category term="SAPUI5" scheme="http://leowll.com/tags/SAPUI5/"/>
     
       <category term="json" scheme="http://leowll.com/tags/json/"/>
+    
+      <category term="OData" scheme="http://leowll.com/tags/OData/"/>
     
   </entry>
   

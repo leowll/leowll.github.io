@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[How to display json date in SAPUI5 view]]></title>
+    <title><![CDATA[How to display OData json date in SAPUI5 view]]></title>
     <url>%2F2020%2F05%2F01%2F20200501%20how%20to%20display%20json%20date%20in%20sapui5%2F</url>
-    <content type="text"><![CDATA[Date String Received from OData.Date string from OData Service is like below:1"SalesOrderDate": "/Date(1587945600000)/", 这样的数据无法直接显示在SAPUI5的View里面。即便你设置data type为日期类型，也是无法直接识别的。 Create your date formatter. 在View的Controller里创建自己的formatter,然后在View中进行相应的设置。JS代码中用到了正规法则，识别一段字符串中的数字，然后将这一串数字作为timestamp来生成一个Date类型的变量，再通过sap.ui.core.format.DateFormat来设置格式。 12345678910111213sap.ui.define([ "sap/ui/core/mvc/Controller", "sap/ui/core/format/DateFormat"], function (Controller,DateFormat) &#123; formatJSONDate: function(sDate)&#123; var oDateFormat = DateFormat.getDateTimeInstance(&#123; style: "short" &#125;); var d = new Date(sDate.match(/\d+/)[0] * 1); return oDateFormat.format(d,true); //true for UTC &#125; View中对UI控件设置formatter1234&lt;Text text="&#123; path: '/Date', formatter: '.formatJSONDate' &#125;" /&gt;]]></content>
+    <content type="text"><![CDATA[OData的日期类型无法原样显示在SAPUI5的页面上，怎样解决这一问题。 Date String Received from OData.Date string from OData Service is like below:1"SalesOrderDate": "/Date(1587945600000)/", 这样的数据无法直接显示在SAPUI5的View里面。即便你设置data type为日期类型，也是无法直接识别的。 Create your date formatter. 在View的Controller里创建自己的formatter,然后在View中进行相应的设置。JS代码中用到了正规法则，识别一段字符串中的数字，然后将这一串数字作为timestamp来生成一个Date类型的变量，再通过sap.ui.core.format.DateFormat来设置格式。 12345678910111213sap.ui.define([ "sap/ui/core/mvc/Controller", "sap/ui/core/format/DateFormat"], function (Controller,DateFormat) &#123; formatJSONDate: function(sDate)&#123; var oDateFormat = DateFormat.getDateTimeInstance(&#123; style: "short" &#125;); var d = new Date(sDate.match(/\d+/)[0] * 1); return oDateFormat.format(d,true); //true for UTC &#125; Use your formatter in your view.View中对UI控件设置formatter1234&lt;Text text="&#123; path: '/Date', formatter: '.formatJSONDate' &#125;" /&gt;]]></content>
       <tags>
         <tag>SAP</tag>
         <tag>SAPUI5</tag>
         <tag>json</tag>
+        <tag>OData</tag>
       </tags>
   </entry>
   <entry>
