@@ -164,6 +164,102 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://leowll.com/2015/10/25/ssrs-paging-3moves/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Leo Wang">
+      <meta itemprop="description" content="Tech & Life">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Leo's notepad">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2015/10/25/ssrs-paging-3moves/" class="post-title-link" itemprop="url">3招做好SSRS的分页</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2015-10-25 23:15:05" itemprop="dateCreated datePublished" datetime="2015-10-25T23:15:05+09:00">2015-10-25</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2018-06-06 14:49:00" itemprop="dateModified" datetime="2018-06-06T14:49:00+09:00">2018-06-06</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/知识/" itemprop="url" rel="index"><span itemprop="name">知识</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2015/10/25/ssrs-paging-3moves/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/10/25/ssrs-paging-3moves/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>在使用SSRS，也就是SQL Server Report Service（SQL Server 报表）的过程中，如果你在寻找下面3个问题的答案，本文可能会帮到你。</p>
+<ul>
+<li>针对每个数据分组重新设定页码</li>
+<li>让表头在每个页面都能显示</li>
+<li>让数据在合理的位置分页</li>
+</ul>
+<h4 id="针对每个数据分组重新设定页码"><a href="#针对每个数据分组重新设定页码" class="headerlink" title="针对每个数据分组重新设定页码"></a><strong>针对每个数据分组重新设定页码</strong></h4><p>在Details上设置属性，Group里面的ResetPageNumber设置为True，即可让每一个新的分组数据重新设定页码。 <a href="https://www.flickr.com/photos/136148236@N02/21841911853/in/dateposted-public/" title="group" target="_blank" rel="noopener"><img src="https://farm6.staticflickr.com/5687/21841911853_79b183f3a4_n.jpg" alt="group"></a>  </p>
+<h4 id="让表头在每个页面都能显示"><a href="#让表头在每个页面都能显示" class="headerlink" title="让表头在每个页面都能显示"></a>让表头在每个页面都能显示</h4><p>在详细模式里面找到表头的Static，然后设置KeepWithGroup属性为After，RepeatOnNewPage为True。 如果表头之前还有上一层分组的Static，上一层分组的上述两个属性要分别设为Before和True。 在同一个分组的Static的RepeatOnNewPage不能设置为不同的值，所以同样设定为了True， 但是不希望在后续页面继续显示的部分，其KeepWithGroup只要设定为Before，就不会随后续数据分页而再次出现了。<a href="https://www.flickr.com/photos/136148236@N02/22474037011/in/dateposted-public/" title="repeatonnewpage" target="_blank" rel="noopener"><img src="https://farm1.staticflickr.com/712/22474037011_fb874db3ff_n.jpg" alt="repeatonnewpage"></a></p>
+<h4 id="让数据在合理的位置分页"><a href="#让数据在合理的位置分页" class="headerlink" title="让数据在合理的位置分页"></a><strong>让数据在合理的位置分页</strong></h4><p>在希望保持为一个整体的Group上设置KeepTogether为True，就会尽量让同一组的数据在同一页面显示。 <a href="https://www.flickr.com/photos/136148236@N02/22276255729/in/dateposted-public/" title="keeptogether" target="_blank" rel="noopener"><img src="https://farm6.staticflickr.com/5659/22276255729_da2fee249a_n.jpg" alt="keeptogether"></a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="http://leowll.com/2015/10/10/java-multi-thread/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1014,95 +1110,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://leowll.com/2011/11/14/hibernate-call-procedure/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Leo Wang">
-      <meta itemprop="description" content="Tech & Life">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Leo's notepad">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2011/11/14/hibernate-call-procedure/" class="post-title-link" itemprop="url">使用Hibernate调用存储过程，及简单的实体映射</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2011-11-14 14:51:10" itemprop="dateCreated datePublished" datetime="2011-11-14T14:51:10+09:00">2011-11-14</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2018-06-06 23:07:25" itemprop="dateModified" datetime="2018-06-06T23:07:25+09:00">2018-06-06</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/知识/" itemprop="url" rel="index"><span itemprop="name">知识</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus: </span>
-    
-    <a title="disqus" href="/2011/11/14/hibernate-call-procedure/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2011/11/14/hibernate-call-procedure/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>在使用Hibernate+Struts2进行项目开发的时候，有时需要对数据库中的多个表进行连接操作。 为了减少访问数据库的次数，可以将连接表的操作写入到procedure即存储过程当中。 通过procedure进行多个表的连接，然后返回查询结果。 查询结果中包含原本属于多个实体的多个属性。 于是可以构建一个实体类 MyEntity，在hibernate的MyEntity.hbm.xml中可以这样写：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version="1.0"?&gt;</span><br><span class="line"><span class="meta">&lt;!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"</span></span><br><span class="line"><span class="meta">"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd"&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">hibernate-mapping</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">class</span> <span class="attr">name</span>=<span class="string">"model.YourEntity"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">id</span> <span class="attr">name</span>=<span class="string">"yourEntityID"</span>&gt;</span><span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"yourEntityProperty1"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">class</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">sql-query</span> <span class="attr">name</span>=<span class="string">"callYourProcedure"</span> <span class="attr">callable</span>=<span class="string">"true"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">return</span> <span class="attr">class</span>=<span class="string">"model.YourEntity"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">return-property</span> <span class="attr">name</span>=<span class="string">"yourEntityID"</span></span></span><br><span class="line"><span class="tag"><span class="attr">column</span>=<span class="string">"yourTableID"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">return-property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">return-property</span> <span class="attr">name</span>=<span class="string">"yourEntityProperty1"</span></span></span><br><span class="line"><span class="tag"><span class="attr">column</span>=<span class="string">"yourTableProperty1"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">return-property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">return</span>&gt;</span></span><br><span class="line">&#123;call yourProcedureName&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">sql-query</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">hibernate-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p>而相应的Java实体类中要包含相应的属性和getter/setter。 procedure返回的查询结果的列名也要一一对应。 这样我们就不需要将Java实体类映射到数据库中具体的表了，只需要映射存储过程就行了。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1172,7 +1179,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">42</span>
+          <span class="site-state-item-count">43</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -1185,7 +1192,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">68</span>
+        <span class="site-state-item-count">71</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>

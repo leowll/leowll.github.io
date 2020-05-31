@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://leowll.com/2020/05/31/20200601%20how%20to%20include%20jQuery%20into%20Vue%20without%20npm/</loc>
+    
+    <lastmod>2020-05-31T23:33:27.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://leowll.com/2020/05/01/20200501%20how%20to%20display%20json%20date%20in%20sapui5/</loc>
     
     <lastmod>2020-05-02T09:08:58.000Z</lastmod>
@@ -240,7 +247,7 @@
   </url>
   
   <url>
-    <loc>http://leowll.com/2015/10/25/ssrs-paging-3moves/</loc>
+    <loc>http://leowll.com/2010/10/24/training-data-set-testing-data-set/</loc>
     
     <lastmod>2018-06-06T05:49:00.140Z</lastmod>
     
@@ -261,14 +268,7 @@
   </url>
   
   <url>
-    <loc>http://leowll.com/2010/10/24/training-data-set-testing-data-set/</loc>
-    
-    <lastmod>2018-06-06T05:49:00.140Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://leowll.com/2010/09/28/how-to-writeGRE-Analytical-Writing/</loc>
+    <loc>http://leowll.com/2015/10/25/ssrs-paging-3moves/</loc>
     
     <lastmod>2018-06-06T05:49:00.140Z</lastmod>
     
@@ -276,6 +276,13 @@
   
   <url>
     <loc>http://leowll.com/2010/11/22/ask-aiweiwei/</loc>
+    
+    <lastmod>2018-06-06T05:49:00.140Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://leowll.com/2010/11/05/mysql-data-import-error/</loc>
     
     <lastmod>2018-06-06T05:49:00.140Z</lastmod>
     
@@ -317,7 +324,7 @@
   </url>
   
   <url>
-    <loc>http://leowll.com/2010/11/05/mysql-data-import-error/</loc>
+    <loc>http://leowll.com/2010/09/28/how-to-writeGRE-Analytical-Writing/</loc>
     
     <lastmod>2018-06-06T05:49:00.140Z</lastmod>
     

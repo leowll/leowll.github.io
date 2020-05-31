@@ -164,6 +164,95 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://leowll.com/2011/11/14/hibernate-call-procedure/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Leo Wang">
+      <meta itemprop="description" content="Tech & Life">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Leo's notepad">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2011/11/14/hibernate-call-procedure/" class="post-title-link" itemprop="url">使用Hibernate调用存储过程，及简单的实体映射</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2011-11-14 14:51:10" itemprop="dateCreated datePublished" datetime="2011-11-14T14:51:10+09:00">2011-11-14</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2018-06-06 23:07:25" itemprop="dateModified" datetime="2018-06-06T23:07:25+09:00">2018-06-06</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/知识/" itemprop="url" rel="index"><span itemprop="name">知识</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2011/11/14/hibernate-call-procedure/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2011/11/14/hibernate-call-procedure/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>在使用Hibernate+Struts2进行项目开发的时候，有时需要对数据库中的多个表进行连接操作。 为了减少访问数据库的次数，可以将连接表的操作写入到procedure即存储过程当中。 通过procedure进行多个表的连接，然后返回查询结果。 查询结果中包含原本属于多个实体的多个属性。 于是可以构建一个实体类 MyEntity，在hibernate的MyEntity.hbm.xml中可以这样写：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version="1.0"?&gt;</span><br><span class="line"><span class="meta">&lt;!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"</span></span><br><span class="line"><span class="meta">"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd"&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">hibernate-mapping</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">class</span> <span class="attr">name</span>=<span class="string">"model.YourEntity"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">id</span> <span class="attr">name</span>=<span class="string">"yourEntityID"</span>&gt;</span><span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"yourEntityProperty1"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">class</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">sql-query</span> <span class="attr">name</span>=<span class="string">"callYourProcedure"</span> <span class="attr">callable</span>=<span class="string">"true"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">return</span> <span class="attr">class</span>=<span class="string">"model.YourEntity"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">return-property</span> <span class="attr">name</span>=<span class="string">"yourEntityID"</span></span></span><br><span class="line"><span class="tag"><span class="attr">column</span>=<span class="string">"yourTableID"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">return-property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">return-property</span> <span class="attr">name</span>=<span class="string">"yourEntityProperty1"</span></span></span><br><span class="line"><span class="tag"><span class="attr">column</span>=<span class="string">"yourTableProperty1"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">return-property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">return</span>&gt;</span></span><br><span class="line">&#123;call yourProcedureName&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">sql-query</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">hibernate-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>而相应的Java实体类中要包含相应的属性和getter/setter。 procedure返回的查询结果的列名也要一一对应。 这样我们就不需要将Java实体类映射到数据库中具体的表了，只需要映射存储过程就行了。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="http://leowll.com/2011/11/11/extjs-file-download-ajax-asyn/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1187,102 +1276,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://leowll.com/2010/09/28/how-to-writeGRE-Analytical-Writing/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Leo Wang">
-      <meta itemprop="description" content="Tech & Life">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Leo's notepad">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2010/09/28/how-to-writeGRE-Analytical-Writing/" class="post-title-link" itemprop="url">怎样写一篇完美的GRE Analytical Writing文章？</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2010-09-28 20:47:57" itemprop="dateCreated datePublished" datetime="2010-09-28T20:47:57+09:00">2010-09-28</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2018-06-06 14:49:00" itemprop="dateModified" datetime="2018-06-06T14:49:00+09:00">2018-06-06</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/未分类/" itemprop="url" rel="index"><span itemprop="name">未分类</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus: </span>
-    
-    <a title="disqus" href="/2010/09/28/how-to-writeGRE-Analytical-Writing/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2010/09/28/how-to-writeGRE-Analytical-Writing/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><a href="http://www.associatedcontent.com/article/288005/how_to_write_a_perfect_gre_analytical.html?cat=4&amp;com=2" target="_blank" rel="noopener">by Lea Barton June 28,2007</a>（翻译自本链接）</p>
-<p>GRE AW是我的专长。写一篇完美的GRE AW不是件容易的事，事实上挺难的，只有4%的GRE考生能写出这样的文章。在本文中，我将一步步地说明我是怎样在GRE AW中取得完美的分数的。照这样做你也能写出好文章。</p>
-<p><strong>第一步：仔细阅读题目，至少读上三遍，把题理解透。</strong>GRE的AW由两部分构成，在第一部分中你可以在两篇（issue）中选一篇写，第二部分（argument）你就没得选了。不管写哪一部分，都要仔细读题。</p>
-<p><strong>第二步：写正确，审慎，完整的主题陈述（thesis statement）。</strong>还记得初中时候写的那些么？跟那差不多，别发挥创造力或者用什么华丽辞藻，也别太掉书袋。直奔主题就是了。如果问题是关于1700年代法国民族主义的变化和延续性的，要保证你的主题陈述写成这样子：”In the 1700s in France, nationalism caused changes such as [插入变化的例子], while many continuities such as [插入延续性的例子] balanced the system on the whole, setting the stage for future revolution.”把主题陈述放在文章开头第一段，点出”changes“和”continuity“——最重要的是每个方面都附带一两个例子——所有这些都写在一个句子中，然后围绕这个主题展开。</p>
-<p><strong>第三步：找出你文章的观点，一个个阐述，每一个观点一段。</strong>找到（上例中）每一个”change“，解释它，并用具体的例子来支撑它，提及某一事件，某个作者等等。在写”continuity“的时候也一样。不管是谁批阅你的文章，他们都在找这些点。别太含糊和笼统，尽一切可能的具体化（specific）。要保证你的文章中有至少4个具体的例子。</p>
-<p><strong>第四步：不仅要叙述还要分析。</strong>在文章当中讲个故事挺容易，但这是分析性写作（analytical Writing），所以你还得分析。针对你提供的信息进行分析，一步步来。要保证文章中有至少2到3句具体的高度分析性的句子。</p>
-<p><strong>第五步：把你的文章和其它不同的领域联系起来。</strong>如果文章是关于法国历史的，你可以讨论一下法国的民族主义对美国或欧洲其它地区的影响。如果你的文章是关于美国K-12免费教育问题的，联系一下更高年级的教育问题。</p>
-<p><strong>第六步：在最后一段当中用一种全新的方式重新陈述一下主题。</strong>这样你就能重新点题，有画龙点睛之效。</p>
-<p>就是这样！我用这种方法在去年冬天的GRE考试的写作部分取得完美的成绩。要是这招考数学的时候也管用就好了！祝你好运！</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1352,7 +1345,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">42</span>
+          <span class="site-state-item-count">43</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -1365,7 +1358,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">68</span>
+        <span class="site-state-item-count">71</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
