@@ -164,6 +164,84 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://leowll.com/2020/11/26/20201127 how to update pandorabox via ssh/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Leo Wang">
+      <meta itemprop="description" content="Tech & Life">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Leo's notepad">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/11/26/20201127 how to update pandorabox via ssh/" class="post-title-link" itemprop="url">How to update PandoraBox via ssh 通过SSH升级旧版本PandoraBox</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-11-27 09:33:00 / Modified: 09:41:48" itemprop="dateCreated datePublished" datetime="2020-11-27T09:33:00+09:00">2020-11-27</time>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2020/11/26/20201127 how to update pandorabox via ssh/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/11/26/20201127 how to update pandorabox via ssh/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>记录一下升级PandoraBox差点变砖，却成功挽救的经历。</p>
+<h1 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h1><p>之前通过刷机把自家的小米路由器3Pro升级到了PandoraBox系统。<br>之后就一直放着没有用，后来偶然的机会发现PandoraBox升级了好几个版本，就想着把自己的路由器也升级一下。</p>
+<h1 id="第一次升级"><a href="#第一次升级" class="headerlink" title="第一次升级"></a>第一次升级</h1><p>本以为通过Pandorabox系统自带的升级功能，选择固件更新，再上传system upgrade文件就可以了，结果直接变半砖。<br>升级完之后无线不可用，指示灯闪烁。还想着再刷回R3P自带的系统，结果也不成功。<br>好像第一次升级成PandoraBox之后就无法回退到厂家自带的系统了。至于原理自己不了解，有懂的朋友请赐教。</p>
+<h1 id="第二次升级"><a href="#第二次升级" class="headerlink" title="第二次升级"></a>第二次升级</h1><p>就在一筹莫展的时候，想起来路由器可以通过网线连接，结果连上之后，ssh竟然连上了。<br>系统的密码是root/admin.</p>
+<p>接下来跟着网上的教程照猫画虎，因为ssh可用，所以通过wscp软件将需要升级的系统文件上传到路由器的/tmp文件夹中。<br>接下来通过执行以下命令，顺利实现了升级!</p>
+<p><code>mtd -r write /tmp/XXX.img Bootloader</code></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="http://leowll.com/2020/05/31/20200601 how to include jQuery into Vue without npm/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1030,109 +1108,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://leowll.com/2018/06/07/why-java-md5-0xff/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Leo Wang">
-      <meta itemprop="description" content="Tech & Life">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Leo's notepad">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2018/06/07/why-java-md5-0xff/" class="post-title-link" itemprop="url">为什么Java取MD5哈希值的时候要&0xff</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2018-06-08 03:50:39 / Modified: 17:26:25" itemprop="dateCreated datePublished" datetime="2018-06-08T03:50:39+09:00">2018-06-08</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/技术/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus: </span>
-    
-    <a title="disqus" href="/2018/06/07/why-java-md5-0xff/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/06/07/why-java-md5-0xff/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>想要得到字符串的MD5哈希值怎么办？<br>先来了解一下MD5哈希值的概念。</p>
-<h2 id="MD5散列"><a href="#MD5散列" class="headerlink" title="MD5散列"></a>MD5散列</h2><p>一般128位的MD5散列被表示为32位十六进制数字。以下是一个43位长的仅ASCII字母列的MD5散列：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">MD5(<span class="string">"The quick brown fox jumps over the lazy dog"</span>)</span><br><span class="line">= <span class="number">9e107</span>d9d372bb6826bd81d3542a419d6</span><br></pre></td></tr></table></figure></p>
-<p>即使在原文中作一个小变化（比如用c取代d）其散列也会发生巨大的变化：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">MD5(<span class="string">"The quick brown fox jumps over the lazy cog"</span>)</span><br><span class="line">= <span class="number">1055</span>d3e698d289f2af8663725127bd4b</span><br></pre></td></tr></table></figure></p>
-<p>也就是说，给你一串字符串，你要把它转换成固定长度的散列。</p>
-<p>##用Java来实现MD5哈希值<br>Java中可以这样实现:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">String password = <span class="string">"123456"</span>;</span><br><span class="line">		</span><br><span class="line">   MessageDigest md = MessageDigest.getInstance(<span class="string">"MD5"</span>);</span><br><span class="line">   md.update(password.getBytes());</span><br><span class="line">   <span class="keyword">byte</span> byteData[] = md.digest();</span><br><span class="line">		</span><br><span class="line">   <span class="comment">//convert the byte to hex format method 1</span></span><br><span class="line">   StringBuffer sb = <span class="keyword">new</span> StringBuffer();</span><br><span class="line">   <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; byteData.length; i++) &#123;</span><br><span class="line">    sb.append(Integer.toString((byteData[i] &amp; <span class="number">0xff</span>) + <span class="number">0x100</span>, <span class="number">16</span>).substring(<span class="number">1</span>));</span><br><span class="line">   &#125;</span><br><span class="line">   System.out.println(<span class="string">"Digest(in hex format):: "</span> + sb.toString());</span><br></pre></td></tr></table></figure></p>
-<h2 id="byte数值转换为int数值时的注意事项"><a href="#byte数值转换为int数值时的注意事项" class="headerlink" title="byte数值转换为int数值时的注意事项"></a>byte数值转换为int数值时的注意事项</h2><p>那么问题来了，下面这行代码做的是啥？<br><code>Integer.toString((byteData[i] &amp; 0xff) + 0x100, 16).substring(1)</code><br>这行语句其实是将byteData中的byte类型的数据转换成十六进制的数据进行表示。<br>为什么这么复杂？<br>是因为要考虑到byteData中的负数。</p>
-<p>考虑一下下面这段代码，试图将byte类型表示为16进制形式的字符串<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">testByteInt</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">byte</span> a = <span class="number">127</span>;</span><br><span class="line">	print(a);</span><br><span class="line">	<span class="keyword">byte</span> b = -<span class="number">127</span>;</span><br><span class="line">	print(b);</span><br><span class="line">	<span class="keyword">byte</span> c = <span class="number">2</span>;</span><br><span class="line">	print(c);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">print</span><span class="params">(<span class="keyword">byte</span> b)</span> </span>&#123;</span><br><span class="line">	System.out.println(Integer.toBinaryString(b));</span><br><span class="line">	System.out.println(Integer.toBinaryString(b &amp; <span class="number">0xff</span>));</span><br><span class="line">	System.out.println(Integer.toHexString(b));</span><br><span class="line">	System.out.println(Integer.toHexString(b &amp; <span class="number">0xff</span>));</span><br><span class="line">	System.out.println(Integer.toString(b, <span class="number">16</span>));</span><br><span class="line">	System.out.println(Integer.toString(b &amp; <span class="number">0xff</span>, <span class="number">16</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>运行结果：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">1111111</span><br><span class="line">1111111</span><br><span class="line">7f</span><br><span class="line">7f</span><br><span class="line">7f</span><br><span class="line">7f</span><br><span class="line">11111111111111111111111110000001</span><br><span class="line">10000001</span><br><span class="line">ffffff81</span><br><span class="line">81</span><br><span class="line">-7f</span><br><span class="line">81</span><br><span class="line">10</span><br><span class="line">10</span><br><span class="line">2</span><br><span class="line">2</span><br><span class="line">2</span><br><span class="line">2</span><br></pre></td></tr></table></figure></p>
-<p>从输出结果可以看出几个问题。</p>
-<ul>
-<li>String的几个函数接收byte类型的参数时自动将其转换为int类型</li>
-<li>int类型的负数<code>-127</code>用2进制数据来表示的时候，会用符号位补全，变成<code>11111111111111111111111110000001</code>, 而这个2进制的数据再用16进制来表示的时候却成了<code>ffffff81</code>，与<code>-127</code>的16进制表示<strong>不一致</strong>。</li>
-<li>负数的十六进制表现形式例如<code>-7f</code>不符合哈希值的要求。哈希值中不能带有负号。所以需要将其转换一下。</li>
-<li>比较小的数值，例如<code>2</code>，转换成的16进制字符串也是<code>2</code>，不符合哈希值的长度要求。哈希值要求每个byte用2个16进制的字符来表示。</li>
-</ul>
-<p>要解决上面两个问题，前面的java程序给出的答案是：</p>
-<ul>
-<li>用<code>&amp; 0xff</code>来对byte数值进行补零扩展</li>
-<li>用<code>+ 0x100</code>来保证每个数转换成16进制后会得到3个字符</li>
-<li>用<code>.subString(1)</code>来去掉3个字符的第一个字符</li>
-</ul>
-<p>这样就能得到2个16进制的字符了。<br>循环一遍，就能得到相应的MD5哈希字符串了。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1202,7 +1177,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">43</span>
+          <span class="site-state-item-count">44</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -1215,7 +1190,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">71</span>
+        <span class="site-state-item-count">74</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>

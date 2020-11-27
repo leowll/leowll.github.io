@@ -164,6 +164,100 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://leowll.com/2015/10/27/python-datetime-to-utc-timestamp/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Leo Wang">
+      <meta itemprop="description" content="Tech & Life">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Leo's notepad">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2015/10/27/python-datetime-to-utc-timestamp/" class="post-title-link" itemprop="url">在Python中将datetime字符串转换为utc timestamp</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2015-10-27 23:57:30" itemprop="dateCreated datePublished" datetime="2015-10-27T23:57:30+09:00">2015-10-27</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2018-06-06 22:57:21" itemprop="dateModified" datetime="2018-06-06T22:57:21+09:00">2018-06-06</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/技术/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/技术/知识/" itemprop="url" rel="index"><span itemprop="name">知识</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2015/10/27/python-datetime-to-utc-timestamp/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/10/27/python-datetime-to-utc-timestamp/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>在python中有很多方法将datetime的字符串转换为 utc timestamp 网上找了好多，看起来都纷繁复杂。本文就想简单的做好一件事，就是将datetime的字符串转换为utc timestamp。 理解这个转换的关键，在于理解python中所有的日期字符串都被python解读为local time。 也就是说，同样是’2015/10/27 00:00:00’这个字符串，虽然身处东京的我和身在伦敦的你看到的是同一个字符串，但他们本身被python解读为两个不同地方的日期和时间。 如果想让python不去理会时差，而只想要utc格式的时间戳的话，用calendar.timegm()函数即可实现。 现举例如下：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">\<span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line">\_\_author\_\_ = <span class="string">'leo'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> datetime <span class="keyword">import</span> datetime</span><br><span class="line"><span class="keyword">import</span> calendar</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">local</span>\<span class="title">_to</span>\<span class="title">_utc</span><span class="params">(date_value)</span>:</span></span><br><span class="line">    utc\_timetuple = datetime.strptime(date\_value, <span class="string">'%Y/%m/%d %H:%M:%S'</span>).timetuple()</span><br><span class="line">    ts = calendar.timegm(utc_timetuple)</span><br><span class="line">    <span class="keyword">return</span> ts * <span class="number">1000</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">local</span>\<span class="title">_timestamp</span><span class="params">(date\_value)</span>:</span></span><br><span class="line">    utc\_timetuple = datetime.strptime(date\_value, <span class="string">'%Y/%m/%d %H:%M:%S'</span>).timetuple()</span><br><span class="line">    ts = time.mktime(utc_timetuple)</span><br><span class="line">    <span class="keyword">return</span> int(ts) * <span class="number">1000</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">date_str = <span class="string">'2015/10/27 00:00:00'</span></span><br><span class="line"><span class="keyword">print</span> local\_to\_utc(date_str)</span><br><span class="line"><span class="keyword">print</span> local\_timestamp(date\_str)</span><br></pre></td></tr></table></figure></p>
+<p>最后打印的结果，可以看到两个函数输出的时间戳是不一样的。（P.S.笔者在东九区）</p>
+<p>1445904000000<br>1445871600000</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="http://leowll.com/2015/10/25/ssrs-paging-3moves/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1001,115 +1095,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://leowll.com/2011/11/18/office2010-applicationvnd-mime-type/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Leo Wang">
-      <meta itemprop="description" content="Tech & Life">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Leo's notepad">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2011/11/18/office2010-applicationvnd-mime-type/" class="post-title-link" itemprop="url">Office2010中各种文件对应的application/vnd mime type</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2011-11-18 14:21:38" itemprop="dateCreated datePublished" datetime="2011-11-18T14:21:38+09:00">2011-11-18</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2018-06-06 14:49:00" itemprop="dateModified" datetime="2018-06-06T14:49:00+09:00">2018-06-06</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/技术/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus: </span>
-    
-    <a title="disqus" href="/2011/11/18/office2010-applicationvnd-mime-type/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2011/11/18/office2010-applicationvnd-mime-type/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <ul>
-<li><strong>.docm:</strong>application/vnd.ms-word.document.macroEnabled.12</li>
-<li><strong>.docx:</strong> application/vnd.openxmlformats-officedocument.wordprocessingml.document</li>
-<li><strong>.dotm: </strong>application/vnd.ms-word.template.macroEnabled.12</li>
-<li><strong>.dotx:</strong> application/vnd.openxmlformats-officedocument.wordprocessingml.template</li>
-<li><strong>.ppsm: </strong>application/vnd.ms-powerpoint.slideshow.macroEnabled.12</li>
-<li><strong>.ppsx:</strong> application/vnd.openxmlformats-officedocument.presentationml.slideshow</li>
-<li><strong>.pptm:</strong> application/vnd.ms-powerpoint.presentation.macroEnabled.12</li>
-<li><strong>.pptx:</strong> application/vnd.openxmlformats-officedocument.presentationml.presentation</li>
-<li><strong>.xlsb:</strong> application/vnd.ms-excel.sheet.binary.macroEnabled.12</li>
-<li><strong>.xlsm:</strong> application/vnd.ms-excel.sheet.macroEnabled.12</li>
-<li><strong>.xlsx: </strong>application/vnd.openxmlformats-officedocument.spreadsheetml.sheet</li>
-<li><strong>.xps:</strong> application/vnd.ms-xpsdocument</li>
-<li><strong>.potm:</strong> application/vnd.ms-powerpoint.template.macroEnabled.12</li>
-<li><strong>.potx:</strong> application/vnd.openxmlformats-officedocument.presentationml.template</li>
-<li><strong>.ppam:</strong> application/vnd.ms-powerpoint.addin.macroEnabled.12</li>
-<li><strong>.pptm:</strong> application/vnd.ms-powerpoint.presentation.macroEnabled.12</li>
-<li><strong>.xlam:</strong> application/vnd.ms-excel.addin.macroEnabled.12</li>
-<li><strong>.xlsb:</strong> application/vnd.ms-excel.sheet.binary.macroEnabled.12</li>
-<li><strong>.xltm:</strong> application/vnd.ms-excel.template.macroEnabled.12</li>
-<li><strong>.xltx:</strong> application/vnd.openxmlformats-officedocument.spreadsheetml</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1179,7 +1164,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">43</span>
+          <span class="site-state-item-count">44</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -1192,7 +1177,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">71</span>
+        <span class="site-state-item-count">74</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>

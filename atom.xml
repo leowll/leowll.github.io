@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://leowll.com/"/>
-  <updated>2020-05-31T23:33:27.000Z</updated>
+  <updated>2020-11-27T00:41:48.000Z</updated>
   <id>http://leowll.com/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>How to update PandoraBox via ssh 通过SSH升级旧版本PandoraBox</title>
+    <link href="http://leowll.com/2020/11/26/20201127%20how%20to%20update%20pandorabox%20via%20ssh/"/>
+    <id>http://leowll.com/2020/11/26/20201127 how to update pandorabox via ssh/</id>
+    <published>2020-11-27T00:33:00.000Z</published>
+    <updated>2020-11-27T00:41:48.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>记录一下升级PandoraBox差点变砖，却成功挽救的经历。</p><h1 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h1><p>之前通过刷机把自家的小米路由器3Pro升级到了PandoraBox系统。<br>之后就一直放着没有用，后来偶然的机会发现PandoraBox升级了好几个版本，就想着把自己的路由器也升级一下。</p><h1 id="第一次升级"><a href="#第一次升级" class="headerlink" title="第一次升级"></a>第一次升级</h1><p>本以为通过Pandorabox系统自带的升级功能，选择固件更新，再上传system upgrade文件就可以了，结果直接变半砖。<br>升级完之后无线不可用，指示灯闪烁。还想着再刷回R3P自带的系统，结果也不成功。<br>好像第一次升级成PandoraBox之后就无法回退到厂家自带的系统了。至于原理自己不了解，有懂的朋友请赐教。</p><h1 id="第二次升级"><a href="#第二次升级" class="headerlink" title="第二次升级"></a>第二次升级</h1><p>就在一筹莫展的时候，想起来路由器可以通过网线连接，结果连上之后，ssh竟然连上了。<br>系统的密码是root/admin.</p><p>接下来跟着网上的教程照猫画虎，因为ssh可用，所以通过wscp软件将需要升级的系统文件上传到路由器的/tmp文件夹中。<br>接下来通过执行以下命令，顺利实现了升级!</p><p><code>mtd -r write /tmp/XXX.img Bootloader</code></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;记录一下升级PandoraBox差点变砖，却成功挽救的经历。&lt;/p&gt;
+&lt;h1 id=&quot;起因&quot;&gt;&lt;a href=&quot;#起因&quot; class=&quot;headerlink&quot; title=&quot;起因&quot;&gt;&lt;/a&gt;起因&lt;/h1&gt;&lt;p&gt;之前通过刷机把自家的小米路由器3Pro升级到了PandoraBo
+      
+    
+    </summary>
+    
+    
+      <category term="PandoraBox" scheme="http://leowll.com/tags/PandoraBox/"/>
+    
+      <category term="Xiaomi R3P" scheme="http://leowll.com/tags/Xiaomi-R3P/"/>
+    
+      <category term="小米路由器3 Pro" scheme="http://leowll.com/tags/%E5%B0%8F%E7%B1%B3%E8%B7%AF%E7%94%B1%E5%99%A83-Pro/"/>
+    
+  </entry>
   
   <entry>
     <title>How to include jQuery into Vue without npm install</title>
@@ -574,39 +602,6 @@
       <category term="uwsgi nginx" scheme="http://leowll.com/tags/uwsgi-nginx/"/>
     
       <category term="负载均衡" scheme="http://leowll.com/tags/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>在Python中将datetime字符串转换为utc timestamp</title>
-    <link href="http://leowll.com/2015/10/27/python-datetime-to-utc-timestamp/"/>
-    <id>http://leowll.com/2015/10/27/python-datetime-to-utc-timestamp/</id>
-    <published>2015-10-27T14:57:30.000Z</published>
-    <updated>2018-06-06T13:57:21.507Z</updated>
-    
-    <content type="html"><![CDATA[<p>在python中有很多方法将datetime的字符串转换为 utc timestamp 网上找了好多，看起来都纷繁复杂。本文就想简单的做好一件事，就是将datetime的字符串转换为utc timestamp。 理解这个转换的关键，在于理解python中所有的日期字符串都被python解读为local time。 也就是说，同样是’2015/10/27 00:00:00’这个字符串，虽然身处东京的我和身在伦敦的你看到的是同一个字符串，但他们本身被python解读为两个不同地方的日期和时间。 如果想让python不去理会时差，而只想要utc格式的时间戳的话，用calendar.timegm()函数即可实现。 现举例如下：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">\<span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line">\_\_author\_\_ = <span class="string">'leo'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> datetime <span class="keyword">import</span> datetime</span><br><span class="line"><span class="keyword">import</span> calendar</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">local</span>\<span class="title">_to</span>\<span class="title">_utc</span><span class="params">(date_value)</span>:</span></span><br><span class="line">    utc\_timetuple = datetime.strptime(date\_value, <span class="string">'%Y/%m/%d %H:%M:%S'</span>).timetuple()</span><br><span class="line">    ts = calendar.timegm(utc_timetuple)</span><br><span class="line">    <span class="keyword">return</span> ts * <span class="number">1000</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">local</span>\<span class="title">_timestamp</span><span class="params">(date\_value)</span>:</span></span><br><span class="line">    utc\_timetuple = datetime.strptime(date\_value, <span class="string">'%Y/%m/%d %H:%M:%S'</span>).timetuple()</span><br><span class="line">    ts = time.mktime(utc_timetuple)</span><br><span class="line">    <span class="keyword">return</span> int(ts) * <span class="number">1000</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">date_str = <span class="string">'2015/10/27 00:00:00'</span></span><br><span class="line"><span class="keyword">print</span> local\_to\_utc(date_str)</span><br><span class="line"><span class="keyword">print</span> local\_timestamp(date\_str)</span><br></pre></td></tr></table></figure></p><p>最后打印的结果，可以看到两个函数输出的时间戳是不一样的。（P.S.笔者在东九区）</p><p>1445904000000<br>1445871600000</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;在python中有很多方法将datetime的字符串转换为 utc timestamp 网上找了好多，看起来都纷繁复杂。本文就想简单的做好一件事，就是将datetime的字符串转换为utc timestamp。 理解这个转换的关键，在于理解python中所有的日期字符串都被
-      
-    
-    </summary>
-    
-      <category term="技术" scheme="http://leowll.com/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-      <category term="知识" scheme="http://leowll.com/categories/%E6%8A%80%E6%9C%AF/%E7%9F%A5%E8%AF%86/"/>
-    
-    
-      <category term="datetime" scheme="http://leowll.com/tags/datetime/"/>
-    
-      <category term="python" scheme="http://leowll.com/tags/python/"/>
-    
-      <category term="timestamp" scheme="http://leowll.com/tags/timestamp/"/>
-    
-      <category term="utc timestamp" scheme="http://leowll.com/tags/utc-timestamp/"/>
     
   </entry>
   
