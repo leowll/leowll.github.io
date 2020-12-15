@@ -92,9 +92,9 @@
     </summary>
     
     
-      <category term="SAP" scheme="http://leowll.com/tags/SAP/"/>
-    
       <category term="SAPUI5" scheme="http://leowll.com/tags/SAPUI5/"/>
+    
+      <category term="SAP" scheme="http://leowll.com/tags/SAP/"/>
     
       <category term="json" scheme="http://leowll.com/tags/json/"/>
     
@@ -121,11 +121,11 @@
     </summary>
     
     
+      <category term="SAP" scheme="http://leowll.com/tags/SAP/"/>
+    
       <category term="SCPI" scheme="http://leowll.com/tags/SCPI/"/>
     
       <category term="SAP Cloud Platform Integration" scheme="http://leowll.com/tags/SAP-Cloud-Platform-Integration/"/>
-    
-      <category term="SAP" scheme="http://leowll.com/tags/SAP/"/>
     
       <category term="groovy" scheme="http://leowll.com/tags/groovy/"/>
     
