@@ -28,7 +28,7 @@
 <meta property="og:site_name" content="Leo&#39;s notepad">
 <meta property="og:description" content="背景Spring Batch默认的JobLauncher执行Job的方式是同步的。如果需要执行异步Job，则需要定义能执行异步Job的JobLauncher。 解决办法 在Configuration Class中定义SimpleJobLauncher, 设置其TaskExecutor为异步的SimpleAsyncTaskExecutor 1234567891011@Configuration@En">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-09-04T04:33:32.000Z">
+<meta property="og:updated_time" content="2021-08-12T04:56:35.008Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Spring Batch执行异步Job的方法">
 <meta name="twitter:description" content="背景Spring Batch默认的JobLauncher执行Job的方式是同步的。如果需要执行异步Job，则需要定义能执行异步Job的JobLauncher。 解决办法 在Configuration Class中定义SimpleJobLauncher, 设置其TaskExecutor为异步的SimpleAsyncTaskExecutor 1234567891011@Configuration@En">
@@ -197,7 +197,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-09-04 13:33:32" itemprop="dateModified" datetime="2019-09-04T13:33:32+09:00">2019-09-04</time>
+                <time title="Modified: 2021-08-12 13:56:35" itemprop="dateModified" datetime="2021-08-12T13:56:35+09:00">2021-08-12</time>
               </span>
 
           
@@ -231,7 +231,7 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="meta">@EnableBatchProcessing</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BatchConfiguration</span> </span>&#123;</span><br><span class="line">	<span class="meta">@Bean</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> SimpleJobLauncher <span class="title">simpleJobLauncher</span><span class="params">(JobRepository jobRepository)</span></span>&#123;</span><br><span class="line">	    SimpleJobLauncher jobLauncher = <span class="keyword">new</span> SimpleJobLauncher();</span><br><span class="line">	    jobLauncher.setJobRepository(jobRepository);</span><br><span class="line">	    jobLauncher.setTaskExecutor(<span class="keyword">new</span> SimpleAsyncTaskExecutor());</span><br><span class="line">	    <span class="keyword">return</span> jobLauncher;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>在调用Launcher的主程序中设置自动注入，就可以使用了。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Autowired</span></span><br><span class="line">SimpleJobLauncher simpleJobLauncher;</span><br><span class="line"><span class="meta">@Autowired</span></span><br><span class="line">Job job1;</span><br><span class="line"><span class="meta">@Autowired</span></span><br><span class="line">Job jo2;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">(ApplicationArguments args)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">	logger.info(<span class="string">"##### run async jobs #####"</span>);</span><br><span class="line">	simpleJobLauncher.run(job1, jobParameters);</span><br><span class="line">	simpleJobLauncher.run(job2, jobParameters);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Autowired</span></span><br><span class="line">SimpleJobLauncher simpleJobLauncher;</span><br><span class="line"><span class="meta">@Autowired</span></span><br><span class="line">Job job1;</span><br><span class="line"><span class="meta">@Autowired</span></span><br><span class="line">Job job2;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">(ApplicationArguments args)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">	logger.info(<span class="string">"##### run async jobs #####"</span>);</span><br><span class="line">	simpleJobLauncher.run(job1, jobParameters);</span><br><span class="line">	simpleJobLauncher.run(job2, jobParameters);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
 
@@ -388,7 +388,7 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2020</span>
+  <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
