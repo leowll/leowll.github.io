@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 3.7.1">
+<meta name="generator" content="Hexo 6.0.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -26,11 +26,11 @@
 <meta property="og:url" content="http://leowll.com/2011/11/11/extjs-file-download-ajax-asyn/index.html">
 <meta property="og:site_name" content="Leo&#39;s notepad">
 <meta property="og:description" content="一开始想通过Ajax异步方式（Ext.Ajax.request())实现文件下载，却一直没有成功。 在firebug中查看response的时候，发现Ajax异步方式，服务器端将文件的2进制流写入了XMLHTTPRequest对象，于是一直无法将文件取出。 其实一开始的时候思路就是错的，下载文件不能通过异步方式实现。 那么怎样在Extjs中实现Ajax式（不刷新页面，只弹出下载对话框）的下载呢？">
-<meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-06-06T14:08:23.804Z">
+<meta property="og:locale">
+<meta property="article:published_time" content="2011-11-11T06:44:14.000Z">
+<meta property="article:modified_time" content="2018-06-06T14:08:23.000Z">
+<meta property="article:author" content="Leo Wang">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Extjs中文件下载的实现以及Ajax异步问题">
-<meta name="twitter:description" content="一开始想通过Ajax异步方式（Ext.Ajax.request())实现文件下载，却一直没有成功。 在firebug中查看response的时候，发现Ajax异步方式，服务器端将文件的2进制流写入了XMLHTTPRequest对象，于是一直无法将文件取出。 其实一开始的时候思路就是错的，下载文件不能通过异步方式实现。 那么怎样在Extjs中实现Ajax式（不刷新页面，只弹出下载对话框）的下载呢？">
 
 <link rel="canonical" href="http://leowll.com/2011/11/11/extjs-file-download-ajax-asyn/">
 
@@ -204,7 +204,7 @@
               </span>
               <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/技术/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
                 </span>
             </span>
 
@@ -233,7 +233,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>一开始想通过Ajax异步方式（Ext.Ajax.request())实现文件下载，却一直没有成功。 在firebug中查看response的时候，发现Ajax异步方式，服务器端将文件的2进制流写入了XMLHTTPRequest对象，于是一直无法将文件取出。 其实一开始的时候思路就是错的，下载文件不能通过异步方式实现。 那么怎样在Extjs中实现Ajax式（不刷新页面，只弹出下载对话框）的下载呢？ 只需要在body中创建一个隐藏（hidden）表单（form）就可以了。 比如下载按钮的handler可以写成下面这种形式：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">handler : <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> body = Ext.getBody();</span><br><span class="line">    <span class="keyword">var</span> frame = body.createChild(&#123;</span><br><span class="line">        tag: <span class="string">'iframe'</span></span><br><span class="line">        , <span class="attr">cls</span>: <span class="string">'x-hidden'</span></span><br><span class="line">        , <span class="attr">id</span>: <span class="string">'iframe'</span></span><br><span class="line">        , <span class="attr">name</span>: <span class="string">'iframe'</span></span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> form = body.createChild(&#123;</span><br><span class="line">        tag: <span class="string">'form'</span>,</span><br><span class="line">        cls: <span class="string">'x-hidden'</span>,</span><br><span class="line">        id: <span class="string">'form'</span>,</span><br><span class="line">        action: <span class="string">'your-action-URL'</span>,</span><br><span class="line">        target: <span class="string">'iframe'</span></span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    form.dom.submit();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+        <p>一开始想通过Ajax异步方式（Ext.Ajax.request())实现文件下载，却一直没有成功。 在firebug中查看response的时候，发现Ajax异步方式，服务器端将文件的2进制流写入了XMLHTTPRequest对象，于是一直无法将文件取出。 其实一开始的时候思路就是错的，下载文件不能通过异步方式实现。 那么怎样在Extjs中实现Ajax式（不刷新页面，只弹出下载对话框）的下载呢？ 只需要在body中创建一个隐藏（hidden）表单（form）就可以了。 比如下载按钮的handler可以写成下面这种形式：  </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">handler : <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> body = Ext.getBody();</span><br><span class="line">    <span class="keyword">var</span> frame = body.createChild(&#123;</span><br><span class="line">        <span class="attr">tag</span>: <span class="string">&#x27;iframe&#x27;</span></span><br><span class="line">        , <span class="attr">cls</span>: <span class="string">&#x27;x-hidden&#x27;</span></span><br><span class="line">        , <span class="attr">id</span>: <span class="string">&#x27;iframe&#x27;</span></span><br><span class="line">        , <span class="attr">name</span>: <span class="string">&#x27;iframe&#x27;</span></span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> form = body.createChild(&#123;</span><br><span class="line">        <span class="attr">tag</span>: <span class="string">&#x27;form&#x27;</span>,</span><br><span class="line">        <span class="attr">cls</span>: <span class="string">&#x27;x-hidden&#x27;</span>,</span><br><span class="line">        <span class="attr">id</span>: <span class="string">&#x27;form&#x27;</span>,</span><br><span class="line">        <span class="attr">action</span>: <span class="string">&#x27;your-action-URL&#x27;</span>,</span><br><span class="line">        <span class="attr">target</span>: <span class="string">&#x27;iframe&#x27;</span></span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    form.dom.submit();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
     </div>
 
@@ -249,7 +250,7 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2011/11/08/java-lang-noclassdeffounderror-netsfezmorphmorpher-e9-94-99-e8-af-af-e8-a7-a3-e5-86-b3-e5-8a-9e-e6-b3-95/" rel="prev" title="java.lang.NoClassDefFoundError: net/sf/ezmorph/Morpher错误解决办法">
+    <a href="/2011/11/09/java-lang-noclassdeffounderror-netsfezmorphmorpher-e9-94-99-e8-af-af-e8-a7-a3-e5-86-b3-e5-8a-9e-e6-b3-95/" rel="prev" title="java.lang.NoClassDefFoundError: net/sf/ezmorph/Morpher错误解决办法">
       <i class="fa fa-chevron-left"></i> java.lang.NoClassDefFoundError: net/sf/ezmorph/Morpher错误解决办法
     </a></div>
       <div class="post-nav-item">
@@ -334,7 +335,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">44</span>
+          <span class="site-state-item-count">45</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -347,17 +348,17 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">74</span>
+        <span class="site-state-item-count">77</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
 </div>
   <div class="links-of-author motion-element">
       <span class="links-of-author-item">
-        <a href="https://github.com/leowll" title="GitHub → https://github.com/leowll" rel="noopener" target="_blank"><i class="github fa-fw"></i>GitHub</a>
+        <a href="https://github.com/leowll" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;leowll" rel="noopener" target="_blank"><i class="github fa-fw"></i>GitHub</a>
       </span>
       <span class="links-of-author-item">
-        <a href="https://twitter.com/leowll" title="Twitter → https://twitter.com/leowll" rel="noopener" target="_blank"><i class="twitter fa-fw"></i>Twitter</a>
+        <a href="https://twitter.com/leowll" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;leowll" rel="noopener" target="_blank"><i class="twitter fa-fw"></i>Twitter</a>
       </span>
   </div>
 
@@ -382,13 +383,13 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2021</span>
+  <span itemprop="copyrightYear">2022</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Leo Wang</span>
 </div>
-  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
   </div>
 
         
@@ -408,9 +409,17 @@
   <script src="/lib/anime.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
-<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
 <script src="/js/schemes/pisces.js"></script>
+
+
 <script src="/js/next-boot.js"></script>
+
 
 
 

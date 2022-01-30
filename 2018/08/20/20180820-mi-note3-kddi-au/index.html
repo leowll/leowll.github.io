@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 3.7.1">
+<meta name="generator" content="Hexo 6.0.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -21,21 +21,24 @@
   </script>
 
   <meta name="description" content="前言有些朋友没有兴趣看我这啰嗦的记录可以直接跳到解决方案那一节。 小米的手机能不能在日本用？之前给老婆买了一台小米的Note3，办的是日本乐天（Rakuten Mobile）的格安SIM卡，装上之后时不时的断网。老婆一怒之下把手机扔给我说“难用死了，我要换手机！”  然后就去日本的Yodabashi Camera办了UQ Mobile的SIM卡，还送了一台华为P10 Lite。UQ Mobile的">
-<meta name="keywords" content="kddi au,mi note3,xiaomi,uq mobile">
 <meta property="og:type" content="article">
 <meta property="og:title" content="让你的小米手机能在日本使用">
 <meta property="og:url" content="http://leowll.com/2018/08/20/20180820-mi-note3-kddi-au/index.html">
 <meta property="og:site_name" content="Leo&#39;s notepad">
 <meta property="og:description" content="前言有些朋友没有兴趣看我这啰嗦的记录可以直接跳到解决方案那一节。 小米的手机能不能在日本用？之前给老婆买了一台小米的Note3，办的是日本乐天（Rakuten Mobile）的格安SIM卡，装上之后时不时的断网。老婆一怒之下把手机扔给我说“难用死了，我要换手机！”  然后就去日本的Yodabashi Camera办了UQ Mobile的SIM卡，还送了一台华为P10 Lite。UQ Mobile的">
-<meta property="og:locale" content="zh-Hans">
+<meta property="og:locale">
 <meta property="og:image" content="https://www.jiuwa.net/tuku/20170518/YIdH0tHF.jpg">
 <meta property="og:image" content="https://s1.ax1x.com/2018/08/21/P48BDg.md.jpg">
 <meta property="og:image" content="https://s1.ax1x.com/2018/08/21/P48DbQ.md.jpg">
 <meta property="og:image" content="https://s1.ax1x.com/2018/08/21/P48n9x.md.jpg">
-<meta property="og:updated_time" content="2020-04-07T07:12:04.000Z">
+<meta property="article:published_time" content="2018-08-20T12:54:50.000Z">
+<meta property="article:modified_time" content="2020-04-07T07:12:04.000Z">
+<meta property="article:author" content="Leo Wang">
+<meta property="article:tag" content="kddi au">
+<meta property="article:tag" content="mi note3">
+<meta property="article:tag" content="xiaomi">
+<meta property="article:tag" content="uq mobile">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="让你的小米手机能在日本使用">
-<meta name="twitter:description" content="前言有些朋友没有兴趣看我这啰嗦的记录可以直接跳到解决方案那一节。 小米的手机能不能在日本用？之前给老婆买了一台小米的Note3，办的是日本乐天（Rakuten Mobile）的格安SIM卡，装上之后时不时的断网。老婆一怒之下把手机扔给我说“难用死了，我要换手机！”  然后就去日本的Yodabashi Camera办了UQ Mobile的SIM卡，还送了一台华为P10 Lite。UQ Mobile的">
 <meta name="twitter:image" content="https://www.jiuwa.net/tuku/20170518/YIdH0tHF.jpg">
 
 <link rel="canonical" href="http://leowll.com/2018/08/20/20180820-mi-note3-kddi-au/">
@@ -232,13 +235,13 @@
       
         <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>有些朋友没有兴趣看我这啰嗦的记录可以直接跳到解决方案那一节。</p>
 <h1 id="小米的手机能不能在日本用？"><a href="#小米的手机能不能在日本用？" class="headerlink" title="小米的手机能不能在日本用？"></a>小米的手机能不能在日本用？</h1><p>之前给老婆买了一台小米的Note3，办的是日本乐天（Rakuten Mobile）的格安SIM卡，装上之后时不时的断网。老婆一怒之下把手机扔给我说“难用死了，我要换手机！”</p>
-<p><img src="https://www.jiuwa.net/tuku/20170518/YIdH0tHF.jpg" alt=""></p>
+<p><img src="https://www.jiuwa.net/tuku/20170518/YIdH0tHF.jpg"></p>
 <p>然后就去日本的Yodabashi Camera办了UQ Mobile的SIM卡，还送了一台华为P10 Lite。UQ Mobile的速度比我Line Mobile的卡不知道快了多少。<br>Line Mobile 在2017年初的时候速度还挺快，后来慢慢的用的人多了？速度就降了下来，用Speedtest测的话只能达到2Mbps左右的网速。而老婆的手机却能测得20Mbps，让人眼馋。</p>
 <p>我之前也是用的乐天，后来改用了Line Mobile。小米Note3貌似对日本的服务商支持不太好，我接过来之后装上也是时不时的断网。解决办法就是断网的时候就切换一下APN。看老婆的手机用的那么舒爽，于是决定也换成UQ Mobile，心想大不了也想原来一样上不了网的时候就切换一下APN嘛。</p>
 <h1 id="事与愿违"><a href="#事与愿违" class="headerlink" title="事与愿违"></a>事与愿违</h1><p>事实是我想的太简单了。刚开始装上SIM卡的时候，走出Yodobashi的大楼就不能用了，后来回到家里能用了一段时间，但是在上班路上电车里却总也连不上信号。就这样无信号的过了一整天。后来干脆显示为SIM卡无法识别。。。</p>
 <h1 id="折腾"><a href="#折腾" class="headerlink" title="折腾"></a>折腾</h1><p>因为一直显示不在服务区（SIM卡无法识别），我先回尝试了下面几种方法：</p>
 <h2 id="刷机"><a href="#刷机" class="headerlink" title="刷机"></a>刷机</h2><p>刷了MIUI9的国际版，测试不通过<br>刷了MIUI10，测试不通过</p>
-<h2 id="改基带"><a href="#改基带" class="headerlink" title="改基带"></a>改基带</h2><p>网上说日本和中国的运营商提供的基带不同，所以我在想是不是基带的问题。<br>UQ Mobile利用的是KDDI AU的线路，AU支持的LTE基带为<a href="https://www.frequencycheck.com/carriers/kddi-au-japan" target="_blank" rel="noopener">B1,B11,B18,B41</a><br>小米Note3<a href="https://www.mi.com/minote3/specs/" target="_blank" rel="noopener">支持的基带</a>为</p>
+<h2 id="改基带"><a href="#改基带" class="headerlink" title="改基带"></a>改基带</h2><p>网上说日本和中国的运营商提供的基带不同，所以我在想是不是基带的问题。<br>UQ Mobile利用的是KDDI AU的线路，AU支持的LTE基带为<a target="_blank" rel="noopener" href="https://www.frequencycheck.com/carriers/kddi-au-japan">B1,B11,B18,B41</a><br>小米Note3<a target="_blank" rel="noopener" href="https://www.mi.com/minote3/specs/">支持的基带</a>为</p>
 <ul>
 <li>FDD-LTE (频段 B1，B3，B5，B7，B8)</li>
 <li>TDD-LTE (频段 B34, B38，B39, B40, B41)</li>
@@ -248,9 +251,9 @@
 <li>CDMA1X/EVDO (频段 BC0)</li>
 </ul>
 <p>所以应该不是问题。</p>
-<p>但还是想<a href="https://gadget.hrksv.com/2017/01/05/post-858" target="_blank" rel="noopener">通过QTool</a> 来改一下基带。</p>
+<p>但还是想<a target="_blank" rel="noopener" href="https://gadget.hrksv.com/2017/01/05/post-858">通过QTool</a> 来改一下基带。</p>
 <p>结果还是不行。因为我买的是小米全网通版的Note3，默认已经支持了。</p>
-<h1 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h1><p>踏破铁鞋无觅处，得来全不费工夫。折腾到晚上1点，终于找到了解决方法。<br>这篇<a href="https://mymobile-wifi.com/xiaomi-mi-mix-2-cdma-lte" target="_blank" rel="noopener">日本人写的博客</a> 里提到了非常简单的解决方法：</p>
+<h1 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h1><p>踏破铁鞋无觅处，得来全不费工夫。折腾到晚上1点，终于找到了解决方法。<br>这篇<a target="_blank" rel="noopener" href="https://mymobile-wifi.com/xiaomi-mi-mix-2-cdma-lte">日本人写的博客</a> 里提到了非常简单的解决方法：</p>
 <h2 id="0-先确认一下自己有没有添加自己家运营商的APN"><a href="#0-先确认一下自己有没有添加自己家运营商的APN" class="headerlink" title="0. 先确认一下自己有没有添加自己家运营商的APN"></a>0. 先确认一下自己有没有添加自己家运营商的APN</h2><p>很多朋友说为什么我用了你的方法不管用，不显示信号。希望先确认一下这一步有没有做。<br>各自去自己用的SIM卡家的网站上看APN怎么设置，这里就不再赘述了。</p>
 <h2 id="1-添加VoLTE的APN"><a href="#1-添加VoLTE的APN" class="headerlink" title="1. 添加VoLTE的APN"></a>1. 添加VoLTE的APN</h2><ul>
 <li>NAME: ims</li>
@@ -261,11 +264,14 @@
 </ul>
 <p>这一步很多朋友添加ims的apn之后不显示，没有关系，能用就行。</p>
 <h2 id="2-将VoLTE的设备检测关掉"><a href="#2-将VoLTE的设备检测关掉" class="headerlink" title="2. 将VoLTE的设备检测关掉"></a>2. 将VoLTE的设备检测关掉</h2><p>通过电话拨打<code>*#*#86583#*#*</code>来关掉手机的VoLTE设备检测功能。<br>拨号后带有“…disabled”的消息一闪而过，这时你在观察手机右上角的服务商标志就显示为有信号了！</p>
-<p><img src="https://s1.ax1x.com/2018/08/21/P48BDg.md.jpg" width="50%"></p>
+<img src="https://s1.ax1x.com/2018/08/21/P48BDg.md.jpg" width="50%"/>
+
 <p>而这时你再到”设置-&gt;双卡和移动网络”中查看SIM卡信息就会发现连VoLTE高清通话功能都可用了！</p>
-<p><img src="https://s1.ax1x.com/2018/08/21/P48DbQ.md.jpg" width="50%"></p>
+<img src="https://s1.ax1x.com/2018/08/21/P48DbQ.md.jpg" width="50%"/>
+
 <p>现在来测一下速度吧：</p>
-<p><img src="https://s1.ax1x.com/2018/08/21/P48n9x.md.jpg" width="50%"></p>
+<img src="https://s1.ax1x.com/2018/08/21/P48n9x.md.jpg" width="50%"/>
+
 <p>LTE速度36+Mbps，还不错！</p>
 
     </div>
@@ -288,7 +294,7 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2018/06/29/deploy-spring-boot-sap-cloud-platform-neo/" rel="prev" title="How to deploy spring boot application to sap cloud platform neo">
+    <a href="/2018/06/30/deploy-spring-boot-sap-cloud-platform-neo/" rel="prev" title="How to deploy spring boot application to sap cloud platform neo">
       <i class="fa fa-chevron-left"></i> How to deploy spring boot application to sap cloud platform neo
     </a></div>
       <div class="post-nav-item">
@@ -360,7 +366,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#小米的手机能不能在日本用？"><span class="nav-number">2.</span> <span class="nav-text">小米的手机能不能在日本用？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#事与愿违"><span class="nav-number">3.</span> <span class="nav-text">事与愿违</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#折腾"><span class="nav-number">4.</span> <span class="nav-text">折腾</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#刷机"><span class="nav-number">4.1.</span> <span class="nav-text">刷机</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#改基带"><span class="nav-number">4.2.</span> <span class="nav-text">改基带</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#解决方案"><span class="nav-number">5.</span> <span class="nav-text">解决方案</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#0-先确认一下自己有没有添加自己家运营商的APN"><span class="nav-number">5.1.</span> <span class="nav-text">0. 先确认一下自己有没有添加自己家运营商的APN</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-添加VoLTE的APN"><span class="nav-number">5.2.</span> <span class="nav-text">1. 添加VoLTE的APN</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-将VoLTE的设备检测关掉"><span class="nav-number">5.3.</span> <span class="nav-text">2. 将VoLTE的设备检测关掉</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B0%8F%E7%B1%B3%E7%9A%84%E6%89%8B%E6%9C%BA%E8%83%BD%E4%B8%8D%E8%83%BD%E5%9C%A8%E6%97%A5%E6%9C%AC%E7%94%A8%EF%BC%9F"><span class="nav-number">2.</span> <span class="nav-text">小米的手机能不能在日本用？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%8B%E4%B8%8E%E6%84%BF%E8%BF%9D"><span class="nav-number">3.</span> <span class="nav-text">事与愿违</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%8A%98%E8%85%BE"><span class="nav-number">4.</span> <span class="nav-text">折腾</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%B7%E6%9C%BA"><span class="nav-number">4.1.</span> <span class="nav-text">刷机</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%94%B9%E5%9F%BA%E5%B8%A6"><span class="nav-number">4.2.</span> <span class="nav-text">改基带</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="nav-number">5.</span> <span class="nav-text">解决方案</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#0-%E5%85%88%E7%A1%AE%E8%AE%A4%E4%B8%80%E4%B8%8B%E8%87%AA%E5%B7%B1%E6%9C%89%E6%B2%A1%E6%9C%89%E6%B7%BB%E5%8A%A0%E8%87%AA%E5%B7%B1%E5%AE%B6%E8%BF%90%E8%90%A5%E5%95%86%E7%9A%84APN"><span class="nav-number">5.1.</span> <span class="nav-text">0. 先确认一下自己有没有添加自己家运营商的APN</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E6%B7%BB%E5%8A%A0VoLTE%E7%9A%84APN"><span class="nav-number">5.2.</span> <span class="nav-text">1. 添加VoLTE的APN</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E5%B0%86VoLTE%E7%9A%84%E8%AE%BE%E5%A4%87%E6%A3%80%E6%B5%8B%E5%85%B3%E6%8E%89"><span class="nav-number">5.3.</span> <span class="nav-text">2. 将VoLTE的设备检测关掉</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -374,7 +380,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">44</span>
+          <span class="site-state-item-count">45</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -387,17 +393,17 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">74</span>
+        <span class="site-state-item-count">77</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
 </div>
   <div class="links-of-author motion-element">
       <span class="links-of-author-item">
-        <a href="https://github.com/leowll" title="GitHub → https://github.com/leowll" rel="noopener" target="_blank"><i class="github fa-fw"></i>GitHub</a>
+        <a href="https://github.com/leowll" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;leowll" rel="noopener" target="_blank"><i class="github fa-fw"></i>GitHub</a>
       </span>
       <span class="links-of-author-item">
-        <a href="https://twitter.com/leowll" title="Twitter → https://twitter.com/leowll" rel="noopener" target="_blank"><i class="twitter fa-fw"></i>Twitter</a>
+        <a href="https://twitter.com/leowll" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;leowll" rel="noopener" target="_blank"><i class="twitter fa-fw"></i>Twitter</a>
       </span>
   </div>
 
@@ -422,13 +428,13 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2021</span>
+  <span itemprop="copyrightYear">2022</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Leo Wang</span>
 </div>
-  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
   </div>
 
         
@@ -448,9 +454,17 @@
   <script src="/lib/anime.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
-<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
 <script src="/js/schemes/pisces.js"></script>
+
+
 <script src="/js/next-boot.js"></script>
+
 
 
 

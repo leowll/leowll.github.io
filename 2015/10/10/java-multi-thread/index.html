@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 3.7.1">
+<meta name="generator" content="Hexo 6.0.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -20,18 +20,19 @@
     var CONFIG = {"hostname":"leowll.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="最近为了考取Java 7的Gold资格而补课，多线程这一块看了好长一段时间才算有点头绪。 下面几点算是心得吧。明白这些东西之后，join（）也差不多可以理解了。  主线程和主线程生成的子线程是两个独立的东西。start（）之后都是各自奔向终点。 如果子线程跑得快，主线程无法对它进行interrupt（）操作。 因为人家已经结束了，你再发号施令已经晚了。 被interrupt（）的子线程不会就此终止">
-<meta name="keywords" content="Java,多线程">
+  <meta name="description" content="最近为了考取Java 7的Gold资格而补课，多线程这一块看了好长一段时间才算有点头绪。 下面几点算是心得吧。明白这些东西之后，join（）也差不多可以理解了。    主线程和主线程生成的子线程是两个独立的东西。start（）之后都是各自奔向终点。   如果子线程跑得快，主线程无法对它进行interrupt（）操作。 因为人家已经结束了，你再发号施令已经晚了。   被interrupt（）的子线程">
 <meta property="og:type" content="article">
 <meta property="og:title" content="关于Java Thread的一些认识">
 <meta property="og:url" content="http://leowll.com/2015/10/10/java-multi-thread/index.html">
 <meta property="og:site_name" content="Leo&#39;s notepad">
-<meta property="og:description" content="最近为了考取Java 7的Gold资格而补课，多线程这一块看了好长一段时间才算有点头绪。 下面几点算是心得吧。明白这些东西之后，join（）也差不多可以理解了。  主线程和主线程生成的子线程是两个独立的东西。start（）之后都是各自奔向终点。 如果子线程跑得快，主线程无法对它进行interrupt（）操作。 因为人家已经结束了，你再发号施令已经晚了。 被interrupt（）的子线程不会就此终止">
-<meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-06-06T13:59:00.636Z">
+<meta property="og:description" content="最近为了考取Java 7的Gold资格而补课，多线程这一块看了好长一段时间才算有点头绪。 下面几点算是心得吧。明白这些东西之后，join（）也差不多可以理解了。    主线程和主线程生成的子线程是两个独立的东西。start（）之后都是各自奔向终点。   如果子线程跑得快，主线程无法对它进行interrupt（）操作。 因为人家已经结束了，你再发号施令已经晚了。   被interrupt（）的子线程">
+<meta property="og:locale">
+<meta property="article:published_time" content="2015-10-10T06:30:05.000Z">
+<meta property="article:modified_time" content="2018-06-06T13:59:00.000Z">
+<meta property="article:author" content="Leo Wang">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="多线程">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="关于Java Thread的一些认识">
-<meta name="twitter:description" content="最近为了考取Java 7的Gold资格而补课，多线程这一块看了好长一段时间才算有点头绪。 下面几点算是心得吧。明白这些东西之后，join（）也差不多可以理解了。  主线程和主线程生成的子线程是两个独立的东西。start（）之后都是各自奔向终点。 如果子线程跑得快，主线程无法对它进行interrupt（）操作。 因为人家已经结束了，你再发号施令已经晚了。 被interrupt（）的子线程不会就此终止">
 
 <link rel="canonical" href="http://leowll.com/2015/10/10/java-multi-thread/">
 
@@ -205,7 +206,7 @@
               </span>
               <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/知识/" itemprop="url" rel="index"><span itemprop="name">知识</span></a>
+                  <a href="/categories/%E7%9F%A5%E8%AF%86/" itemprop="url" rel="index"><span itemprop="name">知识</span></a>
                 </span>
             </span>
 
@@ -236,12 +237,11 @@
       
         <p>最近为了考取Java 7的Gold资格而补课，多线程这一块看了好长一段时间才算有点头绪。 下面几点算是心得吧。明白这些东西之后，join（）也差不多可以理解了。</p>
 <ul>
-<li>主线程和主线程生成的子线程是两个独立的东西。start（）之后都是各自奔向终点。</li>
-<li>如果子线程跑得快，主线程无法对它进行interrupt（）操作。 因为人家已经结束了，你再发号施令已经晚了。</li>
-<li>被interrupt（）的子线程不会就此终止，而是会恢复原来的执行。<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Sample11_5</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String\[\] args)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">			ThreadA a = <span class="keyword">new</span> ThreadA();</span><br><span class="line">			a.start();</span><br><span class="line">			System.out.println(<span class="string">"main : sleep start."</span>);</span><br><span class="line">			Thread.sleep(<span class="number">1000</span>);</span><br><span class="line">			System.out.println(<span class="string">"main : sleep end."</span>);</span><br><span class="line">			a.interrupt();</span><br><span class="line">		&#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">			</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ThreadA</span> <span class="keyword">extends</span> <span class="title">Thread</span></span>&#123;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">			System.out.println(<span class="string">"Thread A : sleep start"</span>);</span><br><span class="line">			Thread.sleep(<span class="number">5000</span>);</span><br><span class="line">			System.out.println(<span class="string">"Thread A : sleep end"</span>);</span><br><span class="line">		&#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">			System.out.println(<span class="string">"Catch Thread A interrupted"</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		System.out.println(<span class="string">"Thread A finished."</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
+<li>  主线程和主线程生成的子线程是两个独立的东西。start（）之后都是各自奔向终点。</li>
+<li>  如果子线程跑得快，主线程无法对它进行interrupt（）操作。 因为人家已经结束了，你再发号施令已经晚了。</li>
+<li>  被interrupt（）的子线程不会就此终止，而是会恢复原来的执行。<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Sample11_5</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String\[\] args)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">			ThreadA a = <span class="keyword">new</span> ThreadA();</span><br><span class="line">			a.start();</span><br><span class="line">			System.out.println(<span class="string">&quot;main : sleep start.&quot;</span>);</span><br><span class="line">			Thread.sleep(<span class="number">1000</span>);</span><br><span class="line">			System.out.println(<span class="string">&quot;main : sleep end.&quot;</span>);</span><br><span class="line">			a.interrupt();</span><br><span class="line">		&#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">			</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ThreadA</span> <span class="keyword">extends</span> <span class="title">Thread</span></span>&#123;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">			System.out.println(<span class="string">&quot;Thread A : sleep start&quot;</span>);</span><br><span class="line">			Thread.sleep(<span class="number">5000</span>);</span><br><span class="line">			System.out.println(<span class="string">&quot;Thread A : sleep end&quot;</span>);</span><br><span class="line">		&#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">			System.out.println(<span class="string">&quot;Catch Thread A interrupted&quot;</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		System.out.println(<span class="string">&quot;Thread A finished.&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+执行结果如下：</li>
 </ul>
-<p>执行结果如下：</p>
 <p>main : sleep start.<br>Thread A : sleep start<br>main : sleep end.<br>Catch Thread A interrupted<br>Thread A finished.</p>
 
     </div>
@@ -253,7 +253,7 @@
       <footer class="post-footer">
           <div class="post-tags">
               <a href="/tags/Java/" rel="tag"># Java</a>
-              <a href="/tags/多线程/" rel="tag"># 多线程</a>
+              <a href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" rel="tag"># 多线程</a>
           </div>
 
         
@@ -347,7 +347,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">44</span>
+          <span class="site-state-item-count">45</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -360,17 +360,17 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">74</span>
+        <span class="site-state-item-count">77</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
 </div>
   <div class="links-of-author motion-element">
       <span class="links-of-author-item">
-        <a href="https://github.com/leowll" title="GitHub → https://github.com/leowll" rel="noopener" target="_blank"><i class="github fa-fw"></i>GitHub</a>
+        <a href="https://github.com/leowll" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;leowll" rel="noopener" target="_blank"><i class="github fa-fw"></i>GitHub</a>
       </span>
       <span class="links-of-author-item">
-        <a href="https://twitter.com/leowll" title="Twitter → https://twitter.com/leowll" rel="noopener" target="_blank"><i class="twitter fa-fw"></i>Twitter</a>
+        <a href="https://twitter.com/leowll" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;leowll" rel="noopener" target="_blank"><i class="twitter fa-fw"></i>Twitter</a>
       </span>
   </div>
 
@@ -395,13 +395,13 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2021</span>
+  <span itemprop="copyrightYear">2022</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Leo Wang</span>
 </div>
-  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
   </div>
 
         
@@ -421,9 +421,17 @@
   <script src="/lib/anime.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
-<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
 <script src="/js/schemes/pisces.js"></script>
+
+
 <script src="/js/next-boot.js"></script>
+
 
 
 

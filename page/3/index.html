@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 3.7.1">
+<meta name="generator" content="Hexo 6.0.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -26,10 +26,9 @@
 <meta property="og:url" content="http://leowll.com/page/3/index.html">
 <meta property="og:site_name" content="Leo&#39;s notepad">
 <meta property="og:description" content="Tech &amp; Life">
-<meta property="og:locale" content="zh-Hans">
+<meta property="og:locale">
+<meta property="article:author" content="Leo Wang">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Leo&#39;s notepad">
-<meta name="twitter:description" content="Tech &amp; Life">
 
 <link rel="canonical" href="http://leowll.com/page/3/">
 
@@ -164,6 +163,107 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://leowll.com/2015/11/07/why-need-nginx-with-uwsgi/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Leo Wang">
+      <meta itemprop="description" content="Tech & Life">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Leo's notepad">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2015/11/07/why-need-nginx-with-uwsgi/" class="post-title-link" itemprop="url">有了uwsgi为什么还需要nginx</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2015-11-07 20:13:59" itemprop="dateCreated datePublished" datetime="2015-11-07T20:13:59+09:00">2015-11-07</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2018-06-07 00:33:26" itemprop="dateModified" datetime="2018-06-07T00:33:26+09:00">2018-06-07</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
+                </span>
+                  , 
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E7%9F%A5%E8%AF%86/" itemprop="url" rel="index"><span itemprop="name">知识</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2015/11/07/why-need-nginx-with-uwsgi/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/11/07/why-need-nginx-with-uwsgi/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="ngix存在的意义在哪里？"><a href="#ngix存在的意义在哪里？" class="headerlink" title="ngix存在的意义在哪里？"></a>ngix存在的意义在哪里？</h2><p>在python的web开发中，我用flask框架写了一个小程序，部署的时候，我用到了uwsgi来做容器。<br>在学习uwsgi部署的过程中，另一个关键词nginx频繁的跳出来。这两者通常是成对出现的。<br>你有没有和我一样的困惑，为什么有了uwsgi我们还需要nginx?<br>我是说，既然uwsgi能够展现你想要的内容，那nginx存在的意义在哪里？<br>首先，nginx是一个HTTP 服务器。如果你是学Java出身的，说到HTTP服务器你应该会想到Apache。<br>类似的uwsgi可以比喻为tomcat。 nginx官方网站上给出的一张图片很好的揭示了nginx的角色。<br><img src="https://farm1.staticflickr.com/751/22845441965_8ca93b385a_z.jpg" alt="architecture-nginx"></p>
+<h2 id="ngix的主要功能"><a href="#ngix的主要功能" class="headerlink" title="ngix的主要功能"></a>ngix的主要功能</h2><p>我所理解的nginx的主要功能，有以下几个部分：</p>
+<ul>
+<li>  nginx处理<strong>静态内容请求更专业、快速</strong>。</li>
+<li>  nginx可以<strong>缓存请求</strong>。如果让uwsgi来直接接受请求的话，uwsgi需要花费大量的时间来等待request，这本身对web应用所在的主机是很大的资源浪费。</li>
+<li>  <strong>分发请求</strong>。假如你有好几个web应用，分布在不同的主机上，nginx可以把请求分发到各自的web应用来进行处理。这一特点是nginx可以用来做负载均衡器。</li>
+<li>  相比web容器，nginx的<strong>漏洞更少更安全</strong>。</li>
+<li>  nginx可以更好的处理<strong>HTTPS</strong>。</li>
+<li>  nginx有<strong>网关</strong>（gateway）的作用，可以过滤访问IP。</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="http://leowll.com/2015/10/27/python-datetime-to-utc-timestamp/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -203,11 +303,11 @@
               </span>
               <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/技术/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
                 </span>
                   , 
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/技术/知识/" itemprop="url" rel="index"><span itemprop="name">知识</span></a>
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E7%9F%A5%E8%AF%86/" itemprop="url" rel="index"><span itemprop="name">知识</span></a>
                 </span>
             </span>
 
@@ -236,7 +336,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>在python中有很多方法将datetime的字符串转换为 utc timestamp 网上找了好多，看起来都纷繁复杂。本文就想简单的做好一件事，就是将datetime的字符串转换为utc timestamp。 理解这个转换的关键，在于理解python中所有的日期字符串都被python解读为local time。 也就是说，同样是’2015/10/27 00:00:00’这个字符串，虽然身处东京的我和身在伦敦的你看到的是同一个字符串，但他们本身被python解读为两个不同地方的日期和时间。 如果想让python不去理会时差，而只想要utc格式的时间戳的话，用calendar.timegm()函数即可实现。 现举例如下：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">\<span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line">\_\_author\_\_ = <span class="string">'leo'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> datetime <span class="keyword">import</span> datetime</span><br><span class="line"><span class="keyword">import</span> calendar</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">local</span>\<span class="title">_to</span>\<span class="title">_utc</span><span class="params">(date_value)</span>:</span></span><br><span class="line">    utc\_timetuple = datetime.strptime(date\_value, <span class="string">'%Y/%m/%d %H:%M:%S'</span>).timetuple()</span><br><span class="line">    ts = calendar.timegm(utc_timetuple)</span><br><span class="line">    <span class="keyword">return</span> ts * <span class="number">1000</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">local</span>\<span class="title">_timestamp</span><span class="params">(date\_value)</span>:</span></span><br><span class="line">    utc\_timetuple = datetime.strptime(date\_value, <span class="string">'%Y/%m/%d %H:%M:%S'</span>).timetuple()</span><br><span class="line">    ts = time.mktime(utc_timetuple)</span><br><span class="line">    <span class="keyword">return</span> int(ts) * <span class="number">1000</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">date_str = <span class="string">'2015/10/27 00:00:00'</span></span><br><span class="line"><span class="keyword">print</span> local\_to\_utc(date_str)</span><br><span class="line"><span class="keyword">print</span> local\_timestamp(date\_str)</span><br></pre></td></tr></table></figure></p>
+          <p>在python中有很多方法将datetime的字符串转换为 utc timestamp 网上找了好多，看起来都纷繁复杂。本文就想简单的做好一件事，就是将datetime的字符串转换为utc timestamp。 理解这个转换的关键，在于理解python中所有的日期字符串都被python解读为local time。 也就是说，同样是’2015/10/27 00:00:00’这个字符串，虽然身处东京的我和身在伦敦的你看到的是同一个字符串，但他们本身被python解读为两个不同地方的日期和时间。 如果想让python不去理会时差，而只想要utc格式的时间戳的话，用calendar.timegm()函数即可实现。 现举例如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">\<span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line">\_\_author\_\_ = <span class="string">&#x27;leo&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> datetime <span class="keyword">import</span> datetime</span><br><span class="line"><span class="keyword">import</span> calendar</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">local</span>\<span class="title">_to</span>\<span class="title">_utc</span>(<span class="params">date_value</span>):</span></span><br><span class="line">    utc\_timetuple = datetime.strptime(date\_value, <span class="string">&#x27;%Y/%m/%d %H:%M:%S&#x27;</span>).timetuple()</span><br><span class="line">    ts = calendar.timegm(utc_timetuple)</span><br><span class="line">    <span class="keyword">return</span> ts * <span class="number">1000</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">local</span>\<span class="title">_timestamp</span>(<span class="params">date\_value</span>):</span></span><br><span class="line">    utc\_timetuple = datetime.strptime(date\_value, <span class="string">&#x27;%Y/%m/%d %H:%M:%S&#x27;</span>).timetuple()</span><br><span class="line">    ts = time.mktime(utc_timetuple)</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">int</span>(ts) * <span class="number">1000</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">date_str = <span class="string">&#x27;2015/10/27 00:00:00&#x27;</span></span><br><span class="line"><span class="built_in">print</span> local\_to\_utc(date_str)</span><br><span class="line"><span class="built_in">print</span> local\_timestamp(date\_<span class="built_in">str</span>)</span><br></pre></td></tr></table></figure>
 <p>最后打印的结果，可以看到两个函数输出的时间戳是不一样的。（P.S.笔者在东九区）</p>
 <p>1445904000000<br>1445871600000</p>
 
@@ -297,7 +398,7 @@
               </span>
               <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/知识/" itemprop="url" rel="index"><span itemprop="name">知识</span></a>
+                  <a href="/categories/%E7%9F%A5%E8%AF%86/" itemprop="url" rel="index"><span itemprop="name">知识</span></a>
                 </span>
             </span>
 
@@ -328,13 +429,13 @@
       
           <p>在使用SSRS，也就是SQL Server Report Service（SQL Server 报表）的过程中，如果你在寻找下面3个问题的答案，本文可能会帮到你。</p>
 <ul>
-<li>针对每个数据分组重新设定页码</li>
-<li>让表头在每个页面都能显示</li>
-<li>让数据在合理的位置分页</li>
+<li>  针对每个数据分组重新设定页码</li>
+<li>  让表头在每个页面都能显示</li>
+<li>  让数据在合理的位置分页</li>
 </ul>
-<h4 id="针对每个数据分组重新设定页码"><a href="#针对每个数据分组重新设定页码" class="headerlink" title="针对每个数据分组重新设定页码"></a><strong>针对每个数据分组重新设定页码</strong></h4><p>在Details上设置属性，Group里面的ResetPageNumber设置为True，即可让每一个新的分组数据重新设定页码。 <a href="https://www.flickr.com/photos/136148236@N02/21841911853/in/dateposted-public/" title="group" target="_blank" rel="noopener"><img src="https://farm6.staticflickr.com/5687/21841911853_79b183f3a4_n.jpg" alt="group"></a>  </p>
-<h4 id="让表头在每个页面都能显示"><a href="#让表头在每个页面都能显示" class="headerlink" title="让表头在每个页面都能显示"></a>让表头在每个页面都能显示</h4><p>在详细模式里面找到表头的Static，然后设置KeepWithGroup属性为After，RepeatOnNewPage为True。 如果表头之前还有上一层分组的Static，上一层分组的上述两个属性要分别设为Before和True。 在同一个分组的Static的RepeatOnNewPage不能设置为不同的值，所以同样设定为了True， 但是不希望在后续页面继续显示的部分，其KeepWithGroup只要设定为Before，就不会随后续数据分页而再次出现了。<a href="https://www.flickr.com/photos/136148236@N02/22474037011/in/dateposted-public/" title="repeatonnewpage" target="_blank" rel="noopener"><img src="https://farm1.staticflickr.com/712/22474037011_fb874db3ff_n.jpg" alt="repeatonnewpage"></a></p>
-<h4 id="让数据在合理的位置分页"><a href="#让数据在合理的位置分页" class="headerlink" title="让数据在合理的位置分页"></a><strong>让数据在合理的位置分页</strong></h4><p>在希望保持为一个整体的Group上设置KeepTogether为True，就会尽量让同一组的数据在同一页面显示。 <a href="https://www.flickr.com/photos/136148236@N02/22276255729/in/dateposted-public/" title="keeptogether" target="_blank" rel="noopener"><img src="https://farm6.staticflickr.com/5659/22276255729_da2fee249a_n.jpg" alt="keeptogether"></a></p>
+<h4 id="针对每个数据分组重新设定页码"><a href="#针对每个数据分组重新设定页码" class="headerlink" title="针对每个数据分组重新设定页码"></a><strong>针对每个数据分组重新设定页码</strong></h4><p>在Details上设置属性，Group里面的ResetPageNumber设置为True，即可让每一个新的分组数据重新设定页码。 <a target="_blank" rel="noopener" href="https://www.flickr.com/photos/136148236@N02/21841911853/in/dateposted-public/" title="group"><img src="https://farm6.staticflickr.com/5687/21841911853_79b183f3a4_n.jpg" alt="group"></a>  </p>
+<h4 id="让表头在每个页面都能显示"><a href="#让表头在每个页面都能显示" class="headerlink" title="让表头在每个页面都能显示"></a>让表头在每个页面都能显示</h4><p>在详细模式里面找到表头的Static，然后设置KeepWithGroup属性为After，RepeatOnNewPage为True。 如果表头之前还有上一层分组的Static，上一层分组的上述两个属性要分别设为Before和True。 在同一个分组的Static的RepeatOnNewPage不能设置为不同的值，所以同样设定为了True， 但是不希望在后续页面继续显示的部分，其KeepWithGroup只要设定为Before，就不会随后续数据分页而再次出现了。<a target="_blank" rel="noopener" href="https://www.flickr.com/photos/136148236@N02/22474037011/in/dateposted-public/" title="repeatonnewpage"><img src="https://farm1.staticflickr.com/712/22474037011_fb874db3ff_n.jpg" alt="repeatonnewpage"></a></p>
+<h4 id="让数据在合理的位置分页"><a href="#让数据在合理的位置分页" class="headerlink" title="让数据在合理的位置分页"></a><strong>让数据在合理的位置分页</strong></h4><p>在希望保持为一个整体的Group上设置KeepTogether为True，就会尽量让同一组的数据在同一页面显示。 <a target="_blank" rel="noopener" href="https://www.flickr.com/photos/136148236@N02/22276255729/in/dateposted-public/" title="keeptogether"><img src="https://farm6.staticflickr.com/5659/22276255729_da2fee249a_n.jpg" alt="keeptogether"></a></p>
 
       
     </div>
@@ -393,7 +494,7 @@
               </span>
               <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/知识/" itemprop="url" rel="index"><span itemprop="name">知识</span></a>
+                  <a href="/categories/%E7%9F%A5%E8%AF%86/" itemprop="url" rel="index"><span itemprop="name">知识</span></a>
                 </span>
             </span>
 
@@ -424,12 +525,11 @@
       
           <p>最近为了考取Java 7的Gold资格而补课，多线程这一块看了好长一段时间才算有点头绪。 下面几点算是心得吧。明白这些东西之后，join（）也差不多可以理解了。</p>
 <ul>
-<li>主线程和主线程生成的子线程是两个独立的东西。start（）之后都是各自奔向终点。</li>
-<li>如果子线程跑得快，主线程无法对它进行interrupt（）操作。 因为人家已经结束了，你再发号施令已经晚了。</li>
-<li>被interrupt（）的子线程不会就此终止，而是会恢复原来的执行。<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Sample11_5</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String\[\] args)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">			ThreadA a = <span class="keyword">new</span> ThreadA();</span><br><span class="line">			a.start();</span><br><span class="line">			System.out.println(<span class="string">"main : sleep start."</span>);</span><br><span class="line">			Thread.sleep(<span class="number">1000</span>);</span><br><span class="line">			System.out.println(<span class="string">"main : sleep end."</span>);</span><br><span class="line">			a.interrupt();</span><br><span class="line">		&#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">			</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ThreadA</span> <span class="keyword">extends</span> <span class="title">Thread</span></span>&#123;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">			System.out.println(<span class="string">"Thread A : sleep start"</span>);</span><br><span class="line">			Thread.sleep(<span class="number">5000</span>);</span><br><span class="line">			System.out.println(<span class="string">"Thread A : sleep end"</span>);</span><br><span class="line">		&#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">			System.out.println(<span class="string">"Catch Thread A interrupted"</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		System.out.println(<span class="string">"Thread A finished."</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
+<li>  主线程和主线程生成的子线程是两个独立的东西。start（）之后都是各自奔向终点。</li>
+<li>  如果子线程跑得快，主线程无法对它进行interrupt（）操作。 因为人家已经结束了，你再发号施令已经晚了。</li>
+<li>  被interrupt（）的子线程不会就此终止，而是会恢复原来的执行。<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Sample11_5</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String\[\] args)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">			ThreadA a = <span class="keyword">new</span> ThreadA();</span><br><span class="line">			a.start();</span><br><span class="line">			System.out.println(<span class="string">&quot;main : sleep start.&quot;</span>);</span><br><span class="line">			Thread.sleep(<span class="number">1000</span>);</span><br><span class="line">			System.out.println(<span class="string">&quot;main : sleep end.&quot;</span>);</span><br><span class="line">			a.interrupt();</span><br><span class="line">		&#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">			</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ThreadA</span> <span class="keyword">extends</span> <span class="title">Thread</span></span>&#123;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">			System.out.println(<span class="string">&quot;Thread A : sleep start&quot;</span>);</span><br><span class="line">			Thread.sleep(<span class="number">5000</span>);</span><br><span class="line">			System.out.println(<span class="string">&quot;Thread A : sleep end&quot;</span>);</span><br><span class="line">		&#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">			System.out.println(<span class="string">&quot;Catch Thread A interrupted&quot;</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		System.out.println(<span class="string">&quot;Thread A finished.&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+执行结果如下：</li>
 </ul>
-<p>执行结果如下：</p>
 <p>main : sleep start.<br>Thread A : sleep start<br>main : sleep end.<br>Catch Thread A interrupted<br>Thread A finished.</p>
 
       
@@ -489,11 +589,11 @@
               </span>
               <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/人生/" itemprop="url" rel="index"><span itemprop="name">人生</span></a>
+                  <a href="/categories/%E4%BA%BA%E7%94%9F/" itemprop="url" rel="index"><span itemprop="name">人生</span></a>
                 </span>
                   , 
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/人生/职业/" itemprop="url" rel="index"><span itemprop="name">职业</span></a>
+                  <a href="/categories/%E4%BA%BA%E7%94%9F/%E8%81%8C%E4%B8%9A/" itemprop="url" rel="index"><span itemprop="name">职业</span></a>
                 </span>
             </span>
 
@@ -522,7 +622,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>2015年上半期的自我评价和上司面谈结束了。 科长一如既往的说你稍微改一下这个写法就可以了，如果没有意见我们就谈到这把。 我说科长且慢，“中长期职业规划”您看了没，我写了一些。 然后引出了离职的话题，科长说那实在是很遗憾，我会跟部长汇报的，下周给你消息。   然后，我就这么提出了辞职。   职业生涯刚刚起步，当初心急火燎的进了公司，心想背靠一个大公司，自己应该会得心应手吧。 可这两年过去了，每一天想的都是我他妈为什么在这里浪费时间。 又想起nissan的广告词，说的太让人心潮澎湃。</p>
+          <p>2015年上半期的自我评价和上司面谈结束了。 科长一如既往的说你稍微改一下这个写法就可以了，如果没有意见我们就谈到这把。 我说科长且慢，“中长期职业规划”您看了没，我写了一些。 然后引出了离职的话题，科长说那实在是很遗憾，我会跟部长汇报的，下周给你消息。   然后，我就这么提出了辞职。   职业生涯刚刚起步，当初心急火燎的进了公司，心想背靠一个大公司，自己应该会得心应手吧。 可这两年过去了，每一天想的都是我他妈为什么在这里浪费时间。 又想起nissan的广告词，说的太让人心潮澎湃。</p>
 <blockquote>
 <p>２種類の人間がいる。 やりたいことやっちゃう人とやらない人。 やりたいことやってきたこの人生。 おかげで痛い目にもあってきた。 散々恥もかいてきた。 誰かの言うことを素直に聞いてりゃ、 今よりずっと楽だったかもしれない。 でもね、これだけは言える。 やりたいことやっちゃう人生のほうが、間違いなく面白い。 俺はこれからもやっちゃうよ あんたはどうする？</p>
 </blockquote>
@@ -584,11 +684,11 @@
               </span>
               <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/技术/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
                 </span>
                   , 
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/技术/未分類/" itemprop="url" rel="index"><span itemprop="name">未分類</span></a>
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E6%9C%AA%E5%88%86%E9%A1%9E/" itemprop="url" rel="index"><span itemprop="name">未分類</span></a>
                 </span>
             </span>
 
@@ -617,7 +717,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>在windows下对SQL Server2008数据库进行定时备份，需要做以下工作： 1.编写备份数据库的bat文件，内容形似： <em>backup database testdb to disk=’d:\backup\testdb.bak’  &gt;&gt; .\backup.log</em> 2.编写copy数据库备份文件并重命名的bat文件，形似： <em>SET DT=%DATE:~0,4%%DATE:~5,2%%DATE:~8,2%</em> <em>COPY D:\backup.bak  D:\backup%DT%.bak &gt;&gt; .\copy.log</em> 2.建立两个windows计划任务，分别选定时间和周期执行上述备份bat文件。 这样就可以实现sql server的定时备份策略了。</p>
+          <p>在windows下对SQL Server2008数据库进行定时备份，需要做以下工作： 1.编写备份数据库的bat文件，内容形似： <em>backup database testdb to disk=’d:\backup\testdb.bak’  &gt;&gt; .\backup.log</em> 2.编写copy数据库备份文件并重命名的bat文件，形似： <em>SET DT=%DATE:<del>0,4%%DATE:</del>5,2%%DATE:~8,2%</em> <em>COPY D:\backup.bak  D:\backup%DT%.bak &gt;&gt; .\copy.log</em> 2.建立两个windows计划任务，分别选定时间和周期执行上述备份bat文件。 这样就可以实现sql server的定时备份策略了。</p>
 
       
     </div>
@@ -637,7 +737,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://leowll.com/2012/02/12/ssh-extjs-json/">
+    <link itemprop="mainEntityOfPage" href="http://leowll.com/2012/02/13/ssh-extjs-json/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -651,7 +751,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2012/02/12/ssh-extjs-json/" class="post-title-link" itemprop="url">Spring+Struts2+Hibernate 整合Extjs时无法读取json数据的问题之解决办法</a>
+            <a href="/2012/02/13/ssh-extjs-json/" class="post-title-link" itemprop="url">Spring+Struts2+Hibernate 整合Extjs时无法读取json数据的问题之解决办法</a>
         </h2>
 
         <div class="post-meta">
@@ -676,7 +776,7 @@
               </span>
               <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/知识/" itemprop="url" rel="index"><span itemprop="name">知识</span></a>
+                  <a href="/categories/%E7%9F%A5%E8%AF%86/" itemprop="url" rel="index"><span itemprop="name">知识</span></a>
                 </span>
             </span>
 
@@ -689,8 +789,8 @@
       </span>
       <span class="post-meta-item-text">Disqus: </span>
     
-    <a title="disqus" href="/2012/02/12/ssh-extjs-json/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2012/02/12/ssh-extjs-json/" itemprop="commentCount"></span>
+    <a title="disqus" href="/2012/02/13/ssh-extjs-json/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2012/02/13/ssh-extjs-json/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -705,9 +805,11 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>在SSH和Extjs的整合过程中，需要Grid从服务器端读取json格式的数据显示在前端，在action的class中配置了service属性，并通过spring对该service进行注入。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> String userID;</span><br><span class="line"><span class="keyword">private</span> String userName;</span><br><span class="line"><span class="keyword">private</span> String delFlg;</span><br><span class="line"><span class="keyword">private</span> List&lt;User&gt; userList;</span><br><span class="line"><span class="keyword">private</span> UserService userService;</span><br></pre></td></tr></table></figure></p>
-<p>  在struts2中，如果struts.xml中将action的返回结果定义成了json类型，strut2就自动将该action的属性全部json序列化，但是service却无法序列化， 于是需要在struts.xml中将相应的action的配置更改一下。如下所示：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">action</span> <span class="attr">name</span>=<span class="string">"searchUser"</span> <span class="attr">method</span>=<span class="string">"search"</span> <span class="attr">class</span>=<span class="string">"searchUserAction"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">result</span> <span class="attr">type</span>=<span class="string">"json"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">param</span> <span class="attr">name</span>=<span class="string">"excludeProperties"</span>&gt;</span></span><br><span class="line">userService</span><br><span class="line"><span class="tag">&lt;/<span class="name">param</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">result</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">action</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p>  exludeProperties即可将不需要json序列化的属性排除在外。</p>
+          <p>在SSH和Extjs的整合过程中，需要Grid从服务器端读取json格式的数据显示在前端，在action的class中配置了service属性，并通过spring对该service进行注入。  </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> String userID;</span><br><span class="line"><span class="keyword">private</span> String userName;</span><br><span class="line"><span class="keyword">private</span> String delFlg;</span><br><span class="line"><span class="keyword">private</span> List&lt;User&gt; userList;</span><br><span class="line"><span class="keyword">private</span> UserService userService;</span><br></pre></td></tr></table></figure>
+<p>  在struts2中，如果struts.xml中将action的返回结果定义成了json类型，strut2就自动将该action的属性全部json序列化，但是service却无法序列化， 于是需要在struts.xml中将相应的action的配置更改一下。如下所示：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">action</span> <span class="attr">name</span>=<span class="string">&quot;searchUser&quot;</span> <span class="attr">method</span>=<span class="string">&quot;search&quot;</span> <span class="attr">class</span>=<span class="string">&quot;searchUserAction&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">result</span> <span class="attr">type</span>=<span class="string">&quot;json&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">param</span> <span class="attr">name</span>=<span class="string">&quot;excludeProperties&quot;</span>&gt;</span></span><br><span class="line">userService</span><br><span class="line"><span class="tag">&lt;/<span class="name">param</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">result</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">action</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>  exludeProperties即可将不需要json序列化的属性排除在外。</p>
 
       
     </div>
@@ -766,11 +868,11 @@
               </span>
               <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/技术/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
                 </span>
                   , 
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/技术/未分類/" itemprop="url" rel="index"><span itemprop="name">未分類</span></a>
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E6%9C%AA%E5%88%86%E9%A1%9E/" itemprop="url" rel="index"><span itemprop="name">未分類</span></a>
                 </span>
             </span>
 
@@ -799,7 +901,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>在项目中需要往cookie中写数据，之前遇到的问题是如果写入的内容超出了单个cookie的大小限制（4096字节，4KB），则服务器端的response就会异常。<br>今天的问题则是，虽然已经把很长的内容分割成立个好几段，并分别写入了不同的cookie中，但服务器端同样不能正常响应。 查资料得知，不知浏览器对同一个站点的cookie的个数，单个cookie文件的大小有限制，服务器还对每一次请求的httpheader的大小有限制。<br>对tomcat服务器来说，需要修改server.xml中的响应配置，在形如<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Connector</span> <span class="attr">port</span>=<span class="string">"8080"</span> <span class="attr">protocol</span>=<span class="string">"HTTP/1.1"</span> <span class="attr">connectionTimeout</span>=<span class="string">"20000"</span> <span class="attr">redirectPort</span>=<span class="string">"8443"</span> <span class="attr">maxHttpHeaderSize</span>=<span class="string">"40960"</span>/&gt;</span></span><br></pre></td></tr></table></figure></p>
+          <p>在项目中需要往cookie中写数据，之前遇到的问题是如果写入的内容超出了单个cookie的大小限制（4096字节，4KB），则服务器端的response就会异常。<br>今天的问题则是，虽然已经把很长的内容分割成立个好几段，并分别写入了不同的cookie中，但服务器端同样不能正常响应。 查资料得知，不知浏览器对同一个站点的cookie的个数，单个cookie文件的大小有限制，服务器还对每一次请求的httpheader的大小有限制。<br>对tomcat服务器来说，需要修改server.xml中的响应配置，在形如 </p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Connector</span> <span class="attr">port</span>=<span class="string">&quot;8080&quot;</span> <span class="attr">protocol</span>=<span class="string">&quot;HTTP/1.1&quot;</span> <span class="attr">connectionTimeout</span>=<span class="string">&quot;20000&quot;</span> <span class="attr">redirectPort</span>=<span class="string">&quot;8443&quot;</span> <span class="attr">maxHttpHeaderSize</span>=<span class="string">&quot;40960&quot;</span>/&gt;</span> </span><br></pre></td></tr></table></figure>
 <p>的部分进行相应配置，上面的maxHttpHeaderSize就规定了本服务器可以处理的HttpHeader的大小上限为40KB。</p>
 
       
@@ -820,7 +923,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://leowll.com/2011/12/19/strust2-cannot-save-cookie/">
+    <link itemprop="mainEntityOfPage" href="http://leowll.com/2011/12/20/strust2-cannot-save-cookie/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -834,7 +937,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2011/12/19/strust2-cannot-save-cookie/" class="post-title-link" itemprop="url">Struts2无法写Cookie的原因分析</a>
+            <a href="/2011/12/20/strust2-cannot-save-cookie/" class="post-title-link" itemprop="url">Struts2无法写Cookie的原因分析</a>
         </h2>
 
         <div class="post-meta">
@@ -859,7 +962,7 @@
               </span>
               <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/技术/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
                 </span>
             </span>
 
@@ -872,8 +975,8 @@
       </span>
       <span class="post-meta-item-text">Disqus: </span>
     
-    <a title="disqus" href="/2011/12/19/strust2-cannot-save-cookie/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2011/12/19/strust2-cannot-save-cookie/" itemprop="commentCount"></span>
+    <a title="disqus" href="/2011/12/20/strust2-cannot-save-cookie/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2011/12/20/strust2-cannot-save-cookie/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -888,14 +991,15 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>在struts2项目中，希望把用户的表单输入保存在本地，而不是保存在数据库上，于是想到了cookie。 在action中可以这样写：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Cookie cookie=<span class="keyword">new</span> Cookie(<span class="string">"myCookie"</span>,<span class="string">"cookieContent"</span>); </span><br><span class="line">cookie.setMaxAge(<span class="number">3600</span>*<span class="number">24</span>);<span class="comment">//过期时间为一天 </span></span><br><span class="line">ServletActionContext.getResponse.addCookie(cookie);</span><br></pre></td></tr></table></figure></p>
-<p>但是始终不能保存到客户端的硬盘上，刚开始的时候以为cookie的读写操作只能写在jsp页面中，或者只能通过javascript来操作， 后来发现不是这么回事。 关键的原因在于<a href="http://support.microsoft.com/kb/306070/zh-cn" title="在 Internet Explorer 中的 cookie 的数字和大小限制" target="_blank" rel="noopener">cookie是有大小限制的</a>，如果想写入的内容超过了4KB，写操作便不能完成。</p>
+          <p>在struts2项目中，希望把用户的表单输入保存在本地，而不是保存在数据库上，于是想到了cookie。 在action中可以这样写： </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Cookie cookie=<span class="keyword">new</span> Cookie(<span class="string">&quot;myCookie&quot;</span>,<span class="string">&quot;cookieContent&quot;</span>); </span><br><span class="line">cookie.setMaxAge(<span class="number">3600</span>*<span class="number">24</span>);<span class="comment">//过期时间为一天 </span></span><br><span class="line">ServletActionContext.getResponse.addCookie(cookie); </span><br></pre></td></tr></table></figure>
+<p>但是始终不能保存到客户端的硬盘上，刚开始的时候以为cookie的读写操作只能写在jsp页面中，或者只能通过javascript来操作， 后来发现不是这么回事。 关键的原因在于<a target="_blank" rel="noopener" href="http://support.microsoft.com/kb/306070/zh-cn" title="在 Internet Explorer 中的 cookie 的数字和大小限制">cookie是有大小限制的</a>，如果想写入的内容超过了4KB，写操作便不能完成。</p>
 <blockquote>
 <p>Microsoft Internet Explorer 符合以下的 RFC 2109 推荐最小限制：</p>
 <ul>
-<li>至少 300 的 cookie</li>
-<li>至少每 cookie （如构成 cookie 非终端设置 Cookie 标头的语法描述中的字符的大小为单位） 的 4096 字节</li>
-<li>至少 20 cookie，每个唯一的主机或域名</li>
+<li>  至少 300 的 cookie</li>
+<li>  至少每 cookie （如构成 cookie 非终端设置 Cookie 标头的语法描述中的字符的大小为单位） 的 4096 字节</li>
+<li>  至少 20 cookie，每个唯一的主机或域名</li>
 </ul>
 </blockquote>
 
@@ -917,7 +1021,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://leowll.com/2011/12/02/extjs-ie8-gridpanel-dateformat/">
+    <link itemprop="mainEntityOfPage" href="http://leowll.com/2011/12/03/extjs-ie8-gridpanel-dateformat/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -931,7 +1035,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2011/12/02/extjs-ie8-gridpanel-dateformat/" class="post-title-link" itemprop="url">Extjs 在IE8中 GridPanel日期显示异常的处理</a>
+            <a href="/2011/12/03/extjs-ie8-gridpanel-dateformat/" class="post-title-link" itemprop="url">Extjs 在IE8中 GridPanel日期显示异常的处理</a>
         </h2>
 
         <div class="post-meta">
@@ -956,11 +1060,11 @@
               </span>
               <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/技术/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
                 </span>
                   , 
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/技术/未分類/" itemprop="url" rel="index"><span itemprop="name">未分類</span></a>
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E6%9C%AA%E5%88%86%E9%A1%9E/" itemprop="url" rel="index"><span itemprop="name">未分類</span></a>
                 </span>
             </span>
 
@@ -973,8 +1077,8 @@
       </span>
       <span class="post-meta-item-text">Disqus: </span>
     
-    <a title="disqus" href="/2011/12/02/extjs-ie8-gridpanel-dateformat/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2011/12/02/extjs-ie8-gridpanel-dateformat/" itemprop="commentCount"></span>
+    <a title="disqus" href="/2011/12/03/extjs-ie8-gridpanel-dateformat/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2011/12/03/extjs-ie8-gridpanel-dateformat/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -989,97 +1093,9 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>Extjs3.4的GridPanel在IE8中会出现日期无法render的现象，要解决这个问题，需要在 store的reader的column相应的字段上加上如下代码<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">convert:<span class="function"><span class="keyword">function</span>(<span class="params">v,record</span>)</span>&#123;</span><br><span class="line"> <span class="keyword">var</span> date=<span class="keyword">new</span> <span class="built_in">Date</span>.parseDate(v,<span class="string">'Y-m-dTH:i:s'</span>);</span><br><span class="line"> <span class="keyword">return</span> date.format(<span class="string">'Y年m月d日'</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+          <p>Extjs3.4的GridPanel在IE8中会出现日期无法render的现象，要解决这个问题，需要在 store的reader的column相应的字段上加上如下代码</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">convert:<span class="function"><span class="keyword">function</span>(<span class="params">v,record</span>)</span>&#123;</span><br><span class="line"> <span class="keyword">var</span> date=<span class="keyword">new</span> <span class="built_in">Date</span>.parseDate(v,<span class="string">&#x27;Y-m-dTH:i:s&#x27;</span>);</span><br><span class="line"> <span class="keyword">return</span> date.format(<span class="string">&#x27;Y年m月d日&#x27;</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>主要的问题就在parseDate的格式上，只要确保parseDate用到的日期格式和从服务器端传回来的数据格式是一致的，Extjs就可以进行解析了。 若想要查看服务器端传回来的数据格式，使用chrome或者firefox的firebug插件就可以了。 ps：Extjs在IE8上总有这样那样的问题，IE9和chrome就相对聪明多了。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://leowll.com/2011/11/25/apache-tomcat-error-10054100601006110062-reason/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Leo Wang">
-      <meta itemprop="description" content="Tech & Life">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Leo's notepad">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2011/11/25/apache-tomcat-error-10054100601006110062-reason/" class="post-title-link" itemprop="url">Apache + Tomcat Error 10054/10060/10061/10062的解决办法之一</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2011-11-26 11:52:33" itemprop="dateCreated datePublished" datetime="2011-11-26T11:52:33+09:00">2011-11-26</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2018-06-06 23:32:23" itemprop="dateModified" datetime="2018-06-06T23:32:23+09:00">2018-06-06</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/知识/" itemprop="url" rel="index"><span itemprop="name">知识</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus: </span>
-    
-    <a title="disqus" href="/2011/11/25/apache-tomcat-error-10054100601006110062-reason/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2011/11/25/apache-tomcat-error-10054100601006110062-reason/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>公司的Dev-Server用来部署测试版应用程序，需要访问DB-Server来进行数据库操作。 之前一直没有问题，自从公司搬家之后Dev-Server便开始出现问题。 Dev-Server上本来部署着4个网站，其中的两个是访问安装在Dev-Server本机上的数据库，这两个没有什么问题。 但是剩下的两个需要访问DB-Server，于是便出现了下面的问题。 凡是涉及到数据库的操作均无法进行。查看tomcat的log文件没有发现任何错误。查看apache的log文件则提示如下错误：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[Tue Nov 22 20:14:10 2011] [error] ajp_read_header: ajp_ilink_receive failed</span><br><span class="line">[Tue Nov 22 20:14:10 2011] [error] (120006)APR does not understand this error code:  proxy: read response failed from 127.0.0.1:8009 (localhost)</span><br></pre></td></tr></table></figure></p>
-<p>紧接着这两行错误之前的还有诸如(OS 10060)（OS 10054） （OS 10062）之类的错误。 这些错误的定义可以在MSDN的文档中查到。具体的原因有连接超时，连接被中断等等。。。 试了很多办法去解决这个问题都不行。 最后下载了最新的jre7，<strong>把tomcat的java虚拟机路径改成了jre7的bin/client/jvm.dll</strong>之后，问题就解决了。</p>
 
       
     </div>
@@ -1164,7 +1180,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">44</span>
+          <span class="site-state-item-count">45</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -1177,17 +1193,17 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">74</span>
+        <span class="site-state-item-count">77</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
 </div>
   <div class="links-of-author motion-element">
       <span class="links-of-author-item">
-        <a href="https://github.com/leowll" title="GitHub → https://github.com/leowll" rel="noopener" target="_blank"><i class="github fa-fw"></i>GitHub</a>
+        <a href="https://github.com/leowll" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;leowll" rel="noopener" target="_blank"><i class="github fa-fw"></i>GitHub</a>
       </span>
       <span class="links-of-author-item">
-        <a href="https://twitter.com/leowll" title="Twitter → https://twitter.com/leowll" rel="noopener" target="_blank"><i class="twitter fa-fw"></i>Twitter</a>
+        <a href="https://twitter.com/leowll" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;leowll" rel="noopener" target="_blank"><i class="twitter fa-fw"></i>Twitter</a>
       </span>
   </div>
 
@@ -1212,13 +1228,13 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2021</span>
+  <span itemprop="copyrightYear">2022</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Leo Wang</span>
 </div>
-  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
   </div>
 
         
@@ -1238,9 +1254,17 @@
   <script src="/lib/anime.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
-<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
 <script src="/js/schemes/pisces.js"></script>
+
+
 <script src="/js/next-boot.js"></script>
+
 
 
 

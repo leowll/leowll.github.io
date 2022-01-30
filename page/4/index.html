@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 3.7.1">
+<meta name="generator" content="Hexo 6.0.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -26,10 +26,9 @@
 <meta property="og:url" content="http://leowll.com/page/4/index.html">
 <meta property="og:site_name" content="Leo&#39;s notepad">
 <meta property="og:description" content="Tech &amp; Life">
-<meta property="og:locale" content="zh-Hans">
+<meta property="og:locale">
+<meta property="article:author" content="Leo Wang">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Leo&#39;s notepad">
-<meta name="twitter:description" content="Tech &amp; Life">
 
 <link rel="canonical" href="http://leowll.com/page/4/">
 
@@ -164,6 +163,96 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://leowll.com/2011/11/26/apache-tomcat-error-10054100601006110062-reason/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Leo Wang">
+      <meta itemprop="description" content="Tech & Life">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Leo's notepad">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2011/11/26/apache-tomcat-error-10054100601006110062-reason/" class="post-title-link" itemprop="url">Apache + Tomcat Error 10054/10060/10061/10062的解决办法之一</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2011-11-26 11:52:33" itemprop="dateCreated datePublished" datetime="2011-11-26T11:52:33+09:00">2011-11-26</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2018-06-06 23:32:23" itemprop="dateModified" datetime="2018-06-06T23:32:23+09:00">2018-06-06</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%9F%A5%E8%AF%86/" itemprop="url" rel="index"><span itemprop="name">知识</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2011/11/26/apache-tomcat-error-10054100601006110062-reason/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2011/11/26/apache-tomcat-error-10054100601006110062-reason/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>公司的Dev-Server用来部署测试版应用程序，需要访问DB-Server来进行数据库操作。 之前一直没有问题，自从公司搬家之后Dev-Server便开始出现问题。 Dev-Server上本来部署着4个网站，其中的两个是访问安装在Dev-Server本机上的数据库，这两个没有什么问题。 但是剩下的两个需要访问DB-Server，于是便出现了下面的问题。 凡是涉及到数据库的操作均无法进行。查看tomcat的log文件没有发现任何错误。查看apache的log文件则提示如下错误： </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[Tue Nov 22 20:14:10 2011] [error] ajp_read_header: ajp_ilink_receive failed</span><br><span class="line">[Tue Nov 22 20:14:10 2011] [error] (120006)APR does not understand this error code:  proxy: read response failed from 127.0.0.1:8009 (localhost) </span><br></pre></td></tr></table></figure>
+<p>紧接着这两行错误之前的还有诸如(OS 10060)（OS 10054） （OS 10062）之类的错误。 这些错误的定义可以在MSDN的文档中查到。具体的原因有连接超时，连接被中断等等。。。 试了很多办法去解决这个问题都不行。 最后下载了最新的jre7，<strong>把tomcat的java虚拟机路径改成了jre7的bin/client/jvm.dll</strong>之后，问题就解决了。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="http://leowll.com/2011/11/18/office2010-applicationvnd-mime-type/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -203,7 +292,7 @@
               </span>
               <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/技术/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
                 </span>
             </span>
 
@@ -233,26 +322,26 @@
 
       
           <ul>
-<li><strong>.docm:</strong>application/vnd.ms-word.document.macroEnabled.12</li>
-<li><strong>.docx:</strong> application/vnd.openxmlformats-officedocument.wordprocessingml.document</li>
-<li><strong>.dotm: </strong>application/vnd.ms-word.template.macroEnabled.12</li>
-<li><strong>.dotx:</strong> application/vnd.openxmlformats-officedocument.wordprocessingml.template</li>
-<li><strong>.ppsm: </strong>application/vnd.ms-powerpoint.slideshow.macroEnabled.12</li>
-<li><strong>.ppsx:</strong> application/vnd.openxmlformats-officedocument.presentationml.slideshow</li>
-<li><strong>.pptm:</strong> application/vnd.ms-powerpoint.presentation.macroEnabled.12</li>
-<li><strong>.pptx:</strong> application/vnd.openxmlformats-officedocument.presentationml.presentation</li>
-<li><strong>.xlsb:</strong> application/vnd.ms-excel.sheet.binary.macroEnabled.12</li>
-<li><strong>.xlsm:</strong> application/vnd.ms-excel.sheet.macroEnabled.12</li>
-<li><strong>.xlsx: </strong>application/vnd.openxmlformats-officedocument.spreadsheetml.sheet</li>
-<li><strong>.xps:</strong> application/vnd.ms-xpsdocument</li>
-<li><strong>.potm:</strong> application/vnd.ms-powerpoint.template.macroEnabled.12</li>
-<li><strong>.potx:</strong> application/vnd.openxmlformats-officedocument.presentationml.template</li>
-<li><strong>.ppam:</strong> application/vnd.ms-powerpoint.addin.macroEnabled.12</li>
-<li><strong>.pptm:</strong> application/vnd.ms-powerpoint.presentation.macroEnabled.12</li>
-<li><strong>.xlam:</strong> application/vnd.ms-excel.addin.macroEnabled.12</li>
-<li><strong>.xlsb:</strong> application/vnd.ms-excel.sheet.binary.macroEnabled.12</li>
-<li><strong>.xltm:</strong> application/vnd.ms-excel.template.macroEnabled.12</li>
-<li><strong>.xltx:</strong> application/vnd.openxmlformats-officedocument.spreadsheetml</li>
+<li>  **.docm:**application/vnd.ms-word.document.macroEnabled.12</li>
+<li>  <strong>.docx:</strong> application/vnd.openxmlformats-officedocument.wordprocessingml.document</li>
+<li>  **.dotm: **application/vnd.ms-word.template.macroEnabled.12</li>
+<li>  <strong>.dotx:</strong> application/vnd.openxmlformats-officedocument.wordprocessingml.template</li>
+<li>  **.ppsm: **application/vnd.ms-powerpoint.slideshow.macroEnabled.12</li>
+<li>  <strong>.ppsx:</strong> application/vnd.openxmlformats-officedocument.presentationml.slideshow</li>
+<li>  <strong>.pptm:</strong> application/vnd.ms-powerpoint.presentation.macroEnabled.12</li>
+<li>  <strong>.pptx:</strong> application/vnd.openxmlformats-officedocument.presentationml.presentation</li>
+<li>  <strong>.xlsb:</strong> application/vnd.ms-excel.sheet.binary.macroEnabled.12</li>
+<li>  <strong>.xlsm:</strong> application/vnd.ms-excel.sheet.macroEnabled.12</li>
+<li>  **.xlsx: **application/vnd.openxmlformats-officedocument.spreadsheetml.sheet</li>
+<li>  <strong>.xps:</strong> application/vnd.ms-xpsdocument</li>
+<li>  <strong>.potm:</strong> application/vnd.ms-powerpoint.template.macroEnabled.12</li>
+<li>  <strong>.potx:</strong> application/vnd.openxmlformats-officedocument.presentationml.template</li>
+<li>  <strong>.ppam:</strong> application/vnd.ms-powerpoint.addin.macroEnabled.12</li>
+<li>  <strong>.pptm:</strong> application/vnd.ms-powerpoint.presentation.macroEnabled.12</li>
+<li>  <strong>.xlam:</strong> application/vnd.ms-excel.addin.macroEnabled.12</li>
+<li>  <strong>.xlsb:</strong> application/vnd.ms-excel.sheet.binary.macroEnabled.12</li>
+<li>  <strong>.xltm:</strong> application/vnd.ms-excel.template.macroEnabled.12</li>
+<li>  <strong>.xltx:</strong> application/vnd.openxmlformats-officedocument.spreadsheetml</li>
 </ul>
 
       
@@ -312,7 +401,7 @@
               </span>
               <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/知识/" itemprop="url" rel="index"><span itemprop="name">知识</span></a>
+                  <a href="/categories/%E7%9F%A5%E8%AF%86/" itemprop="url" rel="index"><span itemprop="name">知识</span></a>
                 </span>
             </span>
 
@@ -341,7 +430,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>在使用Hibernate+Struts2进行项目开发的时候，有时需要对数据库中的多个表进行连接操作。 为了减少访问数据库的次数，可以将连接表的操作写入到procedure即存储过程当中。 通过procedure进行多个表的连接，然后返回查询结果。 查询结果中包含原本属于多个实体的多个属性。 于是可以构建一个实体类 MyEntity，在hibernate的MyEntity.hbm.xml中可以这样写：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version="1.0"?&gt;</span><br><span class="line"><span class="meta">&lt;!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"</span></span><br><span class="line"><span class="meta">"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd"&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">hibernate-mapping</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">class</span> <span class="attr">name</span>=<span class="string">"model.YourEntity"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">id</span> <span class="attr">name</span>=<span class="string">"yourEntityID"</span>&gt;</span><span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"yourEntityProperty1"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">class</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">sql-query</span> <span class="attr">name</span>=<span class="string">"callYourProcedure"</span> <span class="attr">callable</span>=<span class="string">"true"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">return</span> <span class="attr">class</span>=<span class="string">"model.YourEntity"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">return-property</span> <span class="attr">name</span>=<span class="string">"yourEntityID"</span></span></span><br><span class="line"><span class="tag"><span class="attr">column</span>=<span class="string">"yourTableID"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">return-property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">return-property</span> <span class="attr">name</span>=<span class="string">"yourEntityProperty1"</span></span></span><br><span class="line"><span class="tag"><span class="attr">column</span>=<span class="string">"yourTableProperty1"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">return-property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">return</span>&gt;</span></span><br><span class="line">&#123;call yourProcedureName&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">sql-query</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">hibernate-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+          <p>在使用Hibernate+Struts2进行项目开发的时候，有时需要对数据库中的多个表进行连接操作。 为了减少访问数据库的次数，可以将连接表的操作写入到procedure即存储过程当中。 通过procedure进行多个表的连接，然后返回查询结果。 查询结果中包含原本属于多个实体的多个属性。 于是可以构建一个实体类 MyEntity，在hibernate的MyEntity.hbm.xml中可以这样写：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot;?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">hibernate-mapping</span> <span class="meta-keyword">PUBLIC</span> <span class="meta-string">&quot;-//Hibernate/Hibernate Mapping DTD 3.0//EN&quot;</span></span></span><br><span class="line"><span class="meta"><span class="meta-string">&quot;http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">hibernate-mapping</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">class</span> <span class="attr">name</span>=<span class="string">&quot;model.YourEntity&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">id</span> <span class="attr">name</span>=<span class="string">&quot;yourEntityID&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;yourEntityProperty1&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">class</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">sql-query</span> <span class="attr">name</span>=<span class="string">&quot;callYourProcedure&quot;</span> <span class="attr">callable</span>=<span class="string">&quot;true&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">return</span> <span class="attr">class</span>=<span class="string">&quot;model.YourEntity&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">return-property</span> <span class="attr">name</span>=<span class="string">&quot;yourEntityID&quot;</span></span></span><br><span class="line"><span class="tag"><span class="attr">column</span>=<span class="string">&quot;yourTableID&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">return-property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">return-property</span> <span class="attr">name</span>=<span class="string">&quot;yourEntityProperty1&quot;</span></span></span><br><span class="line"><span class="tag"><span class="attr">column</span>=<span class="string">&quot;yourTableProperty1&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">return-property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">return</span>&gt;</span></span><br><span class="line">&#123;call yourProcedureName&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">sql-query</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">hibernate-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>而相应的Java实体类中要包含相应的属性和getter/setter。 procedure返回的查询结果的列名也要一一对应。 这样我们就不需要将Java实体类映射到数据库中具体的表了，只需要映射存储过程就行了。</p>
 
       
@@ -401,7 +491,7 @@
               </span>
               <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/技术/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
                 </span>
             </span>
 
@@ -430,7 +520,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>一开始想通过Ajax异步方式（Ext.Ajax.request())实现文件下载，却一直没有成功。 在firebug中查看response的时候，发现Ajax异步方式，服务器端将文件的2进制流写入了XMLHTTPRequest对象，于是一直无法将文件取出。 其实一开始的时候思路就是错的，下载文件不能通过异步方式实现。 那么怎样在Extjs中实现Ajax式（不刷新页面，只弹出下载对话框）的下载呢？ 只需要在body中创建一个隐藏（hidden）表单（form）就可以了。 比如下载按钮的handler可以写成下面这种形式：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">handler : <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> body = Ext.getBody();</span><br><span class="line">    <span class="keyword">var</span> frame = body.createChild(&#123;</span><br><span class="line">        tag: <span class="string">'iframe'</span></span><br><span class="line">        , <span class="attr">cls</span>: <span class="string">'x-hidden'</span></span><br><span class="line">        , <span class="attr">id</span>: <span class="string">'iframe'</span></span><br><span class="line">        , <span class="attr">name</span>: <span class="string">'iframe'</span></span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> form = body.createChild(&#123;</span><br><span class="line">        tag: <span class="string">'form'</span>,</span><br><span class="line">        cls: <span class="string">'x-hidden'</span>,</span><br><span class="line">        id: <span class="string">'form'</span>,</span><br><span class="line">        action: <span class="string">'your-action-URL'</span>,</span><br><span class="line">        target: <span class="string">'iframe'</span></span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    form.dom.submit();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+          <p>一开始想通过Ajax异步方式（Ext.Ajax.request())实现文件下载，却一直没有成功。 在firebug中查看response的时候，发现Ajax异步方式，服务器端将文件的2进制流写入了XMLHTTPRequest对象，于是一直无法将文件取出。 其实一开始的时候思路就是错的，下载文件不能通过异步方式实现。 那么怎样在Extjs中实现Ajax式（不刷新页面，只弹出下载对话框）的下载呢？ 只需要在body中创建一个隐藏（hidden）表单（form）就可以了。 比如下载按钮的handler可以写成下面这种形式：  </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">handler : <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> body = Ext.getBody();</span><br><span class="line">    <span class="keyword">var</span> frame = body.createChild(&#123;</span><br><span class="line">        <span class="attr">tag</span>: <span class="string">&#x27;iframe&#x27;</span></span><br><span class="line">        , <span class="attr">cls</span>: <span class="string">&#x27;x-hidden&#x27;</span></span><br><span class="line">        , <span class="attr">id</span>: <span class="string">&#x27;iframe&#x27;</span></span><br><span class="line">        , <span class="attr">name</span>: <span class="string">&#x27;iframe&#x27;</span></span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> form = body.createChild(&#123;</span><br><span class="line">        <span class="attr">tag</span>: <span class="string">&#x27;form&#x27;</span>,</span><br><span class="line">        <span class="attr">cls</span>: <span class="string">&#x27;x-hidden&#x27;</span>,</span><br><span class="line">        <span class="attr">id</span>: <span class="string">&#x27;form&#x27;</span>,</span><br><span class="line">        <span class="attr">action</span>: <span class="string">&#x27;your-action-URL&#x27;</span>,</span><br><span class="line">        <span class="attr">target</span>: <span class="string">&#x27;iframe&#x27;</span></span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    form.dom.submit();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -450,7 +541,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://leowll.com/2011/11/08/java-lang-noclassdeffounderror-netsfezmorphmorpher-e9-94-99-e8-af-af-e8-a7-a3-e5-86-b3-e5-8a-9e-e6-b3-95/">
+    <link itemprop="mainEntityOfPage" href="http://leowll.com/2011/11/09/java-lang-noclassdeffounderror-netsfezmorphmorpher-e9-94-99-e8-af-af-e8-a7-a3-e5-86-b3-e5-8a-9e-e6-b3-95/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -464,7 +555,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2011/11/08/java-lang-noclassdeffounderror-netsfezmorphmorpher-e9-94-99-e8-af-af-e8-a7-a3-e5-86-b3-e5-8a-9e-e6-b3-95/" class="post-title-link" itemprop="url">java.lang.NoClassDefFoundError: net/sf/ezmorph/Morpher错误解决办法</a>
+            <a href="/2011/11/09/java-lang-noclassdeffounderror-netsfezmorphmorpher-e9-94-99-e8-af-af-e8-a7-a3-e5-86-b3-e5-8a-9e-e6-b3-95/" class="post-title-link" itemprop="url">java.lang.NoClassDefFoundError: net/sf/ezmorph/Morpher错误解决办法</a>
         </h2>
 
         <div class="post-meta">
@@ -489,11 +580,11 @@
               </span>
               <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/技术/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
                 </span>
                   , 
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/技术/未分類/" itemprop="url" rel="index"><span itemprop="name">未分類</span></a>
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E6%9C%AA%E5%88%86%E9%A1%9E/" itemprop="url" rel="index"><span itemprop="name">未分類</span></a>
                 </span>
             </span>
 
@@ -506,8 +597,8 @@
       </span>
       <span class="post-meta-item-text">Disqus: </span>
     
-    <a title="disqus" href="/2011/11/08/java-lang-noclassdeffounderror-netsfezmorphmorpher-e9-94-99-e8-af-af-e8-a7-a3-e5-86-b3-e5-8a-9e-e6-b3-95/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2011/11/08/java-lang-noclassdeffounderror-netsfezmorphmorpher-e9-94-99-e8-af-af-e8-a7-a3-e5-86-b3-e5-8a-9e-e6-b3-95/" itemprop="commentCount"></span>
+    <a title="disqus" href="/2011/11/09/java-lang-noclassdeffounderror-netsfezmorphmorpher-e9-94-99-e8-af-af-e8-a7-a3-e5-86-b3-e5-8a-9e-e6-b3-95/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2011/11/09/java-lang-noclassdeffounderror-netsfezmorphmorpher-e9-94-99-e8-af-af-e8-a7-a3-e5-86-b3-e5-8a-9e-e6-b3-95/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -522,7 +613,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>在使用Extjs+Struts2进行项目开发的时候，前台将json数据传到服务器端进行处理。 通过字符串接收传来的json数据，格式为[{“staffID”:1013900,”tehaiStatusCD”:00},{“staffID”:1018351,”tehaiStatusCD”:00}] 遇到的问题是，无法使用JSONArray.fromObject()方法对该字符串进行解析。通过JUnit测试发现了 java.lang.NoClassDefFoundError: net/sf/ezmorph/Morpher错误，说明缺少相应的jar包。 在<a href="http://www.findjar.com/jar/net/sf/ezmorph/ezmorph/1.0.1/ezmorph-1.0.1.jar.html" title="findJar" target="_blank" rel="noopener">这个网站</a>上找到了名为ezmorph-1.0.1.jar的jar包。将其添加到项目中。 再查看一下这个网站上列出的该包的依赖关系，保证你的项目中还加入了以下几个包 <a href="http://www.findjar.com/jar/junit/junit/3.8.1/junit-3.8.1.jar.html" target="_blank" rel="noopener">junit.jar</a> <a href="http://www.findjar.com/jar/commons-lang/commons-lang/2.2/commons-lang-2.2.jar.html" target="_blank" rel="noopener">commons-lang.jar</a> <a href="http://www.findjar.com/jar/commons-beanutils/commons-beanutils/1.7.0/commons-beanutils-1.7.0.jar.html" target="_blank" rel="noopener">commons-beanutils.jar</a> <a href="http://www.findjar.com/jar/commons-logging/commons-logging/1.1/commons-logging-1.1.jar.html" target="_blank" rel="noopener">commons-logging.jar</a> <a href="http://www.findjar.com/jar/log4j/log4j/1.2.13/log4j-1.2.13.jar.html" target="_blank" rel="noopener">log4j.jar</a> 问题就解决了。 thank google</p>
+          <p>在使用Extjs+Struts2进行项目开发的时候，前台将json数据传到服务器端进行处理。 通过字符串接收传来的json数据，格式为[{“staffID”:1013900,”tehaiStatusCD”:00},{“staffID”:1018351,”tehaiStatusCD”:00}] 遇到的问题是，无法使用JSONArray.fromObject()方法对该字符串进行解析。通过JUnit测试发现了 java.lang.NoClassDefFoundError: net/sf/ezmorph/Morpher错误，说明缺少相应的jar包。 在<a target="_blank" rel="noopener" href="http://www.findjar.com/jar/net/sf/ezmorph/ezmorph/1.0.1/ezmorph-1.0.1.jar.html" title="findJar">这个网站</a>上找到了名为ezmorph-1.0.1.jar的jar包。将其添加到项目中。 再查看一下这个网站上列出的该包的依赖关系，保证你的项目中还加入了以下几个包 <a target="_blank" rel="noopener" href="http://www.findjar.com/jar/junit/junit/3.8.1/junit-3.8.1.jar.html">junit.jar</a> <a target="_blank" rel="noopener" href="http://www.findjar.com/jar/commons-lang/commons-lang/2.2/commons-lang-2.2.jar.html">commons-lang.jar</a> <a target="_blank" rel="noopener" href="http://www.findjar.com/jar/commons-beanutils/commons-beanutils/1.7.0/commons-beanutils-1.7.0.jar.html">commons-beanutils.jar</a> <a target="_blank" rel="noopener" href="http://www.findjar.com/jar/commons-logging/commons-logging/1.1/commons-logging-1.1.jar.html">commons-logging.jar</a> <a target="_blank" rel="noopener" href="http://www.findjar.com/jar/log4j/log4j/1.2.13/log4j-1.2.13.jar.html">log4j.jar</a> 问题就解决了。 thank google</p>
 
       
     </div>
@@ -581,7 +672,7 @@
               </span>
               <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/技术/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
                 </span>
             </span>
 
@@ -610,7 +701,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>在重装了windows 7 系统（当然是盗版)之后，键盘一直不能使用日语布局。在网上查中文的资料一直没有理想的结果。今天试着日语google了一下，当即找到了解决方案。 如下所示 要解决这个问题，在注册表的HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\i8042prt\Parameters  位置中设定如下值</p>
+          <p>在重装了windows 7 系统（当然是盗版)之后，键盘一直不能使用日语布局。在网上查中文的资料一直没有理想的结果。今天试着日语google了一下，当即找到了解决方案。 如下所示 要解决这个问题，在注册表的HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\i8042prt\Parameters  位置中设定如下值</p>
 <table>
 <thead>
 <tr>
@@ -619,8 +710,7 @@
 <th>值</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td>LayerDriver JPN</td>
 <td>REG_SZ</td>
 <td>kbd106.dll</td>
@@ -640,8 +730,7 @@
 <td>DWORD</td>
 <td>7</td>
 </tr>
-</tbody>
-</table>
+</tbody></table>
 <p>ps：感慨一下，日本人写的这些手册一类的东西真是赏心悦目啊</p>
 
       
@@ -701,7 +790,7 @@
               </span>
               <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/未分类/" itemprop="url" rel="index"><span itemprop="name">未分类</span></a>
+                  <a href="/categories/%E6%9C%AA%E5%88%86%E7%B1%BB/" itemprop="url" rel="index"><span itemprop="name">未分类</span></a>
                 </span>
             </span>
 
@@ -730,152 +819,152 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><strong> 我爱问艾未未</strong></p>
-<p><img src="http://www.xin8zaiyan.me//admin/wp-content/uploads/image/img/______.jpg" alt=""></p>
+          <p>** 我爱问艾未未**</p>
+<p><img src="http://www.xin8zaiyan.me//admin/wp-content/uploads/image/img/______.jpg"></p>
 <p>搜集自twitter上草泥马们对艾未未（艾神，艾婶）的提问推</p>
 <p>Aiww:</p>
 <p>1、一次问一个问题，或者我只回答一个。2、问的短才是问的聪明。3、可以问隐私。4、我的回答可以是反问。</p>
-<p>如果人们愿意，用不了五年。RT @<a href="http://twitter.com/sudo_i" target="_blank" rel="noopener">sudo_i</a>: 问艾神 @<a href="http://twitter.com/aiww" target="_blank" rel="noopener">aiww</a>五年或十年之内中国能走入民主社会吗？为了我们的下一代，周围有条件的人都选择离开，也有好多人很迷茫，看不到希望 。<a href="http://twitter.com/#!/search?q=%23aiww" title="#aiww" target="_blank" rel="noopener">#aiww</a></p>
-<p>我很单薄，但是比邪恶要强大。RT @<a href="http://twitter.com/shenxianyuan" target="_blank" rel="noopener">shenxianyuan</a>: @<a href="http://twitter.com/aiww" target="_blank" rel="noopener">aiww</a>我问一个，看了卫报你写给卡梅伦的信，你自己觉得论证单薄吗？我觉得挺单薄啊。这样不好。</p>
-<p>能被你看到。RT @<a href="http://twitter.com/luxi78" target="_blank" rel="noopener">luxi78</a>: @<a href="http://twitter.com/aiww" target="_blank" rel="noopener">aiww</a>您希望您在推上的付出能得到一个什么样的结果</p>
-<p>艾老已经在教我。RT @<a href="http://twitter.com/laoyang945" target="_blank" rel="noopener">laoyang945</a>: @<a href="http://twitter.com/aiww" target="_blank" rel="noopener">aiww</a>请问你会让艾老在中国上学吗？老师叫你去见他你会去吗？</p>
-<p>有很黑的意义。RT @<a href="http://twitter.com/ptoq" target="_blank" rel="noopener">ptoq</a>: @<a href="http://twitter.com/aiww" target="_blank" rel="noopener">aiww</a>艾神呀，可否谈一下美国黑人民权运动对于中国民主进程的借鉴意义</p>
-<p>你。RT @<a href="http://twitter.com/Ying_Lang" target="_blank" rel="noopener">Ying_Lang</a>: 很想知道你最喜欢的推友有谁</p>
-<p>是说刚才吗？RT @<a href="http://twitter.com/BaoliDao" target="_blank" rel="noopener">BaoliDao</a>: @<a href="http://twitter.com/aiww" target="_blank" rel="noopener">aiww</a>你爱我吗？</p>
-<p>在拍。RT @<a href="http://twitter.com/john8311" target="_blank" rel="noopener">john8311</a>: @<a href="http://twitter.com/aiww" target="_blank" rel="noopener">aiww</a>艾老师有无计划采访广西北海市白虎头村的村民并拍录相？</p>
-<p>烦呗。RT @<a href="http://twitter.com/MarcusWang" target="_blank" rel="noopener">MarcusWang</a>: @<a href="http://twitter.com/aiww" target="_blank" rel="noopener">aiww</a>艾婶为什么反华呀？想知道原因～～</p>
-<p>艾老与我看到的将不是同一个世界。RT @<a href="http://twitter.com/jms1976315" target="_blank" rel="noopener">jms1976315</a>: ［问@<a href="http://twitter.com/aiww" target="_blank" rel="noopener">aiww</a>］3、你对中国未来的公民社会能否建立是乐观还是悲观，若是乐观，你觉得你能看到还是看不到，若你的有生之年看不到，那艾老能否看到？</p>
-<p>不相信有人会相信。RT @<a href="http://twitter.com/monkey_D_Jones" target="_blank" rel="noopener">monkey_D_Jones</a>: @<a href="http://twitter.com/aiww" target="_blank" rel="noopener">aiww</a>想问艾婶相信共产主义吗?</p>
-<p>艺术是艺术之外。RT @<a href="http://twitter.com/raddishsh" target="_blank" rel="noopener">raddishsh</a>: @<a href="http://twitter.com/aiww" target="_blank" rel="noopener">aiww</a>您如何看待“艺术”？您自己的定义是什么？</p>
-<p>这是我们的一部分，无奈亦可爱。RT @<a href="http://twitter.com/Shizhw" target="_blank" rel="noopener">Shizhw</a>: @<a href="http://twitter.com/aiww" target="_blank" rel="noopener">aiww</a>推上有时充满无病呻吟、无聊和无语凝噎的东西，老兄是否会觉得时有疲倦？完全不推和不交往的时候，做什么？？</p>
-<p>是那样的女人。RT @<a href="http://twitter.com/zhangrui1999" target="_blank" rel="noopener">zhangrui1999</a>: @<a href="http://twitter.com/aiww" target="_blank" rel="noopener">aiww</a>艾老的妈妈是什么样的女人？</p>
-<p>洗洗睡。RT @<a href="http://twitter.com/YeJF" target="_blank" rel="noopener">YeJF</a>: @<a href="http://twitter.com/aiww" target="_blank" rel="noopener">aiww</a>周围人很麻木，很天真，有何建议?</p>
-<p>也爽RT @<a href="http://twitter.com/malebic" target="_blank" rel="noopener">malebic</a>: @<a href="http://twitter.com/aiww" target="_blank" rel="noopener">aiww</a>如果有大学敢聘你去当老师给学生讲课，你愿意吗？ （ MB，光是意淫这个场景都这么爽。）</p>
-<p>开机。RT @<a href="http://twitter.com/miaoever" target="_blank" rel="noopener">miaoever</a>: @<a href="http://twitter.com/aiww" target="_blank" rel="noopener">aiww</a>如果有一天你突然面對溫家寶，你最想對他說的一句話是什麼？</p>
-<p>本来是上一代的事。RT @<a href="http://twitter.com/jam_vivi" target="_blank" rel="noopener">jam_vivi</a>: @<a href="http://twitter.com/aiww" target="_blank" rel="noopener">aiww</a>您觉得这一代就能完成民主事业么？还是要再几代人？</p>
-<p>我会说，抓紧了啊。RT @<a href="http://twitter.com/lanpijin" target="_blank" rel="noopener">lanpijin</a>: 如果有一天他们无耻了要抓你，你会怎么做？</p>
-<p>我没捧就晕呢。RT @<a href="http://twitter.com/Tauru3" target="_blank" rel="noopener">Tauru3</a>: @<a href="http://twitter.com/aiww" target="_blank" rel="noopener">aiww</a>艾大爷你咋不像有些傻逼那样一捧就晕捏？</p>
-<p>谈谈草泥马的事。RT @<a href="http://twitter.com/MESUTO115" target="_blank" rel="noopener">MESUTO115</a>: 如果你遇到Obama你会和他说些什么？</p>
-<p>就像伞一样突然张开。 RT @<a href="http://twitter.com/runningnini" target="_blank" rel="noopener">runningnini</a>@<a href="http://twitter.com/aiww" target="_blank" rel="noopener">aiww</a>你会不会有时突然想我涅？ 就像我突然想你一样</p>
-<p>对艾老我始终在学习。RT @<a href="http://twitter.com/jms1976315" target="_blank" rel="noopener">jms1976315</a>: ［问@<a href="http://twitter.com/aiww" target="_blank" rel="noopener">aiww</a>］5、我对我家女儿的养育是坚决要摒弃中国式的威权养育方法，请问你及你爱人对艾老用什么养育方法？</p>
-<p>真正的自由是一点一滴。RT @<a href="http://twitter.com/RealHector" target="_blank" rel="noopener">RealHector</a>: @<a href="http://twitter.com/aiww" target="_blank" rel="noopener">aiww</a>艾老师，我觉得你虽然积极参与一些公共事件，但你并没有想通过这些努力使中国尽早实习民主自由这样宏大的目标，对吗？</p>
-<p>永不失望。RT @<a href="http://twitter.com/zonesan" target="_blank" rel="noopener">zonesan</a>: 艾神,对草泥马们有过(或即将有)期望吗?失望过吗?</p>
-<p>定了RT @<a href="http://twitter.com/kielboat" target="_blank" rel="noopener">kielboat</a>: @<a href="http://twitter.com/aiww" target="_blank" rel="noopener">aiww</a>艾老，明天怎么行动，剧本定了吗？</p>
-<p>从（重）来的昨天是明天。RT @<a href="http://twitter.com/fionasoar" target="_blank" rel="noopener">fionasoar</a>: @<a href="http://twitter.com/aiww" target="_blank" rel="noopener">aiww</a>如果昨天能重来，你还会选择做一样的事吗？</p>
-<p>先孤僻后孤独。RT @<a href="http://twitter.com/zhangrui1999" target="_blank" rel="noopener">zhangrui1999</a>: @<a href="http://twitter.com/aiww" target="_blank" rel="noopener">aiww</a>成名前后哪个孤独感更多？</p>
-<p>是男人吗RT @<a href="http://twitter.com/BaoliDao" target="_blank" rel="noopener">BaoliDao</a>: @<a href="http://twitter.com/aiww" target="_blank" rel="noopener">aiww</a>你喜欢小刀这样的男人吗？</p>
-<p>梦想是永远实现不了我的梦。RT @<a href="http://twitter.com/slsyy" target="_blank" rel="noopener">slsyy</a>: 25岁的人想问：@<a href="http://twitter.com/aiww" target="_blank" rel="noopener">aiww</a>25岁时的梦想是什么？现在，它实现了吗？来自腾讯微博@<a href="http://twitter.com/qing34" target="_blank" rel="noopener">qing34</a>的提问</p>
-<p>反共是反华的副产品。RT @<a href="http://twitter.com/dengweijie" target="_blank" rel="noopener">dengweijie</a>: @<a href="http://twitter.com/aiww" target="_blank" rel="noopener">aiww</a>到底反华还是反共？</p>
-<p>全答，如果是问题的话。RT @<a href="http://twitter.com/GuoDeGang2010" target="_blank" rel="noopener">GuoDeGang2010</a>: @<a href="http://twitter.com/aiww" target="_blank" rel="noopener">aiww</a>今晚问答，艾老师有几成问题不打算回答？能让大家知道吗？</p>
-<p>有样的女人。RT @<a href="http://twitter.com/shijing110" target="_blank" rel="noopener">shijing110</a>: @<a href="http://twitter.com/aiww" target="_blank" rel="noopener">aiww</a>艾老师喜欢什么样的女人？</p>
-<p>恐怕就再也走不了了。RT @<a href="http://twitter.com/EnzorZhang" target="_blank" rel="noopener">EnzorZhang</a>: @<a href="http://twitter.com/aiww" target="_blank" rel="noopener">aiww</a>艾老，如果中国民主化进程走向绝境，您会带着艾老再次远走他国吗？</p>
-<p>除非有第二次意外。RT @<a href="http://twitter.com/zhaorui1908" target="_blank" rel="noopener">zhaorui1908</a>: @<a href="http://twitter.com/aiww" target="_blank" rel="noopener">aiww</a>艾婶 会不会给艾老来个弟弟或者妹妹呢？</p>
-<p>中国没有“现在的大学生”看不见呢。RT @<a href="http://twitter.com/Carlure" target="_blank" rel="noopener">Carlure</a>: @<a href="http://twitter.com/aiww" target="_blank" rel="noopener">aiww</a>艾老怎么看现在的大学生？</p>
-<p>不能。RT @<a href="http://twitter.com/wdcl" target="_blank" rel="noopener">wdcl</a>: @<a href="http://twitter.com/aiww" target="_blank" rel="noopener">aiww</a>行动派和理论派能不能握手合作？共同推进公民社会</p>
-<p>肚子RT @<a href="http://twitter.com/midian168" target="_blank" rel="noopener">midian168</a>: @<a href="http://twitter.com/aiww" target="_blank" rel="noopener">aiww</a>爱神，你身体的哪部分最具艺术性？</p>
-<p>投胎。RT @<a href="http://twitter.com/DOPPELKALT" target="_blank" rel="noopener">DOPPELKALT</a>: @<a href="http://twitter.com/aiww" target="_blank" rel="noopener">aiww</a>@<a href="http://twitter.com/aiww" target="_blank" rel="noopener">aiww</a>请问艾婶如何才能拥有你那种完美身材</p>
-<p>用过药物，没吸过毒。RT @<a href="http://twitter.com/haojiachina" target="_blank" rel="noopener">haojiachina</a>: @<a href="http://twitter.com/aiww" target="_blank" rel="noopener">aiww</a>老艾吸过毒没？现在复吸没？</p>
-<p>嗯嗯RT @<a href="http://twitter.com/anyangchun" target="_blank" rel="noopener">anyangchun</a>: @<a href="http://twitter.com/aiww" target="_blank" rel="noopener">aiww</a>中共是中华的土特产，对吗？求嗯</p>
-<p>绝对无。RT @<a href="http://twitter.com/pipiball" target="_blank" rel="noopener">pipiball</a>: @<a href="http://twitter.com/aiww" target="_blank" rel="noopener">aiww</a>您认为在同一时空里，人种有优劣之分吗<a href="http://twitter.com/#!/search?q=%23aiww" title="#aiww" target="_blank" rel="noopener">#aiww</a>再次发问</p>
-<p>不存在的角度。RT @<a href="http://twitter.com/leon_mima" target="_blank" rel="noopener">leon_mima</a>: 纯文学角度来看，您最欣赏的大陆作家是谁？</p>
-<p>我是艾神。RT @<a href="http://twitter.com/slsyy" target="_blank" rel="noopener">slsyy</a>: 来自腾讯微博@<a href="http://twitter.com/a409883297" target="_blank" rel="noopener">a409883297</a>的提问@<a href="http://twitter.com/aiww" target="_blank" rel="noopener">aiww</a>：艾老师觉得中华民族是否到了最危险的时候，你愿意成为陈胜吴广么？</p>
-<p>应该是的RT @<a href="http://twitter.com/BaoliDao" target="_blank" rel="noopener">BaoliDao</a>: @<a href="http://twitter.com/aiww" target="_blank" rel="noopener">aiww</a>我觉得艺术家应该是出类拔萃的营销师，这个观点你赞成吗？</p>
-<p>思考时。RT @<a href="http://twitter.com/mypujin" target="_blank" rel="noopener">mypujin</a>: @<a href="http://twitter.com/aiww" target="_blank" rel="noopener">aiww</a>你孤独过吗？什么时候？</p>
-<p>会吓着你的。RT @<a href="http://twitter.com/Duncan_Su" target="_blank" rel="noopener">Duncan_Su</a>: @<a href="http://twitter.com/aiww" target="_blank" rel="noopener">aiww</a>请问艾肾，能公布下你近几年的所有经济收入吗？不用多详细，大概的就行。- -有点八卦过头了。。。</p>
-<p>许多许多，不一定。RT @<a href="http://twitter.com/slsyy" target="_blank" rel="noopener">slsyy</a>: 来自腾讯微博@<a href="http://twitter.com/guoghui" target="_blank" rel="noopener">guoghui</a>的提问@<a href="http://twitter.com/aiww" target="_blank" rel="noopener">aiww</a>：您的瓜子花了多少钱？会运回国内吗？</p>
-<p>如果明天不是今天的话。RT @<a href="http://twitter.com/friedrichnie" target="_blank" rel="noopener">friedrichnie</a>: @<a href="http://twitter.com/aiww" target="_blank" rel="noopener">aiww</a>請問，我們的明天會變好嗎？</p>
-<p>是不问问题。RT @<a href="http://twitter.com/lanpijin" target="_blank" rel="noopener">lanpijin</a>: 导致愚昧的原因是什么？</p>
-<p>没戏RT @<a href="http://twitter.com/yian52" target="_blank" rel="noopener">yian52</a>: @<a href="http://twitter.com/aiww" target="_blank" rel="noopener">aiww</a>艾老师，你觉得中国没有民众 的觉醒，靠一部分斗士奋斗，政改有可能成功吗？</p>
-<p>我会在接受的同时放弃。RT @<a href="http://twitter.com/wdcl" target="_blank" rel="noopener">wdcl</a>: @<a href="http://twitter.com/aiww" target="_blank" rel="noopener">aiww</a>若有一天推选你为公民社会代言人，你会接受么？</p>
-<p>我就是反华势力，我赞助几级。RT @<a href="http://twitter.com/Carlure" target="_blank" rel="noopener">Carlure</a>: @<a href="http://twitter.com/aiww" target="_blank" rel="noopener">aiww</a>您的收入主要来源是什么？国外反华势力赞助？</p>
-<p>无聊无知无耻RT @<a href="http://twitter.com/kg909" target="_blank" rel="noopener">kg909</a>: @<a href="http://twitter.com/aiww" target="_blank" rel="noopener">aiww</a>怎么看中国文物海外拍出高价？</p>
-<p>一切皆为徒劳，我不是。RT @<a href="http://twitter.com/damnshoe" target="_blank" rel="noopener">damnshoe</a>: 你觉得你所做的是徒劳吗？</p>
-<p>我是手握推子生出来的。RT @<a href="http://twitter.com/huangjiaoyue" target="_blank" rel="noopener">huangjiaoyue</a>: @<a href="http://twitter.com/aiww" target="_blank" rel="noopener">aiww</a>你一手理发的功夫是啥时候从什么人学到的？？</p>
-<p>哼哼RT @<a href="http://twitter.com/hukai28" target="_blank" rel="noopener">hukai28</a>: @<a href="http://twitter.com/aiww" target="_blank" rel="noopener">aiww</a>请问陶瓷瓜子是否就是淘气的枯山水？</p>
-<p>不在可选之例RT @<a href="http://twitter.com/butcher977" target="_blank" rel="noopener">butcher977</a>: 理想条件下，痛苦的活着和欢愉满足的死亡你选择哪个</p>
-<p>不大。RT @<a href="http://twitter.com/avb001" target="_blank" rel="noopener">avb001</a>: 是不是这个问题太尖锐了？第三次提问——这个问题可能涉及到隐私：人人都说你 @<a href="http://twitter.com/aiww" target="_blank" rel="noopener">aiww</a>是印钞机，你在港台的《拒绝遗忘》中也说到你不用考虑成本问题，那请问你是靠什么来支撑这么庞大的开支？</p>
-<p>有趣 RT @<a href="http://twitter.com/shanghaisishao" target="_blank" rel="noopener">shanghaisishao</a>: @<a href="http://twitter.com/aiww" target="_blank" rel="noopener">aiww</a>:您怎样评价美国纪录片导演迈克摩尔？</p>
-<p>草原上有多少马儿。RT @<a href="http://twitter.com/DogEatGoodName" target="_blank" rel="noopener">DogEatGoodName</a>: 您工作室有多少人？</p>
-<p>嗯RT @<a href="http://twitter.com/anyangchun" target="_blank" rel="noopener">anyangchun</a>: @<a href="http://twitter.com/aiww" target="_blank" rel="noopener">aiww</a>中共的最后一根稻草是什么？舆论导向？求嗯</p>
-<p>是滴RT @<a href="http://twitter.com/poketbwoodu" target="_blank" rel="noopener">poketbwoodu</a>: @<a href="http://twitter.com/aiww" target="_blank" rel="noopener">aiww</a>精神正常是否只是统计学上的一个概念？</p>
-<p>当然RT @<a href="http://twitter.com/kg909" target="_blank" rel="noopener">kg909</a>: @<a href="http://twitter.com/aiww" target="_blank" rel="noopener">aiww</a>文物放在海外会更好吗？</p>
-<p>我恐惧我会没有恐惧RT @<a href="http://twitter.com/heshiabc" target="_blank" rel="noopener">heshiabc</a>: RT @<a href="http://twitter.com/baiwuya" target="_blank" rel="noopener">baiwuya</a>: @<a href="http://twitter.com/aiww" target="_blank" rel="noopener">aiww</a>艾神，你心里有恐惧吗？如果有，为什么；如果没有，为什么？</p>
-<p>不看RT @<a href="http://twitter.com/Tauru3" target="_blank" rel="noopener">Tauru3</a>: @<a href="http://twitter.com/aiww" target="_blank" rel="noopener">aiww</a>艾大爷怎么看有些人把仅对于他自己可行的维权理念宣扬为普适准则？</p>
-<p>不可测<a href="http://twitter.com/#!/search?q=%23aiww" title="#aiww" target="_blank" rel="noopener">#aiww</a>RT @<a href="http://twitter.com/liumangyan" target="_blank" rel="noopener">liumangyan</a>: 无聊也问一个吧：还有多少激情？</p>
-<p>艺术的定义是：一本万利。RT @<a href="http://twitter.com/zxtm2000" target="_blank" rel="noopener">zxtm2000</a>: 我也得问一个好长好长时间都想问的问题 请问 你的那些作品，如果卖的话，本钱能卖出来么？</p>
-<p>我厌恶的不多的名字。RT @<a href="http://twitter.com/xiaoyong8964" target="_blank" rel="noopener">xiaoyong8964</a>: 愿意和成龙一起拍裸照吗</p>
-<p>上推RT @<a href="http://twitter.com/niumeng1989" target="_blank" rel="noopener">niumeng1989</a>: @<a href="http://twitter.com/aiww" target="_blank" rel="noopener">aiww</a>怎样才能加入您的工作室</p>
-<p>羡慕嫉妒恨RT @<a href="http://twitter.com/zhangearthsky" target="_blank" rel="noopener">zhangearthsky</a>: @<a href="http://twitter.com/aiww" target="_blank" rel="noopener">aiww</a>怎么看待武力反抗者</p>
-<p>不收费的RT @<a href="http://twitter.com/buwuzhengye" target="_blank" rel="noopener">buwuzhengye</a>: @<a href="http://twitter.com/aiww" target="_blank" rel="noopener">aiww</a>打算开旅馆么？</p>
-<p>不会RT @<a href="http://twitter.com/huangboma" target="_blank" rel="noopener">huangboma</a>: @<a href="http://twitter.com/aiww" target="_blank" rel="noopener">aiww</a>我是一个公务员 你会不会鄙视我</p>
-<p>精神产品属于有精神者。RT @<a href="http://twitter.com/xuhaobass" target="_blank" rel="noopener">xuhaobass</a>: 为什么？RT @<a href="http://twitter.com/aiww" target="_blank" rel="noopener">aiww</a>: 当然RT @<a href="http://twitter.com/kg909" target="_blank" rel="noopener">kg909</a>: @<a href="http://twitter.com/aiww" target="_blank" rel="noopener">aiww</a>文物放在海外会更好吗？</p>
-<p>强拆。RT @<a href="http://twitter.com/G_Xie" target="_blank" rel="noopener">G_Xie</a>: @<a href="http://twitter.com/aiww" target="_blank" rel="noopener">aiww</a>如何环保地处理老毛纪念堂和他的遗体？</p>
-<p>是必然RT @<a href="http://twitter.com/vvlalala" target="_blank" rel="noopener">vvlalala</a>: @<a href="http://twitter.com/aiww" target="_blank" rel="noopener">aiww</a>公民社会前景怎样？</p>
-<p>接近另一种真实RT @<a href="http://twitter.com/kingswong" target="_blank" rel="noopener">kingswong</a>: 再問！RT @<a href="http://twitter.com/kingswong" target="_blank" rel="noopener">kingswong</a>: 你知道8964真相嘛？我看了李大鳥的日記狠困惑…</p>
-<p>争取做艺术。RT @<a href="http://twitter.com/nadeellee" target="_blank" rel="noopener">nadeellee</a>: @<a href="http://twitter.com/aiww" target="_blank" rel="noopener">aiww</a>如果不做艺术，你会去干什么？</p>
-<p>大多时RT @<a href="http://twitter.com/DogEatGoodName" target="_blank" rel="noopener">DogEatGoodName</a>: 工作室的人平时都在一起工作吗？</p>
-<p>温度合适的话 RT @<a href="http://twitter.com/Choppywang" target="_blank" rel="noopener">Choppywang</a>: @<a href="http://twitter.com/aiww" target="_blank" rel="noopener">aiww</a>我可以和你一起拍裸着拍照吗？</p>
-<p>真实的存在RT @<a href="http://twitter.com/avb10year" target="_blank" rel="noopener">avb10year</a>: @<a href="http://twitter.com/aiww" target="_blank" rel="noopener">aiww</a>艾老，理性让我们看清楚世界，但混沌的生活充满现实。留一半清醒留一半醉，我们该怎样存在与这个世界，这个社会呢。</p>
-<p>没有其他 RT @<a href="http://twitter.com/gushouvvv" target="_blank" rel="noopener">gushouvvv</a>: @<a href="http://twitter.com/aiww" target="_blank" rel="noopener">aiww</a>艾老，你觉得政府在对待你和其他反华势力之间有什么区别？你认为离中共对你下黑手还有多久？</p>
-<p>在轻一点RT @<a href="http://twitter.com/cloudbleu" target="_blank" rel="noopener">cloudbleu</a>: @<a href="http://twitter.com/aiww" target="_blank" rel="noopener">aiww</a>我也无聊问一个吧。你对自己的体重，有什么要求么？</p>
-<p>别停RT @<a href="http://twitter.com/G_Xie" target="_blank" rel="noopener">G_Xie</a>: @<a href="http://twitter.com/aiww" target="_blank" rel="noopener">aiww</a>提问的结束时间好像到了，来个总结陈词？</p>
-<p>真相一旦出现就不重要了。RT @<a href="http://twitter.com/Kerchak23" target="_blank" rel="noopener">Kerchak23</a>: @<a href="http://twitter.com/aiww" target="_blank" rel="noopener">aiww</a>真相重要吗？</p>
-<p>孤独就是宽敞、宽阔、甩袖无边的感觉。RT @<a href="http://twitter.com/playinart_1" target="_blank" rel="noopener">playinart_1</a>: @<a href="http://twitter.com/aiww" target="_blank" rel="noopener">aiww</a>艾婶，这些年来，你感到孤单吗？毕竟许多人都被洗脑，要改变他们很难，你做的事并不是所有的人都能理解。我有时感到很绝望。</p>
-<p>是你无法拒绝的，是你必须放弃的，失去自我的时刻，无怨无悔的时光。RT @<a href="http://twitter.com/cuichenlu" target="_blank" rel="noopener">cuichenlu</a>: @<a href="http://twitter.com/aiww" target="_blank" rel="noopener">aiww</a>爱情是什么？</p>
-<p>不做很重要的事。RT @<a href="http://twitter.com/nadeellee" target="_blank" rel="noopener">nadeellee</a>: @<a href="http://twitter.com/aiww" target="_blank" rel="noopener">aiww</a>老艾，经常做运动吗？健康最很重要。</p>
-<p>我不在意RT @<a href="http://twitter.com/henicom1" target="_blank" rel="noopener">henicom1</a>: @<a href="http://twitter.com/aiww" target="_blank" rel="noopener">aiww</a>今后会出现多党执政不 ？</p>
-<p>不RT @<a href="http://twitter.com/lfzyx" target="_blank" rel="noopener">lfzyx</a>: 艾老抽烟吗？@<a href="http://twitter.com/aiww" target="_blank" rel="noopener">aiww</a></p>
-<p>党产不够。RT @<a href="http://twitter.com/jms1976315" target="_blank" rel="noopener">jms1976315</a>: [ 问@<a href="http://twitter.com/aiww" target="_blank" rel="noopener">aiww</a>］11、艾先生是不是党的人，若不是，难道他们不来拉你入伙，是不是你开的价太高，他们不肯出？</p>
-<p>天天上推RT @<a href="http://twitter.com/benzheng" target="_blank" rel="noopener">benzheng</a>: @<a href="http://twitter.com/aiww" target="_blank" rel="noopener">aiww</a> 怎样在这个社会真实的活着而且不作恶</p>
-<p>现在就是RT @<a href="http://twitter.com/hanchuk" target="_blank" rel="noopener">hanchuk</a>: @<a href="http://twitter.com/aiww" target="_blank" rel="noopener">aiww</a> 艾老师，请问你曾有过“嫉妒” 这种情绪吗？（第5次发，不回答我就不罢休呢。）</p>
-<p>残害式RT @<a href="http://twitter.com/atrrr" target="_blank" rel="noopener">atrrr</a>: @<a href="http://twitter.com/aiww" target="_blank" rel="noopener">aiww</a> 你怎麼看現行的高中教育？</p>
-<p>你想开启就会是脑残。RT @<a href="http://twitter.com/slsyy" target="_blank" rel="noopener">slsyy</a>: 来自腾讯微博@<a href="http://twitter.com/a409883297" target="_blank" rel="noopener">a409883297</a>的提问@<a href="http://twitter.com/aiww" target="_blank" rel="noopener">aiww</a>：爱神，你想成为开启民智的先驱吗？</p>
-<p>多饭局民主。RT @<a href="http://twitter.com/henicom1" target="_blank" rel="noopener">henicom1</a>: 不好吧，以后不多党怎么实习民主RT @<a href="http://twitter.com/aiww" target="_blank" rel="noopener">aiww</a>: 我不在意RT @<a href="http://twitter.com/henicom1" target="_blank" rel="noopener">henicom1</a>: @<a href="http://twitter.com/aiww" target="_blank" rel="noopener">aiww</a> 今后会出现多党执政不 ？</p>
-<p>不会RT @<a href="http://twitter.com/haojiachina" target="_blank" rel="noopener">haojiachina</a>: @<a href="http://twitter.com/aiww" target="_blank" rel="noopener">aiww</a> 老艾会得诺贝尔和平奖吗？ <a href="http://twitter.com/#!/search?q=%23aiww" title="#aiww" target="_blank" rel="noopener">#aiww</a></p>
-<p>我更喜欢没被毁了的RT @<a href="http://twitter.com/buchai_luyi" target="_blank" rel="noopener">buchai_luyi</a>: @<a href="http://twitter.com/aiww" target="_blank" rel="noopener">aiww</a>:再问~艾大大~我毕业了能去你工作室工作不？~~<a href="http://twitter.com/#!/search?q=%23aiww" title="#aiww" target="_blank" rel="noopener">#aiww</a></p>
-<p>你RT @<a href="http://twitter.com/alchenal" target="_blank" rel="noopener">alchenal</a>: @<a href="http://twitter.com/aiww" target="_blank" rel="noopener">aiww</a>　信仰是什么?</p>
-<p>我不会代一个没有敌人的人领奖。RT @<a href="http://twitter.com/TonyCNUK" target="_blank" rel="noopener">TonyCNUK</a>: @<a href="http://twitter.com/aiww" target="_blank" rel="noopener">aiww</a> 艾老会代表刘晓波领奖么？看这架势他亲戚朋友都来不了</p>
-<p>要求她承认你是他先生。RT @<a href="http://twitter.com/teacurl" target="_blank" rel="noopener">teacurl</a>: 问艾神 @<a href="http://twitter.com/aiww" target="_blank" rel="noopener">aiww</a>讨老婆有些什么要求？<a href="http://twitter.com/#!/search?q=%23aiww" title="#aiww" target="_blank" rel="noopener">#aiww</a></p>
-<p>中文还可理解为：（除）非暴力，不合作，或暴力合作。RT @<a href="http://twitter.com/leowll" target="_blank" rel="noopener">leowll</a>: @<a href="http://twitter.com/aiww" target="_blank" rel="noopener">aiww</a>：艾神，你相信甘地的非暴力不合作精神么？</p>
-<p>亵渎生活RT @<a href="http://twitter.com/liangdu" target="_blank" rel="noopener">liangdu</a>: @<a href="http://twitter.com/aiww" target="_blank" rel="noopener">aiww</a> 怎么看“白雪公主和王子从此过着幸福美好的生活”？</p>
-<p>你朋友错了RT @<a href="http://twitter.com/seventeena_chen" target="_blank" rel="noopener">seventeena_chen</a>: @<a href="http://twitter.com/aiww" target="_blank" rel="noopener">aiww</a> 艾爸爸，能不能问你一个问题？ 你究竟结婚没啊？ 为什么维基上说你结婚了，我朋友却说没有呢？到底是怎样的啊….??</p>
-<p>嗯 @<a href="http://twitter.com/slipknothooh" target="_blank" rel="noopener">slipknothooh</a>: @<a href="http://twitter.com/aiww" target="_blank" rel="noopener">aiww</a>很好奇，艾老喜欢吃什么饭？是硬的和辣的吗？</p>
-<p>是没用。RT @<a href="http://twitter.com/Jasonsam" target="_blank" rel="noopener">Jasonsam</a>: @<a href="http://twitter.com/aiww" target="_blank" rel="noopener">aiww</a>一天睡觉之前，我和同学在宿舍聊一些民主的话题，另外一个同学似乎很不耐烦，说：“别说这没用的了，赶紧睡觉吧！”讨论“民主”是否真的没用？</p>
-<p>拼出一个新的环境。RT @<a href="http://twitter.com/henicom1" target="_blank" rel="noopener">henicom1</a>: @<a href="http://twitter.com/aiww" target="_blank" rel="noopener">aiww</a> 现在言论打压越来越猛，看不到希望了，怎么办？ 是很猛烈啊，稍有点过的词都不能发了，只能用拼音代替，搞得中国人最后只会用拼音了都</p>
-<p>时不时RT @<a href="http://twitter.com/GxutJames" target="_blank" rel="noopener">GxutJames</a>: 你给他们发工资吗?RT @<a href="http://twitter.com/aiww" target="_blank" rel="noopener">aiww</a>: 大多时RT @<a href="http://twitter.com/DogEatGoodName" target="_blank" rel="noopener">DogEatGoodName</a>: 工作室的人平时都在一起工作吗？ @<a href="http://twitter.com/aiww" target="_blank" rel="noopener">aiww</a> <a href="http://twitter.com/#!/search?q=%23aiww" title="#aiww" target="_blank" rel="noopener">#aiww</a></p>
-<p>因为我不重要。RT @<a href="http://twitter.com/shenxibobo" target="_blank" rel="noopener">shenxibobo</a>: @<a href="http://twitter.com/aiww" target="_blank" rel="noopener">aiww</a>爱老..一个严重的问题::你这样公开的在推上这样..而且你还在国内..为什么不会被抓或者和谐掉啊</p>
-<p>耕耘就是呐喊了，地里的庄稼不是喊出来的。 RT @<a href="http://twitter.com/mingxia" target="_blank" rel="noopener">mingxia</a>: @<a href="http://twitter.com/aiww" target="_blank" rel="noopener">aiww</a>我觉得一个正常的国度，需要有高声呐喊的人，也需要有踏实耕耘的人，两者并不冲突，你觉得现在我们缺哪个？</p>
-<p>疯狂反叛RT @<a href="http://twitter.com/qiushanwian" target="_blank" rel="noopener">qiushanwian</a>: @<a href="http://twitter.com/aiww" target="_blank" rel="noopener">aiww</a> 艾婶认为现在的青年人应该做点什么？</p>
-<p>中医有美学价值，在某些方面实用。RT @<a href="http://twitter.com/free_all_POC" target="_blank" rel="noopener">free_all_POC</a>: @<a href="http://twitter.com/aiww" target="_blank" rel="noopener">aiww</a> 老艾，昨晚的问题没得到回答，再次请问下：您对中医什么态度？信中医吗？</p>
-<p>不要轻信，不可不信RT @<a href="http://twitter.com/chenting1983117" target="_blank" rel="noopener">chenting1983117</a>: @<a href="http://twitter.com/aiww" target="_blank" rel="noopener">aiww</a> 艾叔 ，早，原来还在继续持续提问中。请问神，如何时刻做到相对独立的思想，不盲从，不随从？</p>
-<p>忘记你的所学RT @<a href="http://twitter.com/Xiulongfei" target="_blank" rel="noopener">Xiulongfei</a>: @<a href="http://twitter.com/aiww" target="_blank" rel="noopener">aiww</a> 请问对即将毕业的大学生有什么好的建议吗？</p>
-<p>嗯，可恶。RT @<a href="http://twitter.com/chineisei" target="_blank" rel="noopener">chineisei</a>: @<a href="http://twitter.com/aiww" target="_blank" rel="noopener">aiww</a> 我觉得现在是新文革时期，区别是那些曾经的文革小将们在当权了。你觉得呢？</p>
-<p>抽自己RT @<a href="http://twitter.com/ekeyme" target="_blank" rel="noopener">ekeyme</a>: 根本没学到怎么办。?。RT @<a href="http://twitter.com/aiww" target="_blank" rel="noopener">aiww</a> 忘记你的所学RT @<a href="http://twitter.com/Xiulongfei" target="_blank" rel="noopener">Xiulongfei</a>: @<a href="http://twitter.com/aiww" target="_blank" rel="noopener">aiww</a> 请问对即将毕业的大学生有什么好的建议吗？</p>
-<p>现实问题上的妥协是可以理解的，精神上的放弃是对生命的不敬。RT @<a href="http://twitter.com/chenting1983117" target="_blank" rel="noopener">chenting1983117</a>: @<a href="http://twitter.com/aiww" target="_blank" rel="noopener">aiww</a> 不知道能否继续深入下去个问题。呵呵， 艾叔，你也年轻过，请问您如何看青年人为生活却选择了向现实妥协，无论处于体制内或体制外？</p>
-<p>相信制约。RT @<a href="http://twitter.com/enoooone" target="_blank" rel="noopener">enoooone</a>: 艾神认同三权分立吗？@<a href="http://twitter.com/aiww" target="_blank" rel="noopener">aiww</a></p>
-<p>记得你是如何被出卖的。RT @<a href="http://twitter.com/chiahla" target="_blank" rel="noopener">chiahla</a>: 那该记得什么呢? @<a href="http://twitter.com/aiww" target="_blank" rel="noopener">aiww</a> 忘记你的所学RT @<a href="http://twitter.com/Xiulongfei" target="_blank" rel="noopener">Xiulongfei</a>: @<a href="http://twitter.com/aiww" target="_blank" rel="noopener">aiww</a> 请问对即将毕业的大学生有什么好的建议吗？</p>
-<p>学习它国法律RT @<a href="http://twitter.com/herolaw" target="_blank" rel="noopener">herolaw</a>: @<a href="http://twitter.com/aiww" target="_blank" rel="noopener">aiww</a> 对法科学生有什么建议呢？</p>
-<p>优势感源于自卑。RT @<a href="http://twitter.com/dakan" target="_blank" rel="noopener">dakan</a>: @<a href="http://twitter.com/aiww" target="_blank" rel="noopener">aiww</a> 艾婶，请问您怎么看待天朝内依旧存在的地域歧视呢？第一次发估计您没看到…这是第二回了</p>
-<p>避免再被转手RT @<a href="http://twitter.com/guanguan_L" target="_blank" rel="noopener">guanguan_L</a>: 这个记得有啥用阿RT @<a href="http://twitter.com/aiww" target="_blank" rel="noopener">aiww</a>: 记得你是如何被出卖的。RT @<a href="http://twitter.com/chiahla" target="_blank" rel="noopener">chiahla</a>: 那该记得什么呢? @<a href="http://twitter.com/aiww" target="_blank" rel="noopener">aiww</a> 忘记你的所学RT @<a href="http://twitter.com/Xiulongfei" target="_blank" rel="noopener">Xiulongfei</a>: @<a href="http://twitter.com/aiww" target="_blank" rel="noopener">aiww</a> 请问对即将毕业的大学生有什么好的建议吗？</p>
-<p>这些人会降低做人的标准。RT @<a href="http://twitter.com/henicom1" target="_blank" rel="noopener">henicom1</a>: @<a href="http://twitter.com/aiww" target="_blank" rel="noopener">aiww</a> 我周围同学都说，你就一个学生，没有成就、没有名气、更没追随者，整天喊民主自由太不现实。还是先低调，努力做出成就来再去追求这些，才有影响力。艾神觉得呢？</p>
-<p>告诉每一个人你的愿望RT @<a href="http://twitter.com/n30133" target="_blank" rel="noopener">n30133</a>: ＠<a href="http://twitter.com/aiww" target="_blank" rel="noopener">aiww</a> 艾先生，请问如何能加快民主进程和社会的进步，我是急性子，忍受不了操蛋的d和zf如此为非做虐草菅人命！</p>
-<p>不反叛的青年不是青年。RT @<a href="http://twitter.com/buluo89" target="_blank" rel="noopener">buluo89</a>: 我还以为是：＂做个青年人＂ RT @<a href="http://twitter.com/aiww" target="_blank" rel="noopener">aiww</a>疯狂反叛RT @<a href="http://twitter.com/qiushanwian" target="_blank" rel="noopener">qiushanwian</a>: @<a href="http://twitter.com/aiww" target="_blank" rel="noopener">aiww</a> 艾婶认为现在的青年人应该做点什么？</p>
-<p>恶体制，不是缺陷，是体制缺德。RT @<a href="http://twitter.com/enoooone" target="_blank" rel="noopener">enoooone</a>: 警察、法院参与作恶，罪恶之源是什么，是体制缺陷吗？ @<a href="http://twitter.com/aiww" target="_blank" rel="noopener">aiww</a></p>
-<p>不搭理他。RT @<a href="http://twitter.com/Suyutong" target="_blank" rel="noopener">Suyutong</a>: @<a href="http://twitter.com/aiww" target="_blank" rel="noopener">aiww</a> 问，怎么对付伍皓！</p>
-<p>继续上推RT @<a href="http://twitter.com/haoboling" target="_blank" rel="noopener">haoboling</a>: 每天十二小时工作使我疲惫而茫然，唯看书、上推让我体会到存在感。这使我苦闷。请教@<a href="http://twitter.com/aiww" target="_blank" rel="noopener">aiww</a>，何以解忧？</p>
-<p>是问题。RT @<a href="http://twitter.com/jianyanzhong" target="_blank" rel="noopener">jianyanzhong</a>: @<a href="http://twitter.com/aiww" target="_blank" rel="noopener">aiww</a> 生命是什么？</p>
-<p>不可自理。RT @<a href="http://twitter.com/jianyanzhong" target="_blank" rel="noopener">jianyanzhong</a>: @<a href="http://twitter.com/aiww" target="_blank" rel="noopener">aiww</a>你觉得中共一直执迷不悟的根源是什么？</p>
-<p>不相信科学民主。RT @<a href="http://twitter.com/enoooone" target="_blank" rel="noopener">enoooone</a>: 艾婶的父辈一代为自由中国而发力，却缔造了独裁中国。这个过程中，最大失误在哪？ @<a href="http://twitter.com/aiww" target="_blank" rel="noopener">aiww</a></p>
-<p>在你RT @<a href="http://twitter.com/bigheadLzy" target="_blank" rel="noopener">bigheadLzy</a>: @<a href="http://twitter.com/aiww" target="_blank" rel="noopener">aiww</a> 希望在哪里？</p>
-<p>我的所有的收入来自我辛勤的劳动和智慧。RT @<a href="http://twitter.com/Carlure" target="_blank" rel="noopener">Carlure</a>: @<a href="http://twitter.com/aiww" target="_blank" rel="noopener">aiww</a> 昨晚问你收入来源的问题，重点是在前面的“请问您的主要收入来源是什么”，为什么所有的人都是看到了后面的“是不是国外反华势力赞助？”呢？</p>
-<p>台湾还在地球上吗RT @<a href="http://twitter.com/ichentsai" target="_blank" rel="noopener">ichentsai</a>: @<a href="http://twitter.com/aiww" target="_blank" rel="noopener">aiww</a>我是台灣的推友，請問艾嬸想對台灣的朋友說什麼呢？</p>
-<p>嗯。RT @<a href="http://twitter.com/Wallace_2012" target="_blank" rel="noopener">Wallace_2012</a>: 昨天看老蔣日記，“不轉制革命無法成功”，艾嬸怎麽看這句話。RT @<a href="http://twitter.com/aiww" target="_blank" rel="noopener">aiww</a>: 不相信科学民主。RT @<a href="http://twitter.com/enoooone" target="_blank" rel="noopener">enoooone</a>: 艾婶的父辈一代为自由中国而发力，却缔造了独裁中国。这个过程中，最大失误在哪？ @<a href="http://twitter.com/aiww" target="_blank" rel="noopener">aiww</a></p>
-<p>党就是乱。RT @<a href="http://twitter.com/enoooone" target="_blank" rel="noopener">enoooone</a>: 党说中国人不适合西方式的自由、民主，会导致大乱。最给力的反驳是什么？ @<a href="http://twitter.com/aiww" target="_blank" rel="noopener">aiww</a></p>
-<p>台湾太小气RT @<a href="http://twitter.com/ichentsai" target="_blank" rel="noopener">ichentsai</a>: 看你從人的角度還是從兲朝的角度看了..RT @<a href="http://twitter.com/aiww" target="_blank" rel="noopener">aiww</a>: 台湾还在地球上吗RT @<a href="http://twitter.com/ichentsai" target="_blank" rel="noopener">ichentsai</a>: @<a href="http://twitter.com/aiww" target="_blank" rel="noopener">aiww</a>我是台灣的推友，請問艾嬸想對台灣的朋友說什麼呢？</p>
-<p>怜悯。RT @<a href="http://twitter.com/weizenfeld" target="_blank" rel="noopener">weizenfeld</a>: 艾老师，您对大学生乃至中学生最想说的一句话是什么呢？@<a href="http://twitter.com/aiww" target="_blank" rel="noopener">aiww</a></p>
-<p>主动，独立，勇敢。RT @<a href="http://twitter.com/huyunqiao" target="_blank" rel="noopener">huyunqiao</a>: @<a href="http://twitter.com/aiww" target="_blank" rel="noopener">aiww</a> 去你工作室有什么条件？</p>
-<p>那又怎样RT @<a href="http://twitter.com/dengweijie" target="_blank" rel="noopener">dengweijie</a>: @<a href="http://twitter.com/aiww" target="_blank" rel="noopener">aiww</a> 为何反华？反华岂不是反我们自己？</p>
-<p>蓝帽回回，布希。RT @<a href="http://twitter.com/sg_panda" target="_blank" rel="noopener">sg_panda</a>: @<a href="http://twitter.com/aiww" target="_blank" rel="noopener">aiww</a> 请问您是开封犹太人的后代吗？</p>
+<p>如果人们愿意，用不了五年。RT @<a target="_blank" rel="noopener" href="http://twitter.com/sudo_i">sudo_i</a>: 问艾神 @<a target="_blank" rel="noopener" href="http://twitter.com/aiww">aiww</a>五年或十年之内中国能走入民主社会吗？为了我们的下一代，周围有条件的人都选择离开，也有好多人很迷茫，看不到希望 。<a target="_blank" rel="noopener" href="http://twitter.com/#!/search?q=%23aiww" title="#aiww">#aiww</a></p>
+<p>我很单薄，但是比邪恶要强大。RT @<a target="_blank" rel="noopener" href="http://twitter.com/shenxianyuan">shenxianyuan</a>: @<a target="_blank" rel="noopener" href="http://twitter.com/aiww">aiww</a>我问一个，看了卫报你写给卡梅伦的信，你自己觉得论证单薄吗？我觉得挺单薄啊。这样不好。</p>
+<p>能被你看到。RT @<a target="_blank" rel="noopener" href="http://twitter.com/luxi78">luxi78</a>: @<a target="_blank" rel="noopener" href="http://twitter.com/aiww">aiww</a>您希望您在推上的付出能得到一个什么样的结果</p>
+<p>艾老已经在教我。RT @<a target="_blank" rel="noopener" href="http://twitter.com/laoyang945">laoyang945</a>: @<a target="_blank" rel="noopener" href="http://twitter.com/aiww">aiww</a>请问你会让艾老在中国上学吗？老师叫你去见他你会去吗？</p>
+<p>有很黑的意义。RT @<a target="_blank" rel="noopener" href="http://twitter.com/ptoq">ptoq</a>: @<a target="_blank" rel="noopener" href="http://twitter.com/aiww">aiww</a>艾神呀，可否谈一下美国黑人民权运动对于中国民主进程的借鉴意义</p>
+<p>你。RT @<a target="_blank" rel="noopener" href="http://twitter.com/Ying_Lang">Ying_Lang</a>: 很想知道你最喜欢的推友有谁</p>
+<p>是说刚才吗？RT @<a target="_blank" rel="noopener" href="http://twitter.com/BaoliDao">BaoliDao</a>: @<a target="_blank" rel="noopener" href="http://twitter.com/aiww">aiww</a>你爱我吗？</p>
+<p>在拍。RT @<a target="_blank" rel="noopener" href="http://twitter.com/john8311">john8311</a>: @<a target="_blank" rel="noopener" href="http://twitter.com/aiww">aiww</a>艾老师有无计划采访广西北海市白虎头村的村民并拍录相？</p>
+<p>烦呗。RT @<a target="_blank" rel="noopener" href="http://twitter.com/MarcusWang">MarcusWang</a>: @<a target="_blank" rel="noopener" href="http://twitter.com/aiww">aiww</a>艾婶为什么反华呀？想知道原因～～</p>
+<p>艾老与我看到的将不是同一个世界。RT @<a target="_blank" rel="noopener" href="http://twitter.com/jms1976315">jms1976315</a>: ［问@<a target="_blank" rel="noopener" href="http://twitter.com/aiww">aiww</a>］3、你对中国未来的公民社会能否建立是乐观还是悲观，若是乐观，你觉得你能看到还是看不到，若你的有生之年看不到，那艾老能否看到？</p>
+<p>不相信有人会相信。RT @<a target="_blank" rel="noopener" href="http://twitter.com/monkey_D_Jones">monkey_D_Jones</a>: @<a target="_blank" rel="noopener" href="http://twitter.com/aiww">aiww</a>想问艾婶相信共产主义吗?</p>
+<p>艺术是艺术之外。RT @<a target="_blank" rel="noopener" href="http://twitter.com/raddishsh">raddishsh</a>: @<a target="_blank" rel="noopener" href="http://twitter.com/aiww">aiww</a>您如何看待“艺术”？您自己的定义是什么？</p>
+<p>这是我们的一部分，无奈亦可爱。RT @<a target="_blank" rel="noopener" href="http://twitter.com/Shizhw">Shizhw</a>: @<a target="_blank" rel="noopener" href="http://twitter.com/aiww">aiww</a>推上有时充满无病呻吟、无聊和无语凝噎的东西，老兄是否会觉得时有疲倦？完全不推和不交往的时候，做什么？？</p>
+<p>是那样的女人。RT @<a target="_blank" rel="noopener" href="http://twitter.com/zhangrui1999">zhangrui1999</a>: @<a target="_blank" rel="noopener" href="http://twitter.com/aiww">aiww</a>艾老的妈妈是什么样的女人？</p>
+<p>洗洗睡。RT @<a target="_blank" rel="noopener" href="http://twitter.com/YeJF">YeJF</a>: @<a target="_blank" rel="noopener" href="http://twitter.com/aiww">aiww</a>周围人很麻木，很天真，有何建议?</p>
+<p>也爽RT @<a target="_blank" rel="noopener" href="http://twitter.com/malebic">malebic</a>: @<a target="_blank" rel="noopener" href="http://twitter.com/aiww">aiww</a>如果有大学敢聘你去当老师给学生讲课，你愿意吗？ （ MB，光是意淫这个场景都这么爽。）</p>
+<p>开机。RT @<a target="_blank" rel="noopener" href="http://twitter.com/miaoever">miaoever</a>: @<a target="_blank" rel="noopener" href="http://twitter.com/aiww">aiww</a>如果有一天你突然面對溫家寶，你最想對他說的一句話是什麼？</p>
+<p>本来是上一代的事。RT @<a target="_blank" rel="noopener" href="http://twitter.com/jam_vivi">jam_vivi</a>: @<a target="_blank" rel="noopener" href="http://twitter.com/aiww">aiww</a>您觉得这一代就能完成民主事业么？还是要再几代人？</p>
+<p>我会说，抓紧了啊。RT @<a target="_blank" rel="noopener" href="http://twitter.com/lanpijin">lanpijin</a>: 如果有一天他们无耻了要抓你，你会怎么做？</p>
+<p>我没捧就晕呢。RT @<a target="_blank" rel="noopener" href="http://twitter.com/Tauru3">Tauru3</a>: @<a target="_blank" rel="noopener" href="http://twitter.com/aiww">aiww</a>艾大爷你咋不像有些傻逼那样一捧就晕捏？</p>
+<p>谈谈草泥马的事。RT @<a target="_blank" rel="noopener" href="http://twitter.com/MESUTO115">MESUTO115</a>: 如果你遇到Obama你会和他说些什么？</p>
+<p>就像伞一样突然张开。 RT @<a target="_blank" rel="noopener" href="http://twitter.com/runningnini">runningnini</a>@<a target="_blank" rel="noopener" href="http://twitter.com/aiww">aiww</a>你会不会有时突然想我涅？ 就像我突然想你一样</p>
+<p>对艾老我始终在学习。RT @<a target="_blank" rel="noopener" href="http://twitter.com/jms1976315">jms1976315</a>: ［问@<a target="_blank" rel="noopener" href="http://twitter.com/aiww">aiww</a>］5、我对我家女儿的养育是坚决要摒弃中国式的威权养育方法，请问你及你爱人对艾老用什么养育方法？</p>
+<p>真正的自由是一点一滴。RT @<a target="_blank" rel="noopener" href="http://twitter.com/RealHector">RealHector</a>: @<a target="_blank" rel="noopener" href="http://twitter.com/aiww">aiww</a>艾老师，我觉得你虽然积极参与一些公共事件，但你并没有想通过这些努力使中国尽早实习民主自由这样宏大的目标，对吗？</p>
+<p>永不失望。RT @<a target="_blank" rel="noopener" href="http://twitter.com/zonesan">zonesan</a>: 艾神,对草泥马们有过(或即将有)期望吗?失望过吗?</p>
+<p>定了RT @<a target="_blank" rel="noopener" href="http://twitter.com/kielboat">kielboat</a>: @<a target="_blank" rel="noopener" href="http://twitter.com/aiww">aiww</a>艾老，明天怎么行动，剧本定了吗？</p>
+<p>从（重）来的昨天是明天。RT @<a target="_blank" rel="noopener" href="http://twitter.com/fionasoar">fionasoar</a>: @<a target="_blank" rel="noopener" href="http://twitter.com/aiww">aiww</a>如果昨天能重来，你还会选择做一样的事吗？</p>
+<p>先孤僻后孤独。RT @<a target="_blank" rel="noopener" href="http://twitter.com/zhangrui1999">zhangrui1999</a>: @<a target="_blank" rel="noopener" href="http://twitter.com/aiww">aiww</a>成名前后哪个孤独感更多？</p>
+<p>是男人吗RT @<a target="_blank" rel="noopener" href="http://twitter.com/BaoliDao">BaoliDao</a>: @<a target="_blank" rel="noopener" href="http://twitter.com/aiww">aiww</a>你喜欢小刀这样的男人吗？</p>
+<p>梦想是永远实现不了我的梦。RT @<a target="_blank" rel="noopener" href="http://twitter.com/slsyy">slsyy</a>: 25岁的人想问：@<a target="_blank" rel="noopener" href="http://twitter.com/aiww">aiww</a>25岁时的梦想是什么？现在，它实现了吗？来自腾讯微博@<a target="_blank" rel="noopener" href="http://twitter.com/qing34">qing34</a>的提问</p>
+<p>反共是反华的副产品。RT @<a target="_blank" rel="noopener" href="http://twitter.com/dengweijie">dengweijie</a>: @<a target="_blank" rel="noopener" href="http://twitter.com/aiww">aiww</a>到底反华还是反共？</p>
+<p>全答，如果是问题的话。RT @<a target="_blank" rel="noopener" href="http://twitter.com/GuoDeGang2010">GuoDeGang2010</a>: @<a target="_blank" rel="noopener" href="http://twitter.com/aiww">aiww</a>今晚问答，艾老师有几成问题不打算回答？能让大家知道吗？</p>
+<p>有样的女人。RT @<a target="_blank" rel="noopener" href="http://twitter.com/shijing110">shijing110</a>: @<a target="_blank" rel="noopener" href="http://twitter.com/aiww">aiww</a>艾老师喜欢什么样的女人？</p>
+<p>恐怕就再也走不了了。RT @<a target="_blank" rel="noopener" href="http://twitter.com/EnzorZhang">EnzorZhang</a>: @<a target="_blank" rel="noopener" href="http://twitter.com/aiww">aiww</a>艾老，如果中国民主化进程走向绝境，您会带着艾老再次远走他国吗？</p>
+<p>除非有第二次意外。RT @<a target="_blank" rel="noopener" href="http://twitter.com/zhaorui1908">zhaorui1908</a>: @<a target="_blank" rel="noopener" href="http://twitter.com/aiww">aiww</a>艾婶 会不会给艾老来个弟弟或者妹妹呢？</p>
+<p>中国没有“现在的大学生”看不见呢。RT @<a target="_blank" rel="noopener" href="http://twitter.com/Carlure">Carlure</a>: @<a target="_blank" rel="noopener" href="http://twitter.com/aiww">aiww</a>艾老怎么看现在的大学生？</p>
+<p>不能。RT @<a target="_blank" rel="noopener" href="http://twitter.com/wdcl">wdcl</a>: @<a target="_blank" rel="noopener" href="http://twitter.com/aiww">aiww</a>行动派和理论派能不能握手合作？共同推进公民社会</p>
+<p>肚子RT @<a target="_blank" rel="noopener" href="http://twitter.com/midian168">midian168</a>: @<a target="_blank" rel="noopener" href="http://twitter.com/aiww">aiww</a>爱神，你身体的哪部分最具艺术性？</p>
+<p>投胎。RT @<a target="_blank" rel="noopener" href="http://twitter.com/DOPPELKALT">DOPPELKALT</a>: @<a target="_blank" rel="noopener" href="http://twitter.com/aiww">aiww</a>@<a target="_blank" rel="noopener" href="http://twitter.com/aiww">aiww</a>请问艾婶如何才能拥有你那种完美身材</p>
+<p>用过药物，没吸过毒。RT @<a target="_blank" rel="noopener" href="http://twitter.com/haojiachina">haojiachina</a>: @<a target="_blank" rel="noopener" href="http://twitter.com/aiww">aiww</a>老艾吸过毒没？现在复吸没？</p>
+<p>嗯嗯RT @<a target="_blank" rel="noopener" href="http://twitter.com/anyangchun">anyangchun</a>: @<a target="_blank" rel="noopener" href="http://twitter.com/aiww">aiww</a>中共是中华的土特产，对吗？求嗯</p>
+<p>绝对无。RT @<a target="_blank" rel="noopener" href="http://twitter.com/pipiball">pipiball</a>: @<a target="_blank" rel="noopener" href="http://twitter.com/aiww">aiww</a>您认为在同一时空里，人种有优劣之分吗<a target="_blank" rel="noopener" href="http://twitter.com/#!/search?q=%23aiww" title="#aiww">#aiww</a>再次发问</p>
+<p>不存在的角度。RT @<a target="_blank" rel="noopener" href="http://twitter.com/leon_mima">leon_mima</a>: 纯文学角度来看，您最欣赏的大陆作家是谁？</p>
+<p>我是艾神。RT @<a target="_blank" rel="noopener" href="http://twitter.com/slsyy">slsyy</a>: 来自腾讯微博@<a target="_blank" rel="noopener" href="http://twitter.com/a409883297">a409883297</a>的提问@<a target="_blank" rel="noopener" href="http://twitter.com/aiww">aiww</a>：艾老师觉得中华民族是否到了最危险的时候，你愿意成为陈胜吴广么？</p>
+<p>应该是的RT @<a target="_blank" rel="noopener" href="http://twitter.com/BaoliDao">BaoliDao</a>: @<a target="_blank" rel="noopener" href="http://twitter.com/aiww">aiww</a>我觉得艺术家应该是出类拔萃的营销师，这个观点你赞成吗？</p>
+<p>思考时。RT @<a target="_blank" rel="noopener" href="http://twitter.com/mypujin">mypujin</a>: @<a target="_blank" rel="noopener" href="http://twitter.com/aiww">aiww</a>你孤独过吗？什么时候？</p>
+<p>会吓着你的。RT @<a target="_blank" rel="noopener" href="http://twitter.com/Duncan_Su">Duncan_Su</a>: @<a target="_blank" rel="noopener" href="http://twitter.com/aiww">aiww</a>请问艾肾，能公布下你近几年的所有经济收入吗？不用多详细，大概的就行。- -有点八卦过头了。。。</p>
+<p>许多许多，不一定。RT @<a target="_blank" rel="noopener" href="http://twitter.com/slsyy">slsyy</a>: 来自腾讯微博@<a target="_blank" rel="noopener" href="http://twitter.com/guoghui">guoghui</a>的提问@<a target="_blank" rel="noopener" href="http://twitter.com/aiww">aiww</a>：您的瓜子花了多少钱？会运回国内吗？</p>
+<p>如果明天不是今天的话。RT @<a target="_blank" rel="noopener" href="http://twitter.com/friedrichnie">friedrichnie</a>: @<a target="_blank" rel="noopener" href="http://twitter.com/aiww">aiww</a>請問，我們的明天會變好嗎？</p>
+<p>是不问问题。RT @<a target="_blank" rel="noopener" href="http://twitter.com/lanpijin">lanpijin</a>: 导致愚昧的原因是什么？</p>
+<p>没戏RT @<a target="_blank" rel="noopener" href="http://twitter.com/yian52">yian52</a>: @<a target="_blank" rel="noopener" href="http://twitter.com/aiww">aiww</a>艾老师，你觉得中国没有民众 的觉醒，靠一部分斗士奋斗，政改有可能成功吗？</p>
+<p>我会在接受的同时放弃。RT @<a target="_blank" rel="noopener" href="http://twitter.com/wdcl">wdcl</a>: @<a target="_blank" rel="noopener" href="http://twitter.com/aiww">aiww</a>若有一天推选你为公民社会代言人，你会接受么？</p>
+<p>我就是反华势力，我赞助几级。RT @<a target="_blank" rel="noopener" href="http://twitter.com/Carlure">Carlure</a>: @<a target="_blank" rel="noopener" href="http://twitter.com/aiww">aiww</a>您的收入主要来源是什么？国外反华势力赞助？</p>
+<p>无聊无知无耻RT @<a target="_blank" rel="noopener" href="http://twitter.com/kg909">kg909</a>: @<a target="_blank" rel="noopener" href="http://twitter.com/aiww">aiww</a>怎么看中国文物海外拍出高价？</p>
+<p>一切皆为徒劳，我不是。RT @<a target="_blank" rel="noopener" href="http://twitter.com/damnshoe">damnshoe</a>: 你觉得你所做的是徒劳吗？</p>
+<p>我是手握推子生出来的。RT @<a target="_blank" rel="noopener" href="http://twitter.com/huangjiaoyue">huangjiaoyue</a>: @<a target="_blank" rel="noopener" href="http://twitter.com/aiww">aiww</a>你一手理发的功夫是啥时候从什么人学到的？？</p>
+<p>哼哼RT @<a target="_blank" rel="noopener" href="http://twitter.com/hukai28">hukai28</a>: @<a target="_blank" rel="noopener" href="http://twitter.com/aiww">aiww</a>请问陶瓷瓜子是否就是淘气的枯山水？</p>
+<p>不在可选之例RT @<a target="_blank" rel="noopener" href="http://twitter.com/butcher977">butcher977</a>: 理想条件下，痛苦的活着和欢愉满足的死亡你选择哪个</p>
+<p>不大。RT @<a target="_blank" rel="noopener" href="http://twitter.com/avb001">avb001</a>: 是不是这个问题太尖锐了？第三次提问——这个问题可能涉及到隐私：人人都说你 @<a target="_blank" rel="noopener" href="http://twitter.com/aiww">aiww</a>是印钞机，你在港台的《拒绝遗忘》中也说到你不用考虑成本问题，那请问你是靠什么来支撑这么庞大的开支？</p>
+<p>有趣 RT @<a target="_blank" rel="noopener" href="http://twitter.com/shanghaisishao">shanghaisishao</a>: @<a target="_blank" rel="noopener" href="http://twitter.com/aiww">aiww</a>:您怎样评价美国纪录片导演迈克摩尔？</p>
+<p>草原上有多少马儿。RT @<a target="_blank" rel="noopener" href="http://twitter.com/DogEatGoodName">DogEatGoodName</a>: 您工作室有多少人？</p>
+<p>嗯RT @<a target="_blank" rel="noopener" href="http://twitter.com/anyangchun">anyangchun</a>: @<a target="_blank" rel="noopener" href="http://twitter.com/aiww">aiww</a>中共的最后一根稻草是什么？舆论导向？求嗯</p>
+<p>是滴RT @<a target="_blank" rel="noopener" href="http://twitter.com/poketbwoodu">poketbwoodu</a>: @<a target="_blank" rel="noopener" href="http://twitter.com/aiww">aiww</a>精神正常是否只是统计学上的一个概念？</p>
+<p>当然RT @<a target="_blank" rel="noopener" href="http://twitter.com/kg909">kg909</a>: @<a target="_blank" rel="noopener" href="http://twitter.com/aiww">aiww</a>文物放在海外会更好吗？</p>
+<p>我恐惧我会没有恐惧RT @<a target="_blank" rel="noopener" href="http://twitter.com/heshiabc">heshiabc</a>: RT @<a target="_blank" rel="noopener" href="http://twitter.com/baiwuya">baiwuya</a>: @<a target="_blank" rel="noopener" href="http://twitter.com/aiww">aiww</a>艾神，你心里有恐惧吗？如果有，为什么；如果没有，为什么？</p>
+<p>不看RT @<a target="_blank" rel="noopener" href="http://twitter.com/Tauru3">Tauru3</a>: @<a target="_blank" rel="noopener" href="http://twitter.com/aiww">aiww</a>艾大爷怎么看有些人把仅对于他自己可行的维权理念宣扬为普适准则？</p>
+<p>不可测<a target="_blank" rel="noopener" href="http://twitter.com/#!/search?q=%23aiww" title="#aiww">#aiww</a>RT @<a target="_blank" rel="noopener" href="http://twitter.com/liumangyan">liumangyan</a>: 无聊也问一个吧：还有多少激情？</p>
+<p>艺术的定义是：一本万利。RT @<a target="_blank" rel="noopener" href="http://twitter.com/zxtm2000">zxtm2000</a>: 我也得问一个好长好长时间都想问的问题 请问 你的那些作品，如果卖的话，本钱能卖出来么？</p>
+<p>我厌恶的不多的名字。RT @<a target="_blank" rel="noopener" href="http://twitter.com/xiaoyong8964">xiaoyong8964</a>: 愿意和成龙一起拍裸照吗</p>
+<p>上推RT @<a target="_blank" rel="noopener" href="http://twitter.com/niumeng1989">niumeng1989</a>: @<a target="_blank" rel="noopener" href="http://twitter.com/aiww">aiww</a>怎样才能加入您的工作室</p>
+<p>羡慕嫉妒恨RT @<a target="_blank" rel="noopener" href="http://twitter.com/zhangearthsky">zhangearthsky</a>: @<a target="_blank" rel="noopener" href="http://twitter.com/aiww">aiww</a>怎么看待武力反抗者</p>
+<p>不收费的RT @<a target="_blank" rel="noopener" href="http://twitter.com/buwuzhengye">buwuzhengye</a>: @<a target="_blank" rel="noopener" href="http://twitter.com/aiww">aiww</a>打算开旅馆么？</p>
+<p>不会RT @<a target="_blank" rel="noopener" href="http://twitter.com/huangboma">huangboma</a>: @<a target="_blank" rel="noopener" href="http://twitter.com/aiww">aiww</a>我是一个公务员 你会不会鄙视我</p>
+<p>精神产品属于有精神者。RT @<a target="_blank" rel="noopener" href="http://twitter.com/xuhaobass">xuhaobass</a>: 为什么？RT @<a target="_blank" rel="noopener" href="http://twitter.com/aiww">aiww</a>: 当然RT @<a target="_blank" rel="noopener" href="http://twitter.com/kg909">kg909</a>: @<a target="_blank" rel="noopener" href="http://twitter.com/aiww">aiww</a>文物放在海外会更好吗？</p>
+<p>强拆。RT @<a target="_blank" rel="noopener" href="http://twitter.com/G_Xie">G_Xie</a>: @<a target="_blank" rel="noopener" href="http://twitter.com/aiww">aiww</a>如何环保地处理老毛纪念堂和他的遗体？</p>
+<p>是必然RT @<a target="_blank" rel="noopener" href="http://twitter.com/vvlalala">vvlalala</a>: @<a target="_blank" rel="noopener" href="http://twitter.com/aiww">aiww</a>公民社会前景怎样？</p>
+<p>接近另一种真实RT @<a target="_blank" rel="noopener" href="http://twitter.com/kingswong">kingswong</a>: 再問！RT @<a target="_blank" rel="noopener" href="http://twitter.com/kingswong">kingswong</a>: 你知道8964真相嘛？我看了李大鳥的日記狠困惑…</p>
+<p>争取做艺术。RT @<a target="_blank" rel="noopener" href="http://twitter.com/nadeellee">nadeellee</a>: @<a target="_blank" rel="noopener" href="http://twitter.com/aiww">aiww</a>如果不做艺术，你会去干什么？</p>
+<p>大多时RT @<a target="_blank" rel="noopener" href="http://twitter.com/DogEatGoodName">DogEatGoodName</a>: 工作室的人平时都在一起工作吗？</p>
+<p>温度合适的话 RT @<a target="_blank" rel="noopener" href="http://twitter.com/Choppywang">Choppywang</a>: @<a target="_blank" rel="noopener" href="http://twitter.com/aiww">aiww</a>我可以和你一起拍裸着拍照吗？</p>
+<p>真实的存在RT @<a target="_blank" rel="noopener" href="http://twitter.com/avb10year">avb10year</a>: @<a target="_blank" rel="noopener" href="http://twitter.com/aiww">aiww</a>艾老，理性让我们看清楚世界，但混沌的生活充满现实。留一半清醒留一半醉，我们该怎样存在与这个世界，这个社会呢。</p>
+<p>没有其他 RT @<a target="_blank" rel="noopener" href="http://twitter.com/gushouvvv">gushouvvv</a>: @<a target="_blank" rel="noopener" href="http://twitter.com/aiww">aiww</a>艾老，你觉得政府在对待你和其他反华势力之间有什么区别？你认为离中共对你下黑手还有多久？</p>
+<p>在轻一点RT @<a target="_blank" rel="noopener" href="http://twitter.com/cloudbleu">cloudbleu</a>: @<a target="_blank" rel="noopener" href="http://twitter.com/aiww">aiww</a>我也无聊问一个吧。你对自己的体重，有什么要求么？</p>
+<p>别停RT @<a target="_blank" rel="noopener" href="http://twitter.com/G_Xie">G_Xie</a>: @<a target="_blank" rel="noopener" href="http://twitter.com/aiww">aiww</a>提问的结束时间好像到了，来个总结陈词？</p>
+<p>真相一旦出现就不重要了。RT @<a target="_blank" rel="noopener" href="http://twitter.com/Kerchak23">Kerchak23</a>: @<a target="_blank" rel="noopener" href="http://twitter.com/aiww">aiww</a>真相重要吗？</p>
+<p>孤独就是宽敞、宽阔、甩袖无边的感觉。RT @<a target="_blank" rel="noopener" href="http://twitter.com/playinart_1">playinart_1</a>: @<a target="_blank" rel="noopener" href="http://twitter.com/aiww">aiww</a>艾婶，这些年来，你感到孤单吗？毕竟许多人都被洗脑，要改变他们很难，你做的事并不是所有的人都能理解。我有时感到很绝望。</p>
+<p>是你无法拒绝的，是你必须放弃的，失去自我的时刻，无怨无悔的时光。RT @<a target="_blank" rel="noopener" href="http://twitter.com/cuichenlu">cuichenlu</a>: @<a target="_blank" rel="noopener" href="http://twitter.com/aiww">aiww</a>爱情是什么？</p>
+<p>不做很重要的事。RT @<a target="_blank" rel="noopener" href="http://twitter.com/nadeellee">nadeellee</a>: @<a target="_blank" rel="noopener" href="http://twitter.com/aiww">aiww</a>老艾，经常做运动吗？健康最很重要。</p>
+<p>我不在意RT @<a target="_blank" rel="noopener" href="http://twitter.com/henicom1">henicom1</a>: @<a target="_blank" rel="noopener" href="http://twitter.com/aiww">aiww</a>今后会出现多党执政不 ？</p>
+<p>不RT @<a target="_blank" rel="noopener" href="http://twitter.com/lfzyx">lfzyx</a>: 艾老抽烟吗？@<a target="_blank" rel="noopener" href="http://twitter.com/aiww">aiww</a></p>
+<p>党产不够。RT @<a target="_blank" rel="noopener" href="http://twitter.com/jms1976315">jms1976315</a>: [ 问@<a target="_blank" rel="noopener" href="http://twitter.com/aiww">aiww</a>］11、艾先生是不是党的人，若不是，难道他们不来拉你入伙，是不是你开的价太高，他们不肯出？</p>
+<p>天天上推RT @<a target="_blank" rel="noopener" href="http://twitter.com/benzheng">benzheng</a>: @<a target="_blank" rel="noopener" href="http://twitter.com/aiww">aiww</a> 怎样在这个社会真实的活着而且不作恶</p>
+<p>现在就是RT @<a target="_blank" rel="noopener" href="http://twitter.com/hanchuk">hanchuk</a>: @<a target="_blank" rel="noopener" href="http://twitter.com/aiww">aiww</a> 艾老师，请问你曾有过“嫉妒” 这种情绪吗？（第5次发，不回答我就不罢休呢。）</p>
+<p>残害式RT @<a target="_blank" rel="noopener" href="http://twitter.com/atrrr">atrrr</a>: @<a target="_blank" rel="noopener" href="http://twitter.com/aiww">aiww</a> 你怎麼看現行的高中教育？</p>
+<p>你想开启就会是脑残。RT @<a target="_blank" rel="noopener" href="http://twitter.com/slsyy">slsyy</a>: 来自腾讯微博@<a target="_blank" rel="noopener" href="http://twitter.com/a409883297">a409883297</a>的提问@<a target="_blank" rel="noopener" href="http://twitter.com/aiww">aiww</a>：爱神，你想成为开启民智的先驱吗？</p>
+<p>多饭局民主。RT @<a target="_blank" rel="noopener" href="http://twitter.com/henicom1">henicom1</a>: 不好吧，以后不多党怎么实习民主RT @<a target="_blank" rel="noopener" href="http://twitter.com/aiww">aiww</a>: 我不在意RT @<a target="_blank" rel="noopener" href="http://twitter.com/henicom1">henicom1</a>: @<a target="_blank" rel="noopener" href="http://twitter.com/aiww">aiww</a> 今后会出现多党执政不 ？</p>
+<p>不会RT @<a target="_blank" rel="noopener" href="http://twitter.com/haojiachina">haojiachina</a>: @<a target="_blank" rel="noopener" href="http://twitter.com/aiww">aiww</a> 老艾会得诺贝尔和平奖吗？ <a target="_blank" rel="noopener" href="http://twitter.com/#!/search?q=%23aiww" title="#aiww">#aiww</a></p>
+<p>我更喜欢没被毁了的RT @<a target="_blank" rel="noopener" href="http://twitter.com/buchai_luyi">buchai_luyi</a>: @<a target="_blank" rel="noopener" href="http://twitter.com/aiww">aiww</a>:再问<del>艾大大</del>我毕业了能去你工作室工作不？~~<a target="_blank" rel="noopener" href="http://twitter.com/#!/search?q=%23aiww" title="#aiww">#aiww</a></p>
+<p>你RT @<a target="_blank" rel="noopener" href="http://twitter.com/alchenal">alchenal</a>: @<a target="_blank" rel="noopener" href="http://twitter.com/aiww">aiww</a>　信仰是什么?</p>
+<p>我不会代一个没有敌人的人领奖。RT @<a target="_blank" rel="noopener" href="http://twitter.com/TonyCNUK">TonyCNUK</a>: @<a target="_blank" rel="noopener" href="http://twitter.com/aiww">aiww</a> 艾老会代表刘晓波领奖么？看这架势他亲戚朋友都来不了</p>
+<p>要求她承认你是他先生。RT @<a target="_blank" rel="noopener" href="http://twitter.com/teacurl">teacurl</a>: 问艾神 @<a target="_blank" rel="noopener" href="http://twitter.com/aiww">aiww</a>讨老婆有些什么要求？<a target="_blank" rel="noopener" href="http://twitter.com/#!/search?q=%23aiww" title="#aiww">#aiww</a></p>
+<p>中文还可理解为：（除）非暴力，不合作，或暴力合作。RT @<a target="_blank" rel="noopener" href="http://twitter.com/leowll">leowll</a>: @<a target="_blank" rel="noopener" href="http://twitter.com/aiww">aiww</a>：艾神，你相信甘地的非暴力不合作精神么？</p>
+<p>亵渎生活RT @<a target="_blank" rel="noopener" href="http://twitter.com/liangdu">liangdu</a>: @<a target="_blank" rel="noopener" href="http://twitter.com/aiww">aiww</a> 怎么看“白雪公主和王子从此过着幸福美好的生活”？</p>
+<p>你朋友错了RT @<a target="_blank" rel="noopener" href="http://twitter.com/seventeena_chen">seventeena_chen</a>: @<a target="_blank" rel="noopener" href="http://twitter.com/aiww">aiww</a> 艾爸爸，能不能问你一个问题？ 你究竟结婚没啊？ 为什么维基上说你结婚了，我朋友却说没有呢？到底是怎样的啊….??</p>
+<p>嗯 @<a target="_blank" rel="noopener" href="http://twitter.com/slipknothooh">slipknothooh</a>: @<a target="_blank" rel="noopener" href="http://twitter.com/aiww">aiww</a>很好奇，艾老喜欢吃什么饭？是硬的和辣的吗？</p>
+<p>是没用。RT @<a target="_blank" rel="noopener" href="http://twitter.com/Jasonsam">Jasonsam</a>: @<a target="_blank" rel="noopener" href="http://twitter.com/aiww">aiww</a>一天睡觉之前，我和同学在宿舍聊一些民主的话题，另外一个同学似乎很不耐烦，说：“别说这没用的了，赶紧睡觉吧！”讨论“民主”是否真的没用？</p>
+<p>拼出一个新的环境。RT @<a target="_blank" rel="noopener" href="http://twitter.com/henicom1">henicom1</a>: @<a target="_blank" rel="noopener" href="http://twitter.com/aiww">aiww</a> 现在言论打压越来越猛，看不到希望了，怎么办？ 是很猛烈啊，稍有点过的词都不能发了，只能用拼音代替，搞得中国人最后只会用拼音了都</p>
+<p>时不时RT @<a target="_blank" rel="noopener" href="http://twitter.com/GxutJames">GxutJames</a>: 你给他们发工资吗?RT @<a target="_blank" rel="noopener" href="http://twitter.com/aiww">aiww</a>: 大多时RT @<a target="_blank" rel="noopener" href="http://twitter.com/DogEatGoodName">DogEatGoodName</a>: 工作室的人平时都在一起工作吗？ @<a target="_blank" rel="noopener" href="http://twitter.com/aiww">aiww</a> <a target="_blank" rel="noopener" href="http://twitter.com/#!/search?q=%23aiww" title="#aiww">#aiww</a></p>
+<p>因为我不重要。RT @<a target="_blank" rel="noopener" href="http://twitter.com/shenxibobo">shenxibobo</a>: @<a target="_blank" rel="noopener" href="http://twitter.com/aiww">aiww</a>爱老..一个严重的问题::你这样公开的在推上这样..而且你还在国内..为什么不会被抓或者和谐掉啊</p>
+<p>耕耘就是呐喊了，地里的庄稼不是喊出来的。 RT @<a target="_blank" rel="noopener" href="http://twitter.com/mingxia">mingxia</a>: @<a target="_blank" rel="noopener" href="http://twitter.com/aiww">aiww</a>我觉得一个正常的国度，需要有高声呐喊的人，也需要有踏实耕耘的人，两者并不冲突，你觉得现在我们缺哪个？</p>
+<p>疯狂反叛RT @<a target="_blank" rel="noopener" href="http://twitter.com/qiushanwian">qiushanwian</a>: @<a target="_blank" rel="noopener" href="http://twitter.com/aiww">aiww</a> 艾婶认为现在的青年人应该做点什么？</p>
+<p>中医有美学价值，在某些方面实用。RT @<a target="_blank" rel="noopener" href="http://twitter.com/free_all_POC">free_all_POC</a>: @<a target="_blank" rel="noopener" href="http://twitter.com/aiww">aiww</a> 老艾，昨晚的问题没得到回答，再次请问下：您对中医什么态度？信中医吗？</p>
+<p>不要轻信，不可不信RT @<a target="_blank" rel="noopener" href="http://twitter.com/chenting1983117">chenting1983117</a>: @<a target="_blank" rel="noopener" href="http://twitter.com/aiww">aiww</a> 艾叔 ，早，原来还在继续持续提问中。请问神，如何时刻做到相对独立的思想，不盲从，不随从？</p>
+<p>忘记你的所学RT @<a target="_blank" rel="noopener" href="http://twitter.com/Xiulongfei">Xiulongfei</a>: @<a target="_blank" rel="noopener" href="http://twitter.com/aiww">aiww</a> 请问对即将毕业的大学生有什么好的建议吗？</p>
+<p>嗯，可恶。RT @<a target="_blank" rel="noopener" href="http://twitter.com/chineisei">chineisei</a>: @<a target="_blank" rel="noopener" href="http://twitter.com/aiww">aiww</a> 我觉得现在是新文革时期，区别是那些曾经的文革小将们在当权了。你觉得呢？</p>
+<p>抽自己RT @<a target="_blank" rel="noopener" href="http://twitter.com/ekeyme">ekeyme</a>: 根本没学到怎么办。?。RT @<a target="_blank" rel="noopener" href="http://twitter.com/aiww">aiww</a> 忘记你的所学RT @<a target="_blank" rel="noopener" href="http://twitter.com/Xiulongfei">Xiulongfei</a>: @<a target="_blank" rel="noopener" href="http://twitter.com/aiww">aiww</a> 请问对即将毕业的大学生有什么好的建议吗？</p>
+<p>现实问题上的妥协是可以理解的，精神上的放弃是对生命的不敬。RT @<a target="_blank" rel="noopener" href="http://twitter.com/chenting1983117">chenting1983117</a>: @<a target="_blank" rel="noopener" href="http://twitter.com/aiww">aiww</a> 不知道能否继续深入下去个问题。呵呵， 艾叔，你也年轻过，请问您如何看青年人为生活却选择了向现实妥协，无论处于体制内或体制外？</p>
+<p>相信制约。RT @<a target="_blank" rel="noopener" href="http://twitter.com/enoooone">enoooone</a>: 艾神认同三权分立吗？@<a target="_blank" rel="noopener" href="http://twitter.com/aiww">aiww</a></p>
+<p>记得你是如何被出卖的。RT @<a target="_blank" rel="noopener" href="http://twitter.com/chiahla">chiahla</a>: 那该记得什么呢? @<a target="_blank" rel="noopener" href="http://twitter.com/aiww">aiww</a> 忘记你的所学RT @<a target="_blank" rel="noopener" href="http://twitter.com/Xiulongfei">Xiulongfei</a>: @<a target="_blank" rel="noopener" href="http://twitter.com/aiww">aiww</a> 请问对即将毕业的大学生有什么好的建议吗？</p>
+<p>学习它国法律RT @<a target="_blank" rel="noopener" href="http://twitter.com/herolaw">herolaw</a>: @<a target="_blank" rel="noopener" href="http://twitter.com/aiww">aiww</a> 对法科学生有什么建议呢？</p>
+<p>优势感源于自卑。RT @<a target="_blank" rel="noopener" href="http://twitter.com/dakan">dakan</a>: @<a target="_blank" rel="noopener" href="http://twitter.com/aiww">aiww</a> 艾婶，请问您怎么看待天朝内依旧存在的地域歧视呢？第一次发估计您没看到…这是第二回了</p>
+<p>避免再被转手RT @<a target="_blank" rel="noopener" href="http://twitter.com/guanguan_L">guanguan_L</a>: 这个记得有啥用阿RT @<a target="_blank" rel="noopener" href="http://twitter.com/aiww">aiww</a>: 记得你是如何被出卖的。RT @<a target="_blank" rel="noopener" href="http://twitter.com/chiahla">chiahla</a>: 那该记得什么呢? @<a target="_blank" rel="noopener" href="http://twitter.com/aiww">aiww</a> 忘记你的所学RT @<a target="_blank" rel="noopener" href="http://twitter.com/Xiulongfei">Xiulongfei</a>: @<a target="_blank" rel="noopener" href="http://twitter.com/aiww">aiww</a> 请问对即将毕业的大学生有什么好的建议吗？</p>
+<p>这些人会降低做人的标准。RT @<a target="_blank" rel="noopener" href="http://twitter.com/henicom1">henicom1</a>: @<a target="_blank" rel="noopener" href="http://twitter.com/aiww">aiww</a> 我周围同学都说，你就一个学生，没有成就、没有名气、更没追随者，整天喊民主自由太不现实。还是先低调，努力做出成就来再去追求这些，才有影响力。艾神觉得呢？</p>
+<p>告诉每一个人你的愿望RT @<a target="_blank" rel="noopener" href="http://twitter.com/n30133">n30133</a>: ＠<a target="_blank" rel="noopener" href="http://twitter.com/aiww">aiww</a> 艾先生，请问如何能加快民主进程和社会的进步，我是急性子，忍受不了操蛋的d和zf如此为非做虐草菅人命！</p>
+<p>不反叛的青年不是青年。RT @<a target="_blank" rel="noopener" href="http://twitter.com/buluo89">buluo89</a>: 我还以为是：＂做个青年人＂ RT @<a target="_blank" rel="noopener" href="http://twitter.com/aiww">aiww</a>疯狂反叛RT @<a target="_blank" rel="noopener" href="http://twitter.com/qiushanwian">qiushanwian</a>: @<a target="_blank" rel="noopener" href="http://twitter.com/aiww">aiww</a> 艾婶认为现在的青年人应该做点什么？</p>
+<p>恶体制，不是缺陷，是体制缺德。RT @<a target="_blank" rel="noopener" href="http://twitter.com/enoooone">enoooone</a>: 警察、法院参与作恶，罪恶之源是什么，是体制缺陷吗？ @<a target="_blank" rel="noopener" href="http://twitter.com/aiww">aiww</a></p>
+<p>不搭理他。RT @<a target="_blank" rel="noopener" href="http://twitter.com/Suyutong">Suyutong</a>: @<a target="_blank" rel="noopener" href="http://twitter.com/aiww">aiww</a> 问，怎么对付伍皓！</p>
+<p>继续上推RT @<a target="_blank" rel="noopener" href="http://twitter.com/haoboling">haoboling</a>: 每天十二小时工作使我疲惫而茫然，唯看书、上推让我体会到存在感。这使我苦闷。请教@<a target="_blank" rel="noopener" href="http://twitter.com/aiww">aiww</a>，何以解忧？</p>
+<p>是问题。RT @<a target="_blank" rel="noopener" href="http://twitter.com/jianyanzhong">jianyanzhong</a>: @<a target="_blank" rel="noopener" href="http://twitter.com/aiww">aiww</a> 生命是什么？</p>
+<p>不可自理。RT @<a target="_blank" rel="noopener" href="http://twitter.com/jianyanzhong">jianyanzhong</a>: @<a target="_blank" rel="noopener" href="http://twitter.com/aiww">aiww</a>你觉得中共一直执迷不悟的根源是什么？</p>
+<p>不相信科学民主。RT @<a target="_blank" rel="noopener" href="http://twitter.com/enoooone">enoooone</a>: 艾婶的父辈一代为自由中国而发力，却缔造了独裁中国。这个过程中，最大失误在哪？ @<a target="_blank" rel="noopener" href="http://twitter.com/aiww">aiww</a></p>
+<p>在你RT @<a target="_blank" rel="noopener" href="http://twitter.com/bigheadLzy">bigheadLzy</a>: @<a target="_blank" rel="noopener" href="http://twitter.com/aiww">aiww</a> 希望在哪里？</p>
+<p>我的所有的收入来自我辛勤的劳动和智慧。RT @<a target="_blank" rel="noopener" href="http://twitter.com/Carlure">Carlure</a>: @<a target="_blank" rel="noopener" href="http://twitter.com/aiww">aiww</a> 昨晚问你收入来源的问题，重点是在前面的“请问您的主要收入来源是什么”，为什么所有的人都是看到了后面的“是不是国外反华势力赞助？”呢？</p>
+<p>台湾还在地球上吗RT @<a target="_blank" rel="noopener" href="http://twitter.com/ichentsai">ichentsai</a>: @<a target="_blank" rel="noopener" href="http://twitter.com/aiww">aiww</a>我是台灣的推友，請問艾嬸想對台灣的朋友說什麼呢？</p>
+<p>嗯。RT @<a target="_blank" rel="noopener" href="http://twitter.com/Wallace_2012">Wallace_2012</a>: 昨天看老蔣日記，“不轉制革命無法成功”，艾嬸怎麽看這句話。RT @<a target="_blank" rel="noopener" href="http://twitter.com/aiww">aiww</a>: 不相信科学民主。RT @<a target="_blank" rel="noopener" href="http://twitter.com/enoooone">enoooone</a>: 艾婶的父辈一代为自由中国而发力，却缔造了独裁中国。这个过程中，最大失误在哪？ @<a target="_blank" rel="noopener" href="http://twitter.com/aiww">aiww</a></p>
+<p>党就是乱。RT @<a target="_blank" rel="noopener" href="http://twitter.com/enoooone">enoooone</a>: 党说中国人不适合西方式的自由、民主，会导致大乱。最给力的反驳是什么？ @<a target="_blank" rel="noopener" href="http://twitter.com/aiww">aiww</a></p>
+<p>台湾太小气RT @<a target="_blank" rel="noopener" href="http://twitter.com/ichentsai">ichentsai</a>: 看你從人的角度還是從兲朝的角度看了..RT @<a target="_blank" rel="noopener" href="http://twitter.com/aiww">aiww</a>: 台湾还在地球上吗RT @<a target="_blank" rel="noopener" href="http://twitter.com/ichentsai">ichentsai</a>: @<a target="_blank" rel="noopener" href="http://twitter.com/aiww">aiww</a>我是台灣的推友，請問艾嬸想對台灣的朋友說什麼呢？</p>
+<p>怜悯。RT @<a target="_blank" rel="noopener" href="http://twitter.com/weizenfeld">weizenfeld</a>: 艾老师，您对大学生乃至中学生最想说的一句话是什么呢？@<a target="_blank" rel="noopener" href="http://twitter.com/aiww">aiww</a></p>
+<p>主动，独立，勇敢。RT @<a target="_blank" rel="noopener" href="http://twitter.com/huyunqiao">huyunqiao</a>: @<a target="_blank" rel="noopener" href="http://twitter.com/aiww">aiww</a> 去你工作室有什么条件？</p>
+<p>那又怎样RT @<a target="_blank" rel="noopener" href="http://twitter.com/dengweijie">dengweijie</a>: @<a target="_blank" rel="noopener" href="http://twitter.com/aiww">aiww</a> 为何反华？反华岂不是反我们自己？</p>
+<p>蓝帽回回，布希。RT @<a target="_blank" rel="noopener" href="http://twitter.com/sg_panda">sg_panda</a>: @<a target="_blank" rel="noopener" href="http://twitter.com/aiww">aiww</a> 请问您是开封犹太人的后代吗？</p>
 
       
     </div>
@@ -934,7 +1023,7 @@
               </span>
               <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/知识/" itemprop="url" rel="index"><span itemprop="name">知识</span></a>
+                  <a href="/categories/%E7%9F%A5%E8%AF%86/" itemprop="url" rel="index"><span itemprop="name">知识</span></a>
                 </span>
             </span>
 
@@ -963,7 +1052,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>在R语言中，CRAN有几个包可以让R和DBMSs进行通信。 CRAN上的RMySQL包提供了和MySQL数据库系统的接口。RMySQL依赖于DBI包。 MySQL是一个轻量级的数据库系统，而RMySQL包在Linux和Windows下均可以使用。 在Windows环境下，通过菜单栏中的“程序包”-》“安装程序包”来找到DBI和RMySQL包，下载安装。 代码如下：<br><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">library</span>(DBI) <span class="comment">#由于RMySQL依赖于DBI包，所以先加载DBI</span></span><br><span class="line"><span class="keyword">library</span>(RMySQL)</span><br><span class="line">con&lt;-dbConnect(dbDriver(<span class="string">"MySQL"</span>),dbname=<span class="string">"dbname"</span>,user=<span class="string">"username"</span>,password=<span class="string">"password"</span>)</span><br><span class="line"><span class="comment">#数据库驱动，数据库名称，数据库用户名和密码</span></span><br><span class="line">dbListTables(con)<span class="comment">#列出数据库中的表</span></span><br><span class="line">dbGetQuery(con,paste(<span class="string">"select * from table-name"</span>,<span class="string">"where ..."</span>))<span class="comment">#执行一条查询语句</span></span><br></pre></td></tr></table></figure></p>
+          <p>在R语言中，CRAN有几个包可以让R和DBMSs进行通信。 CRAN上的RMySQL包提供了和MySQL数据库系统的接口。RMySQL依赖于DBI包。 MySQL是一个轻量级的数据库系统，而RMySQL包在Linux和Windows下均可以使用。 在Windows环境下，通过菜单栏中的“程序包”-》“安装程序包”来找到DBI和RMySQL包，下载安装。 代码如下：</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">library(DBI) <span class="comment">#由于RMySQL依赖于DBI包，所以先加载DBI</span></span><br><span class="line">library(RMySQL)</span><br><span class="line">con&lt;-dbConnect(dbDriver(<span class="string">&quot;MySQL&quot;</span>),dbname=<span class="string">&quot;dbname&quot;</span>,user=<span class="string">&quot;username&quot;</span>,password=<span class="string">&quot;password&quot;</span>)</span><br><span class="line"><span class="comment">#数据库驱动，数据库名称，数据库用户名和密码</span></span><br><span class="line">dbListTables(con)<span class="comment">#列出数据库中的表</span></span><br><span class="line">dbGetQuery(con,paste(<span class="string">&quot;select * from table-name&quot;</span>,<span class="string">&quot;where ...&quot;</span>))<span class="comment">#执行一条查询语句</span></span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -1022,11 +1112,11 @@
               </span>
               <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/技术/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
                 </span>
                   , 
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/技术/未分類/" itemprop="url" rel="index"><span itemprop="name">未分類</span></a>
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E6%9C%AA%E5%88%86%E9%A1%9E/" itemprop="url" rel="index"><span itemprop="name">未分類</span></a>
                 </span>
             </span>
 
@@ -1056,7 +1146,7 @@
 
       
           <p>在Ubuntu10.10中使用MySql数据库，创建完表之后想要从本地文件中导入数据，使用下面的语句： load data infile ‘file path’ into table table_name; 该语句在windows系统中运行正常，但在Ubuntu中提示下列错误 Error Code: 13</p>
-<p>Can’t get stat of  ‘ file path’</p>
+<p>Can’t get stat of  ‘ file path’</p>
 <p>即无法找到本地文件。从网上查了一下，sql语句需要改为</p>
 <p>load data local file</p>
 <p>即缺了一个local</p>
@@ -1119,7 +1209,7 @@
               </span>
               <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/知识/" itemprop="url" rel="index"><span itemprop="name">知识</span></a>
+                  <a href="/categories/%E7%9F%A5%E8%AF%86/" itemprop="url" rel="index"><span itemprop="name">知识</span></a>
                 </span>
             </span>
 
@@ -1148,99 +1238,9 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><strong>训练集（Training Set） 和 测试集（Test Set）</strong> 被广泛应用在人工智能、机器学习、遗传编程、智能系统、统计学等领域中。 <strong>训练集</strong>用来构建或者发现潜在的预测关系。 通过<strong>训练集</strong>来构建的数据关系，都存在某种程度的<strong>过适（过拟合，over-fit）</strong>问题。也就是说，训练集训练出来的模型只能体现训练集中数据之间显然的关系，却未必能代表所有的数据。 而<strong>测试集</strong>则是独立于训练集的一组数据，但它服从和训练集同样的概率分布。 如果一个模型既能能很好的拟合训练集也能很好的拟合测试集，则过拟合现象就不明显。 如果模型只能拟合训练集而不能很好的拟合测试集，则过拟合现象就发生了。 <strong>简言之，训练集用来训练一个模型，测试集用来测试该模型是否恰当。</strong> 如图所示，左图的蓝点表示训练集中的数据，而绿色和橘色的曲线则是对测试集的拟合。 [caption id=”” align=”aligncenter” width=”1400”]<a href="https://en.wikipedia.org/wiki/Test_set" target="_blank" rel="noopener"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Traintest.svg/1400px-Traintest.svg.png" alt="Trainig set and test set"></a> Trainig set and test set[/caption]</p>
+          <p><strong>训练集（Training Set） 和 测试集（Test Set）</strong> 被广泛应用在人工智能、机器学习、遗传编程、智能系统、统计学等领域中。 <strong>训练集</strong>用来构建或者发现潜在的预测关系。 通过<strong>训练集</strong>来构建的数据关系，都存在某种程度的<strong>过适（过拟合，over-fit）</strong>问题。也就是说，训练集训练出来的模型只能体现训练集中数据之间显然的关系，却未必能代表所有的数据。 而<strong>测试集</strong>则是独立于训练集的一组数据，但它服从和训练集同样的概率分布。 如果一个模型既能能很好的拟合训练集也能很好的拟合测试集，则过拟合现象就不明显。 如果模型只能拟合训练集而不能很好的拟合测试集，则过拟合现象就发生了。 <strong>简言之，训练集用来训练一个模型，测试集用来测试该模型是否恰当。</strong> 如图所示，左图的蓝点表示训练集中的数据，而绿色和橘色的曲线则是对测试集的拟合。 [caption id=”” align=”aligncenter” width=”1400”]<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Test_set"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Traintest.svg/1400px-Traintest.svg.png" alt="Trainig set and test set"></a> Trainig set and test set[/caption]</p>
 <p>右图的蓝点表示测试集中的数据。训练集中橘色曲线拟合的MSE为4，绿色曲线为9。</p>
 <p>同样的曲线，在测试集当中，橘色曲线的MSE为15，绿色曲线为13。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://leowll.com/2010/10/08/congrats-liuxiaobo/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Leo Wang">
-      <meta itemprop="description" content="Tech & Life">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Leo's notepad">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2010/10/08/congrats-liuxiaobo/" class="post-title-link" itemprop="url">祝贺刘晓波先生获诺贝尔和平奖</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2010-10-08 20:32:52" itemprop="dateCreated datePublished" datetime="2010-10-08T20:32:52+09:00">2010-10-08</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2018-06-06 14:49:00" itemprop="dateModified" datetime="2018-06-06T14:49:00+09:00">2018-06-06</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/未分类/" itemprop="url" rel="index"><span itemprop="name">未分类</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus: </span>
-    
-    <a title="disqus" href="/2010/10/08/congrats-liuxiaobo/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2010/10/08/congrats-liuxiaobo/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p> 作为一名零八宪章的联署人，为刘晓波先生今天获得的荣誉感到光荣和自豪。</p>
-<p>祝刘先生早日获释。</p>
-<p>望中国早日结束共产暴政，实现民主自由。</p>
 
       
     </div>
@@ -1325,7 +1325,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">44</span>
+          <span class="site-state-item-count">45</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -1338,17 +1338,17 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">74</span>
+        <span class="site-state-item-count">77</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
 </div>
   <div class="links-of-author motion-element">
       <span class="links-of-author-item">
-        <a href="https://github.com/leowll" title="GitHub → https://github.com/leowll" rel="noopener" target="_blank"><i class="github fa-fw"></i>GitHub</a>
+        <a href="https://github.com/leowll" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;leowll" rel="noopener" target="_blank"><i class="github fa-fw"></i>GitHub</a>
       </span>
       <span class="links-of-author-item">
-        <a href="https://twitter.com/leowll" title="Twitter → https://twitter.com/leowll" rel="noopener" target="_blank"><i class="twitter fa-fw"></i>Twitter</a>
+        <a href="https://twitter.com/leowll" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;leowll" rel="noopener" target="_blank"><i class="twitter fa-fw"></i>Twitter</a>
       </span>
   </div>
 
@@ -1373,13 +1373,13 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2021</span>
+  <span itemprop="copyrightYear">2022</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Leo Wang</span>
 </div>
-  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
   </div>
 
         
@@ -1399,9 +1399,17 @@
   <script src="/lib/anime.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
-<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
 <script src="/js/schemes/pisces.js"></script>
+
+
 <script src="/js/next-boot.js"></script>
+
 
 
 

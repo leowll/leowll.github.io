@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 3.7.1">
+<meta name="generator" content="Hexo 6.0.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -20,17 +20,17 @@
     var CONFIG = {"hostname":"leowll.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="在windows下对SQL Server2008数据库进行定时备份，需要做以下工作： 1.编写备份数据库的bat文件，内容形似： backup database testdb to disk=’d:\backup\testdb.bak’  &amp;gt;&amp;gt; .\backup.log 2.编写copy数据库备份文件并重命名的bat文件，形似： SET DT=%DATE:~0,4%%DATE:~5,2">
+  <meta name="description" content="在windows下对SQL Server2008数据库进行定时备份，需要做以下工作： 1.编写备份数据库的bat文件，内容形似： backup database testdb to disk&#x3D;’d:\backup\testdb.bak’  &gt;&gt; .\backup.log 2.编写copy数据库备份文件并重命名的bat文件，形似： SET DT&#x3D;%DATE:0,4%%DATE:5,2%%">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Windows下SQL Server2008的定时备份策略">
 <meta property="og:url" content="http://leowll.com/2012/03/19/sqlserver-2008-backup/index.html">
 <meta property="og:site_name" content="Leo&#39;s notepad">
-<meta property="og:description" content="在windows下对SQL Server2008数据库进行定时备份，需要做以下工作： 1.编写备份数据库的bat文件，内容形似： backup database testdb to disk=’d:\backup\testdb.bak’  &amp;gt;&amp;gt; .\backup.log 2.编写copy数据库备份文件并重命名的bat文件，形似： SET DT=%DATE:~0,4%%DATE:~5,2">
-<meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-06-06T05:49:00.140Z">
+<meta property="og:description" content="在windows下对SQL Server2008数据库进行定时备份，需要做以下工作： 1.编写备份数据库的bat文件，内容形似： backup database testdb to disk&#x3D;’d:\backup\testdb.bak’  &gt;&gt; .\backup.log 2.编写copy数据库备份文件并重命名的bat文件，形似： SET DT&#x3D;%DATE:0,4%%DATE:5,2%%">
+<meta property="og:locale">
+<meta property="article:published_time" content="2012-03-19T07:06:55.000Z">
+<meta property="article:modified_time" content="2018-06-06T05:49:00.000Z">
+<meta property="article:author" content="Leo Wang">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Windows下SQL Server2008的定时备份策略">
-<meta name="twitter:description" content="在windows下对SQL Server2008数据库进行定时备份，需要做以下工作： 1.编写备份数据库的bat文件，内容形似： backup database testdb to disk=’d:\backup\testdb.bak’  &amp;gt;&amp;gt; .\backup.log 2.编写copy数据库备份文件并重命名的bat文件，形似： SET DT=%DATE:~0,4%%DATE:~5,2">
 
 <link rel="canonical" href="http://leowll.com/2012/03/19/sqlserver-2008-backup/">
 
@@ -204,11 +204,11 @@
               </span>
               <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/技术/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
                 </span>
                   , 
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/技术/未分類/" itemprop="url" rel="index"><span itemprop="name">未分類</span></a>
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E6%9C%AA%E5%88%86%E9%A1%9E/" itemprop="url" rel="index"><span itemprop="name">未分類</span></a>
                 </span>
             </span>
 
@@ -237,7 +237,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>在windows下对SQL Server2008数据库进行定时备份，需要做以下工作： 1.编写备份数据库的bat文件，内容形似： <em>backup database testdb to disk=’d:\backup\testdb.bak’  &gt;&gt; .\backup.log</em> 2.编写copy数据库备份文件并重命名的bat文件，形似： <em>SET DT=%DATE:~0,4%%DATE:~5,2%%DATE:~8,2%</em> <em>COPY D:\backup.bak  D:\backup%DT%.bak &gt;&gt; .\copy.log</em> 2.建立两个windows计划任务，分别选定时间和周期执行上述备份bat文件。 这样就可以实现sql server的定时备份策略了。</p>
+        <p>在windows下对SQL Server2008数据库进行定时备份，需要做以下工作： 1.编写备份数据库的bat文件，内容形似： <em>backup database testdb to disk=’d:\backup\testdb.bak’  &gt;&gt; .\backup.log</em> 2.编写copy数据库备份文件并重命名的bat文件，形似： <em>SET DT=%DATE:<del>0,4%%DATE:</del>5,2%%DATE:~8,2%</em> <em>COPY D:\backup.bak  D:\backup%DT%.bak &gt;&gt; .\copy.log</em> 2.建立两个windows计划任务，分别选定时间和周期执行上述备份bat文件。 这样就可以实现sql server的定时备份策略了。</p>
 
     </div>
 
@@ -253,7 +253,7 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2012/02/12/ssh-extjs-json/" rel="prev" title="Spring+Struts2+Hibernate 整合Extjs时无法读取json数据的问题之解决办法">
+    <a href="/2012/02/13/ssh-extjs-json/" rel="prev" title="Spring+Struts2+Hibernate 整合Extjs时无法读取json数据的问题之解决办法">
       <i class="fa fa-chevron-left"></i> Spring+Struts2+Hibernate 整合Extjs时无法读取json数据的问题之解决办法
     </a></div>
       <div class="post-nav-item">
@@ -338,7 +338,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">44</span>
+          <span class="site-state-item-count">45</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -351,17 +351,17 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">74</span>
+        <span class="site-state-item-count">77</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
 </div>
   <div class="links-of-author motion-element">
       <span class="links-of-author-item">
-        <a href="https://github.com/leowll" title="GitHub → https://github.com/leowll" rel="noopener" target="_blank"><i class="github fa-fw"></i>GitHub</a>
+        <a href="https://github.com/leowll" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;leowll" rel="noopener" target="_blank"><i class="github fa-fw"></i>GitHub</a>
       </span>
       <span class="links-of-author-item">
-        <a href="https://twitter.com/leowll" title="Twitter → https://twitter.com/leowll" rel="noopener" target="_blank"><i class="twitter fa-fw"></i>Twitter</a>
+        <a href="https://twitter.com/leowll" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;leowll" rel="noopener" target="_blank"><i class="twitter fa-fw"></i>Twitter</a>
       </span>
   </div>
 
@@ -386,13 +386,13 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2021</span>
+  <span itemprop="copyrightYear">2022</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Leo Wang</span>
 </div>
-  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
   </div>
 
         
@@ -412,9 +412,17 @@
   <script src="/lib/anime.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
-<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
 <script src="/js/schemes/pisces.js"></script>
+
+
 <script src="/js/next-boot.js"></script>
+
 
 
 

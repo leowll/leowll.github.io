@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 3.7.1">
+<meta name="generator" content="Hexo 6.0.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -20,18 +20,21 @@
     var CONFIG = {"hostname":"leowll.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="在python中有很多方法将datetime的字符串转换为 utc timestamp 网上找了好多，看起来都纷繁复杂。本文就想简单的做好一件事，就是将datetime的字符串转换为utc timestamp。 理解这个转换的关键，在于理解python中所有的日期字符串都被python解读为local time。 也就是说，同样是’2015/10/27 00:00:00’这个字符串，虽然身处东京的">
-<meta name="keywords" content="datetime,python,timestamp,utc timestamp">
+  <meta name="description" content="在python中有很多方法将datetime的字符串转换为 utc timestamp 网上找了好多，看起来都纷繁复杂。本文就想简单的做好一件事，就是将datetime的字符串转换为utc timestamp。 理解这个转换的关键，在于理解python中所有的日期字符串都被python解读为local time。 也就是说，同样是’2015&#x2F;10&#x2F;27 00:00:00’这个字符串，虽然身处东京的">
 <meta property="og:type" content="article">
 <meta property="og:title" content="在Python中将datetime字符串转换为utc timestamp">
 <meta property="og:url" content="http://leowll.com/2015/10/27/python-datetime-to-utc-timestamp/index.html">
 <meta property="og:site_name" content="Leo&#39;s notepad">
-<meta property="og:description" content="在python中有很多方法将datetime的字符串转换为 utc timestamp 网上找了好多，看起来都纷繁复杂。本文就想简单的做好一件事，就是将datetime的字符串转换为utc timestamp。 理解这个转换的关键，在于理解python中所有的日期字符串都被python解读为local time。 也就是说，同样是’2015/10/27 00:00:00’这个字符串，虽然身处东京的">
-<meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-06-06T13:57:21.507Z">
+<meta property="og:description" content="在python中有很多方法将datetime的字符串转换为 utc timestamp 网上找了好多，看起来都纷繁复杂。本文就想简单的做好一件事，就是将datetime的字符串转换为utc timestamp。 理解这个转换的关键，在于理解python中所有的日期字符串都被python解读为local time。 也就是说，同样是’2015&#x2F;10&#x2F;27 00:00:00’这个字符串，虽然身处东京的">
+<meta property="og:locale">
+<meta property="article:published_time" content="2015-10-27T14:57:30.000Z">
+<meta property="article:modified_time" content="2018-06-06T13:57:21.000Z">
+<meta property="article:author" content="Leo Wang">
+<meta property="article:tag" content="datetime">
+<meta property="article:tag" content="python">
+<meta property="article:tag" content="timestamp">
+<meta property="article:tag" content="utc timestamp">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="在Python中将datetime字符串转换为utc timestamp">
-<meta name="twitter:description" content="在python中有很多方法将datetime的字符串转换为 utc timestamp 网上找了好多，看起来都纷繁复杂。本文就想简单的做好一件事，就是将datetime的字符串转换为utc timestamp。 理解这个转换的关键，在于理解python中所有的日期字符串都被python解读为local time。 也就是说，同样是’2015/10/27 00:00:00’这个字符串，虽然身处东京的">
 
 <link rel="canonical" href="http://leowll.com/2015/10/27/python-datetime-to-utc-timestamp/">
 
@@ -205,11 +208,11 @@
               </span>
               <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/技术/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
                 </span>
                   , 
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/技术/知识/" itemprop="url" rel="index"><span itemprop="name">知识</span></a>
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E7%9F%A5%E8%AF%86/" itemprop="url" rel="index"><span itemprop="name">知识</span></a>
                 </span>
             </span>
 
@@ -238,7 +241,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>在python中有很多方法将datetime的字符串转换为 utc timestamp 网上找了好多，看起来都纷繁复杂。本文就想简单的做好一件事，就是将datetime的字符串转换为utc timestamp。 理解这个转换的关键，在于理解python中所有的日期字符串都被python解读为local time。 也就是说，同样是’2015/10/27 00:00:00’这个字符串，虽然身处东京的我和身在伦敦的你看到的是同一个字符串，但他们本身被python解读为两个不同地方的日期和时间。 如果想让python不去理会时差，而只想要utc格式的时间戳的话，用calendar.timegm()函数即可实现。 现举例如下：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">\<span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line">\_\_author\_\_ = <span class="string">'leo'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> datetime <span class="keyword">import</span> datetime</span><br><span class="line"><span class="keyword">import</span> calendar</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">local</span>\<span class="title">_to</span>\<span class="title">_utc</span><span class="params">(date_value)</span>:</span></span><br><span class="line">    utc\_timetuple = datetime.strptime(date\_value, <span class="string">'%Y/%m/%d %H:%M:%S'</span>).timetuple()</span><br><span class="line">    ts = calendar.timegm(utc_timetuple)</span><br><span class="line">    <span class="keyword">return</span> ts * <span class="number">1000</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">local</span>\<span class="title">_timestamp</span><span class="params">(date\_value)</span>:</span></span><br><span class="line">    utc\_timetuple = datetime.strptime(date\_value, <span class="string">'%Y/%m/%d %H:%M:%S'</span>).timetuple()</span><br><span class="line">    ts = time.mktime(utc_timetuple)</span><br><span class="line">    <span class="keyword">return</span> int(ts) * <span class="number">1000</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">date_str = <span class="string">'2015/10/27 00:00:00'</span></span><br><span class="line"><span class="keyword">print</span> local\_to\_utc(date_str)</span><br><span class="line"><span class="keyword">print</span> local\_timestamp(date\_str)</span><br></pre></td></tr></table></figure></p>
+        <p>在python中有很多方法将datetime的字符串转换为 utc timestamp 网上找了好多，看起来都纷繁复杂。本文就想简单的做好一件事，就是将datetime的字符串转换为utc timestamp。 理解这个转换的关键，在于理解python中所有的日期字符串都被python解读为local time。 也就是说，同样是’2015/10/27 00:00:00’这个字符串，虽然身处东京的我和身在伦敦的你看到的是同一个字符串，但他们本身被python解读为两个不同地方的日期和时间。 如果想让python不去理会时差，而只想要utc格式的时间戳的话，用calendar.timegm()函数即可实现。 现举例如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">\<span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line">\_\_author\_\_ = <span class="string">&#x27;leo&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> datetime <span class="keyword">import</span> datetime</span><br><span class="line"><span class="keyword">import</span> calendar</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">local</span>\<span class="title">_to</span>\<span class="title">_utc</span>(<span class="params">date_value</span>):</span></span><br><span class="line">    utc\_timetuple = datetime.strptime(date\_value, <span class="string">&#x27;%Y/%m/%d %H:%M:%S&#x27;</span>).timetuple()</span><br><span class="line">    ts = calendar.timegm(utc_timetuple)</span><br><span class="line">    <span class="keyword">return</span> ts * <span class="number">1000</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">local</span>\<span class="title">_timestamp</span>(<span class="params">date\_value</span>):</span></span><br><span class="line">    utc\_timetuple = datetime.strptime(date\_value, <span class="string">&#x27;%Y/%m/%d %H:%M:%S&#x27;</span>).timetuple()</span><br><span class="line">    ts = time.mktime(utc_timetuple)</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">int</span>(ts) * <span class="number">1000</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">date_str = <span class="string">&#x27;2015/10/27 00:00:00&#x27;</span></span><br><span class="line"><span class="built_in">print</span> local\_to\_utc(date_str)</span><br><span class="line"><span class="built_in">print</span> local\_timestamp(date\_<span class="built_in">str</span>)</span><br></pre></td></tr></table></figure>
 <p>最后打印的结果，可以看到两个函数输出的时间戳是不一样的。（P.S.笔者在东九区）</p>
 <p>1445904000000<br>1445871600000</p>
 
@@ -347,7 +351,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">44</span>
+          <span class="site-state-item-count">45</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -360,17 +364,17 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">74</span>
+        <span class="site-state-item-count">77</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
 </div>
   <div class="links-of-author motion-element">
       <span class="links-of-author-item">
-        <a href="https://github.com/leowll" title="GitHub → https://github.com/leowll" rel="noopener" target="_blank"><i class="github fa-fw"></i>GitHub</a>
+        <a href="https://github.com/leowll" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;leowll" rel="noopener" target="_blank"><i class="github fa-fw"></i>GitHub</a>
       </span>
       <span class="links-of-author-item">
-        <a href="https://twitter.com/leowll" title="Twitter → https://twitter.com/leowll" rel="noopener" target="_blank"><i class="twitter fa-fw"></i>Twitter</a>
+        <a href="https://twitter.com/leowll" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;leowll" rel="noopener" target="_blank"><i class="twitter fa-fw"></i>Twitter</a>
       </span>
   </div>
 
@@ -395,13 +399,13 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2021</span>
+  <span itemprop="copyrightYear">2022</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Leo Wang</span>
 </div>
-  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
   </div>
 
         
@@ -421,9 +425,17 @@
   <script src="/lib/anime.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
-<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
 <script src="/js/schemes/pisces.js"></script>
+
+
 <script src="/js/next-boot.js"></script>
+
 
 
 
