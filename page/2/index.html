@@ -163,6 +163,116 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://leowll.com/2018/06/09/config-pandorabox-oray-ddns/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Leo Wang">
+      <meta itemprop="description" content="Tech & Life">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Leo's notepad">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2018/06/09/config-pandorabox-oray-ddns/" class="post-title-link" itemprop="url">为Pandorabox/openwrt/lede配置花生壳DDNS</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2018-06-09 19:07:00" itemprop="dateCreated datePublished" datetime="2018-06-09T19:07:00+09:00">2018-06-09</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2018-06-11 14:22:24" itemprop="dateModified" datetime="2018-06-11T14:22:24+09:00">2018-06-11</time>
+              </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2018/06/09/config-pandorabox-oray-ddns/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/06/09/config-pandorabox-oray-ddns/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>如果你在自己的Pandorabox/openwrt/lede上安装了aria2,你或许希望在外网能够访问自己家的服务器，这时候就要用到ddns。</p>
+<p>花生壳提供的壳域名，历史悠久，便宜好用。<br>注册了花生壳域名之后，这篇文章教你怎样给自己的路由器设置DDNS。</p>
+<h1 id="前提"><a href="#前提" class="headerlink" title="前提"></a>前提</h1><p>你家的路由器有公网的ip地址。有些家庭只有内网IP，没办法，联系电信运营商让他们给你开通吧。比如说你家要装个监控摄像头之类的。</p>
+<h1 id="设置花生壳域名"><a href="#设置花生壳域名" class="headerlink" title="设置花生壳域名"></a>设置花生壳域名</h1><p>首先通过访问 <a target="_blank" rel="noopener" href="http://ipinfo.io/">http://ipinfo.io</a> 这个网站，来获取自己路由器当前的ip地址。</p>
+<p>获取了ip地址以后，在壳域名的设置页面</p>
+<ol>
+<li>打开花生壳设置</li>
+<li>测试 http://[USERNAME]:[PASSWORD]@ddns.oray.com/ph/update?hostname=[DOMAIN]&amp;myip=[IP]<br>把Username，Password，DOMAIN和IP替换成自己的用户名密码，域名和IP，测试一下能否更新。</li>
+</ol>
+<p>有些情况下花生壳给的域名无法正常更新，原因不明。只能选择能够更新的来用了。</p>
+<p><a target="_blank" rel="noopener" href="https://imgchr.com/i/CbX3PU"><img src="https://s1.ax1x.com/2018/06/09/CbX3PU.md.jpg" alt="CbX3PU.md.jpg"></a></p>
+<h1 id="设置动态DNS"><a href="#设置动态DNS" class="headerlink" title="设置动态DNS"></a>设置动态DNS</h1><p>在Pandorabox的管理界面的服务&gt;动态DNS中进行下面的设置。<br>Pandorabox自带了Oray的服务选项，也可以自定义URL</p>
+<ul>
+<li>自定义更新URL:http://[USERNAME]:[PASSWORD]@ddns.oray.com/ph/update?hostname=[DOMAIN]&amp;myip=[IP]<br><a target="_blank" rel="noopener" href="https://imgchr.com/i/CbXl5T"><img src="https://s1.ax1x.com/2018/06/09/CbXl5T.md.jpg" alt="CbXl5T.md.jpg"></a></li>
+</ul>
+<p>IP地址来源选择Oray提供的URL来确认本机的IP地址。</p>
+<ul>
+<li>用于检测的URL：<a target="_blank" rel="noopener" href="http://ddns.oray.com/checkip">http://ddns.oray.com/checkip</a></li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://imgchr.com/i/CbXJxJ"><img src="https://s1.ax1x.com/2018/06/09/CbXJxJ.md.png" alt="CbXJxJ.md.png"></a></p>
+<h1 id="设置Web服务"><a href="#设置Web服务" class="headerlink" title="设置Web服务"></a>设置Web服务</h1><p>Web服务器默认拒绝外网访问，需要将这个限制解除</p>
+<ol>
+<li>编辑 /etc/config/uhttpd</li>
+</ol>
+<p>将 </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">option rfc1918_filter <span class="string">&#x27;1&#x27;</span></span><br></pre></td></tr></table></figure>
+<p>  改为</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">option rfc1918_filter <span class="string">&#x27;0&#x27;</span></span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>重启Web服务</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/etc/init.d/uhttpd restart</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="http://leowll.com/2018/06/09/config-pandorabox-ipv6/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1071,110 +1181,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://leowll.com/2016/09/28/sony-interview-questions/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Leo Wang">
-      <meta itemprop="description" content="Tech & Life">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Leo's notepad">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2016/09/28/sony-interview-questions/" class="post-title-link" itemprop="url">Sony 面经</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2016-09-28 11:12:57" itemprop="dateCreated datePublished" datetime="2016-09-28T11:12:57+09:00">2016-09-28</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2018-06-06 14:49:00" itemprop="dateModified" datetime="2018-06-06T14:49:00+09:00">2018-06-06</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%81%8C%E4%B8%9A/" itemprop="url" rel="index"><span itemprop="name">职业</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus: </span>
-    
-    <a title="disqus" href="/2016/09/28/sony-interview-questions/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/09/28/sony-interview-questions/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>Sony面试的一些问题记录一下。   时间:9月26日 地点：品川本社 面试官：4人 问题：</p>
-<ul>
-<li>  自我介绍</li>
-<li>  简历细节的确认</li>
-<li>  离职的动机</li>
-<li>  来日本工作的动机</li>
-<li>  介绍一下迄今为止所经历的项目中的成功和失败经验</li>
-<li>  你自己的卖点(Sales Point)是什么</li>
-<li>  对这个岗位的理解</li>
-<li>  业余时间做过什么项目</li>
-<li>有什么问题<ul>
-<li>  岗位具体的工作内容是什么</li>
-<li>  同样年龄段的人都是怎样的工作风格</li>
-<li>  该岗位对英语作了一些具体要求，实际工作中和海外的团队有何种交流合作</li>
-</ul>
-</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1244,7 +1250,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">45</span>
+          <span class="site-state-item-count">46</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -1257,7 +1263,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">77</span>
+        <span class="site-state-item-count">80</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>

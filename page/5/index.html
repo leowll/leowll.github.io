@@ -163,6 +163,96 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://leowll.com/2010/10/24/training-data-set-testing-data-set/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Leo Wang">
+      <meta itemprop="description" content="Tech & Life">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Leo's notepad">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2010/10/24/training-data-set-testing-data-set/" class="post-title-link" itemprop="url">训练数据集与测试数据集（Training Data Set & Test Data Set）</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2010-10-24 16:47:17" itemprop="dateCreated datePublished" datetime="2010-10-24T16:47:17+09:00">2010-10-24</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2018-06-06 14:49:00" itemprop="dateModified" datetime="2018-06-06T14:49:00+09:00">2018-06-06</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%9F%A5%E8%AF%86/" itemprop="url" rel="index"><span itemprop="name">知识</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2010/10/24/training-data-set-testing-data-set/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2010/10/24/training-data-set-testing-data-set/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><strong>训练集（Training Set） 和 测试集（Test Set）</strong> 被广泛应用在人工智能、机器学习、遗传编程、智能系统、统计学等领域中。 <strong>训练集</strong>用来构建或者发现潜在的预测关系。 通过<strong>训练集</strong>来构建的数据关系，都存在某种程度的<strong>过适（过拟合，over-fit）</strong>问题。也就是说，训练集训练出来的模型只能体现训练集中数据之间显然的关系，却未必能代表所有的数据。 而<strong>测试集</strong>则是独立于训练集的一组数据，但它服从和训练集同样的概率分布。 如果一个模型既能能很好的拟合训练集也能很好的拟合测试集，则过拟合现象就不明显。 如果模型只能拟合训练集而不能很好的拟合测试集，则过拟合现象就发生了。 <strong>简言之，训练集用来训练一个模型，测试集用来测试该模型是否恰当。</strong> 如图所示，左图的蓝点表示训练集中的数据，而绿色和橘色的曲线则是对测试集的拟合。 [caption id=”” align=”aligncenter” width=”1400”]<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Test_set"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Traintest.svg/1400px-Traintest.svg.png" alt="Trainig set and test set"></a> Trainig set and test set[/caption]</p>
+<p>右图的蓝点表示测试集中的数据。训练集中橘色曲线拟合的MSE为4，绿色曲线为9。</p>
+<p>同样的曲线，在测试集当中，橘色曲线的MSE为15，绿色曲线为13。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="http://leowll.com/2010/10/08/congrats-liuxiaobo/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -722,7 +812,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">45</span>
+          <span class="site-state-item-count">46</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -735,7 +825,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">77</span>
+        <span class="site-state-item-count">80</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
