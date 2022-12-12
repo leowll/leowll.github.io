@@ -163,6 +163,101 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://leowll.com/2016/10/26/sap-hybris-cms-component-notes/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Leo Wang">
+      <meta itemprop="description" content="Tech & Life">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Leo's notepad">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2016/10/26/sap-hybris-cms-component-notes/" class="post-title-link" itemprop="url">sap hybris在新建自定义cms component时的注意事项</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2016-10-26 11:06:57" itemprop="dateCreated datePublished" datetime="2016-10-26T11:06:57+09:00">2016-10-26</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2018-06-06 22:55:53" itemprop="dateModified" datetime="2018-06-06T22:55:53+09:00">2018-06-06</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2016/10/26/sap-hybris-cms-component-notes/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/10/26/sap-hybris-cms-component-notes/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>在SAP hybris中添加自定义的CMS Component,需要注意以下几点： 参考链接:<a target="_blank" rel="noopener" href="https://wiki.hybris.com/pages/viewpage.action?pageId=294094319"> https://wiki.hybris.com/pages/viewpage.action?pageId=294094319</a></p>
+<ol>
+<li> 在addon中添加，可免去对accelerator的修改</li>
+<li> 在/<addon-name>/resources/<addon-name>/web/spring/<addon-name>-web-spring.xml中添加renderer和rendererMapping的定义</li>
+<li> 使用ant命令安装addon</li>
+</ol>
+<p>/<addon-name/>-web-spring.xml的代码示例如下：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;yourComponentRenderer&quot;</span> <span class="attr">class</span>=<span class="string">&quot;org.training.renderer.yourComponentRenderer&quot;</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;typeService&quot;</span> <span class="attr">ref</span>=<span class="string">&quot;typeService&quot;</span> /&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;uiExperienceService&quot;</span> <span class="attr">ref</span>=<span class="string">&quot;defaultUiExperienceService&quot;</span> /&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;cmsComponentService&quot;</span> <span class="attr">ref</span>=<span class="string">&quot;cmsComponentService&quot;</span> /&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;modelService&quot;</span> <span class="attr">ref</span>=<span class="string">&quot;modelService&quot;</span> /&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;uiExperienceViewPrefixMap&quot;</span> <span class="attr">ref</span>=<span class="string">&quot;uiExperienceViewPrefixMap&quot;</span> /&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;unknownUiExperiencePrefix&quot;</span> <span class="attr">value</span>=<span class="string">&quot;desktop&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;yourComponentRendererMapping&quot;</span> <span class="attr">parent</span>=<span class="string">&quot;addonCmsComponentRendererMapping&quot;</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;typeCode&quot;</span> <span class="attr">value</span>=<span class="string">&quot;yourComponent&quot;</span> /&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;renderer&quot;</span> <span class="attr">ref</span>=<span class="string">&quot;yourComponentRenderer&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="http://leowll.com/2016/09/28/sony-interview-questions/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1023,104 +1118,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://leowll.com/2011/12/20/strust2-cannot-save-cookie/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Leo Wang">
-      <meta itemprop="description" content="Tech & Life">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Leo's notepad">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2011/12/20/strust2-cannot-save-cookie/" class="post-title-link" itemprop="url">Struts2无法写Cookie的原因分析</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2011-12-20 10:47:16" itemprop="dateCreated datePublished" datetime="2011-12-20T10:47:16+09:00">2011-12-20</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2018-06-06 23:04:40" itemprop="dateModified" datetime="2018-06-06T23:04:40+09:00">2018-06-06</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus: </span>
-    
-    <a title="disqus" href="/2011/12/20/strust2-cannot-save-cookie/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2011/12/20/strust2-cannot-save-cookie/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>在struts2项目中，希望把用户的表单输入保存在本地，而不是保存在数据库上，于是想到了cookie。 在action中可以这样写： </p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Cookie cookie=<span class="keyword">new</span> Cookie(<span class="string">&quot;myCookie&quot;</span>,<span class="string">&quot;cookieContent&quot;</span>); </span><br><span class="line">cookie.setMaxAge(<span class="number">3600</span>*<span class="number">24</span>);<span class="comment">//过期时间为一天 </span></span><br><span class="line">ServletActionContext.getResponse.addCookie(cookie); </span><br></pre></td></tr></table></figure>
-<p>但是始终不能保存到客户端的硬盘上，刚开始的时候以为cookie的读写操作只能写在jsp页面中，或者只能通过javascript来操作， 后来发现不是这么回事。 关键的原因在于<a target="_blank" rel="noopener" href="http://support.microsoft.com/kb/306070/zh-cn" title="在 Internet Explorer 中的 cookie 的数字和大小限制">cookie是有大小限制的</a>，如果想写入的内容超过了4KB，写操作便不能完成。</p>
-<blockquote>
-<p>Microsoft Internet Explorer 符合以下的 RFC 2109 推荐最小限制：</p>
-<ul>
-<li>  至少 300 的 cookie</li>
-<li>  至少每 cookie （如构成 cookie 非终端设置 Cookie 标头的语法描述中的字符的大小为单位） 的 4096 字节</li>
-<li>  至少 20 cookie，每个唯一的主机或域名</li>
-</ul>
-</blockquote>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1190,7 +1187,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">45</span>
+          <span class="site-state-item-count">46</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -1203,7 +1200,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">80</span>
+        <span class="site-state-item-count">83</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
