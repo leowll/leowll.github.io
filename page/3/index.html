@@ -163,6 +163,100 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://leowll.com/2016/10/28/sap-hybris-unit-test-note/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Leo Wang">
+      <meta itemprop="description" content="Tech & Life">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Leo's notepad">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2016/10/28/sap-hybris-unit-test-note/" class="post-title-link" itemprop="url">在SAP hybris中实行单体测试(Unit Test)的注意事项</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2016-10-28 17:45:22" itemprop="dateCreated datePublished" datetime="2016-10-28T17:45:22+09:00">2016-10-28</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2018-06-06 18:25:26" itemprop="dateModified" datetime="2018-06-06T18:25:26+09:00">2018-06-06</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus: </span>
+    
+    <a title="disqus" href="/2016/10/28/sap-hybris-unit-test-note/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/10/28/sap-hybris-unit-test-note/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>在SAP hybris的单体测试中，出现如下错误信息：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ERROR \[main\] (junit) \[FlexibleSearch\] Flexiblesearch error: could not translate value expression &#x27;session.catalogversions&#x27;</span><br><span class="line">ERROR \[main\] (junit) \[FlexibleSearch\] query was &#x27;SELECT &#123;cat.pk&#125; FROM &#123;Category AS cat&#125; WHERE NOT EXISTS (&#123; &#123;SELECT &#123;pk&#125; FROM &#123;CategoryCategoryRelation AS rel JOIN Category AS super ON &#123;rel.source&#125;=&#123;super.PK&#125; &#125; WHERE &#123;rel:target&#125;=&#123;cat.pk&#125; AND &#123;super.catalogVersion&#125;=&#123;cat.catalogVersion&#125; &#125;&#125;) AND &#123;cat.catalogVersion&#125; = ?catalogVersion&#x27;</span><br><span class="line">ERROR \[main\] (junit) \[FlexibleSearch\] translated query was: SELECT  item\_t0.PK  FROM junit\_categories item\_t0 WHERE (NOT EXISTS (SELECT  item\_t1.PK  FROM junit\_cat2catrel item\_t1 JOIN junit\_categories item\_t2 ON  item\_t1.SourcePK = item\_t2.PK  WHERE ( item\_t1.TargetPK = item\_t0.PK  AND  item\_t2.p\_catalogversion = item\_t0.p\_catalogversion ) AND ((item\_t1.TypePkString=?  AND item\_t2.TypePkString IN  (?,?,?,?)  AND (( item\_t2.p\_catalogversion  IN (?))) ))) AND  item\_t0.p\_catalogversion  = ?) AND (item\_t0.TypePkString IN  (?,?,?,?)  AND (( item\_t0.p_catalogversion  IN (?))) )</span><br><span class="line">ERROR \[main\] (junit) \[LogRunListener\] Test method testCategoryNav(org.training.renderer.CategoryNavComponentRendererTest) failed!!</span><br><span class="line">de.hybris.platform.servicelayer.search.exceptions.FlexibleSearchException: could not translate value expression &#x27;session.catalogversions&#x27;</span><br></pre></td></tr></table></figure>
+
+<p>Java代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">package</span> org.training.renderer;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> de.hybris.platform.catalog.CatalogVersionService;</span><br><span class="line"><span class="keyword">import</span> de.hybris.platform.catalog.model.CatalogVersionModel;</span><br><span class="line"><span class="keyword">import</span> de.hybris.platform.category.CategoryService;</span><br><span class="line"><span class="keyword">import</span> de.hybris.platform.category.model.CategoryModel;</span><br><span class="line"><span class="keyword">import</span> de.hybris.platform.servicelayer.ServicelayerTransactionalTest;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.Collection;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.annotation.Resource;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.junit.Assert;</span><br><span class="line"><span class="keyword">import</span> org.junit.Before;</span><br><span class="line"><span class="keyword">import</span> org.junit.Test;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">/\*\*</span><br><span class="line"> \* <span class="meta">@author</span> lwang</span><br><span class="line"> *</span><br><span class="line"> */</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CategoryNavComponentRendererTest</span> <span class="keyword">extends</span> <span class="title">ServicelayerTransactionalTest</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Resource(name = &quot;categoryService&quot;)</span></span><br><span class="line">	<span class="keyword">private</span> CategoryService categoryService;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Resource(name = &quot;catalogVersionService&quot;)</span></span><br><span class="line">	<span class="keyword">private</span> CatalogVersionService catalogVersionService;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Test</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testCategoryNav</span><span class="params">()</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="keyword">final</span> CatalogVersionModel catalogVersion = catalogVersionService.getCatalogVersion(<span class="string">&quot;uaProductCatalog&quot;</span>, <span class="string">&quot;Online&quot;</span>);</span><br><span class="line">		Assert.assertNotNull(catalogVersion);</span><br><span class="line">		<span class="keyword">final</span> Collection&lt;CategoryModel&gt; categoryList = categoryService.getRootCategoriesForCatalogVersion(catalogVersion);</span><br><span class="line">		Assert.assertNotNull(categoryList);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>之所以会出现错误，是因为程序没有加载hybris框架通常需要的一些环境变量。 在测试用例中加入如下代码可以解决问题。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Before</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setUp</span><span class="params">()</span> <span class="keyword">throws</span> Exception</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	createCoreData();</span><br><span class="line">	createDefaultCatalog();</span><br><span class="line">	createHardwareCatalog();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="http://leowll.com/2016/10/26/sap-hybris-cms-component-notes/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1024,100 +1118,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://leowll.com/2011/12/28/cookie-cannot-save/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Leo Wang">
-      <meta itemprop="description" content="Tech & Life">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Leo's notepad">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2011/12/28/cookie-cannot-save/" class="post-title-link" itemprop="url">Cookie 无法保存的另一个可能原因</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2011-12-28 19:10:20" itemprop="dateCreated datePublished" datetime="2011-12-28T19:10:20+09:00">2011-12-28</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2018-06-06 23:02:22" itemprop="dateModified" datetime="2018-06-06T23:02:22+09:00">2018-06-06</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
-                </span>
-                  , 
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E6%9C%AA%E5%88%86%E9%A1%9E/" itemprop="url" rel="index"><span itemprop="name">未分類</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Disqus: </span>
-    
-    <a title="disqus" href="/2011/12/28/cookie-cannot-save/#disqus_thread" itemprop="discussionUrl">
-      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2011/12/28/cookie-cannot-save/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>在项目中需要往cookie中写数据，之前遇到的问题是如果写入的内容超出了单个cookie的大小限制（4096字节，4KB），则服务器端的response就会异常。<br>今天的问题则是，虽然已经把很长的内容分割成立个好几段，并分别写入了不同的cookie中，但服务器端同样不能正常响应。 查资料得知，不知浏览器对同一个站点的cookie的个数，单个cookie文件的大小有限制，服务器还对每一次请求的httpheader的大小有限制。<br>对tomcat服务器来说，需要修改server.xml中的响应配置，在形如 </p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Connector</span> <span class="attr">port</span>=<span class="string">&quot;8080&quot;</span> <span class="attr">protocol</span>=<span class="string">&quot;HTTP/1.1&quot;</span> <span class="attr">connectionTimeout</span>=<span class="string">&quot;20000&quot;</span> <span class="attr">redirectPort</span>=<span class="string">&quot;8443&quot;</span> <span class="attr">maxHttpHeaderSize</span>=<span class="string">&quot;40960&quot;</span>/&gt;</span> </span><br></pre></td></tr></table></figure>
-<p>的部分进行相应配置，上面的maxHttpHeaderSize就规定了本服务器可以处理的HttpHeader的大小上限为40KB。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1187,7 +1187,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">46</span>
+          <span class="site-state-item-count">47</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -1200,7 +1200,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">83</span>
+        <span class="site-state-item-count">87</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -1235,7 +1235,7 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
