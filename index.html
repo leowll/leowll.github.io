@@ -188,7 +188,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2023-01-02 11:15:00 / Modified: 12:09:01" itemprop="dateCreated datePublished" datetime="2023-01-02T11:15:00+09:00">2023-01-02</time>
+              <time title="Created: 2023-01-02 11:15:00 / Modified: 12:16:03" itemprop="dateCreated datePublished" datetime="2023-01-02T11:15:00+09:00">2023-01-02</time>
             </span>
 
           
@@ -221,17 +221,17 @@
 <li>一台带公共ip的外网服务器</li>
 <li>一个域名</li>
 </ol>
-<h1 id="1-申请一个域名"><a href="#1-申请一个域名" class="headerlink" title="1. 申请一个域名"></a>1. 申请一个域名</h1><p>域名可以在<a href="cloudflare">cloudflare.com</a>或者<a href="onamae">onamae.com</a>上申请，花不了几个钱。</p>
+<h1 id="1-申请一个域名"><a href="#1-申请一个域名" class="headerlink" title="1. 申请一个域名"></a>1. 申请一个域名</h1><p>域名可以在<a href="cloudflare.com">cloudflare</a>或者<a href="onamae.com">onamae</a>上申请，花不了几个钱。</p>
 <h1 id="2-申请一个证书"><a href="#2-申请一个证书" class="headerlink" title="2. 申请一个证书"></a>2. 申请一个证书</h1><p>证书可以通过acme这种工具来自动发行和更新。</p>
-<h2 id="2-1-先在自己的服务器上安装acme-sh"><a href="#2-1-先在自己的服务器上安装acme-sh" class="headerlink" title="2.1 先在自己的服务器上安装acme.sh"></a>2.1 先在自己的服务器上安装acme.sh</h2><p>把<a href="mailto:&#x6d;&#121;&#64;&#101;&#120;&#97;&#x6d;&#112;&#108;&#x65;&#46;&#x63;&#111;&#109;">&#x6d;&#121;&#64;&#101;&#120;&#97;&#x6d;&#112;&#108;&#x65;&#46;&#x63;&#111;&#109;</a>替换为自己的邮件地址，执行下面的命令。</p>
+<h2 id="2-1-先在自己的服务器上安装acme-sh"><a href="#2-1-先在自己的服务器上安装acme-sh" class="headerlink" title="2.1 先在自己的服务器上安装acme.sh"></a>2.1 先在自己的服务器上安装acme.sh</h2><p>把<a href="mailto:&#x6d;&#x79;&#x40;&#x65;&#120;&#x61;&#109;&#112;&#x6c;&#101;&#46;&#99;&#111;&#109;">&#x6d;&#x79;&#x40;&#x65;&#120;&#x61;&#109;&#112;&#x6c;&#101;&#46;&#99;&#111;&#109;</a>替换为自己的邮件地址，执行下面的命令。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl https://get.acme.sh | sh -s email=my@example.com</span><br></pre></td></tr></table></figure>
 
 <p>acme.sh通常会被安装到<code>/home/username</code>文件夹下。（<code>username</code>是你自己的用户名）<br>记住这个位置。</p>
 <p>另外acme.sh需要执行更新命令，会占用80端口，这个需要注意一下。</p>
 <h2 id="2-2-发行证书"><a href="#2-2-发行证书" class="headerlink" title="2.2 发行证书"></a>2.2 发行证书</h2><p>遵照acme官方文档的指示，使用dns手动模式发行证书。<br>域名可以是<code>example.com</code>这种，也可以是<code>domain.example.com</code>这种。</p>
-<p><a href="">https://github.com/acmesh-official/acme.sh/wiki/dns-manual-mode</a></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/acmesh-official/acme.sh/wiki/dns-manual-mode">dns manual mode</a></p>
 <p>这一步你需要把命令行中输出的TXT记录登记到你域名管理的网站上。<br>所有3个步骤执行完之后你的证书就会在<code>/home/username/.acme.sh/</code>文件夹里了。</p>
-<h1 id="3-Docker-Compose搭建Shadowsocks-V2Ray-Plugin服务端"><a href="#3-Docker-Compose搭建Shadowsocks-V2Ray-Plugin服务端" class="headerlink" title="3. Docker Compose搭建Shadowsocks+V2Ray Plugin服务端"></a>3. Docker Compose搭建Shadowsocks+V2Ray Plugin服务端</h1><p>直接从<a href="">https://github.com/Acris/docker-shadowsocks-libev</a>找到配置文件，<br>改为自己相应的信息。</p>
+<h1 id="3-Docker-Compose搭建Shadowsocks-V2Ray-Plugin服务端"><a href="#3-Docker-Compose搭建Shadowsocks-V2Ray-Plugin服务端" class="headerlink" title="3. Docker Compose搭建Shadowsocks+V2Ray Plugin服务端"></a>3. Docker Compose搭建Shadowsocks+V2Ray Plugin服务端</h1><p>直接从<a target="_blank" rel="noopener" href="https://github.com/Acris/docker-shadowsocks-libev">acris的github repo</a>找到配置文件，<br>改为自己相应的信息。</p>
 <p>有以下几个注意点：</p>
 <ol>
 <li>首先要明确第2步下载得到的证书的位置。<code>/home/username/.acme.sh/</code></li>
@@ -245,12 +245,12 @@
 <p>配置完成之后启动服务端。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo docker-compose up -d</span><br></pre></td></tr></table></figure>
 
-<h1 id="3-客户端设置"><a href="#3-客户端设置" class="headerlink" title="3. 客户端设置"></a>3. 客户端设置</h1><h2 id="3-1-iOS端"><a href="#3-1-iOS端" class="headerlink" title="3.1 iOS端"></a>3.1 iOS端</h2><p>还是<a href="%E5%B0%8F%E7%81%AB%E7%AE%AD">https://apps.apple.com/us/app/shadowrocket/id932747118</a>。</p>
+<h1 id="3-客户端设置"><a href="#3-客户端设置" class="headerlink" title="3. 客户端设置"></a>3. 客户端设置</h1><h2 id="3-1-iOS端"><a href="#3-1-iOS端" class="headerlink" title="3.1 iOS端"></a>3.1 iOS端</h2><p>还得是<a target="_blank" rel="noopener" href="https://apps.apple.com/us/app/shadowrocket/id932747118">小火箭</a>。<br>其他的一些工具不支持v2ray-plugin。</p>
 <p>配置设置如图所示：</p>
 <img src="https://github.com/leowll/blog-images/blob/master/shadowrocket-config-1.png?raw=true" width="30%"/>
 <img src="https://github.com/leowll/blog-images/blob/master/shadowrocket-config-2.png?raw=true" width="30%"/>
 
-<h2 id="3-2-Mac端"><a href="#3-2-Mac端" class="headerlink" title="3.2 Mac端"></a>3.2 Mac端</h2><p>自己试了也就只有<a href="ClashX">https://github.com/yichengchen/clashX</a>好用。</p>
+<h2 id="3-2-Mac端"><a href="#3-2-Mac端" class="headerlink" title="3.2 Mac端"></a>3.2 Mac端</h2><p>自己试了也就只有<a target="_blank" rel="noopener" href="https://github.com/yichengchen/clashX">ClashX</a>好用。</p>
 <p>ClashX要求先在config.yaml中设置一下才能使用。<br>18行左右添加如下配置：<br>这里的domain和密码，端口之类的配置信息要和服务器端的配置一致。</p>
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">proxies:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">&quot;ss-v2ray&quot;</span></span><br><span class="line">    <span class="attr">type:</span> <span class="string">ss</span></span><br><span class="line">    <span class="attr">server:</span> <span class="string">domain.example.com</span></span><br><span class="line">    <span class="attr">port:</span> <span class="string">your_port</span></span><br><span class="line">    <span class="attr">cipher:</span> <span class="string">aes-256-gcm</span></span><br><span class="line">    <span class="attr">password:</span> <span class="string">&quot;YourPassword&quot;</span></span><br><span class="line">    <span class="attr">udp:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">plugin:</span> <span class="string">v2ray-plugin</span></span><br><span class="line">    <span class="attr">plugin-opts:</span></span><br><span class="line">      <span class="attr">mode:</span> <span class="string">websocket</span></span><br><span class="line">      <span class="attr">path:</span> <span class="string">/v2ray</span></span><br><span class="line">      <span class="attr">host:</span> <span class="string">domain.example.com</span></span><br><span class="line">      <span class="attr">tls:</span> <span class="literal">true</span></span><br><span class="line">      <span class="attr">skip-cert-verify:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
 <p>然后Config&gt;Reload Config一下就可以加载这个配置了。</p>
