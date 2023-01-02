@@ -234,6 +234,14 @@
           <p>在R语言中，CRAN有几个包可以让R和DBMSs进行通信。 CRAN上的RMySQL包提供了和MySQL数据库系统的接口。RMySQL依赖于DBI包。 MySQL是一个轻量级的数据库系统，而RMySQL包在Linux和Windows下均可以使用。 在Windows环境下，通过菜单栏中的“程序包”-》“安装程序包”来找到DBI和RMySQL包，下载安装。 代码如下：</p>
 <figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">library(DBI) <span class="comment">#由于RMySQL依赖于DBI包，所以先加载DBI</span></span><br><span class="line">library(RMySQL)</span><br><span class="line">con&lt;-dbConnect(dbDriver(<span class="string">&quot;MySQL&quot;</span>),dbname=<span class="string">&quot;dbname&quot;</span>,user=<span class="string">&quot;username&quot;</span>,password=<span class="string">&quot;password&quot;</span>)</span><br><span class="line"><span class="comment">#数据库驱动，数据库名称，数据库用户名和密码</span></span><br><span class="line">dbListTables(con)<span class="comment">#列出数据库中的表</span></span><br><span class="line">dbGetQuery(con,paste(<span class="string">&quot;select * from table-name&quot;</span>,<span class="string">&quot;where ...&quot;</span>))<span class="comment">#执行一条查询语句</span></span><br></pre></td></tr></table></figure>
 
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2010/11/05/connect-mysql-r-language/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -331,6 +339,14 @@
 <p>即缺了一个local</p>
 <p>另外，在Ubuntu中想要读取本地文件，还需要有足够的权限。可以用chmod命令改变文件的权限。</p>
 
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2010/11/05/mysql-data-import-error/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -421,6 +437,14 @@
 <p>右图的蓝点表示测试集中的数据。训练集中橘色曲线拟合的MSE为4，绿色曲线为9。</p>
 <p>同样的曲线，在测试集当中，橘色曲线的MSE为15，绿色曲线为13。</p>
 
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2010/10/24/training-data-set-testing-data-set/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -538,6 +562,14 @@
 </li>
 </ol>
 
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2010/10/07/yu-huan/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -634,6 +666,14 @@
 <p><strong>第六步：在最后一段当中用一种全新的方式重新陈述一下主题。</strong>这样你就能重新点题，有画龙点睛之效。</p>
 <p>就是这样！我用这种方法在去年冬天的GRE考试的写作部分取得完美的成绩。要是这招考数学的时候也管用就好了！祝你好运！</p>
 
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2010/09/28/how-to-writeGRE-Analytical-Writing/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -730,12 +770,14 @@
 <p>1． <strong>在你开始做练习之前先认真学习</strong>。很多同学在线性代数之前的数学课上并不这么做。当他们做不出来的时候就去看前面的例题。这招在线性代数里可不管用。如果你照搬一个例题（有必要的修改），你以为你理解了题目，其实你没学到什么。（最终你会在考试的时候发现这个问题。）对这门课来说，除了要学会怎么进行某种运算外，你必须学会什么时候该使用这种运算，还有（更重要的是）为什么它管用。</p>
 <p>     要做好家庭作业，先把课本这一节看一遍，也许要做一些笔记。然后阅读Study Guide里面本节的Key Ideas 或者Study Notes 。然后开始做作业。长远来看，这样做会让你做得更好还会节省你的时间。花在这方面的准备时间            会大大减少你用来准备考试的时间。</p>
 <p>2． <strong>像学某门语言一样为每一节课做准备。</strong>掌握这门课要求你掌握大量的词汇。现在你的目标成了熟悉这些概念，并在口头和书面中自如（而且正确）地运用。做作业的时候，试着写完整的句子，你会在Study Guide中发现解决方法。也要注意这里提到的术语的误用问题。</p>
-<p>为了给全班讨论做准备，这门课还包括语言课程，以防止掉队。几乎本书所有的章节都基于它之前的章节，如果你落下了，想赶上全班的进度是很难的。事实上，因为一些概念看似“简单”而把课拖到周末，你拖不起。作业可能会比你想象的要难。我能给你的最有价值的建议就是赶上全班的进度。</p>
-<p>3． <strong>把更多的注意力放在学习定义、论据和概念上，而不是练习解题步骤和算法上</strong>。要看到概念之间的相互联系。很多定理和框起来的“性质”就描述了这样的相互联系。举例来说，1.2节的定理2和1.4节的定理3。你的目标是要概括起来想问题，不进行任何运算来想象典型的计算方法，把重点放在这些计算的原理上。</p>
-<p>4． <strong>频繁地回顾。</strong>回顾和回忆是学好知识的关键组成部分。在本Guide当中，我插入了很多名为“掌握线性代数概念”的特别子章节。它们帮你回顾每一主要章节的基本概念。我强烈建议你遇到这些需要回顾的知识点的时候把它们记到你的回顾笔记上。以后你可能还会添加其它的笔记。当然可以用这些笔记来准备考试。Guide上每一节后面都有术语清单，来帮你学习重要的概念。</p>
-<p><strong>注意</strong>：因为你能找到很多练习题的完整答案，你可能会在真正的自己做出来之前去看答案。别这么做！如果你只是稍微想了一下就去看答案来验证自己是否基本正确，你很可能高估了自己的理解力。我的一些学生这么做了，第一次考试的时候考得很差。木已成舟，他们也没能再跟上全班的进度。不过，正确地运用学习指导书却可以使你取得好成绩的同时享受这门课。</p>
-<p><strong>个人笔记</strong>：一些使用了本材料的学生告诉我这本书为他们学习线性代数和准备考试帮了大忙。当我的学生第一次用这本学习指导的时候，他们已经考了一次了，而接下来的那次考试的成绩很可观。有些学生的进步让人称奇。我希望这本学习指导能激励你掌握线性代数，并达到你一个你未曾想到的高度。</p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2010/09/25/how-to-study-linear-algebra/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -825,6 +867,14 @@
           <h3 id="做陈圣元GRE填空的时候，看到这样一道题："><a href="#做陈圣元GRE填空的时候，看到这样一道题：" class="headerlink" title="做陈圣元GRE填空的时候，看到这样一道题："></a>做陈圣元GRE填空的时候，看到这样一道题：</h3><h3 id="In-sharp-contrast-to-the-intense-of-the-young-republic-with-its-Utopian-faith-in-democracy-and-hopes-for-eternal-human-progress-rencent-developments-suggest-a-mood-of-almost-unrelieved"><a href="#In-sharp-contrast-to-the-intense-of-the-young-republic-with-its-Utopian-faith-in-democracy-and-hopes-for-eternal-human-progress-rencent-developments-suggest-a-mood-of-almost-unrelieved" class="headerlink" title="In sharp contrast to the intense ___ of the young republic, with its Utopian faith in democracy and hopes for eternal human progress, rencent developments suggest a mood of almost unrelieved ___."></a>In sharp contrast to the intense ___ of the young republic, with its Utopian faith in democracy and hopes for eternal human progress, rencent developments suggest a mood of almost unrelieved ___.</h3><p>A. idealism .. cynicism<br>B. individualism .. escapism<br>C. sectarianism .. recklessness<br>D. assertiveness .. ambition<br>E. righteousness .. egalitarianism</p>
 <p>作为天朝出来的，我知道答案为：A。</p>
 
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2010/09/14/one-gre-question/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 

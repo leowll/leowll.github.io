@@ -188,7 +188,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2023-01-02 11:15:00 / Modified: 12:27:19" itemprop="dateCreated datePublished" datetime="2023-01-02T11:15:00+09:00">2023-01-02</time>
+              <time title="Created: 2023-01-02 11:15:00 / Modified: 12:33:15" itemprop="dateCreated datePublished" datetime="2023-01-02T11:15:00+09:00">2023-01-02</time>
             </span>
 
           
@@ -223,38 +223,16 @@
 </ol>
 <h1 id="1-申请一个域名"><a href="#1-申请一个域名" class="headerlink" title="1. 申请一个域名"></a>1. 申请一个域名</h1><p>域名可以在<a href="cloudflare.com">cloudflare</a>或者<a href="onamae.com">onamae</a>上申请，花不了几个钱。</p>
 <h1 id="2-申请一个证书"><a href="#2-申请一个证书" class="headerlink" title="2. 申请一个证书"></a>2. 申请一个证书</h1><p>证书可以通过acme这种工具来自动发行和更新。</p>
-<h2 id="2-1-先在自己的服务器上安装acme-sh"><a href="#2-1-先在自己的服务器上安装acme-sh" class="headerlink" title="2.1 先在自己的服务器上安装acme.sh"></a>2.1 先在自己的服务器上安装acme.sh</h2><p>把<a href="mailto:&#x6d;&#x79;&#64;&#x65;&#120;&#x61;&#x6d;&#x70;&#108;&#x65;&#46;&#99;&#111;&#x6d;">&#x6d;&#x79;&#64;&#x65;&#120;&#x61;&#x6d;&#x70;&#108;&#x65;&#46;&#99;&#111;&#x6d;</a>替换为自己的邮件地址，执行下面的命令。</p>
+<h2 id="2-1-先在自己的服务器上安装acme-sh"><a href="#2-1-先在自己的服务器上安装acme-sh" class="headerlink" title="2.1 先在自己的服务器上安装acme.sh"></a>2.1 先在自己的服务器上安装acme.sh</h2><p>把<a href="mailto:&#x6d;&#x79;&#64;&#101;&#120;&#x61;&#x6d;&#x70;&#108;&#101;&#46;&#x63;&#x6f;&#109;">&#x6d;&#x79;&#64;&#101;&#120;&#x61;&#x6d;&#x70;&#108;&#101;&#46;&#x63;&#x6f;&#109;</a>替换为自己的邮件地址，执行下面的命令。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl https://get.acme.sh | sh -s email=my@example.com</span><br></pre></td></tr></table></figure>
-
-<p>acme.sh通常会被安装到<code>/home/username</code>文件夹下。（<code>username</code>是你自己的用户名）<br>记住这个位置。</p>
-<p>另外acme.sh需要执行更新命令，会占用80端口，这个需要注意一下。</p>
-<h2 id="2-2-发行证书"><a href="#2-2-发行证书" class="headerlink" title="2.2 发行证书"></a>2.2 发行证书</h2><p>遵照acme官方文档的指示，使用dns手动模式发行证书。<br>域名可以是<code>example.com</code>这种，也可以是<code>domain.example.com</code>这种。</p>
-<p><a target="_blank" rel="noopener" href="https://github.com/acmesh-official/acme.sh/wiki/dns-manual-mode">dns manual mode</a></p>
-<p>这一步你需要把命令行中输出的TXT记录登记到你域名管理的网站上。<br>所有3个步骤执行完之后你的证书就会在<code>/home/username/.acme.sh/</code>文件夹里了。</p>
-<h1 id="3-Docker-Compose搭建Shadowsocks-V2Ray-Plugin服务端"><a href="#3-Docker-Compose搭建Shadowsocks-V2Ray-Plugin服务端" class="headerlink" title="3. Docker Compose搭建Shadowsocks+V2Ray Plugin服务端"></a>3. Docker Compose搭建Shadowsocks+V2Ray Plugin服务端</h1><p>直接从<a target="_blank" rel="noopener" href="https://github.com/Acris/docker-shadowsocks-libev">acris的github repo</a>找到配置文件，<br>改为自己相应的信息。</p>
-<p>有以下几个注意点：</p>
-<ol>
-<li>首先要明确第2步下载得到的证书的位置。<code>/home/username/.acme.sh/</code></li>
-<li>另外yaml文件中user要设置成有正确权限的人。比如<code>root</code></li>
-<li>最后模式要指定正确。本人设置为<code>mode=ws</code>。如果不确定的话去上面的github repo看一下文档。</li>
-<li>左侧的本地port不用必须设置成8388，可以改成自己喜欢的port。</li>
-<li>加密方式可设为自己喜欢的METHOD。</li>
-</ol>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">&quot;3.7&quot;</span></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line">  <span class="attr">shadowsocks-libev:</span></span><br><span class="line">    <span class="attr">container_name:</span> <span class="string">shadowsocks-libev</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">acrisliu/shadowsocks-libev:latest</span></span><br><span class="line">    <span class="attr">user:</span> <span class="string">root</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">&quot;8388:8388/tcp&quot;</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">&quot;8388:8388/udp&quot;</span></span><br><span class="line">    <span class="attr">volumes:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">/home/username/.acme.sh:/root/.acme.sh:ro</span></span><br><span class="line">    <span class="attr">environment:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">METHOD=YourMethod</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">PASSWORD=YourPassword</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">ARGS=--plugin</span> <span class="string">v2ray-plugin</span> <span class="string">--plugin-opts</span> <span class="string">server;mode=ws;host=yourdomain.com;path=/v2ray;cert=/root/.acme.sh/yourdomain.com/fullchain.cer;key=/root/.acme.sh/yourdomain.com/yourdomain.com.key</span> <span class="string">-u</span></span><br><span class="line">    <span class="attr">restart:</span> <span class="string">always</span></span><br></pre></td></tr></table></figure>
-
-<p>配置完成之后启动服务端。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo docker-compose up -d</span><br></pre></td></tr></table></figure>
-
-<h1 id="3-客户端设置"><a href="#3-客户端设置" class="headerlink" title="3. 客户端设置"></a>3. 客户端设置</h1><h2 id="3-1-iOS端"><a href="#3-1-iOS端" class="headerlink" title="3.1 iOS端"></a>3.1 iOS端</h2><p>还得是<a target="_blank" rel="noopener" href="https://apps.apple.com/us/app/shadowrocket/id932747118">小火箭</a>。<br>其他的一些工具不支持v2ray-plugin。</p>
-<p>配置设置如图所示：</p>
-<img src="https://github.com/leowll/blog-images/blob/master/shadowrocket-config-1.png?raw=true" width="25%"/>
-<img src="https://github.com/leowll/blog-images/blob/master/shadowrocket-config-2.png?raw=true" width="25%"/>
-
-<h2 id="3-2-Mac端"><a href="#3-2-Mac端" class="headerlink" title="3.2 Mac端"></a>3.2 Mac端</h2><p>自己试了也就只有<a target="_blank" rel="noopener" href="https://github.com/yichengchen/clashX">ClashX</a>好用。</p>
-<p>ClashX要求先在config.yaml中设置一下才能使用。<br>18行左右添加如下配置：<br>这里的domain和密码，端口之类的配置信息要和服务器端的配置一致。</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">proxies:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">&quot;ss-v2ray&quot;</span></span><br><span class="line">    <span class="attr">type:</span> <span class="string">ss</span></span><br><span class="line">    <span class="attr">server:</span> <span class="string">domain.example.com</span></span><br><span class="line">    <span class="attr">port:</span> <span class="string">your_port</span></span><br><span class="line">    <span class="attr">cipher:</span> <span class="string">aes-256-gcm</span></span><br><span class="line">    <span class="attr">password:</span> <span class="string">&quot;YourPassword&quot;</span></span><br><span class="line">    <span class="attr">udp:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">plugin:</span> <span class="string">v2ray-plugin</span></span><br><span class="line">    <span class="attr">plugin-opts:</span></span><br><span class="line">      <span class="attr">mode:</span> <span class="string">websocket</span></span><br><span class="line">      <span class="attr">path:</span> <span class="string">/v2ray</span></span><br><span class="line">      <span class="attr">host:</span> <span class="string">domain.example.com</span></span><br><span class="line">      <span class="attr">tls:</span> <span class="literal">true</span></span><br><span class="line">      <span class="attr">skip-cert-verify:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
-<p>然后Config&gt;Reload Config一下就可以加载这个配置了。</p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2023/01/02/20230102-ss-v2ray-hands-on/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -328,8 +306,16 @@
       
           <p>买了Just Dance 2022的北美版，跳的上瘾，决定买Just Dance Unlimited。<br>买完之后又发现无法使用，刚开始以为是自己买的游戏北美版的原因，<br>经过一番折腾才发现是「いつもあそぶ本体」的设置问题。</p>
 <p>只有把你现在玩的机器设置成「いつもあそぶ本体」，才能使用Just Dance Unlimited。<br>官方回答在这里</p>
-<p><a href="">https://support.nintendo.co.jp/app/answers/detail/a_id/36096</a></p>
+<p><a href>https://support.nintendo.co.jp/app/answers/detail/a_id/36096</a></p>
 
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/12/12/20221212-just-dance-unlimited/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -426,26 +412,14 @@
 <p> 齐鲁医院在市北区，离家只有15分钟。</p>
 </li>
 </ol>
-<h3 id="做核酸检测"><a href="#做核酸检测" class="headerlink" title="做核酸检测"></a>做核酸检测</h3><p>做检测很简单，只需用微信搜索<strong>齐鲁医院青岛的公众号</strong>，然后预约核酸检测（24元的单人单管）第一次使用这个公众号会让你先注册一个健康卡，用自己的身份证号码注册就行。<br><img src="https://raw.githubusercontent.com/leowll/blog-images/master/IMG_5889.JPG"><br><img src="https://raw.githubusercontent.com/leowll/blog-images/master/IMG_5890.JPG"></p>
-<p>预约完之后就可以去医院做核酸了。拿着自己的身份证去齐鲁医院门诊楼前面做核酸。<br><img src="https://raw.githubusercontent.com/leowll/blog-images/master/IMG_5891.JPG"></p>
-<p>排队的时候不要随大流去排长队，直接去排<strong>陪护、就诊的队伍</strong>就行。笔者去的时候前面只有一个人。</p>
-<p>做核酸的地方有个穿绿色防护服的医务人员在维持秩序，跟她说明自己需要出国用的核酸报告，她会让你在一张纸上<strong>登记自己的护照号码</strong>。</p>
-<p>做完核酸并登记完之后回家等着吧，报告出来需要6个小时以上。</p>
-<h3 id="拿核酸报告"><a href="#拿核酸报告" class="headerlink" title="拿核酸报告"></a>拿核酸报告</h3><p>在家等核酸报告出来，笔者9点做的，下午3点左右报告就出来了，可以在齐鲁医院的公众号上查到。 查到报告后就开始再次来到齐鲁医院的门诊楼前做核酸的地方。旁边有可以打印报告的地方。因为之前登录了自己的护照号码，打印报告的时候会出一张英文的报告单。</p>
-<p>拿着打印出来的两张报告单，和你从日本厚生劳动省的网站上下载并打印的<a target="_blank" rel="noopener" href="https://www.mofa.go.jp/mofaj/files/100119502.pdf">既定格式的报告单</a>，</p>
-<ol>
-<li><p>去门诊楼的二楼的检验医学中心最里面窗口找检验人给你的报告签字盖章。</p>
-<p> <img src="https://raw.githubusercontent.com/leowll/blog-images/master/IMG_5892.JPG"><br> <img src="https://raw.githubusercontent.com/leowll/blog-images/master/IMG_5893.JPG"></p>
-</li>
-<li><p>拿着第一步签字盖章的单子到一楼的报告盖章窗口盖医院的章。</p>
-<p> <img src="https://raw.githubusercontent.com/leowll/blog-images/master/IMG_5894.JPG"></p>
-</li>
-</ol>
-<p>有了这个盖了2个章的报告单，就可以下载MySOS程序然后提交自己的核酸检测报告了。经过几个小时MySOS就变绿了。<br>    <img src="https://raw.githubusercontent.com/leowll/blog-images/master/IMG_5895.JPG"></p>
-<h2 id="登机"><a href="#登机" class="headerlink" title="登机"></a>登机</h2><p>此处无多余话讲。青岛胶东机场挺气派。飞机延迟1小时10分钟。开始担心能不能赶上终电。<br>    <img src="https://raw.githubusercontent.com/leowll/blog-images/master/IMG_5896.JPG"></p>
-<h2 id="降落"><a href="#降落" class="headerlink" title="降落"></a>降落</h2><p>降落日本后，开始排队做核酸快速检测。MySOS是绿的旅客会快一些。红的需要在机场先填很多东西。绿的最终也耗时一个小时。<br>    <img src="https://raw.githubusercontent.com/leowll/blog-images/master/IMG_5897.JPG"></p>
-<h2 id="回家"><a href="#回家" class="headerlink" title="回家"></a>回家</h2><p>赶上了22点30分的京成电铁。回到家凌晨12点半左右。</p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/05/05/20220505_qingdao_japan/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -526,44 +500,14 @@
 <h2 id="最基础的flask部署方式"><a href="#最基础的flask部署方式" class="headerlink" title="最基础的flask部署方式"></a>最基础的flask部署方式</h2><p>如果flask没有做模块化，部署方式也很简单<br>通常flask的主程序都是这么写的:</p>
 <p>一个名为<code>app.py</code>的程序，内容如下</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> Flask</span><br><span class="line"></span><br><span class="line">app = Flask(__name__)</span><br><span class="line"></span><br><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">&#x27;/&#x27;</span></span>)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">index</span>():</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;hello, world&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    app.run()</span><br></pre></td></tr></table></figure>
-
-<p>部署到heroku时，Procfile这么写：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">web: gunicorn app:app</span><br></pre></td></tr></table></figure>
-
-<p>这里gunicorn是python的HTTP服务器，类似于java的tomcat</p>
-<p><code>app:app</code>的写法解释一下：</p>
-<ul>
-<li>第一个app是指app.py</li>
-<li>第二个app指上述程序中的app变量</li>
-</ul>
-<p>理解这个写法的含义很关键，之后全栈程序的部署也要相应的调整。</p>
-<h2 id="全栈程序需要的调整"><a href="#全栈程序需要的调整" class="headerlink" title="全栈程序需要的调整"></a>全栈程序需要的调整</h2><ol>
-<li><p>程序入口</p>
-<p> 在一开始的文件夹结构中，我们的flask程序做成了模块，不存在类似于<code>app.py</code>的程序。所以要新建一个，在这里我们叫它<code>heroku.py</code>。</p>
-<p> 内容也很简单：</p>
- <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> app</span><br><span class="line"></span><br><span class="line">heroku = app.create_app()</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    heroku.run()</span><br></pre></td></tr></table></figure></li>
-<li><p>Procfile的调整</p>
-<p> 由于我们的flask程序在<code>flask</code>文件夹里，相对于Procfile位置不同，所以要加上<code>--chdir ./flask</code>的参数。</p>
-<p> 同时由于我们的程序名称为<code>heroku.py</code>,变量名称为<code>heroku</code>,都需要做相应的调整，于是Profile如下所示：</p>
- <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">web: gunicorn --chdir ./flask heroku:heroku</span><br></pre></td></tr></table></figure></li>
-<li><p>前端编译的设置<br> 由于我们的前端存放于vue文件夹里，为了能让heroku识别并编译，我们把整个项目先当作一个node程序，在项目文件夹里添加一个package.json文件。<br> 并在scripts中写上vue项目的编译命令<code>cd vue &amp;&amp; npm install &amp;&amp; npm run build</code>。</p>
- <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;your-app-name&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;version&quot;</span>: <span class="string">&quot;1.0.0&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;license&quot;</span>: <span class="string">&quot;MIT&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;engines&quot;</span>: &#123;</span><br><span class="line">    <span class="attr">&quot;node&quot;</span>: <span class="string">&quot;14.15.x&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;yarn&quot;</span>: <span class="string">&quot;1.22.x&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;npm&quot;</span>: <span class="string">&quot;&gt;= 3.0.0&quot;</span>        </span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">&quot;scripts&quot;</span>: &#123;</span><br><span class="line">    <span class="attr">&quot;heroku-postbuild&quot;</span>: <span class="string">&quot;cd vue &amp;&amp; npm install &amp;&amp; npm run build&quot;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">&quot;cacheDirectories&quot;</span>: [</span><br><span class="line">    <span class="string">&quot;vue/node_modules&quot;</span></span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-<li><p>完整结构</p>
- <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">your-app</span><br><span class="line">├── flask</span><br><span class="line">│   ├── app</span><br><span class="line">│   ├── dist</span><br><span class="line">│   └── test</span><br><span class="line">│   └── heroku.py</span><br><span class="line">└── vue</span><br><span class="line">    ├── build</span><br><span class="line">    ├── config</span><br><span class="line">    ├── node_modules</span><br><span class="line">    ├── src</span><br><span class="line">    ├── static</span><br><span class="line">    └── test</span><br><span class="line">└── Procfile</span><br><span class="line">└── package.json</span><br></pre></td></tr></table></figure></li>
-<li><p>添加环境变量。</p>
-<p> 把本地flask项目中<code>.env</code>文件的内容配置到heroku里面。</p>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat .env | tr <span class="string">&#x27;\n&#x27;</span> <span class="string">&#x27; &#x27;</span> | xargs heroku config:<span class="built_in">set</span> -a your_app</span><br></pre></td></tr></table></figure></li>
-<li><p>在heroku的设置页面添加python的buildpack<br> 顺序为：</p>
-<ul>
-<li>nodejs</li>
-<li>python</li>
-</ul>
-</li>
-<li><p>npm install troubleshooting</p>
-<p> 在第一次部署node程序的时候，heroku默认只安装dependencies中的依赖。如果想让heroku安装devDependencies的话，需要设置如下环境变量。</p>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">heroku config:<span class="built_in">set</span> NPM_CONFIG_PRODUCTION=<span class="literal">false</span></span><br></pre></td></tr></table></figure></li>
-</ol>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/01/30/20220130_deploy_flask_to_heroku/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -642,6 +586,14 @@
 <p>接下来跟着网上的教程照猫画虎，因为ssh可用，所以通过wscp软件将需要升级的系统文件上传到路由器的/tmp文件夹中。<br>接下来通过执行以下命令，顺利实现了升级!</p>
 <p><code>mtd -r write /tmp/XXX.img Bootloader</code></p>
 
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/11/27/20201127%20how%20to%20update%20pandorabox%20via%20ssh/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -727,13 +679,14 @@
 
 <p>怎么解决这个错误呢，通过配置eslint来解决！</p>
 <p>eslint在Vue中被用来检测程序是否有一些不规范的写法，通过让eslint来识别jQuery，就可以来规避编译时的报错了。</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;eslintConfig&quot;</span>: &#123;</span><br><span class="line">  <span class="attr">&quot;root&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">  <span class="attr">&quot;env&quot;</span>: &#123;</span><br><span class="line">    <span class="attr">&quot;node&quot;</span>: <span class="literal">true</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">&quot;extends&quot;</span>: [</span><br><span class="line">    <span class="string">&quot;plugin:vue/essential&quot;</span>,</span><br><span class="line">    <span class="string">&quot;eslint:recommended&quot;</span></span><br><span class="line">  ],</span><br><span class="line">  <span class="attr">&quot;parserOptions&quot;</span>: &#123;</span><br><span class="line">    <span class="attr">&quot;parser&quot;</span>: <span class="string">&quot;babel-eslint&quot;</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">&quot;rules&quot;</span>: &#123;&#125;,</span><br><span class="line">  <span class="attr">&quot;globals&quot;</span>: &#123;</span><br><span class="line">    <span class="attr">&quot;$&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="attr">&quot;jQuery&quot;</span>: <span class="literal">true</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>“globals”的部分的定义：</p>
-<blockquote>
-<p>Globals - 脚本在执行期间访问的额外的全局变量。</p>
-</blockquote>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/06/01/20200601%20how%20to%20include%20jQuery%20into%20Vue%20without%20npm/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -826,6 +779,14 @@
 <li>Use your formatter in your view.<br>View中对UI控件设置formatter<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Text</span> <span class="attr">text</span>=<span class="string">&quot;&#123;</span></span></span><br><span class="line"><span class="string"><span class="tag">			path: &#x27;/Date&#x27;,</span></span></span><br><span class="line"><span class="string"><span class="tag">			formatter: &#x27;.formatJSONDate&#x27;</span></span></span><br><span class="line"><span class="string"><span class="tag">		&#125;&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure></li>
 </ol>
 
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/05/01/20200501%20how%20to%20display%20json%20date%20in%20sapui5/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -914,22 +875,19 @@
 <ol>
 <li>进入Flow的编辑模式。</li>
 </ol>
-<img src="https://raw.githubusercontent.com/leowll/blog-images/master/IMG_5898.PNG" width="50%"/>
+<img src="https://raw.githubusercontent.com/leowll/blog-images/master/IMG_5898.PNG" width="50%">
 
 <ol start="2">
 <li>编辑模式下，在Flow的Resources设置Tab添加Jar文件。</li>
 </ol>
-<img src="https://raw.githubusercontent.com/leowll/blog-images/master/IMG_5899.PNG" width="50%"/>
-
-<ol start="3">
-<li>添加之后的结果：</li>
-</ol>
-<img src="https://raw.githubusercontent.com/leowll/blog-images/master/IMG_5900.PNG" width="50%"/>
-
-<ol start="4">
-<li>在Groovy Script中引入自己需要的类。</li>
-</ol>
-<img src="https://raw.githubusercontent.com/leowll/blog-images/master/IMG_5901.PNG" width="50%"/>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/04/07/20200407_how%20to%20use%20jar%20in%20SCPI/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1015,6 +973,14 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Autowired</span></span><br><span class="line">SimpleJobLauncher simpleJobLauncher;</span><br><span class="line"><span class="meta">@Autowired</span></span><br><span class="line">Job job1;</span><br><span class="line"><span class="meta">@Autowired</span></span><br><span class="line">Job job2;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">(ApplicationArguments args)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">	logger.info(<span class="string">&quot;##### run async jobs #####&quot;</span>);</span><br><span class="line">	simpleJobLauncher.run(job1, jobParameters);</span><br><span class="line">	simpleJobLauncher.run(job2, jobParameters);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 </ol>
 
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/09/03/20190903-spring-batch-async-job/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1093,14 +1059,15 @@
 <h1 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h1><p>通过参考<a target="_blank" rel="noopener" href="http://www.zhyea.com/2018/02/08/gradle-exclude-dependencies.html">gradle-exclude-dependencies</a>这篇文章，尝试了如下解决办法：</p>
 <h2 id="Dependency局部排除"><a href="#Dependency局部排除" class="headerlink" title="Dependency局部排除"></a>Dependency局部排除</h2><p>通过对spring boot的依赖添加exclude描述来排除特定依赖。</p>
 <figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">compile</span>(<span class="string">&quot;org.springframework.boot:spring-boot-starter-web:$&#123;project.bootVersion&#125;&quot;</span>)&#123;</span><br><span class="line">	<span class="keyword">exclude</span> <span class="keyword">group</span>: <span class="string">&#x27;org.slf4j&#x27;</span>, module: <span class="string">&#x27;slf4j-api&#x27;</span></span><br><span class="line">	<span class="keyword">exclude</span> <span class="keyword">group</span>: <span class="string">&#x27;ch.qos.logback&#x27;</span>, module: <span class="string">&#x27;logback-classic&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">compile</span>(<span class="string">&quot;org.springframework.boot:spring-boot-starter-actuator:$&#123;project.bootVersion&#125;&quot;</span>)&#123;</span><br><span class="line">	<span class="keyword">exclude</span> <span class="keyword">group</span>: <span class="string">&#x27;org.slf4j&#x27;</span>, module: <span class="string">&#x27;slf4j-api&#x27;</span></span><br><span class="line">	<span class="keyword">exclude</span> <span class="keyword">group</span>: <span class="string">&#x27;ch.qos.logback&#x27;</span>, module: <span class="string">&#x27;logback-classic&#x27;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="Configuration全局排除"><a href="#Configuration全局排除" class="headerlink" title="Configuration全局排除"></a>Configuration全局排除</h2><p>在全局配置中通通排除相关依赖。</p>
-<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">configurations</span> &#123;</span><br><span class="line">	all*.<span class="keyword">exclude</span> <span class="keyword">group</span>: <span class="string">&#x27;org.slf4j&#x27;</span>, module: <span class="string">&#x27;slf4j-api&#x27;</span></span><br><span class="line">	all*.<span class="keyword">exclude</span> <span class="keyword">group</span>: <span class="string">&#x27;ch.qos.logback&#x27;</span>, module: <span class="string">&#x27;logback-classic&#x27;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="providedRuntime打包时排除"><a href="#providedRuntime打包时排除" class="headerlink" title="providedRuntime打包时排除"></a>providedRuntime打包时排除</h2><p>上述两种方法能够解决问题，但是本地执行的时候却会报错，原因是Tomcat Embedded还是需要被排除的那些依赖。<br>怎样让gradle打包的时候排除这些依赖呢？gradle提供了providedRuntime和providedCompile等写法。<br><a target="_blank" rel="noopener" href="https://docs.gradle.org/current/userguide/war_plugin.html">The War Plugin</a></p>
-<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">providedRuntime(<span class="string">&quot;org.slf4j:slf4j-api&quot;</span>)</span><br><span class="line">providedRuntime(<span class="string">&quot;ch.qos.logback:logback-classic&quot;</span>)</span><br></pre></td></tr></table></figure>
-
-
-
-
+<h2 id="Configuration全局排除"><a href="#Configuration全局排除" class="headerlink" title="Configuration全局排除"></a>Configuration全局排除</h2>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/05/29/20190529-gradle-exclude-war/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 

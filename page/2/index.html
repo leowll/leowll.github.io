@@ -228,41 +228,15 @@
 <p>然后就去日本的Yodabashi Camera办了UQ Mobile的SIM卡，还送了一台华为P10 Lite。UQ Mobile的速度比我Line Mobile的卡不知道快了多少。<br>Line Mobile 在2017年初的时候速度还挺快，后来慢慢的用的人多了？速度就降了下来，用Speedtest测的话只能达到2Mbps左右的网速。而老婆的手机却能测得20Mbps，让人眼馋。</p>
 <p>我之前也是用的乐天，后来改用了Line Mobile。小米Note3貌似对日本的服务商支持不太好，我接过来之后装上也是时不时的断网。解决办法就是断网的时候就切换一下APN。看老婆的手机用的那么舒爽，于是决定也换成UQ Mobile，心想大不了也想原来一样上不了网的时候就切换一下APN嘛。</p>
 <h1 id="事与愿违"><a href="#事与愿违" class="headerlink" title="事与愿违"></a>事与愿违</h1><p>事实是我想的太简单了。刚开始装上SIM卡的时候，走出Yodobashi的大楼就不能用了，后来回到家里能用了一段时间，但是在上班路上电车里却总也连不上信号。就这样无信号的过了一整天。后来干脆显示为SIM卡无法识别。。。</p>
-<h1 id="折腾"><a href="#折腾" class="headerlink" title="折腾"></a>折腾</h1><p>因为一直显示不在服务区（SIM卡无法识别），我先回尝试了下面几种方法：</p>
-<h2 id="刷机"><a href="#刷机" class="headerlink" title="刷机"></a>刷机</h2><p>刷了MIUI9的国际版，测试不通过<br>刷了MIUI10，测试不通过</p>
-<h2 id="改基带"><a href="#改基带" class="headerlink" title="改基带"></a>改基带</h2><p>网上说日本和中国的运营商提供的基带不同，所以我在想是不是基带的问题。<br>UQ Mobile利用的是KDDI AU的线路，AU支持的LTE基带为<a target="_blank" rel="noopener" href="https://www.frequencycheck.com/carriers/kddi-au-japan">B1,B11,B18,B41</a><br>小米Note3<a target="_blank" rel="noopener" href="https://www.mi.com/minote3/specs/">支持的基带</a>为</p>
-<ul>
-<li>FDD-LTE (频段 B1，B3，B5，B7，B8)</li>
-<li>TDD-LTE (频段 B34, B38，B39, B40, B41)</li>
-<li>TD-SCDMA (频段 B34，B39)</li>
-<li>WCDMA (频段 B1，B2，B5，B8)</li>
-<li>GSM (频段 B2，B3，B5，B8)</li>
-<li>CDMA1X/EVDO (频段 BC0)</li>
-</ul>
-<p>所以应该不是问题。</p>
-<p>但还是想<a target="_blank" rel="noopener" href="https://gadget.hrksv.com/2017/01/05/post-858">通过QTool</a> 来改一下基带。</p>
-<p>结果还是不行。因为我买的是小米全网通版的Note3，默认已经支持了。</p>
-<h1 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h1><p>踏破铁鞋无觅处，得来全不费工夫。折腾到晚上1点，终于找到了解决方法。<br>这篇<a target="_blank" rel="noopener" href="https://mymobile-wifi.com/xiaomi-mi-mix-2-cdma-lte">日本人写的博客</a> 里提到了非常简单的解决方法：</p>
-<h2 id="0-先确认一下自己有没有添加自己家运营商的APN"><a href="#0-先确认一下自己有没有添加自己家运营商的APN" class="headerlink" title="0. 先确认一下自己有没有添加自己家运营商的APN"></a>0. 先确认一下自己有没有添加自己家运营商的APN</h2><p>很多朋友说为什么我用了你的方法不管用，不显示信号。希望先确认一下这一步有没有做。<br>各自去自己用的SIM卡家的网站上看APN怎么设置，这里就不再赘述了。</p>
-<h2 id="1-添加VoLTE的APN"><a href="#1-添加VoLTE的APN" class="headerlink" title="1. 添加VoLTE的APN"></a>1. 添加VoLTE的APN</h2><ul>
-<li>NAME: ims</li>
-<li>APN: ims</li>
-<li>MCC: 440</li>
-<li>MNC: 51</li>
-<li>TYPE: ims</li>
-</ul>
-<p>这一步很多朋友添加ims的apn之后不显示，没有关系，能用就行。</p>
-<h2 id="2-将VoLTE的设备检测关掉"><a href="#2-将VoLTE的设备检测关掉" class="headerlink" title="2. 将VoLTE的设备检测关掉"></a>2. 将VoLTE的设备检测关掉</h2><p>通过电话拨打<code>*#*#86583#*#*</code>来关掉手机的VoLTE设备检测功能。<br>拨号后带有“…disabled”的消息一闪而过，这时你在观察手机右上角的服务商标志就显示为有信号了！</p>
-<img src="https://raw.githubusercontent.com/leowll/blog-images/master/IMG_5902.JPG" width="50%"/>
-
-<p>而这时你再到”设置-&gt;双卡和移动网络”中查看SIM卡信息就会发现连VoLTE高清通话功能都可用了！</p>
-<img src="https://raw.githubusercontent.com/leowll/blog-images/master/IMG_5903.JPG" width="50%"/>
-
-<p>现在来测一下速度吧：</p>
-<img src="https://raw.githubusercontent.com/leowll/blog-images/master/IMG_5904.JPG" width="50%"/>
-
-<p>LTE速度36+Mbps，还不错！</p>
-
+<h1 id="折腾"><a href="#折腾" class="headerlink" title="折腾"></a>折腾</h1>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2018/08/20/20180820-mi-note3-kddi-au/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -350,18 +324,14 @@
 </ol>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- developer tools for hot code-replacement etc. --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">		  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">		  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-devtools<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">		  <span class="tag">&lt;<span class="name">optional</span>&gt;</span>true<span class="tag">&lt;/<span class="name">optional</span>&gt;</span></span><br><span class="line">	 <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!--Embedded tomcat etc. --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-web<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-tomcat<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">scope</span>&gt;</span>provided<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-logging<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">scope</span>&gt;</span>provided<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>因为SAP Cloud Platform的Neo环境中内置了Tomcat容器，所以当部署到Neo上去的时候，你的程序就不应该再内嵌tomcat了。</p>
-<p>tomcat使用部署环境提供的tomcat，写成<strong>provided</strong>。而且Neo中也内置了<strong>logging</strong>的库，所以相应的依赖也应该写成<strong>provided</strong>。</p>
-<ol start="2">
-<li>main函数要写成这样：</li>
-</ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.springframework.boot.SpringApplication;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.autoconfigure.EnableAutoConfiguration;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.builder.SpringApplicationBuilder;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.web.support.SpringBootServletInitializer;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.ComponentScan;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.Configuration;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="meta">@ComponentScan</span></span><br><span class="line"><span class="meta">@EnableAutoConfiguration</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Application</span> <span class="keyword">extends</span> <span class="title">SpringBootServletInitializer</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> SpringApplicationBuilder <span class="title">configure</span><span class="params">(SpringApplicationBuilder application)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> application.sources(Application.class);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">	     SpringApplication.run(Application.class, args);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h1><p>通过查看官方的文档，明白了为什么main函数要写成上面的样子。<br><a target="_blank" rel="noopener" href="https://docs.spring.io/spring-boot/docs/current/reference/html/howto-traditional-deployment.html">How to traditional-deployment</a><br>官方文档中提到，</p>
-<blockquote>
-<p>The first step in producing a deployable war file is to provide a SpringBootServletInitializer subclass and override its configure method. Doing so makes use of Spring Framework’s Servlet 3.0 support and lets you configure your application when it is launched by the servlet container. Typically, you should update your application’s main class to extend SpringBootServletInitializer.</p>
-</blockquote>
-<p>翻译成中文就是，如果你想让你的程序运行在servlet容器（比如Neo中内嵌的Tomcat），你就需要让你的main函数继承<code>SpringBootServletInitializer</code>并重写其中的<code>configure</code>方法。<br>普通的Spring Boot程序不需要这么写，是因为它们不需要运行在外置的servlet容器中。</p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2018/06/30/deploy-spring-boot-sap-cloud-platform-neo/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -450,28 +420,14 @@
 </ol>
 <p>有些情况下花生壳给的域名无法正常更新，原因不明。只能选择能够更新的来用了。</p>
 <p><a target="_blank" rel="noopener" href="https://imgchr.com/i/CbX3PU"><img src="https://s1.ax1x.com/2018/06/09/CbX3PU.md.jpg" alt="CbX3PU.md.jpg"></a></p>
-<h1 id="设置动态DNS"><a href="#设置动态DNS" class="headerlink" title="设置动态DNS"></a>设置动态DNS</h1><p>在Pandorabox的管理界面的服务&gt;动态DNS中进行下面的设置。<br>Pandorabox自带了Oray的服务选项，也可以自定义URL</p>
-<ul>
-<li>自定义更新URL:http://[USERNAME]:[PASSWORD]@ddns.oray.com/ph/update?hostname=[DOMAIN]&amp;myip=[IP]<br><a target="_blank" rel="noopener" href="https://imgchr.com/i/CbXl5T"><img src="https://s1.ax1x.com/2018/06/09/CbXl5T.md.jpg" alt="CbXl5T.md.jpg"></a></li>
-</ul>
-<p>IP地址来源选择Oray提供的URL来确认本机的IP地址。</p>
-<ul>
-<li>用于检测的URL：<a target="_blank" rel="noopener" href="http://ddns.oray.com/checkip">http://ddns.oray.com/checkip</a></li>
-</ul>
-<p><a target="_blank" rel="noopener" href="https://imgchr.com/i/CbXJxJ"><img src="https://s1.ax1x.com/2018/06/09/CbXJxJ.md.png" alt="CbXJxJ.md.png"></a></p>
-<h1 id="设置Web服务"><a href="#设置Web服务" class="headerlink" title="设置Web服务"></a>设置Web服务</h1><p>Web服务器默认拒绝外网访问，需要将这个限制解除</p>
-<ol>
-<li>编辑 /etc/config/uhttpd</li>
-</ol>
-<p>将 </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">option rfc1918_filter <span class="string">&#x27;1&#x27;</span></span><br></pre></td></tr></table></figure>
-<p>  改为</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">option rfc1918_filter <span class="string">&#x27;0&#x27;</span></span><br></pre></td></tr></table></figure>
-<ol start="2">
-<li>重启Web服务</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/etc/init.d/uhttpd restart</span><br></pre></td></tr></table></figure>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2018/06/09/config-pandorabox-oray-ddns/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -545,7 +501,7 @@
       
           <p>参考来源： <a target="_blank" rel="noopener" href="http://www.cnblogs.com/Arago/p/7765873.html">Openwrt配置NAT6</a></p>
 <p>假如你家的路由器是Pandorabox（或者其他openwrt，lede）的路由器，并且你家的网络支持ipv6， 那怎样设置路由器来实现网络提速呢？<br>先来看一下我家网络的提速效果：</p>
-<img src="https://s1.ax1x.com/2018/06/09/Cbf4c8.md.png" height="200px" alt="speed test"/>
+<img src="https://s1.ax1x.com/2018/06/09/Cbf4c8.md.png" height="200px" alt="speed test">
 
 <p>之前家里的网络速度一直徘徊在100M以下，设置了ipv6之后，一直保持在100M左右。</p>
 <h1 id="ipv6比ipv4更快吗？"><a href="#ipv6比ipv4更快吗？" class="headerlink" title="ipv6比ipv4更快吗？"></a>ipv6比ipv4更快吗？</h1><p><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/19570943">ipv6比ipv4更快吗？</a></p>
@@ -553,51 +509,15 @@
 <p>说 IPv6 能提高「网速」通常是指新建的 IPv6 网络通常具有更大的带宽（比如中国正在新建的 CERNET2 骨干网动辄 10Gbps、100Gbps 的连接带宽）、更好的流量控制、更少的 NAT 从而实现更高效的网络拓扑结构（IP 地址资源多从而不需要对数据包进行多次地址翻译和转发）。在这些方面 IPv6 确实是能提高「网速」的。</p>
 </blockquote>
 <h1 id="NAT的工作原理"><a href="#NAT的工作原理" class="headerlink" title="NAT的工作原理"></a>NAT的工作原理</h1><p>当内部网络中的一台主机想传输数据到外部网络时，它先将数据包传输到NAT路由器上，路由器检查数据包的报头，获取该数据包的源IP信息，并从它的NAT映射表中找出与该IP匹配的转换条目，用所选用的内部全局地址（全球唯一的IP地址）来替换内部局部地址，并转发数据包。<br>当外部网络对内部主机进行应答时，数据包被送到NAT路由器上，路由器接收到目的地址为内部全局地址的数据包后，它将用内部全局地址通过NAT映射表查找出内部局部地址，然后将数据包的目的地址替换成内部局部地址，并将数据包转发到内部主机。<br><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Nat2.svg/300px-Nat2.svg.png" alt="nat工作原理"></p>
-<h1 id="设置步骤"><a href="#设置步骤" class="headerlink" title="设置步骤"></a>设置步骤</h1><h2 id="查看-设置ipv6前缀"><a href="#查看-设置ipv6前缀" class="headerlink" title="查看/设置ipv6前缀"></a>查看/设置ipv6前缀</h2><p>在管理界面的网络&gt;接口画面可以看到</p>
-<p>默认ipv6的前缀是设置好的，当然也可以自己定义一下。<br><a target="_blank" rel="noopener" href="https://imgchr.com/i/CbfB6O"><img src="https://s1.ax1x.com/2018/06/09/CbfB6O.md.jpg" alt="CbfB6O.md.jpg"></a></p>
-<h2 id="设置DHCPv6"><a href="#设置DHCPv6" class="headerlink" title="设置DHCPv6"></a>设置DHCPv6</h2><p>在网络&gt;接口-LAN&gt;DHCP服务器中进行如下设置，使连接到网络的设备能自动获取ipv6地址：</p>
-<ul>
-<li>路由器通告服务： 服务器模式</li>
-<li>DHCPv6服务： 服务器模式</li>
-<li>DHCPv6模式： 无状态的+有状态的</li>
-</ul>
-<p><a target="_blank" rel="noopener" href="https://imgchr.com/i/Cbfwp6"><img src="https://s1.ax1x.com/2018/06/09/Cbfwp6.md.png" alt="Cbfwp6.md.png"></a></p>
-<h2 id="配置防火墙"><a href="#配置防火墙" class="headerlink" title="配置防火墙"></a>配置防火墙</h2><p>ssh进你的路由器，执行下列命令</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ip6tables -t nat -A POSTROUTING -o eth0.2 -j MASQUERADE</span><br></pre></td></tr></table></figure>
-
-<p>等同于在路由器管理界面的防火墙中添加下列NAT规则</p>
-<p><a target="_blank" rel="noopener" href="https://imgchr.com/i/CbfDXD"><img src="https://s1.ax1x.com/2018/06/09/CbfDXD.md.png" alt="CbfDXD.md.png"></a></p>
-<h2 id="配置网关"><a href="#配置网关" class="headerlink" title="配置网关"></a>配置网关</h2><p>同样利用ssh，查看自己路由器的默认ipv6网关</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ip -6 route | grep default</span><br></pre></td></tr></table></figure>
-<p>得到的结果类似于</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">default from (your ipv6) via (gateway) dev eth0.2 proto static metric 512</span><br></pre></td></tr></table></figure>
-<p>(gateway)的部分就是你的默认ipv6网关</p>
-<p>执行下列命令设置你的默认ipv6网关</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">route -A inet6 add default gw &lt;your default gw&gt; dev eth0.2</span><br></pre></td></tr></table></figure>
-
-<p>执行下列命令重启防火墙和网络使设置生效</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/etc/init.d/firewall restart</span><br><span class="line">/etc/init.d/network restart</span><br></pre></td></tr></table></figure>
-
-<h2 id="配置开机自动设置ipv6路由默认网关"><a href="#配置开机自动设置ipv6路由默认网关" class="headerlink" title="配置开机自动设置ipv6路由默认网关"></a>配置开机自动设置ipv6路由默认网关</h2><p>上述配置在重启路由器后会失效，需要在开机的时候自动设置网关。</p>
-<p>在/etc/hotplug.d/iface/目录下新建名字为 90-ipv6 的文件<br>修改内容为</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/sh</span></span><br><span class="line">[ <span class="string">&quot;<span class="variable">$ACTION</span>&quot;</span> = ifup ] || <span class="built_in">exit</span> 0</span><br><span class="line">route -A inet6 add default gw &lt;your default gw&gt; dev eth0.2</span><br></pre></td></tr></table></figure>
-
-
-<p>给予可执行权限</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod +x 90-ipv6</span><br></pre></td></tr></table></figure>
-
-<h2 id="配置DNS服务器"><a href="#配置DNS服务器" class="headerlink" title="配置DNS服务器"></a>配置DNS服务器</h2><p>DNS有可能被污染 手动修改wan6的dns方法是：</p>
-<ol>
-<li>修改wan6-高级设置 </li>
-<li>取消勾选对端通告的DNS服务器 </li>
-<li>自定义为谷歌的v6dns</li>
-</ol>
-<p><a target="_blank" rel="noopener" href="https://imgchr.com/i/Cbf01K"><img src="https://s1.ax1x.com/2018/06/09/Cbf01K.md.png" alt="Cbf01K.md.png"></a></p>
-<h2 id="测试IPv6是否正常"><a href="#测试IPv6是否正常" class="headerlink" title="测试IPv6是否正常"></a>测试IPv6是否正常</h2><p>通过 <a target="_blank" rel="noopener" href="http://test-ipv6.com/">http://test-ipv6.com/</a> </p>
-<p>或者 <a target="_blank" rel="noopener" href="http://ipv6-test.com/">http://ipv6-test.com/</a></p>
-<p>测试IPv6是否正常</p>
-<p><a target="_blank" rel="noopener" href="https://imgchr.com/i/Cbfsne"><img src="https://s1.ax1x.com/2018/06/09/Cbfsne.md.jpg" alt="Cbfsne.md.jpg"></a></p>
-
+<h1 id="设置步骤"><a href="#设置步骤" class="headerlink" title="设置步骤"></a>设置步骤</h1>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2018/06/09/config-pandorabox-ipv6/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -686,25 +606,14 @@
 <p>也就是说，给你一串字符串，你要把它转换成固定长度的散列。<br>##用Java来实现MD5哈希值<br>Java中可以这样实现:</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">String password = <span class="string">&quot;123456&quot;</span>;</span><br><span class="line">		</span><br><span class="line">   MessageDigest md = MessageDigest.getInstance(<span class="string">&quot;MD5&quot;</span>);</span><br><span class="line">   md.update(password.getBytes());</span><br><span class="line">   <span class="keyword">byte</span> byteData[] = md.digest();</span><br><span class="line">		</span><br><span class="line">   <span class="comment">//convert the byte to hex format method 1</span></span><br><span class="line">   StringBuffer sb = <span class="keyword">new</span> StringBuffer();</span><br><span class="line">   <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; byteData.length; i++) &#123;</span><br><span class="line">    sb.append(Integer.toString((byteData[i] &amp; <span class="number">0xff</span>) + <span class="number">0x100</span>, <span class="number">16</span>).substring(<span class="number">1</span>));</span><br><span class="line">   &#125;</span><br><span class="line">   System.out.println(<span class="string">&quot;Digest(in hex format):: &quot;</span> + sb.toString());</span><br><span class="line"> </span><br></pre></td></tr></table></figure>
 <h2 id="byte数值转换为int数值时的注意事项"><a href="#byte数值转换为int数值时的注意事项" class="headerlink" title="byte数值转换为int数值时的注意事项"></a>byte数值转换为int数值时的注意事项</h2><p>那么问题来了，下面这行代码做的是啥？<br><code>Integer.toString((byteData[i] &amp; 0xff) + 0x100, 16).substring(1)</code><br>这行语句其实是将byteData中的byte类型的数据转换成十六进制的数据进行表示。<br>为什么这么复杂？<br>是因为要考虑到byteData中的负数。</p>
-<p>考虑一下下面这段代码，试图将byte类型表示为16进制形式的字符串</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">testByteInt</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">byte</span> a = <span class="number">127</span>;</span><br><span class="line">	print(a);</span><br><span class="line">	<span class="keyword">byte</span> b = -<span class="number">127</span>;</span><br><span class="line">	print(b);</span><br><span class="line">	<span class="keyword">byte</span> c = <span class="number">2</span>;</span><br><span class="line">	print(c);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">print</span><span class="params">(<span class="keyword">byte</span> b)</span> </span>&#123;</span><br><span class="line">	System.out.println(Integer.toBinaryString(b));</span><br><span class="line">	System.out.println(Integer.toBinaryString(b &amp; <span class="number">0xff</span>));</span><br><span class="line">	System.out.println(Integer.toHexString(b));</span><br><span class="line">	System.out.println(Integer.toHexString(b &amp; <span class="number">0xff</span>));</span><br><span class="line">	System.out.println(Integer.toString(b, <span class="number">16</span>));</span><br><span class="line">	System.out.println(Integer.toString(b &amp; <span class="number">0xff</span>, <span class="number">16</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>运行结果：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">1111111</span><br><span class="line">1111111</span><br><span class="line">7f</span><br><span class="line">7f</span><br><span class="line">7f</span><br><span class="line">7f</span><br><span class="line">11111111111111111111111110000001</span><br><span class="line">10000001</span><br><span class="line">ffffff81</span><br><span class="line">81</span><br><span class="line">-7f</span><br><span class="line">81</span><br><span class="line">10</span><br><span class="line">10</span><br><span class="line">2</span><br><span class="line">2</span><br><span class="line">2</span><br><span class="line">2</span><br></pre></td></tr></table></figure>
-<p>从输出结果可以看出几个问题。</p>
-<ul>
-<li>String的几个函数接收byte类型的参数时自动将其转换为int类型</li>
-<li>int类型的负数<code>-127</code>用2进制数据来表示的时候，会用符号位补全，变成<code>11111111111111111111111110000001</code>, 而这个2进制的数据再用16进制来表示的时候却成了<code>ffffff81</code>，与<code>-127</code>的16进制表示<strong>不一致</strong>。</li>
-<li>负数的十六进制表现形式例如<code>-7f</code>不符合哈希值的要求。哈希值中不能带有负号。所以需要将其转换一下。</li>
-<li>比较小的数值，例如<code>2</code>，转换成的16进制字符串也是<code>2</code>，不符合哈希值的长度要求。哈希值要求每个byte用2个16进制的字符来表示。</li>
-</ul>
-<p>要解决上面两个问题，前面的java程序给出的答案是：</p>
-<ul>
-<li>用<code>&amp; 0xff</code>来对byte数值进行补零扩展</li>
-<li>用<code>+ 0x100</code>来保证每个数转换成16进制后会得到3个字符</li>
-<li>用<code>.subString(1)</code>来去掉3个字符的第一个字符</li>
-</ul>
-<p>这样就能得到2个16进制的字符了。<br>循环一遍，就能得到相应的MD5哈希字符串了。</p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2018/06/08/why-java-md5-0xff/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -790,6 +699,14 @@
 <p>原因很可能是你的服务器（vps）swap不足。<br>通过执行下列命令可以增加swap内存。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo dd <span class="keyword">if</span>=/dev/zero of=/swapfile bs=1024 count=1024k</span><br><span class="line">sudo mkswap /swapfile</span><br><span class="line">sudo swapon /swapfile</span><br></pre></td></tr></table></figure>
 
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2018/06/07/hexo-generate-no-response/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -892,6 +809,14 @@
 <li> Dispatcher Servlet把View对象生成为一个画面（View），画面包含Model对象中的数据，然后把这个View返回给用户(response)。用户的浏览器把这个画面呈献给用户。</li>
 </ol>
 
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2018/05/10/understand-spring-di-aop/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -994,6 +919,14 @@
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Title<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;submit&quot;</span> <span class="attr">id</span>=<span class="string">&quot;button1&quot;</span> <span class="attr">value</span>=<span class="string">&quot;button1&quot;</span> <span class="attr">class</span>=<span class="string">&quot;button&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;submit&quot;</span> <span class="attr">id</span>=<span class="string">&quot;button2&quot;</span> <span class="attr">value</span>=<span class="string">&quot;button2&quot;</span> <span class="attr">class</span>=<span class="string">&quot;button&quot;</span>/&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> myClosureFunc = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">        <span class="comment">// init the count to 0</span></span></span><br><span class="line"><span class="javascript">        <span class="keyword">var</span> count = <span class="number">0</span>;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">            <span class="comment">//count</span></span></span><br><span class="line"><span class="javascript">            count++;</span></span><br><span class="line"><span class="javascript"></span></span><br><span class="line"><span class="javascript">            <span class="keyword">if</span> (count === <span class="number">3</span>) &#123;</span></span><br><span class="line"><span class="javascript">                <span class="comment">// do something every third time</span></span></span><br><span class="line"><span class="javascript">                alert(<span class="string">&quot;Third time&#x27;s the charm!&quot;</span>);</span></span><br><span class="line"><span class="javascript">                <span class="comment">//reset counter</span></span></span><br><span class="line"><span class="javascript">                count = <span class="number">0</span>;</span></span><br><span class="line"><span class="javascript">            &#125;</span></span><br><span class="line"><span class="javascript">        &#125;;</span></span><br><span class="line"><span class="javascript">    &#125;</span></span><br><span class="line"><span class="javascript"></span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> element1 = <span class="built_in">document</span>.getElementById(<span class="string">&quot;button1&quot;</span>);</span></span><br><span class="line"><span class="javascript">    element1.onclick = myClosureFunc();</span></span><br><span class="line"><span class="javascript"></span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> element2 = <span class="built_in">document</span>.getElementById(<span class="string">&quot;button2&quot;</span>);</span></span><br><span class="line"><span class="javascript">    element2.onclick = myClosureFunc();</span></span><br><span class="line"><span class="javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>  counter的位置移到了event handler函数的内部，而函数的返回值为一个闭包。 按照上面的概念，myClosureFunc中的闭包可以访问它创建时所处的作用域(scope), 于是它就可以访问自己的counter，而这个counter是<strong>相对</strong>全局的，也就是说，在element1被按下的过程中，这个counter是共有的。 而element1和element2中的counter又是<strong>相对独立</strong>的。 怎么样，有没有帮你理解closure在作用域这个概念里所起的作用？</p>
 
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2017/02/21/my-understandng-of-javascript-closure/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1092,6 +1025,14 @@
 <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;welcomeFile&quot;</span>: <span class="string">&quot;/webapp/test/test.html&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;routes&quot;</span>: \[</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">&quot;path&quot;</span>: <span class="string">&quot;/resources&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;target&quot;</span>: &#123;</span><br><span class="line">        <span class="attr">&quot;type&quot;</span>: <span class="string">&quot;service&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;sapui5&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;entryPath&quot;</span>: <span class="string">&quot;/resources&quot;</span></span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="attr">&quot;description&quot;</span>: <span class="string">&quot;SAPUI5 Resources&quot;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">&quot;path&quot;</span>: <span class="string">&quot;/test-resources&quot;</span>,</span><br><span class="line">      <span class="attr">&quot;target&quot;</span>: &#123;</span><br><span class="line">        <span class="attr">&quot;type&quot;</span>: <span class="string">&quot;service&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;sapui5&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;entryPath&quot;</span>: <span class="string">&quot;/test-resources&quot;</span></span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="attr">&quot;description&quot;</span>: <span class="string">&quot;SAPUI5 Test Resources&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">  \],</span><br><span class="line">  <span class="attr">&quot;sendWelcomeFileRedirect&quot;</span>: <span class="literal">true</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2017/02/15/sapui5-qunit-404-not-found/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1195,6 +1136,14 @@
 <li> wizardConfig_typeName.xml：如果通过向导对话框添加组件，则通过此文件进行向导配置。</li>
 </ol>
 
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2016/11/15/create-new-hybris-cms-component-in-accelerator/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 

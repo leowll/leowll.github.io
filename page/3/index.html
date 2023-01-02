@@ -239,6 +239,14 @@
 <p>之所以会出现错误，是因为程序没有加载hybris框架通常需要的一些环境变量。 在测试用例中加入如下代码可以解决问题。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Before</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setUp</span><span class="params">()</span> <span class="keyword">throws</span> Exception</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	createCoreData();</span><br><span class="line">	createDefaultCatalog();</span><br><span class="line">	createHardwareCatalog();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2016/10/28/sap-hybris-unit-test-note/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -328,12 +336,20 @@
           <p>在SAP hybris中添加自定义的CMS Component,需要注意以下几点： 参考链接:<a target="_blank" rel="noopener" href="https://wiki.hybris.com/pages/viewpage.action?pageId=294094319"> https://wiki.hybris.com/pages/viewpage.action?pageId=294094319</a></p>
 <ol>
 <li> 在addon中添加，可免去对accelerator的修改</li>
-<li> 在/<addon-name>/resources/<addon-name>/web/spring/<addon-name>-web-spring.xml中添加renderer和rendererMapping的定义</li>
+<li> 在/<addon-name>/resources/<addon-name>/web/spring/<addon-name>-web-spring.xml中添加renderer和rendererMapping的定义</addon-name></addon-name></addon-name></li>
 <li> 使用ant命令安装addon</li>
 </ol>
-<p>/<addon-name/>-web-spring.xml的代码示例如下：</p>
+<p>/<addon-name>-web-spring.xml的代码示例如下：</addon-name></p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;yourComponentRenderer&quot;</span> <span class="attr">class</span>=<span class="string">&quot;org.training.renderer.yourComponentRenderer&quot;</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;typeService&quot;</span> <span class="attr">ref</span>=<span class="string">&quot;typeService&quot;</span> /&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;uiExperienceService&quot;</span> <span class="attr">ref</span>=<span class="string">&quot;defaultUiExperienceService&quot;</span> /&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;cmsComponentService&quot;</span> <span class="attr">ref</span>=<span class="string">&quot;cmsComponentService&quot;</span> /&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;modelService&quot;</span> <span class="attr">ref</span>=<span class="string">&quot;modelService&quot;</span> /&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;uiExperienceViewPrefixMap&quot;</span> <span class="attr">ref</span>=<span class="string">&quot;uiExperienceViewPrefixMap&quot;</span> /&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;unknownUiExperiencePrefix&quot;</span> <span class="attr">value</span>=<span class="string">&quot;desktop&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;yourComponentRendererMapping&quot;</span> <span class="attr">parent</span>=<span class="string">&quot;addonCmsComponentRendererMapping&quot;</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;typeCode&quot;</span> <span class="attr">value</span>=<span class="string">&quot;yourComponent&quot;</span> /&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;renderer&quot;</span> <span class="attr">ref</span>=<span class="string">&quot;yourComponentRenderer&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2016/10/26/sap-hybris-cms-component-notes/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -438,6 +454,14 @@
 </li>
 </ul>
 
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2016/09/28/sony-interview-questions/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -539,6 +563,14 @@
 <li>  nginx有<strong>网关</strong>（gateway）的作用，可以过滤访问IP。</li>
 </ul>
 
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2015/11/07/why-need-nginx-with-uwsgi/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -634,6 +666,14 @@
 <p>最后打印的结果，可以看到两个函数输出的时间戳是不一样的。（P.S.笔者在东九区）</p>
 <p>1445904000000<br>1445871600000</p>
 
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2015/10/27/python-datetime-to-utc-timestamp/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -730,6 +770,14 @@
 <h4 id="让表头在每个页面都能显示"><a href="#让表头在每个页面都能显示" class="headerlink" title="让表头在每个页面都能显示"></a>让表头在每个页面都能显示</h4><p>在详细模式里面找到表头的Static，然后设置KeepWithGroup属性为After，RepeatOnNewPage为True。 如果表头之前还有上一层分组的Static，上一层分组的上述两个属性要分别设为Before和True。 在同一个分组的Static的RepeatOnNewPage不能设置为不同的值，所以同样设定为了True， 但是不希望在后续页面继续显示的部分，其KeepWithGroup只要设定为Before，就不会随后续数据分页而再次出现了。<a target="_blank" rel="noopener" href="https://www.flickr.com/photos/136148236@N02/22474037011/in/dateposted-public/" title="repeatonnewpage"><img src="https://farm1.staticflickr.com/712/22474037011_fb874db3ff_n.jpg" alt="repeatonnewpage"></a></p>
 <h4 id="让数据在合理的位置分页"><a href="#让数据在合理的位置分页" class="headerlink" title="让数据在合理的位置分页"></a><strong>让数据在合理的位置分页</strong></h4><p>在希望保持为一个整体的Group上设置KeepTogether为True，就会尽量让同一组的数据在同一页面显示。 <a target="_blank" rel="noopener" href="https://www.flickr.com/photos/136148236@N02/22276255729/in/dateposted-public/" title="keeptogether"><img src="https://farm6.staticflickr.com/5659/22276255729_da2fee249a_n.jpg" alt="keeptogether"></a></p>
 
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2015/10/25/ssrs-paging-3moves/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -825,6 +873,14 @@
 </ul>
 <p>main : sleep start.<br>Thread A : sleep start<br>main : sleep end.<br>Catch Thread A interrupted<br>Thread A finished.</p>
 
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2015/10/10/java-multi-thread/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -920,6 +976,14 @@
 <p>２種類の人間がいる。 やりたいことやっちゃう人とやらない人。 やりたいことやってきたこの人生。 おかげで痛い目にもあってきた。 散々恥もかいてきた。 誰かの言うことを素直に聞いてりゃ、 今よりずっと楽だったかもしれない。 でもね、これだけは言える。 やりたいことやっちゃう人生のほうが、間違いなく面白い。 俺はこれからもやっちゃうよ あんたはどうする？</p>
 </blockquote>
 
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2015/10/09/restart/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1012,6 +1076,14 @@
       
           <p>在windows下对SQL Server2008数据库进行定时备份，需要做以下工作： 1.编写备份数据库的bat文件，内容形似： <em>backup database testdb to disk=’d:\backup\testdb.bak’  &gt;&gt; .\backup.log</em> 2.编写copy数据库备份文件并重命名的bat文件，形似： <em>SET DT=%DATE:<del>0,4%%DATE:</del>5,2%%DATE:~8,2%</em> <em>COPY D:\backup.bak  D:\backup%DT%.bak &gt;&gt; .\copy.log</em> 2.建立两个windows计划任务，分别选定时间和周期执行上述备份bat文件。 这样就可以实现sql server的定时备份策略了。</p>
 
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2012/03/19/sqlserver-2008-backup/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1104,6 +1176,14 @@
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">action</span> <span class="attr">name</span>=<span class="string">&quot;searchUser&quot;</span> <span class="attr">method</span>=<span class="string">&quot;search&quot;</span> <span class="attr">class</span>=<span class="string">&quot;searchUserAction&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">result</span> <span class="attr">type</span>=<span class="string">&quot;json&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">param</span> <span class="attr">name</span>=<span class="string">&quot;excludeProperties&quot;</span>&gt;</span></span><br><span class="line">userService</span><br><span class="line"><span class="tag">&lt;/<span class="name">param</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">result</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">action</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>  exludeProperties即可将不需要json序列化的属性排除在外。</p>
 
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2012/02/13/ssh-extjs-json/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
