@@ -22,17 +22,17 @@
     var CONFIG = {"hostname":"leowll.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="前提条件 你要有下面这些东西才能实现文章中的解决方案：  一台带公共ip的外网服务器 一个域名  1. 申请一个域名域名可以在cloudflare或者onamae上申请，花不了几个钱。 2. 申请一个证书证书可以通过acme这种工具来自动发行和更新。 2.1 先在自己的服务器上安装acme.sh把&amp;#x6d;&amp;#x79;&amp;#x40;&amp;#x65;&amp;#x78;&amp;#97;&amp;#109;&amp;#x70;&amp;#10">
+  <meta name="description" content="前提条件 你要有下面这些东西才能实现文章中的解决方案：  一台带公共ip的外网服务器 一个域名  1. 申请一个域名域名可以在cloudflare或者onamae上申请，花不了几个钱。 2. 申请一个证书证书可以通过acme这种工具来自动发行和更新。 2.1 先在自己的服务器上安装acme.sh把&amp;#x6d;&amp;#x79;&amp;#64;&amp;#x65;&amp;#x78;&amp;#x61;&amp;#109;&amp;#112;&amp;#x6">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Docker Compose配置Shadowsocks + V2Ray Plugin + ClashX">
 <meta property="og:url" content="http://leowll.com/2023/01/02/20230102-ss-v2ray-hands-on/index.html">
 <meta property="og:site_name" content="Leo&#39;s notepad">
-<meta property="og:description" content="前提条件 你要有下面这些东西才能实现文章中的解决方案：  一台带公共ip的外网服务器 一个域名  1. 申请一个域名域名可以在cloudflare或者onamae上申请，花不了几个钱。 2. 申请一个证书证书可以通过acme这种工具来自动发行和更新。 2.1 先在自己的服务器上安装acme.sh把&amp;#x6d;&amp;#x79;&amp;#x40;&amp;#x65;&amp;#x78;&amp;#97;&amp;#109;&amp;#x70;&amp;#10">
+<meta property="og:description" content="前提条件 你要有下面这些东西才能实现文章中的解决方案：  一台带公共ip的外网服务器 一个域名  1. 申请一个域名域名可以在cloudflare或者onamae上申请，花不了几个钱。 2. 申请一个证书证书可以通过acme这种工具来自动发行和更新。 2.1 先在自己的服务器上安装acme.sh把&amp;#x6d;&amp;#x79;&amp;#64;&amp;#x65;&amp;#x78;&amp;#x61;&amp;#109;&amp;#112;&amp;#x6">
 <meta property="og:locale">
 <meta property="og:image" content="https://github.com/leowll/blog-images/blob/master/shadowrocket-config-1.png?raw=true">
 <meta property="og:image" content="https://github.com/leowll/blog-images/blob/master/shadowrocket-config-2.png?raw=true">
 <meta property="article:published_time" content="2023-01-02T02:15:00.000Z">
-<meta property="article:modified_time" content="2023-01-03T07:44:07.221Z">
+<meta property="article:modified_time" content="2024-08-09T07:48:52.862Z">
 <meta property="article:author" content="Leo Wang">
 <meta property="article:tag" content="Shadowsocks">
 <meta property="article:tag" content="V2Ray">
@@ -205,7 +205,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-01-03 16:44:07" itemprop="dateModified" datetime="2023-01-03T16:44:07+09:00">2023-01-03</time>
+                <time title="Modified: 2024-08-09 16:48:52" itemprop="dateModified" datetime="2024-08-09T16:48:52+09:00">2024-08-09</time>
               </span>
 
           
@@ -241,7 +241,7 @@
 </ol>
 <h1 id="1-申请一个域名"><a href="#1-申请一个域名" class="headerlink" title="1. 申请一个域名"></a>1. 申请一个域名</h1><p>域名可以在<a target="_blank" rel="noopener" href="https://cloudflare.com/">cloudflare</a>或者<a target="_blank" rel="noopener" href="https://onamae.com/">onamae</a>上申请，花不了几个钱。</p>
 <h1 id="2-申请一个证书"><a href="#2-申请一个证书" class="headerlink" title="2. 申请一个证书"></a>2. 申请一个证书</h1><p>证书可以通过acme这种工具来自动发行和更新。</p>
-<h2 id="2-1-先在自己的服务器上安装acme-sh"><a href="#2-1-先在自己的服务器上安装acme-sh" class="headerlink" title="2.1 先在自己的服务器上安装acme.sh"></a>2.1 先在自己的服务器上安装acme.sh</h2><p>把<a href="mailto:&#x6d;&#x79;&#x40;&#x65;&#x78;&#97;&#109;&#x70;&#108;&#101;&#x2e;&#x63;&#111;&#x6d;">&#x6d;&#x79;&#x40;&#x65;&#x78;&#97;&#109;&#x70;&#108;&#101;&#x2e;&#x63;&#111;&#x6d;</a>替换为自己的邮件地址，执行下面的命令。</p>
+<h2 id="2-1-先在自己的服务器上安装acme-sh"><a href="#2-1-先在自己的服务器上安装acme-sh" class="headerlink" title="2.1 先在自己的服务器上安装acme.sh"></a>2.1 先在自己的服务器上安装acme.sh</h2><p>把<a href="mailto:&#x6d;&#x79;&#64;&#x65;&#x78;&#x61;&#109;&#112;&#x6c;&#101;&#x2e;&#x63;&#111;&#x6d;">&#x6d;&#x79;&#64;&#x65;&#x78;&#x61;&#109;&#112;&#x6c;&#101;&#x2e;&#x63;&#111;&#x6d;</a>替换为自己的邮件地址，执行下面的命令。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl https://get.acme.sh | sh -s email=my@example.com</span><br></pre></td></tr></table></figure>
 
 <p>acme.sh通常会被安装到<code>/home/username</code>文件夹下。（<code>username</code>是你自己的用户名）<br>记住这个位置。</p>
@@ -258,7 +258,7 @@
 <li>左侧的本地port不用必须设置成8388，可以改成自己喜欢的port。</li>
 <li>加密方式可设为自己喜欢的METHOD。</li>
 </ol>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">&quot;3.7&quot;</span></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line">  <span class="attr">shadowsocks-libev:</span></span><br><span class="line">    <span class="attr">container_name:</span> <span class="string">shadowsocks-libev</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">acrisliu/shadowsocks-libev:latest</span></span><br><span class="line">    <span class="attr">user:</span> <span class="string">root</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">&quot;8388:8388/tcp&quot;</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">&quot;8388:8388/udp&quot;</span></span><br><span class="line">    <span class="attr">volumes:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">/home/username/.acme.sh:/root/.acme.sh:ro</span></span><br><span class="line">    <span class="attr">environment:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">METHOD=YourMethod</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">PASSWORD=YourPassword</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">ARGS=--plugin</span> <span class="string">v2ray-plugin</span> <span class="string">--plugin-opts</span> <span class="string">server;mode=ws;host=yourdomain.com;path=/v2ray;cert=/root/.acme.sh/yourdomain.com/fullchain.cer;key=/root/.acme.sh/yourdomain.com/yourdomain.com.key</span> <span class="string">-u</span></span><br><span class="line">    <span class="attr">restart:</span> <span class="string">always</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">&quot;3.7&quot;</span></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line">  <span class="attr">shadowsocks-libev:</span></span><br><span class="line">    <span class="attr">container_name:</span> <span class="string">shadowsocks-libev</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">acrisliu/shadowsocks-libev:latest</span></span><br><span class="line">    <span class="attr">user:</span> <span class="string">root</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">&quot;8388:8388/tcp&quot;</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">&quot;8388:8388/udp&quot;</span></span><br><span class="line">    <span class="attr">volumes:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">/home/username/.acme.sh:/root/.acme.sh:ro</span></span><br><span class="line">    <span class="attr">environment:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">METHOD=YourMethod</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">PASSWORD=YourPassword</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">ARGS=--plugin</span> <span class="string">v2ray-plugin</span> <span class="string">--plugin-opts</span> <span class="string">server;mode=tls;host=yourdomain.com;path=/v2ray;cert=/root/.acme.sh/yourdomain.com/fullchain.cer;key=/root/.acme.sh/yourdomain.com/yourdomain.com.key</span> <span class="string">-u</span></span><br><span class="line">    <span class="attr">restart:</span> <span class="string">always</span></span><br></pre></td></tr></table></figure>
 
 <p>配置完成之后启动服务端。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo docker-compose up -d</span><br></pre></td></tr></table></figure>
@@ -436,7 +436,7 @@
 <div class="copyright">
   
   &copy; 2010 – 
-  <span itemprop="copyrightYear">2023</span>
+  <span itemprop="copyrightYear">2024</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
